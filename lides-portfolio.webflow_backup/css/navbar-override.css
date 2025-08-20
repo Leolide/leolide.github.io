@@ -1,0 +1,369 @@
+/* Floating glassmorphism navbar design */
+.dt-navbar,
+.navbar {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    z-index: 100;
+    padding: 2rem;
+    position: fixed;
+    width: calc(100vw - 6rem);
+    max-width: calc(100vw - 6rem);
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dt-nav-container,
+.navbar-wrapper {
+    background-color: transparent;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5rem;
+    width: 100%;
+}
+
+.navbar-content {
+    background-color: transparent;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+/* Glassmorphism navigation links */
+.navbar .navbar-link-block {
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    letter-spacing: -0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .dt-nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    letter-spacing: -0.01em;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.navbar .dt-nav-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.navbar .navbar-link-block:hover {
+    color: #fe4f32;
+    transform: translateY(-1px);
+}
+
+/* Special styling for brand name */
+.navbar .text-size-small {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.03em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, yea0.1);
+}
+
+/* Mobile menu button styling */
+.menu-button-2 {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.menu-button-2:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.line-hamburger {
+    background-color: #ffffff;
+    border-radius: 2px;
+}
+
+/* Mobile navigation link styling - compact horizontal layout */
+@media (max-width: 1023px) {
+    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-decoration: none;
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px;
+        letter-spacing: -0.01em;
+        background: transparent !important;
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+        margin: 0 !important;
+        margin-bottom: 0 !important;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+    
+    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link:hover {
+        color: #ffffff !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+        transform: none !important;
+    }
+    
+    /* Remove any active/current state backgrounds and all possible hover/focus effects */
+    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link.w--current,
+    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link:focus,
+    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link:active,
+    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link:focus-visible,
+    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link:focus-within {
+        color: rgba(255, 255, 255, 0.9) !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+        margin-bottom: 0 !important;
+        transform: none !important;
+    }
+    
+    /* Force remove any webkit or browser default focus outlines */
+    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link::-moz-focus-inner {
+        border: 0 !important;
+        outline: none !important;
+    }
+    
+    /* Remove any container outlines or selection indicators */
+    .w-nav[data-collapse="medium"] .dt-nav-menu,
+    .w-nav[data-collapse="medium"] nav.dt-nav-menu {
+        outline: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+    
+    /* Disable any selection highlighting */
+    .w-nav[data-collapse="medium"] .dt-nav-menu *::selection {
+        background: transparent !important;
+    }
+    
+    .w-nav[data-collapse="medium"] .dt-nav-menu *::-moz-selection {
+        background: transparent !important;
+    }
+}
+
+.dt-nav-menu .dt-nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 1rem 0;
+    display: block;
+    text-align: center;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.5rem;
+}
+
+.dt-nav-menu .dt-nav-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transform: translateY(-2px);
+}
+
+.dt-nav-menu .dt-nav-link:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* Mobile dropdown hover effect - darker for readability */
+.dt-nav-menu:hover {
+    background: rgba(0, 0, 0, 0.9);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* Navbar hover effect */
+.navbar:hover {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Desktop navigation - horizontal layout - Fixed to not interfere with mobile */
+@media (min-width: 1024px) {
+    .w-nav[data-collapse="medium"] .dt-nav-menu {
+        display: flex !important;
+        position: static !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin-top: 0 !important;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+    }
+    
+    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: none;
+        padding: 0.75rem 1.25rem;
+        border-radius: 12px;
+        letter-spacing: -0.01em;
+        background: transparent;
+        border: none;
+        display: inline-block;
+        text-align: center;
+        border-bottom: none !important;
+        margin-bottom: 0 !important;
+        transition: all 0.3s ease;
+    }
+    
+    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link:hover {
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Hide mobile menu button on desktop */
+    .w-nav[data-collapse="medium"] .menu-button-2 {
+        display: none !important;
+    }
+}
+
+/* Mobile and tablet responsive adjustments - Always show navigation */
+@media (max-width: 1023px) {
+    .dt-navbar,
+    .navbar {
+        top: 1rem;
+        padding: 1rem;
+        border-radius: 16px;
+        width: calc(100vw - 2rem);
+        max-width: calc(100vw - 2rem);
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    /* Hide mobile menu button - we don't need it */
+    .menu-button-2 {
+        display: none !important;
+    }
+    
+    /* Always show navigation menu on mobile - keep on right side */
+    .w-nav[data-collapse="medium"] .dt-nav-menu {
+        display: flex !important;
+        flex-direction: row;
+        gap: 0.5rem;
+        align-items: center;
+        position: static;
+        background: transparent;
+        padding: 0;
+        margin: 0;
+        margin-left: auto;
+        justify-content: flex-end;
+    }
+    
+    .dt-nav-container,
+    .navbar-wrapper {
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+        width: 100%;
+    }
+    
+    .navbar-content {
+        flex: 1;
+        justify-content: flex-end;
+    }
+    
+    /* Keep brand on left, nav on right */
+    .navbar-link-block {
+        flex-shrink: 0;
+    }
+    
+    .dt-right-nav-navbar-1 {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex: 1;
+    }
+}
+
+/* Hero background full height */
+.hero-section,
+#hero-section,
+.hero,
+.spline-wrapper,
+.spline-scene,
+.spline-container {
+    min-height: 100vh;
+}
+
+/* Ensure mobile home section is exactly 100vh */
+@media (max-width: 1023px) {
+    .hero-section,
+    #hero-section,
+    .hero {
+        height: 100vh;
+        min-height: 100vh;
+        max-height: 100vh;
+    }
+}
+
+/* Reset body/html margins */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Hide any white background elements in mobile/tablet view */
+@media (max-width: 1024px) {
+    .dt-nav-menu::before,
+    .dt-nav-menu::after,
+    .w-nav-overlay,
+    .navbar-wrapper::before,
+    .navbar-wrapper::after {
+        display: none !important;
+        background: transparent !important;
+    }
+    
+    /* Ensure mobile menu background is properly contained */
+    .dt-nav-menu {
+        position: relative;
+        z-index: 1000;
+        overflow: hidden;
+    }
+}
