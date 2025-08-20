@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Project Index - Lide's Portfolio</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="css/normalize.css" rel="stylesheet" type="text/css">
+    <link href="css/webflow.css" rel="stylesheet" type="text/css">
+    <link href="css/lides-portfolio.webflow.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <h1>Project Portfolio</h1>
+            <p>Browse all projects dynamically loaded from CSV data:</p>
+            
+            <h2>Professional Projects (with Code)</h2>
+            <div id="works-with-codes-container"></div>
+            
+            <h2>Portfolio Projects</h2>
+            <div id="works-container"></div>
+            
+            <h2>All Projects</h2>
+            <div id="all-projects-container"></div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize project index
+        async function initializeProjectIndex() {
+            const loader = new CSVContentLoader();
+            await loader.loadCSVData();
+            
+            const router = new ProjectRouter();
+            router.initialize(loader.worksData, loader.worksWithCodesData);
+            
+            // Generate different project views
+            const worksWithCodesContainer = document.getElementById('works-with-codes-container');
+            const worksContainer = document.getElementById('works-container');
+            const allProjectsContainer = document.getElementById('all-projects-container');
+            
+            router.generateProjectIndex(worksWithCodesContainer, 'works-with-codes');
+            router.generateProjectIndex(worksContainer, 'works');
+            router.generateProjectIndex(allProjectsContainer, 'all');
+        }
+        
+        // Load scripts dynamically
+        function loadScript(src, callback) {
+            const script = document.createElement('script');
+            script.src = src;
+            script.onload = callback;
+            document.head.appendChild(script);
+        }
+        
+        // Load dependencies
+        loadScript('js/csv-content-loader.js', () => {
+            loadScript('js/project-router.js', () => {
+                initializeProjectIndex();
+            });
+        });
+    </script>
+</body>
+</html>
