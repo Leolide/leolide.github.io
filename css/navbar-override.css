@@ -1,3 +1,9 @@
+/* Reset any large text sizes first */
+.dt-navbar *,
+.navbar * {
+    font-size: inherit !important;
+}
+
 /* Floating glassmorphism navbar design */
 .dt-navbar,
 .navbar {
@@ -8,7 +14,7 @@
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
     z-index: 100;
-    padding: 2rem;
+    padding: 1rem 2rem;
     position: fixed;
     width: calc(100vw - 6rem);
     max-width: calc(100vw - 6rem);
@@ -17,6 +23,7 @@
     transform: translateX(-50%);
     margin: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.875rem;
 }
 
 .dt-nav-container,
@@ -26,8 +33,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 5rem;
+    gap: 2rem;
     width: 100%;
+}
+
+/* Force horizontal layout for nav menu */
+.dt-nav-menu {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 1rem !important;
+    align-items: center !important;
+    background: transparent !important;
+    position: static !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .navbar-content {
@@ -76,12 +95,13 @@
 }
 
 /* Special styling for brand name */
-.navbar .text-size-small {
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: -0.03em;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, yea0.1);
+.navbar .text-size-small,
+.dt-navbar .text-size-small {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    letter-spacing: -0.03em !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Mobile menu button styling */
@@ -177,24 +197,34 @@
     }
 }
 
+/* Base nav link styling - override any Webflow defaults */
 .dt-nav-menu .dt-nav-link {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.25rem;
-    font-weight: 500;
-    text-decoration: none;
-    padding: 1rem 0;
-    display: block;
-    text-align: center;
-    transition: all 0.3s ease;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    padding: 0.75rem 1.25rem !important;
+    display: inline-block !important;
+    text-align: center !important;
+    transition: all 0.3s ease !important;
+    border-radius: 12px !important;
+    border: none !important;
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
+    margin: 0 !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px) !important;
+    letter-spacing: -0.01em !important;
+    white-space: nowrap !important;
 }
 
 .dt-nav-menu .dt-nav-link:hover {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    transform: translateY(-2px);
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
 
 .dt-nav-menu .dt-nav-link:last-child {
