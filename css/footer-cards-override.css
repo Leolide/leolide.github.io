@@ -59,7 +59,7 @@ section:has(.footer-wrapper) {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    border-radius: 50% !important;
+    border-radius: 0.4rem !important;
     background: transparent !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
