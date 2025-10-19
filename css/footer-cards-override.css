@@ -41,11 +41,12 @@ section:has(.footer-wrapper) {
 }
 
 .footer-email-link {
-    text-decoration: underline !important;
+    text-decoration: none !important;
     color: inherit !important;
     font-size: var(--text-size--huge) !important;
     line-height: 1.15 !important;
     font-weight: 400 !important;
+    font-family: inherit !important;
 }
 
 /* Footer social wrap - keep icons in one row */
