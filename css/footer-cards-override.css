@@ -106,11 +106,11 @@
     color: rgba(255, 255, 255, 1) !important;
 }
 
-/* Logo cards - make them more minimal */
+/* Logo cards - ultra minimalist */
 .logo-card {
     background: transparent !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 0 !important;
     padding: 2rem !important;
     transition: all 0.3s ease !important;
     display: flex !important;
@@ -119,18 +119,28 @@
 }
 
 .logo-card:hover {
-    border-color: rgba(255, 255, 255, 0.15) !important;
-    background: rgba(255, 255, 255, 0.02) !important;
-    transform: translateY(-2px) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    background: rgba(255, 255, 255, 0.01) !important;
 }
 
 .logo-card .logo-image {
-    opacity: 0.7 !important;
+    opacity: 0.6 !important;
     transition: opacity 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.logo-card .logo-image img {
+    margin: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
 }
 
 .logo-card:hover .logo-image {
-    opacity: 1 !important;
+    opacity: 0.9 !important;
 }
 
 /* Remove any unnecessary overlays */
