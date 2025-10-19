@@ -14,38 +14,42 @@
 .dt-navbar,
 .navbar {
     /* Override Webflow defaults */
-    background-color: transparent !important;
     height: auto !important;
     font-size: 0.875rem !important;
     position: fixed !important;
     z-index: 100 !important;
     
-    /* Minimal design - no backdrop, no border, no shadow */
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
+    /* Blurred background effect */
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     
-    /* Positioning & spacing */
+    /* Full width positioning */
     padding: 1rem 2rem;
-    width: auto;
+    width: 100% !important;
     max-width: none;
     min-width: auto;
     min-height: auto;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    transform: none;
+    border-radius: 0;
+    box-shadow: none;
     
     /* Smooth transition */
     transition: all 0.2s ease;
+    user-select: none;
+    isolation: isolate;
 }
 
 /* No hover effect for minimalism */
 .dt-navbar:hover,
 .navbar:hover {
-    background-color: transparent !important;
+    background: rgba(0, 0, 0, 0.5) !important;
 }
 
 /* ========================================
