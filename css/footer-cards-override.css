@@ -140,6 +140,17 @@
 }
 
 /* ========================================
+   HERO SECTION STYLING
+   ======================================== */
+
+/* Adjust hero padding for desktop */
+@media screen and (min-width: 992px) {
+    .home-left-content {
+        padding-bottom: 4em !important;
+    }
+}
+
+/* ========================================
    BUTTON RESPONSIVE STYLING
    ======================================== */
 
