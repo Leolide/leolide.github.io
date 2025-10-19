@@ -14,30 +14,35 @@ section:has(.footer-wrapper) {
     gap: 2rem !important;
 }
 
-/* Footer email wrapper styling - reuse same style as footer-email */
+/* Footer chat text */
+.footer-chat-text {
+    text-align: center !important;
+    margin-top: 4rem !important;
+}
+
+/* Footer email wrapper styling */
 .footer-email-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+}
+
+.footer-email-link-container {
     display: flex !important;
     align-items: center !important;
     gap: 1em !important;
-    grid-column-gap: 1em !important;
-    grid-row-gap: 1em !important;
-    text-align: center !important;
-    justify-content: center !important;
-    margin-top: 4rem !important;
+    text-decoration: none !important;
     transition: opacity 0.25s !important;
+    color: inherit !important;
 }
 
-.footer-email-wrapper:hover {
+.footer-email-link-container:hover {
     opacity: 0.6 !important;
 }
 
 .footer-email-link {
-    color: inherit !important;
     text-decoration: underline !important;
-}
-
-.footer-arrow-link {
-    display: flex !important;
+    color: inherit !important;
 }
 
 /* Footer social wrap - keep icons in one row */
@@ -225,6 +230,29 @@ section:has(.footer-wrapper) {
     /* Remove 80% width constraint on mobile */
     .heading-3.text-weight-regular {
         width: 100% !important;
+    }
+    
+    /* Footer left-aligned on mobile */
+    .footer-top-content {
+        align-items: flex-start !important;
+    }
+    
+    .footer-chat-text {
+        text-align: left !important;
+        margin-top: 2rem !important;
+    }
+    
+    .footer-email-wrapper {
+        justify-content: flex-start !important;
+    }
+    
+    .footer-email {
+        justify-content: flex-start !important;
+        text-align: left !important;
+    }
+    
+    .footer-social-wrap {
+        justify-content: flex-start !important;
     }
 }
 
