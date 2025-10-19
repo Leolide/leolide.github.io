@@ -15,8 +15,8 @@
     color: rgba(255, 255, 255, 0.6) !important;
     transition: all 0.2s ease !important;
     opacity: 0.6 !important;
-    width: 50px !important;
-    height: 50px !important;
+    width: 60px !important;
+    height: 60px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -33,8 +33,8 @@
 }
 
 .footer-embed svg {
-    width: 28px !important;
-    height: 28px !important;
+    width: 36px !important;
+    height: 36px !important;
 }
 
 /* ========================================
