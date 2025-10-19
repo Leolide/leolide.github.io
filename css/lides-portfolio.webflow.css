@@ -1806,6 +1806,7 @@ blockquote {
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.2;
+  width: 80%;
 }
 
 .heading-3.text-weight-regular.line {
