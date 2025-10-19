@@ -14,28 +14,30 @@ section:has(.footer-wrapper) {
     gap: 2rem !important;
 }
 
-/* Footer email wrapper styling */
+/* Footer email wrapper styling - reuse same style as footer-email */
 .footer-email-wrapper {
     display: flex !important;
     align-items: center !important;
     gap: 1em !important;
+    grid-column-gap: 1em !important;
+    grid-row-gap: 1em !important;
+    text-align: center !important;
+    justify-content: center !important;
+    margin-top: 4rem !important;
+    transition: opacity 0.25s !important;
+}
+
+.footer-email-wrapper:hover {
+    opacity: 0.6 !important;
 }
 
 .footer-email-link {
     color: inherit !important;
     text-decoration: underline !important;
-    transition: opacity 0.25s !important;
 }
 
 .footer-arrow-link {
     display: flex !important;
-    transition: opacity 0.25s !important;
-}
-
-/* Shared hover effect for email and arrow */
-.footer-email-wrapper:hover .footer-email-link,
-.footer-email-wrapper:hover .footer-arrow-link {
-    opacity: 0.6 !important;
 }
 
 /* Footer social wrap - keep icons in one row */
