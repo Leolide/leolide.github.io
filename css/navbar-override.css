@@ -24,12 +24,11 @@
     /* Blurred background effect */
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
-    background: rgba(0, 0, 0, 0.5) !important;
+    background: rgba(0, 0, 0, 0.3) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     
     /* Full width positioning */
     padding: 1rem 2rem;
-    padding-bottom: 1.5rem; /* Extra space for progress bar */
     width: 100% !important;
     max-width: none;
     min-width: auto;
@@ -52,7 +51,7 @@
 /* No hover effect for minimalism */
 .dt-navbar:hover,
 .navbar:hover {
-    background: rgba(0, 0, 0, 0.5) !important;
+    background: rgba(0, 0, 0, 0.3) !important;
 }
 
 /* ========================================
