@@ -23,12 +23,8 @@ section:has(.footer-wrapper) {
 
 .footer-email-link {
     color: inherit !important;
-    text-decoration: none !important;
+    text-decoration: underline !important;
     transition: opacity 0.25s !important;
-}
-
-.footer-email-link:hover {
-    opacity: 0.6 !important;
 }
 
 .footer-arrow-link {
@@ -36,7 +32,9 @@ section:has(.footer-wrapper) {
     transition: opacity 0.25s !important;
 }
 
-.footer-arrow-link:hover {
+/* Shared hover effect for email and arrow */
+.footer-email-wrapper:hover .footer-email-link,
+.footer-email-wrapper:hover .footer-arrow-link {
     opacity: 0.6 !important;
 }
 
