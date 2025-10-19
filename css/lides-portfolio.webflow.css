@@ -3971,7 +3971,7 @@ blockquote {
   flex-flow: column;
   justify-content: flex-end;
   align-items: flex-start;
-  padding-bottom: 5.6em;
+  padding-bottom: 2em;
   padding-left: 4em;
   display: flex;
 }
