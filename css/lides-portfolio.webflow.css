@@ -7131,7 +7131,7 @@ blockquote {
   grid-column-gap: 100px;
   grid-row-gap: 100px;
   background-color: #141414;
-  border-radius: 12px;
+  border-radius: 0.4rem;
   flex-direction: column;
   align-items: flex-start;
   max-width: 660px;
