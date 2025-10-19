@@ -2441,11 +2441,10 @@ blockquote {
 
 .footer-wrapper {
   grid-column-gap: 12em;
-  grid-row-gap: 12em;
+  grid-row-gap: 2em;
   flex-flow: column;
   align-items: stretch;
   margin-top: 8.3em;
-  padding-bottom: 2.5em;
   padding-left: 4em;
   padding-right: 2em;
   display: flex;
