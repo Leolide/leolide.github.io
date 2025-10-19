@@ -97,6 +97,9 @@
     flex-direction: row !important;
     justify-content: center !important;
     flex-shrink: 1 !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 /* ========================================
