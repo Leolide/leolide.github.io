@@ -1,9 +1,11 @@
 /* ========================================
-   NAVBAR STYLES - COMBINED & ORGANIZED
+   NAVBAR OVERRIDE STYLES
    ======================================== */
 
-/* Reset any large text sizes first */
+/* Reset font size for all navbar elements */
+.dt-navbar,
 .dt-navbar *,
+.navbar,
 .navbar * {
     font-size: inherit !important;
 }
@@ -27,6 +29,7 @@
     
     /* Full width positioning */
     padding: 1rem 2rem;
+    padding-bottom: 1.5rem; /* Extra space for progress bar */
     width: 100% !important;
     max-width: none;
     min-width: auto;
@@ -55,52 +58,44 @@
 /* ========================================
    NAVIGATION CONTAINER
    ======================================== */
-.dt-nav-container,
-.navbar-wrapper {
-    /* Override Webflow defaults */
-    width: auto !important;
-    max-width: none !important;
-    height: auto !important;
-    min-height: auto !important;
-    padding: 0 !important;
+.dt-nav-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    max-width: 100% !important;
     margin: 0 !important;
-    
-    /* Layout */
-    background-color: transparent;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 1;
+    padding: 0 !important;
+    position: relative !important;
 }
 
-/* Specific override for nested container */
-.dt-navbar .dt-nav-container {
-    height: auto !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    width: auto !important;
-    max-width: none !important;
-    min-height: auto !important;
+.dt-nav-container > * {
+    flex-shrink: 0 !important;
+}
+
+/* ========================================
+   RIGHT SIDE NAV CONTAINER
+   ======================================== */
+.dt-right-nav-navbar-1 {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0 !important;
+    margin-left: auto !important;
+    flex-shrink: 0 !important;
 }
 
 /* ========================================
    NAVIGATION MENU
    ======================================== */
 .dt-nav-menu {
-    /* Override Webflow defaults */
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    width: auto !important;
-    position: static !important;
-    
-    /* Layout */
     display: flex !important;
-    flex-direction: row !important;
-    gap: 0.25rem !important;
     align-items: center !important;
+    gap: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    position: static !important;
+    flex-direction: row !important;
     justify-content: center !important;
     flex-shrink: 1 !important;
 }
@@ -140,15 +135,15 @@
     background: transparent !important;
 }
 
-/* Active/current link styling - subtle */
+/* Active/current link styling - removed selected state */
 .dt-nav-menu .dt-nav-link.w--current {
-    color: rgba(255, 255, 255, 1) !important;
+    color: rgba(255, 255, 255, 0.6) !important;
     background: transparent !important;
     font-weight: 400 !important;
 }
 
 .dt-nav-menu .dt-nav-link.w--current:hover {
-    color: rgba(255, 255, 255, 1) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
     background: transparent !important;
 }
 
@@ -175,7 +170,7 @@
 }
 
 .dt-nav-link.linear-style.w--current {
-    color: rgba(255, 255, 255, 1) !important;
+    color: rgba(255, 255, 255, 0.6) !important;
     background: transparent !important;
     font-weight: 400 !important;
 }
@@ -206,187 +201,17 @@
 }
 
 /* ========================================
-   RESPONSIVE DESIGN
+   SPACE FOR PROGRESS BAR
    ======================================== */
-
-/* Desktop navigation */
-@media (min-width: 1024px) {
-    .dt-navbar,
-    .navbar {
-        padding: 0.4rem 1.2rem !important;
-    }
-    
-    .w-nav[data-collapse="medium"] .dt-nav-menu {
-        display: flex !important;
-        position: static !important;
-        background: transparent !important;
-        backdrop-filter: none !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-        margin-top: 0 !important;
-        flex-direction: row;
-        gap: 0.15rem;
-        align-items: center;
-        width: auto !important;
-        flex-shrink: 1 !important;
-    }
-    
-    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link {
-        color: rgba(255, 255, 255, 0.85) !important;
-        font-size: 0.8rem !important;
-        font-weight: 500 !important;
-        text-decoration: none !important;
-        padding: 0.5rem 1rem !important;
-        border-radius: 20px !important;
-        letter-spacing: -0.01em !important;
-        background: transparent !important;
-        border: none !important;
-        display: inline-block !important;
-        text-align: center !important;
-        margin-bottom: 0 !important;
-        transition: all 0.3s ease !important;
-    }
-    
-    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link:hover {
-        color: #ffffff !important;
-        background: rgba(255, 255, 255, 0.1) !important;
-        transform: translateY(-1px) !important;
-    }
-    
-    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link.w--current {
-        color: #000000 !important;
-        background: rgba(255, 255, 255, 0.95) !important;
-        font-weight: 600 !important;
-    }
-    
-    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link.w--current:hover {
-        color: #000000 !important;
-        background: rgba(255, 255, 255, 1) !important;
-        transform: translateY(-1px) !important;
-    }
+/* Add space below navbar for progress bar */
+body {
+    padding-top: 0 !important;
 }
 
-/* Mobile and tablet responsive adjustments */
-@media (max-width: 1023px) {
-    .dt-navbar,
-    .navbar {
-        top: 1.5rem;
-        padding: 0.4rem 1.2rem;
-        border-radius: 50px;
-        width: auto;
-        max-width: 90vw;
-        min-width: auto;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    /* Hide brand on mobile/tablet */
-    .navbar-link-block {
-        display: none !important;
-    }
-    
-    /* Center navigation container when brand is hidden */
-    .dt-nav-container,
-    .navbar-wrapper {
-        justify-content: center !important;
-        gap: 0;
-        align-items: center;
-        padding: 0;
-        width: auto;
-        flex-shrink: 1;
-    }
-    
-    /* Consistent nav links with desktop */
-    .dt-nav-menu .dt-nav-link {
-        font-size: 0.875rem !important;
-        padding: 0.6rem 1.2rem !important;
-    }
-    
-    /* Always show navigation menu on mobile - centered */
-    .w-nav[data-collapse="medium"] .dt-nav-menu {
-        display: flex !important;
-        position: static !important;
-        background: transparent !important;
-        backdrop-filter: none !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-        margin-top: 0 !important;
-        flex-direction: row;
-        gap: 0.25rem;
-        align-items: center;
-        width: auto !important;
-        flex-shrink: 1 !important;
-        justify-content: center;
-    }
-    
-    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link {
-        color: rgba(255, 255, 255, 0.85) !important;
-        font-size: 0.875rem !important;
-        font-weight: 500 !important;
-        text-decoration: none !important;
-        padding: 0.6rem 1.2rem !important;
-        border-radius: 25px !important;
-        letter-spacing: -0.01em !important;
-        background: transparent !important;
-        border: none !important;
-        display: inline-block !important;
-        text-align: center !important;
-        margin-bottom: 0 !important;
-        transition: all 0.3s ease !important;
-    }
-    
-    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link:hover {
-        color: #ffffff !important;
-        background: rgba(255, 255, 255, 0.1) !important;
-        transform: translateY(-1px) !important;
-    }
-    
-    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link.w--current {
-        color: #000000 !important;
-        background: rgba(255, 255, 255, 0.95) !important;
-        font-weight: 600 !important;
-    }
-    
-    .w-nav[data-collapse="medium"] .dt-nav-menu .dt-nav-link.w--current:hover {
-        color: #000000 !important;
-        background: rgba(255, 255, 255, 1) !important;
-        transform: translateY(-1px) !important;
-    }
-}
-
-/* ========================================
-   HERO SECTION STYLES
-   ======================================== */
-
-/* Hero background full height */
-.hero-section,
-#hero-section,
-.hero,
-.spline-wrapper,
-.spline-scene,
-.spline-container {
-    min-height: 100vh;
-}
-
-/* Ensure mobile home section is exactly 100vh */
-@media (max-width: 1023px) {
-    .hero-section,
-    #hero-section,
-    .hero {
-        height: 100vh;
-        min-height: 100vh;
-        max-height: 100vh;
-    }
-}
-
-/* ========================================
-   GLOBAL RESETS
-   ======================================== */
-
-/* Reset body/html margins */
-html, body {
-    margin: 0;
-    padding: 0;
+/* If there's a progress bar, it should be positioned below the navbar */
+.progress-bar,
+.scroll-indicator,
+[class*="progress"],
+[class*="scroll-bar"] {
+    top: 60px !important; /* Adjust based on navbar height */
 }
