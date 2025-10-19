@@ -150,6 +150,13 @@
     }
 }
 
+/* Add top padding for mobile/tablet */
+@media screen and (max-width: 991px) {
+    .home-left-content {
+        padding-top: 3em !important;
+    }
+}
+
 /* ========================================
    BUTTON RESPONSIVE STYLING
    ======================================== */
