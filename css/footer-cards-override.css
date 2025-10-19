@@ -64,6 +64,16 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
 }
 
+/* Remove hover effects on tags/labels inside cards */
+.works-card-wrapper:hover .style-tag,
+.works-card-wrapper:hover [class*="tag"],
+.works-card-wrapper:hover .works-card-tittle > *,
+.works-card-wrapper:hover .badge,
+.works-card-wrapper:hover .label {
+    transform: none !important;
+    transition: none !important;
+}
+
 /* Works card */
 .works-card {
     background: rgba(0, 0, 0, 0.2) !important;
