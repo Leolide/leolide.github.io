@@ -179,7 +179,6 @@ class IndexContentLoader {
             <a href="${projectUrl}" class="work-link-enhanced"></a>
             <div class="work-image-container-enhanced">
                 <img src="${imageUrl}" alt="${project.Name}" class="work-image-enhanced" loading="lazy">
-                ${project['Project Description']?.includes('Protected') ? '<div class="protected-badge-enhanced">🔒 Protected</div>' : ''}
             </div>
             <div class="work-content-enhanced">
                 <h3 class="work-title-enhanced">
