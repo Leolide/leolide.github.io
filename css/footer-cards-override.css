@@ -41,7 +41,7 @@ section:has(.footer-wrapper) {
 }
 
 .footer-email-link {
-    text-decoration: none !important;
+    text-decoration: underline !important;
     color: inherit !important;
     font-size: var(--text-size--huge) !important;
     line-height: 1.15 !important;
