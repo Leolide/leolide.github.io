@@ -21,11 +21,11 @@
     position: fixed !important;
     z-index: 100 !important;
     
-    /* Blurred background effect */
+    /* Blurred background effect - very transparent */
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
-    background: rgba(0, 0, 0, 0.3) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: rgba(0, 0, 0, 0.15) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
     
     /* Full width positioning */
     padding: 1rem 2rem;
@@ -51,7 +51,7 @@
 /* No hover effect for minimalism */
 .dt-navbar:hover,
 .navbar:hover {
-    background: rgba(0, 0, 0, 0.3) !important;
+    background: rgba(0, 0, 0, 0.15) !important;
 }
 
 /* ========================================
@@ -213,4 +213,18 @@ body {
 [class*="progress"],
 [class*="scroll-bar"] {
     top: 60px !important; /* Adjust based on navbar height */
+}
+
+/* ========================================
+   HERO SECTION - START FROM TOP
+   ======================================== */
+/* Make hero section start from the very top, behind navbar */
+.section {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+.home-hero {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
 }
