@@ -16,14 +16,14 @@ section:has(.footer-wrapper) {
 
 /* Footer chat text */
 .footer-chat-text {
-    text-align: center !important;
+    text-align: left !important;
     margin-top: 4rem !important;
 }
 
 /* Footer email wrapper styling */
 .footer-email-wrapper {
     display: flex !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     width: 100% !important;
 }
 
