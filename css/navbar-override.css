@@ -160,7 +160,7 @@
     /* Linear's minimal style */
     font-size: 0.875rem !important;
     font-weight: 400 !important;
-    text-transform: lowercase !important;
+    text-transform: uppercase !important;
     letter-spacing: 0 !important;
     color: rgba(255, 255, 255, 0.6) !important;
 }
