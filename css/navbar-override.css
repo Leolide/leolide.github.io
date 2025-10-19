@@ -158,6 +158,29 @@
 }
 
 /* ========================================
+   LINEAR-STYLE NAVBAR
+   ======================================== */
+.dt-nav-link.linear-style {
+    /* Linear's minimal style */
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    text-transform: lowercase !important;
+    letter-spacing: 0 !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.dt-nav-link.linear-style:hover {
+    color: rgba(255, 255, 255, 1) !important;
+    background: transparent !important;
+}
+
+.dt-nav-link.linear-style.w--current {
+    color: rgba(255, 255, 255, 1) !important;
+    background: transparent !important;
+    font-weight: 500 !important;
+}
+
+/* ========================================
    BRAND/LOGO STYLING
    ======================================== */
 .navbar-link-block {
