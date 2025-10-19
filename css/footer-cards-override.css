@@ -1,0 +1,141 @@
+/* ========================================
+   FOOTER MINIMALIST STYLING
+   ======================================== */
+
+/* Footer social wrap */
+.footer-social-wrap {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+    padding: 2rem 0 !important;
+}
+
+/* Footer social links */
+.footer-social-link {
+    color: rgba(255, 255, 255, 0.6) !important;
+    transition: all 0.2s ease !important;
+    opacity: 0.6 !important;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.footer-social-link:hover {
+    color: rgba(255, 255, 255, 1) !important;
+    opacity: 1 !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-2px) !important;
+}
+
+.footer-embed svg {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+/* ========================================
+   CARDS MINIMALIST STYLING
+   ======================================== */
+
+/* Works card wrapper - remove rotation effects */
+.works-card-wrapper {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.works-card-wrapper:hover {
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Works card */
+.works-card {
+    background: rgba(0, 0, 0, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 1.5rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.works-card-image {
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    margin-bottom: 1rem !important;
+}
+
+.works-card-image img {
+    transition: transform 0.3s ease !important;
+}
+
+.works-card-wrapper:hover .works-card-image img {
+    transform: scale(1.05) !important;
+}
+
+/* Works card title */
+.works-card-tittle h2 {
+    font-weight: 400 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Card buttons */
+.button-cards-home {
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+}
+
+.button-cards-home:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+/* Logo cards - make them more minimal */
+.logo-card {
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    padding: 2rem !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.logo-card:hover {
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    transform: translateY(-2px) !important;
+}
+
+.logo-card .logo-image {
+    opacity: 0.7 !important;
+    transition: opacity 0.3s ease !important;
+}
+
+.logo-card:hover .logo-image {
+    opacity: 1 !important;
+}
+
+/* Remove any unnecessary overlays */
+.opacity-87,
+.opacity-86 {
+    background: transparent !important;
+}
