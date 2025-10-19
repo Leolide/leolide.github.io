@@ -214,7 +214,7 @@ section:has(.footer-wrapper) {
 /* Add top padding for mobile/tablet */
 @media screen and (max-width: 991px) {
     .home-left-content {
-        padding-top: 3em !important;
+        padding-top: 10em !important;
     }
 }
 
@@ -222,7 +222,7 @@ section:has(.footer-wrapper) {
 @media screen and (max-width: 767px) {
     /* Full height hero section on mobile */
     section:has(.home-hero) {
-        min-height: 120vh !important;
+        min-height: 100vh !important;
         display: flex !important;
         align-items: center !important;
     }
