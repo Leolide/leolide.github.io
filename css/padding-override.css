@@ -1,0 +1,39 @@
+/* Remove 4em/4rem padding throughout the page for tighter spacing */
+
+.sticky-services {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.works-square-wrapper.margin-top {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.footer-card-left {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.footer-card-right {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.footer-link-right {
+    padding-right: 0 !important;
+}
+
+.logo-card-grid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.works-section-enhanced .works-container-inner {
+    padding: 0 !important;
+    margin: 4em auto;
+}
+
+.dt-nav-container {
+    padding-left: 0 !important;
+}
