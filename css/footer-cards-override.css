@@ -221,7 +221,7 @@ section:has(.footer-wrapper) {
 @media screen and (max-width: 767px) {
     /* Full height hero section on mobile */
     section:has(.home-hero) {
-        min-height: 100vh !important;
+        min-height: 120vh !important;
         display: flex !important;
         align-items: center !important;
     }
