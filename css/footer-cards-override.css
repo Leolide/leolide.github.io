@@ -2,11 +2,42 @@
    FOOTER MINIMALIST STYLING
    ======================================== */
 
+/* Remove bottom padding from footer section */
+section:has(.footer-wrapper) {
+    padding-bottom: 0 !important;
+}
+
 /* Footer top content - arrange in 3 rows */
 .footer-top-content {
     display: flex !important;
     flex-direction: column !important;
     gap: 2rem !important;
+}
+
+/* Footer email wrapper styling */
+.footer-email-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1em !important;
+}
+
+.footer-email-link {
+    color: inherit !important;
+    text-decoration: none !important;
+    transition: opacity 0.25s !important;
+}
+
+.footer-email-link:hover {
+    opacity: 0.6 !important;
+}
+
+.footer-arrow-link {
+    display: flex !important;
+    transition: opacity 0.25s !important;
+}
+
+.footer-arrow-link:hover {
+    opacity: 0.6 !important;
 }
 
 /* Footer social wrap - keep icons in one row */
