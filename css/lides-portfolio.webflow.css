@@ -8609,7 +8609,7 @@ blockquote {
     justify-content: center;
     align-self: auto;
     align-items: flex-start;
-    padding: 0 2em 5em;
+    padding: 0 2em 2em;
     display: flex;
   }
 
