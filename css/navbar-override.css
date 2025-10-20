@@ -100,6 +100,16 @@
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
+    overflow: hidden !important;
+}
+
+.dt-nav-menu::-webkit-scrollbar {
+    display: none !important;
+}
+
+.dt-nav-menu {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
 }
 
 /* ========================================
@@ -230,4 +240,32 @@ body {
 .home-hero {
     padding-top: 0 !important;
     margin-top: 0 !important;
+}
+
+/* ========================================
+   TABLET FIXES - REMOVE SCROLLBAR & WHITE STYLING
+   ======================================== */
+@media screen and (max-width: 991px) {
+    .dt-nav-menu {
+        overflow: hidden !important;
+        background: transparent !important;
+        border: none !important;
+    }
+    
+    .dt-nav-menu::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+    
+    .dt-navbar,
+    .navbar {
+        background: rgba(0, 0, 0, 0.15) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+    
+    .dt-nav-container {
+        background: transparent !important;
+        border: none !important;
+    }
 }
