@@ -38,6 +38,10 @@
     padding: 1em !important;
 }
 
+.logo-card-grid {
+    padding: 1em !important;
+}
+
 .dt-nav-container {
     padding-left: 0 !important;
 }
@@ -49,6 +53,10 @@
     }
     
     .works-container-inner {
+        padding: 2em !important;
+    }
+    
+    .logo-card-grid {
         padding: 2em !important;
     }
 }
@@ -67,6 +75,10 @@
     }
     
     .works-container-inner {
+        padding: 4em !important;
+    }
+    
+    .logo-card-grid {
         padding: 4em !important;
     }
     
