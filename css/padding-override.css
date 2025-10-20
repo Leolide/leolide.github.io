@@ -42,6 +42,17 @@
     padding-left: 0 !important;
 }
 
+/* Add smaller padding for tablet sizes */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .works-section-enhanced .works-container-inner {
+        padding: 2em !important;
+    }
+    
+    .works-container-inner {
+        padding: 2em !important;
+    }
+}
+
 /* Add padding back for desktop/full screen sizes */
 @media screen and (min-width: 992px) {
     /* Selected Works section padding */
