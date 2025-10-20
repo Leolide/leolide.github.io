@@ -49,6 +49,25 @@ section:has(.footer-wrapper) {
     font-family: inherit !important;
 }
 
+/* Match responsive font sizes with Let's chat text */
+@media screen and (max-width: 991px) {
+    .footer-email-link {
+        font-size: 2rem !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .footer-email-link {
+        font-size: 1.8rem !important;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .footer-email-link {
+        font-size: 1.6rem !important;
+    }
+}
+
 /* Footer social wrap - keep icons in one row */
 .footer-social-wrap {
     display: flex !important;
