@@ -40,6 +40,12 @@
 
 /* Add padding back for desktop/full screen sizes */
 @media screen and (min-width: 992px) {
+    /* Selected Works section padding */
+    .works-square-wrapper.margin-top {
+        padding-left: 4rem !important;
+        padding-right: 4rem !important;
+    }
+    
     /* About me section padding */
     .sticky-services {
         padding-left: 4rem !important;
