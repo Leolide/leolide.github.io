@@ -34,6 +34,10 @@
     margin: 4em auto;
 }
 
+.works-container-inner {
+    padding: 0 !important;
+}
+
 .dt-nav-container {
     padding-left: 0 !important;
 }
@@ -44,6 +48,15 @@
     .works-square-wrapper.margin-top {
         padding-left: 4rem !important;
         padding-right: 4rem !important;
+    }
+    
+    /* Works container inner padding */
+    .works-section-enhanced .works-container-inner {
+        padding: 4em !important;
+    }
+    
+    .works-container-inner {
+        padding: 4em !important;
     }
     
     /* About me section padding */
