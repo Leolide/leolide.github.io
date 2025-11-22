@@ -1,0 +1,153 @@
+/* Debug Mode Styles */
+.debug-mode * {
+    outline: 1px solid rgba(0, 255, 255, 0.3) !important;
+    /* Cyan outline */
+    background: rgba(0, 255, 255, 0.02) !important;
+    /* Subtle tint */
+    position: relative;
+}
+
+.debug-mode img {
+    opacity: 0.7;
+    filter: grayscale(100%);
+}
+
+.debug-mode .debug-overlay.home-hero {
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+    flex-flow: column;
+    padding-top: 10vh;
+    /* moved up a bit */
+    display: flex;
+}
+
+.debug-mode .debug-overlay-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+    background-size: 50px 50px;
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.debug-indicator {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff !important;
+    /* white background */
+    color: #000 !important;
+    /* black text */
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 8px 20px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    z-index: 10001;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(8px);
+}
+
+.debug-mode .debug-indicator:hover {
+    background: #fff !important;
+    border-color: #999;
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    outline: none !important;
+}
+
+.debug-mode .debug-indicator *:hover {
+    background: transparent !important;
+    outline: none !important;
+}
+
+.debug-indicator::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #00ffff;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* Spacing Inspector Tooltip */
+.debug-spacing-tooltip {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid #00ffff;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11px;
+    color: #fff;
+    z-index: 10002;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+    min-width: 120px;
+}
+
+.debug-spacing-tooltip .spacing-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2px 0;
+    gap: 12px;
+}
+
+.debug-spacing-tooltip .spacing-label {
+    color: #888;
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 0.5px;
+}
+
+.debug-spacing-tooltip .spacing-value {
+    color: #00ffff;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.debug-spacing-tooltip .spacing-value.padding {
+    color: #ff6b6b;
+}
+
+.debug-spacing-tooltip .spacing-value.margin {
+    color: #ffa500;
+}
+
+.debug-spacing-tooltip .spacing-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 4px 0;
+}
+
+/* Highlight hovered element */
+.debug-mode *:hover {
+    outline: 2px solid #00ffff !important;
+    background: rgba(0, 255, 255, 0.08) !important;
+}
