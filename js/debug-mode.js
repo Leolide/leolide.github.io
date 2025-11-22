@@ -73,15 +73,13 @@ function updateSpacingTooltip(element, event) {
         <div class="spacing-row"><span class="spacing-label">←</span><span class="spacing-value margin">${roundTo4(marginLeft)}px</span></div>
     `;
 
-    spacingTooltip.innerHTML = content;
-    spacingTooltip.style.display = 'block';
-
-    // Position tooltip near cursor
-    const x = event.clientX + 15;
-    const y = event.clientY + 15;
-
-    spacingTooltip.style.left = `${x}px`;
-    spacingTooltip.style.top = `${y}px`;
+    // Tooltip disabled - using visual overlays only
+    // spacingTooltip.innerHTML = content;
+    // spacingTooltip.style.display = 'block';
+    // const x = event.clientX + 15;
+    // const y = event.clientY + 15;
+    // spacingTooltip.style.left = `${x}px`;
+    // spacingTooltip.style.top = `${y}px`;
 
     // Update padding overlay
     paddingOverlay.style.display = 'block';
