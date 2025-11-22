@@ -159,3 +159,87 @@
     outline: 2px solid #00ffff !important;
     background: rgba(0, 255, 255, 0.08) !important;
 }
+
+/* Padding Overlay - Figma-style */
+.debug-padding-overlay {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    background: rgba(255, 107, 107, 0.15) !important;
+    outline: 1px solid rgba(255, 107, 107, 0.5) !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 107, 107, 0.3);
+}
+
+/* Margin Overlay Container */
+.debug-margin-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+/* Margin Boxes */
+.debug-margin-box {
+    position: fixed;
+    background: rgba(255, 165, 0, 0.15) !important;
+    outline: 1px solid rgba(255, 165, 0, 0.5) !important;
+    pointer-events: none;
+}
+
+/* Measurement Lines Container */
+.debug-measurement-lines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+/* Measurement Lines */
+.debug-measure-line {
+    position: fixed;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.debug-measure-line.debug-measure-padding {
+    background: rgba(255, 107, 107, 0.6) !important;
+}
+
+.debug-measure-line.debug-measure-margin {
+    background: rgba(255, 165, 0, 0.6) !important;
+}
+
+/* Measurement Labels */
+.debug-measure-label {
+    position: absolute;
+    background: #fff !important;
+    color: #000 !important;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    outline: none !important;
+    z-index: 10001;
+}
+
+/* Exclude debug overlays from hover effects */
+.debug-mode .debug-padding-overlay:hover,
+.debug-mode .debug-margin-overlay:hover,
+.debug-mode .debug-margin-box:hover,
+.debug-mode .debug-measurement-lines:hover,
+.debug-mode .debug-measure-line:hover,
+.debug-mode .debug-measure-label:hover {
+    outline: none !important;
+    background: inherit !important;
+}
