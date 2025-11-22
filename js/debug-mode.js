@@ -4,6 +4,7 @@ let spacingTooltip = null;
 let paddingOverlay = null;
 let marginOverlay = null;
 let measurementLines = null;
+let gapOverlay = null;
 
 function createSpacingTooltip() {
     const tooltip = document.createElement('div');
@@ -29,6 +30,13 @@ function createOverlays() {
     margin.style.display = 'none';
     document.body.appendChild(margin);
 
+    // Gap overlay container
+    const gap = document.createElement('div');
+    gap.className = 'debug-gap-overlay';
+    gap.id = 'debug-gap-overlay';
+    gap.style.display = 'none';
+    document.body.appendChild(gap);
+
     // Measurement lines container
     const lines = document.createElement('div');
     lines.className = 'debug-measurement-lines';
@@ -36,7 +44,7 @@ function createOverlays() {
     lines.style.display = 'none';
     document.body.appendChild(lines);
 
-    return { padding, margin, lines };
+    return { padding, margin, gap, lines };
 }
 
 function updateSpacingTooltip(element, event) {
@@ -88,8 +96,14 @@ function updateSpacingTooltip(element, event) {
     paddingOverlay.style.width = `${rect.width}px`;
     paddingOverlay.style.height = `${rect.height}px`;
 
+    // Get gap values
+    const gap = parseInt(styles.gap) || 0;
+    const rowGap = parseInt(styles.rowGap) || gap;
+    const columnGap = parseInt(styles.columnGap) || gap;
+
     // Update margin overlay and measurement lines
     updateMarginOverlay(rect, marginTop, marginRight, marginBottom, marginLeft);
+    updateGapOverlay(element, styles);
     updateMeasurementLines(rect, paddingTop, paddingRight, paddingBottom, paddingLeft, marginTop, marginRight, marginBottom, marginLeft);
 }
 
@@ -140,6 +154,114 @@ function updateMarginOverlay(rect, top, right, bottom, left) {
         marginLeft.style.width = `${left}px`;
         marginLeft.style.height = `${rect.height}px`;
         marginOverlay.appendChild(marginLeft);
+    }
+}
+
+function updateGapOverlay(element, styles) {
+    if (!gapOverlay) return;
+    
+    gapOverlay.style.display = 'block';
+    gapOverlay.innerHTML = '';
+    
+    const gap = parseInt(styles.gap) || 0;
+    const rowGap = parseInt(styles.rowGap) || gap;
+    const columnGap = parseInt(styles.columnGap) || gap;
+    const display = styles.display;
+    
+    // Only show gap for flex and grid containers
+    if ((display !== 'flex' && display !== 'grid' && display !== 'inline-flex' && display !== 'inline-grid') || 
+        (rowGap === 0 && columnGap === 0)) {
+        return;
+    }
+    
+    const children = Array.from(element.children);
+    if (children.length < 2) return;
+    
+    const roundTo4 = (val) => Math.round(val / 4) * 4;
+    
+    // For flex containers
+    if (display === 'flex' || display === 'inline-flex') {
+        const flexDirection = styles.flexDirection;
+        const isColumn = flexDirection === 'column' || flexDirection === 'column-reverse';
+        
+        for (let i = 0; i < children.length - 1; i++) {
+            const child1 = children[i].getBoundingClientRect();
+            const child2 = children[i + 1].getBoundingClientRect();
+            
+            if (isColumn && rowGap > 0) {
+                // Vertical gap
+                const gapBox = document.createElement('div');
+                gapBox.className = 'debug-gap-box';
+                gapBox.style.left = `${child1.left}px`;
+                gapBox.style.top = `${child1.bottom}px`;
+                gapBox.style.width = `${child1.width}px`;
+                gapBox.style.height = `${child2.top - child1.bottom}px`;
+                
+                const label = document.createElement('span');
+                label.className = 'debug-gap-label';
+                label.textContent = `${roundTo4(child2.top - child1.bottom)}`;
+                gapBox.appendChild(label);
+                
+                gapOverlay.appendChild(gapBox);
+            } else if (!isColumn && columnGap > 0) {
+                // Horizontal gap
+                const gapBox = document.createElement('div');
+                gapBox.className = 'debug-gap-box';
+                gapBox.style.left = `${child1.right}px`;
+                gapBox.style.top = `${child1.top}px`;
+                gapBox.style.width = `${child2.left - child1.right}px`;
+                gapBox.style.height = `${child1.height}px`;
+                
+                const label = document.createElement('span');
+                label.className = 'debug-gap-label';
+                label.textContent = `${roundTo4(child2.left - child1.right)}`;
+                gapBox.appendChild(label);
+                
+                gapOverlay.appendChild(gapBox);
+            }
+        }
+    }
+    
+    // For grid containers - simplified version showing gaps between adjacent cells
+    if (display === 'grid' || display === 'inline-grid') {
+        for (let i = 0; i < children.length - 1; i++) {
+            const child1 = children[i].getBoundingClientRect();
+            const child2 = children[i + 1].getBoundingClientRect();
+            
+            // Vertical gap (row-gap)
+            if (rowGap > 0 && child2.top > child1.bottom) {
+                const gapBox = document.createElement('div');
+                gapBox.className = 'debug-gap-box';
+                gapBox.style.left = `${child1.left}px`;
+                gapBox.style.top = `${child1.bottom}px`;
+                gapBox.style.width = `${child1.width}px`;
+                gapBox.style.height = `${child2.top - child1.bottom}px`;
+                
+                const label = document.createElement('span');
+                label.className = 'debug-gap-label';
+                label.textContent = `${roundTo4(child2.top - child1.bottom)}`;
+                gapBox.appendChild(label);
+                
+                gapOverlay.appendChild(gapBox);
+            }
+            
+            // Horizontal gap (column-gap)
+            if (columnGap > 0 && child2.left > child1.right && Math.abs(child2.top - child1.top) < 5) {
+                const gapBox = document.createElement('div');
+                gapBox.className = 'debug-gap-box';
+                gapBox.style.left = `${child1.right}px`;
+                gapBox.style.top = `${child1.top}px`;
+                gapBox.style.width = `${child2.left - child1.right}px`;
+                gapBox.style.height = `${child1.height}px`;
+                
+                const label = document.createElement('span');
+                label.className = 'debug-gap-label';
+                label.textContent = `${roundTo4(child2.left - child1.right)}`;
+                gapBox.appendChild(label);
+                
+                gapOverlay.appendChild(gapBox);
+            }
+        }
     }
 }
 
@@ -268,6 +390,9 @@ function hideSpacingTooltip() {
     if (marginOverlay) {
         marginOverlay.style.display = 'none';
     }
+    if (gapOverlay) {
+        gapOverlay.style.display = 'none';
+    }
     if (measurementLines) {
         measurementLines.style.display = 'none';
     }
@@ -280,8 +405,10 @@ function enableSpacingInspector() {
         if (e.target.id === 'debug-spacing-tooltip' || 
             e.target.id === 'debug-padding-overlay' ||
             e.target.id === 'debug-margin-overlay' ||
+            e.target.id === 'debug-gap-overlay' ||
             e.target.id === 'debug-measurement-lines' ||
             e.target.closest('.debug-margin-box') ||
+            e.target.closest('.debug-gap-box') ||
             e.target.closest('.debug-measure-line')) {
             return;
         }
@@ -334,6 +461,7 @@ function toggleDebugMode() {
             const overlays = createOverlays();
             paddingOverlay = overlays.padding;
             marginOverlay = overlays.margin;
+            gapOverlay = overlays.gap;
             measurementLines = overlays.lines;
         }
 

@@ -189,6 +189,41 @@
     pointer-events: none;
 }
 
+/* Gap Overlay Container */
+.debug-gap-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9997;
+}
+
+/* Gap Boxes */
+.debug-gap-box {
+    position: fixed;
+    background: rgba(138, 43, 226, 0.2) !important;
+    outline: 1px dashed rgba(138, 43, 226, 0.6) !important;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Gap Labels */
+.debug-gap-label {
+    background: rgba(138, 43, 226, 0.9) !important;
+    color: #fff !important;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+    outline: none !important;
+}
+
 /* Measurement Lines Container */
 .debug-measurement-lines {
     position: fixed;
@@ -237,6 +272,9 @@
 .debug-mode .debug-padding-overlay:hover,
 .debug-mode .debug-margin-overlay:hover,
 .debug-mode .debug-margin-box:hover,
+.debug-mode .debug-gap-overlay:hover,
+.debug-mode .debug-gap-box:hover,
+.debug-mode .debug-gap-label:hover,
 .debug-mode .debug-measurement-lines:hover,
 .debug-mode .debug-measure-line:hover,
 .debug-mode .debug-measure-label:hover {
