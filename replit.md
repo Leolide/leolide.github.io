@@ -11,6 +11,12 @@ This is Lide Li's personal portfolio website - a static site showcasing product 
 - **Author**: Lide Li - Product Designer at Palantir
 
 ## Recent Changes
+- **Nov 22, 2025**: Project sync via git pull
+  - All project files synchronized from remote repository
+  - Server running successfully on port 5000
+  - Password protection active for 4 projects (clientelling-app, debrief-ai, design-system, technology-radar)
+  - CSV content loading working correctly (3 works items, 4 works with codes items)
+  
 - **Oct 19, 2025**: Initial Replit setup
   - Configured Python http.server to serve static files on port 5000
   - Set up workflow for automatic server start
