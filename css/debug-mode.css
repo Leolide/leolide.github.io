@@ -98,8 +98,8 @@
 /* Spacing Inspector Tooltip */
 .debug-spacing-tooltip {
     position: fixed;
-    background: #fff;
-    border: none;
+    background: #fff !important;
+    border: none !important;
     border-radius: 4px;
     padding: 8px 12px;
     font-family: 'Courier New', Courier, monospace;
@@ -109,6 +109,7 @@
     pointer-events: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     min-width: 120px;
+    outline: none !important;
 }
 
 .debug-spacing-tooltip .spacing-row {
@@ -117,33 +118,40 @@
     align-items: center;
     margin: 2px 0;
     gap: 12px;
+    background: transparent !important;
+    outline: none !important;
 }
 
 .debug-spacing-tooltip .spacing-label {
-    color: #666;
+    color: #666 !important;
     text-transform: uppercase;
     font-size: 9px;
     letter-spacing: 0.5px;
+    background: transparent !important;
+    outline: none !important;
 }
 
 .debug-spacing-tooltip .spacing-value {
-    color: #000;
+    color: #000 !important;
     font-weight: bold;
     font-size: 11px;
+    background: transparent !important;
+    outline: none !important;
 }
 
 .debug-spacing-tooltip .spacing-value.padding {
-    color: #ff6b6b;
+    color: #ff6b6b !important;
 }
 
 .debug-spacing-tooltip .spacing-value.margin {
-    color: #ffa500;
+    color: #ffa500 !important;
 }
 
 .debug-spacing-tooltip .spacing-divider {
     height: 1px;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.1) !important;
     margin: 4px 0;
+    outline: none !important;
 }
 
 /* Highlight hovered element */
