@@ -182,15 +182,39 @@ class DetailPageLoader {
 
     // Handle video section visibility based on project
     handleVideoSection(project) {
-        const videoSection = document.querySelector('.video-section.debrief-ai');
-        if (videoSection) {
+        // Handle Debrief AI video section
+        const debriefVideoSection = document.querySelector('.video-section.debrief-ai');
+        if (debriefVideoSection) {
             // Only show video section for Debrief AI project
             if (project.Slug === 'debrief-ai' || project.Name === 'Debrief AI') {
-                videoSection.style.display = 'block';
+                debriefVideoSection.style.display = 'block';
                 console.log('Showing video section for Debrief AI');
             } else {
-                videoSection.style.display = 'none';
-                console.log(`Hiding video section for ${project.Name}`);
+                debriefVideoSection.style.display = 'none';
+                console.log(`Hiding Debrief AI video section for ${project.Name}`);
+            }
+        }
+        
+        // Handle Coffee video section
+        const coffeeVideoSection = document.querySelector('.video-section.coffee');
+        if (coffeeVideoSection) {
+            // Only show coffee video section for coffee grounds project
+            if (project.Slug === 'unlocking-the-power-of-coffee-grounds') {
+                coffeeVideoSection.style.display = 'block';
+                console.log('Showing coffee video section');
+            } else {
+                coffeeVideoSection.style.display = 'none';
+                console.log(`Hiding coffee video section for ${project.Name}`);
+            }
+        }
+        
+        // Hide placeholder image collection in margin-blog section
+        const placeholderCollection = document.querySelector('.margin-blog .colection-list-wrapper');
+        if (placeholderCollection) {
+            const placeholderImg = placeholderCollection.querySelector('img.project-image');
+            if (placeholderImg && placeholderImg.src.includes('placeholder')) {
+                placeholderCollection.style.display = 'none';
+                console.log('Hiding placeholder image collection');
             }
         }
     }
