@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mockup Hover Effect Prototype</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap');
 
         * {
             margin: 0;
@@ -89,8 +89,8 @@
             font-size: 28px;
             font-weight: 400;
             color: #1a1a1a;
-            font-family: 'Times New Roman', serif;
-            letter-spacing: 1px;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 2px;
         }
 
         .collection-title {
@@ -453,18 +453,41 @@
             margin-top: 32px;
             text-align: center;
             color: #fff;
+            max-width: 500px;
         }
 
         .project-info h2 {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
         }
 
-        .project-info p {
-            font-size: 14px;
-            opacity: 0.6;
-            max-width: 400px;
+        .project-meta {
+            font-size: 13px;
+            opacity: 0.5;
+            margin-bottom: 16px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .project-tag {
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.5px;
         }
 
         .instructions {
@@ -558,8 +581,14 @@
         </div>
         
         <div class="project-info">
-            <h2>A Clientelling App</h2>
-            <p>Boosting sales and enabling personalized customer experiences</p>
+            <h2>Boosting Sales and Enabling Personalized Customer Experiences</h2>
+            <div class="project-meta">2024 Aug - Nov</div>
+            <div class="project-tags">
+                <span class="project-tag">UI/UX Design</span>
+                <span class="project-tag">Cross-Platform</span>
+                <span class="project-tag">B2B SaaS</span>
+                <span class="project-tag">User Research</span>
+            </div>
         </div>
     </div>
 
