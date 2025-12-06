@@ -139,6 +139,7 @@
             overflow: hidden;
             transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
             aspect-ratio: 1;
+            position: relative;
         }
 
         .product-card:hover {
@@ -152,21 +153,7 @@
             object-fit: cover;
         }
 
-        .product-card.contain-img {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-            background: #f5f5f5;
-            position: relative;
-        }
-
-        .product-card.contain-img img {
-            object-fit: contain;
-            mix-blend-mode: multiply;
-        }
-
-        .product-card.contain-img .hover-tag {
+        .product-card .hover-tag {
             position: absolute;
             bottom: 12px;
             left: 50%;
@@ -181,9 +168,46 @@
             opacity: 0;
             transition: all 0.2s ease;
             pointer-events: none;
+            z-index: 5;
         }
 
-        .product-card.contain-img:hover .hover-tag {
+        .product-card:hover .hover-tag {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .product-card.contain-img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: #f5f5f5;
+        }
+
+        .product-card.contain-img img {
+            object-fit: contain;
+            mix-blend-mode: multiply;
+        }
+
+        .small-product .hover-tag {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: #1a1a1a;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 8px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.2s ease;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .small-product:hover .hover-tag {
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
@@ -202,8 +226,9 @@
             align-items: center;
             justify-content: center;
             transition: transform 0.25s ease-out;
-            overflow: hidden;
+            overflow: visible;
             padding: 8px;
+            position: relative;
         }
 
         .small-product:hover {
@@ -519,6 +544,7 @@
                 <div class="product-grid">
                     <div class="product-card">
                         <img src="attached_assets/Rectangle_1305_1765046445801.png" alt="Man in olive jacket">
+                        <span class="hover-tag">View the Product</span>
                     </div>
                     <div class="product-card contain-img">
                         <img src="attached_assets/DarkGreenJacket_Product1_1765046439735.png" alt="Green Trench Coat">
@@ -529,12 +555,15 @@
                 <div class="small-products">
                     <div class="small-product">
                         <img src="attached_assets/61ef00bc-b870-4b02-ac69-77cc255896221536215854751-Rapawalk-Men_1765046439734.png" alt="Black Oxford Shoes">
+                        <span class="hover-tag">View the Product</span>
                     </div>
                     <div class="small-product">
                         <img src="attached_assets/AdobeStock_78694659_1765047434982.png" alt="Blue Jeans">
+                        <span class="hover-tag">View the Product</span>
                     </div>
                     <div class="small-product">
                         <img src="attached_assets/burlington-socks-lord-socks-dark-red-p51098-682619_zoom_1_1765046445801.png" alt="Red Socks">
+                        <span class="hover-tag">View the Product</span>
                     </div>
                 </div>
             </div>
