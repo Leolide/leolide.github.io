@@ -275,6 +275,37 @@
             color: #71717a;
         }
 
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .executing-tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            font-size: 11px;
+            color: #22c55e;
+        }
+
+        .executing-dot {
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
         .close-btn {
             width: 20px;
             height: 20px;
@@ -566,7 +597,13 @@
                                         <p>Needleman-Wunsch algorithm</p>
                                     </div>
                                 </div>
-                                <div class="close-btn">×</div>
+                                <div class="header-right">
+                                    <div class="executing-tag">
+                                        <span class="executing-dot"></span>
+                                        Executing
+                                    </div>
+                                    <div class="close-btn">×</div>
+                                </div>
                             </div>
                             
                             <div class="section">
@@ -638,10 +675,21 @@
                                     </div>
                                     <div class="code-body"><span class="keyword">import</span> numpy <span class="keyword">as</span> np
 
-<span class="keyword">def</span> <span class="function">needleman_wunsch</span>(seq1, seq2, match=<span class="number">1</span>, mismatch=<span class="number">-1</span>, gap=<span class="number">-2</span>):
+<span class="keyword">def</span> <span class="function">needleman_wunsch</span>(seq1, seq2, match_score=<span class="number">1</span>, mismatch_score=<span class="number">-1</span>, gap_score=<span class="number">-2</span>):
     <span class="comment"># Initialize dynamic programming matrix</span>
-    dp = np.zeros((len(seq1)+<span class="number">1</span>, len(seq2)+<span class="number">1</span>))
-    dp[<span class="number">0</span>,:] = np.arange(len(seq2)+<span class="number">1</span>) * gap</div>
+    dp = np.zeros((len(seq1)+<span class="number">1</span>, len(seq2)+<span class="number">1</span>), dtype=int)
+    dp[<span class="number">0</span>,:] = np.arange(len(seq2)+<span class="number">1</span>) * gap_score
+    dp[:,<span class="number">0</span>] = np.arange(len(seq1)+<span class="number">1</span>) * gap_score
+
+    <span class="comment"># Fill the matrix</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(seq1)+<span class="number">1</span>):
+        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(seq2)+<span class="number">1</span>):
+            match = dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + (match_score <span class="keyword">if</span> seq1[i-<span class="number">1</span>] == seq2[j-<span class="number">1</span>] <span class="keyword">else</span> mismatch_score)
+            delete = dp[i-<span class="number">1</span>][j] + gap_score
+            insert = dp[i][j-<span class="number">1</span>] + gap_score
+            dp[i][j] = max(match, delete, insert)
+
+    <span class="keyword">return</span> dp, dp[len(seq1)][len(seq2)]</div>
                                 </div>
                             </div>
                         </main>
