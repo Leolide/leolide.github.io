@@ -1,0 +1,821 @@
+.debrief-mockup {
+    perspective: 1200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.debrief-mockup .macbook {
+    position: relative;
+}
+
+.debrief-mockup .macbook-screen {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 10px;
+    position: relative;
+}
+
+.debrief-mockup .macbook-screen::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: #333;
+    border-radius: 50%;
+}
+
+.debrief-mockup .screen-content {
+    width: 600px;
+    height: 400px;
+    background: #0a0a0b;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+}
+
+.debrief-mockup .sidebar {
+    width: 200px;
+    background: #111113;
+    border-right: 1px solid #27272a;
+    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.debrief-mockup .logo {
+    padding: 0 16px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fafafa;
+}
+
+.debrief-mockup .workflow-title-section {
+    padding: 0 16px 16px;
+    border-bottom: 1px solid #27272a;
+    margin-bottom: 12px;
+}
+
+.debrief-mockup .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #71717a;
+    font-size: 9px;
+    margin-bottom: 8px;
+}
+
+.debrief-mockup .workflow-title-text {
+    font-size: 11px;
+    font-weight: 500;
+    color: #fafafa;
+}
+
+.debrief-mockup .workflow-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.debrief-mockup .progress-bar {
+    flex: 1;
+    height: 4px;
+    background: #27272a;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.debrief-mockup .progress-fill {
+    width: 33.33%;
+    height: 100%;
+    background: #22c55e;
+    border-radius: 2px;
+}
+
+.debrief-mockup .progress-text {
+    font-size: 9px;
+    color: #71717a;
+    white-space: nowrap;
+}
+
+.debrief-mockup .workflow-list {
+    flex: 1;
+    padding: 0 8px;
+}
+
+.debrief-mockup .workflow-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 8px;
+    border-radius: 6px;
+    margin-bottom: 2px;
+}
+
+.debrief-mockup .workflow-item.active {
+    background: #18181b;
+}
+
+.debrief-mockup .workflow-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    flex-shrink: 0;
+}
+
+.debrief-mockup .workflow-icon.completed {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+}
+
+.debrief-mockup .workflow-icon.pending {
+    background: #1a1a1d;
+    color: #71717a;
+    border: 1px solid #27272a;
+}
+
+.debrief-mockup .workflow-icon.executing {
+    background: rgba(34, 197, 94, 0.15);
+    border: 2px solid #22c55e;
+    color: #22c55e;
+    position: relative;
+}
+
+.debrief-mockup .workflow-icon.executing::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: #22c55e;
+    animation: debrief-spin 1s linear infinite;
+}
+
+@keyframes debrief-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.debrief-mockup .workflow-content h4 {
+    font-size: 11px;
+    font-weight: 500;
+    color: #fafafa;
+    margin-bottom: 2px;
+    line-height: 1.3;
+}
+
+.debrief-mockup .workflow-content p {
+    font-size: 9px;
+    color: #71717a;
+}
+
+.debrief-mockup .workflow-content .status-completed {
+    color: #22c55e;
+}
+
+.debrief-mockup .workflow-content .status-executing {
+    color: #22c55e;
+}
+
+.debrief-mockup .add-step {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 16px;
+    margin-top: auto;
+    color: #71717a;
+    font-size: 11px;
+    border-top: 1px solid #27272a;
+}
+
+.debrief-mockup .main-content {
+    flex: 1;
+    padding: 20px 24px;
+    overflow-y: auto;
+}
+
+.debrief-mockup .panel-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.debrief-mockup .tool-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.debrief-mockup .tool-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.debrief-mockup .tool-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.debrief-mockup .tool-title h1 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fafafa;
+    margin-bottom: 2px;
+}
+
+.debrief-mockup .tool-title p {
+    font-size: 11px;
+    color: #71717a;
+}
+
+.debrief-mockup .header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.debrief-mockup .executing-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 6px;
+    font-size: 11px;
+    color: #22c55e;
+}
+
+.debrief-mockup .status-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.debrief-mockup .pause-btn {
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: #18181b;
+    border: 1px solid #27272a;
+    color: #71717a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 9px;
+}
+
+.debrief-mockup .executing-dot {
+    width: 6px;
+    height: 6px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: debrief-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes debrief-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+.debrief-mockup .status-bar {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.debrief-mockup .status-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.debrief-mockup .view-log-link {
+    font-size: 9px;
+    color: #71717a;
+    text-decoration: underline;
+}
+
+.debrief-mockup .last-run {
+    font-size: 9px;
+    color: #52525b;
+}
+
+.debrief-mockup .more-btn,
+.debrief-mockup .close-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background: #18181b;
+    border: 1px solid #27272a;
+    color: #71717a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.debrief-mockup .section {
+    margin-bottom: 16px;
+}
+
+.debrief-mockup .section-label {
+    font-size: 9px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #71717a;
+    margin-bottom: 8px;
+}
+
+.debrief-mockup .overview-text {
+    font-size: 11px;
+    line-height: 1.6;
+    color: #a1a1aa;
+}
+
+.debrief-mockup .project-info {
+    margin-top: 24px;
+    text-align: center;
+    color: #fff;
+    max-width: 600px;
+}
+
+.debrief-mockup .project-info h2 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+}
+
+.debrief-mockup .project-meta {
+    font-size: 12px;
+    opacity: 0.5;
+    margin-bottom: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.debrief-mockup .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.debrief-mockup .project-tag {
+    padding: 5px 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.5px;
+}
+
+.clientelling-mockup {
+    perspective: 1200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clientelling-mockup .mockup-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 30px 40px;
+    background: linear-gradient(145deg, #1a1a2e 0%, #0f0f1a 100%);
+    border-radius: 24px;
+}
+
+.clientelling-mockup .desktop-view {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 32px;
+    width: 340px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.clientelling-mockup .desktop-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.clientelling-mockup .from-text {
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.clientelling-mockup .brand-name {
+    font-size: 22px;
+    font-weight: 400;
+    color: #1a1a1a;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 2px;
+}
+
+.clientelling-mockup .collection-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.clientelling-mockup .collection-desc {
+    font-size: 11px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 14px;
+    line-height: 1.5;
+}
+
+.clientelling-mockup .reply-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 0 auto 20px;
+    padding: 8px 20px;
+    border: 1px solid #1a1a1a;
+    background: transparent;
+    font-size: 11px;
+    border-radius: 6px;
+}
+
+.clientelling-mockup .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.clientelling-mockup .product-card {
+    background: #f5f5f5;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    position: relative;
+}
+
+.clientelling-mockup .product-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.clientelling-mockup .product-card.contain-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+}
+
+.clientelling-mockup .product-card.contain-img img {
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.clientelling-mockup .small-products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.clientelling-mockup .small-product {
+    background: #f5f5f5;
+    border-radius: 6px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+}
+
+.clientelling-mockup .small-product img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.clientelling-mockup .phone-mockup {
+    position: relative;
+    margin-left: -25px;
+    z-index: 2;
+}
+
+.clientelling-mockup .iphone-frame {
+    position: relative;
+    width: 150px;
+    height: 320px;
+    background: #1a1a1a;
+    border-radius: 32px;
+    padding: 6px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.clientelling-mockup .side-button {
+    position: absolute;
+    background: #2a2a2a;
+    border-radius: 2px;
+}
+
+.clientelling-mockup .side-button.power {
+    right: -3px;
+    top: 75px;
+    width: 3px;
+    height: 50px;
+}
+
+.clientelling-mockup .side-button.volume-up {
+    left: -3px;
+    top: 65px;
+    width: 3px;
+    height: 25px;
+}
+
+.clientelling-mockup .side-button.volume-down {
+    left: -3px;
+    top: 98px;
+    width: 3px;
+    height: 25px;
+}
+
+.clientelling-mockup .side-button.mute {
+    left: -3px;
+    top: 42px;
+    width: 3px;
+    height: 15px;
+}
+
+.clientelling-mockup .iphone-screen {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: 26px;
+    overflow: hidden;
+    position: relative;
+}
+
+.clientelling-mockup .dynamic-island {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 58px;
+    height: 16px;
+    background: #000;
+    border-radius: 16px;
+    z-index: 10;
+}
+
+.clientelling-mockup .screen-content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.clientelling-mockup .app-header-modern {
+    background: #1a1a1a;
+    padding: 32px 10px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.clientelling-mockup .back-icon {
+    color: #fff;
+    font-size: 16px;
+    opacity: 0.9;
+    position: absolute;
+    left: 10px;
+}
+
+.clientelling-mockup .header-title {
+    color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.clientelling-mockup .app-body {
+    background: radial-gradient(circle at center, #e8e8e8 0%, #d0d0d0 100%);
+    height: calc(100% - 40px);
+    overflow: hidden;
+}
+
+.clientelling-mockup .hero-image {
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+}
+
+.clientelling-mockup .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.clientelling-mockup .content-card {
+    background: #fff;
+    margin: 6px 6px 0;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.clientelling-mockup .content-title {
+    font-size: 7px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.clientelling-mockup .content-desc {
+    font-size: 5px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 5px;
+}
+
+.clientelling-mockup .quote-box {
+    background: #f5f5f5;
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.clientelling-mockup .quote-text {
+    font-size: 5px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.clientelling-mockup .quote-author {
+    font-size: 5px;
+    color: #444;
+    margin-top: 3px;
+    text-align: right;
+    font-weight: 500;
+}
+
+.clientelling-mockup .action-btn {
+    width: 100%;
+    padding: 5px;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 6px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+}
+
+.clientelling-mockup .product-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    padding: 8px 6px 16px;
+    background: radial-gradient(circle at center, #e8e8e8 0%, #d0d0d0 100%);
+}
+
+.clientelling-mockup .mini-product {
+    height: 40px;
+    background: #f5f5f5;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.clientelling-mockup .mini-product img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.clientelling-mockup .home-bar {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 65px;
+    height: 3px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
+}
+
+.clientelling-mockup .project-info {
+    margin-top: 24px;
+    text-align: center;
+    color: #fff;
+    max-width: 600px;
+}
+
+.clientelling-mockup .project-info h2 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+}
+
+.clientelling-mockup .project-meta {
+    font-size: 12px;
+    opacity: 0.5;
+    margin-bottom: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.clientelling-mockup .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.clientelling-mockup .project-tag {
+    padding: 5px 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 991px) {
+    .debrief-mockup .screen-content {
+        width: 500px;
+        height: 350px;
+    }
+    
+    .clientelling-mockup .desktop-view {
+        width: 280px;
+        padding: 20px 24px;
+    }
+    
+    .clientelling-mockup .iphone-frame {
+        width: 130px;
+        height: 280px;
+    }
+}
+
+@media (max-width: 767px) {
+    .debrief-mockup .screen-content {
+        width: 100%;
+        max-width: 400px;
+        height: 300px;
+    }
+    
+    .debrief-mockup .sidebar {
+        width: 150px;
+    }
+    
+    .clientelling-mockup .mockup-wrapper {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .clientelling-mockup .desktop-view {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .clientelling-mockup .phone-mockup {
+        margin-left: 0;
+        margin-top: -20px;
+    }
+}
