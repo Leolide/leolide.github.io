@@ -159,9 +159,20 @@
             flex-direction: column;
         }
 
-        .product-card.with-label img {
+        .product-card.with-label .img-wrapper {
             flex: 1;
             min-height: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+            padding: 12px;
+        }
+
+        .product-card.with-label .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .product-label {
@@ -206,6 +217,7 @@
             justify-content: center;
             transition: transform 0.25s ease-out;
             overflow: hidden;
+            padding: 8px;
         }
 
         .small-product:hover {
@@ -213,8 +225,8 @@
         }
 
         .small-product img {
-            width: 70%;
-            height: 70%;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
         }
 
@@ -290,7 +302,6 @@
         .lookbook-image {
             width: 100%;
             height: 160px;
-            background: linear-gradient(135deg, #8B7355 0%, #6B5344 100%);
             position: relative;
             overflow: hidden;
         }
@@ -367,11 +378,12 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            padding: 4px;
         }
 
         .app-product img {
-            width: 80%;
-            height: 80%;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
         }
 
@@ -400,43 +412,6 @@
             max-width: 400px;
             margin-top: 20px;
         }
-
-        .placeholder-img {
-            background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-size: 10px;
-        }
-
-        .model-placeholder {
-            background: linear-gradient(180deg, #d4c4b0 0%, #a89080 100%);
-        }
-
-        .coat-placeholder {
-            background: #4a5a4a;
-        }
-
-        .shoe-placeholder {
-            background: #2a2a2a;
-        }
-
-        .jeans-placeholder {
-            background: #4a6080;
-        }
-
-        .socks-placeholder {
-            background: #c04040;
-        }
-
-        .bag-placeholder {
-            background: #1a1a1a;
-        }
-
-        .woman-placeholder {
-            background: linear-gradient(180deg, #c9a86c 0%, #8b6914 100%);
-        }
     </style>
 </head>
 <body>
@@ -457,10 +432,12 @@
                 
                 <div class="product-grid">
                     <div class="product-card featured">
-                        <div class="placeholder-img model-placeholder" style="width:100%;height:100%;"></div>
+                        <img src="attached_assets/Rectangle_1305_1765046445801.png" alt="Man in olive jacket">
                     </div>
                     <div class="product-card with-label">
-                        <div class="placeholder-img coat-placeholder" style="flex:1;"></div>
+                        <div class="img-wrapper">
+                            <img src="attached_assets/DarkGreenJacket_Product1_1765046439735.png" alt="Green Trench Coat">
+                        </div>
                         <div class="product-label">
                             <div class="name">SS3 Trench Coat</div>
                             <button class="view-product-btn">View the Product</button>
@@ -470,13 +447,13 @@
                 
                 <div class="small-products">
                     <div class="small-product">
-                        <div class="placeholder-img shoe-placeholder" style="width:100%;height:100%;border-radius:6px;"></div>
+                        <img src="attached_assets/61ef00bc-b870-4b02-ac69-77cc255896221536215854751-Rapawalk-Men_1765046439734.png" alt="Black Oxford Shoes">
                     </div>
                     <div class="small-product">
-                        <div class="placeholder-img jeans-placeholder" style="width:100%;height:100%;border-radius:6px;"></div>
+                        <img src="attached_assets/AdobeStock_78694659_1765046443120.png" alt="Blue Jeans">
                     </div>
                     <div class="small-product">
-                        <div class="placeholder-img socks-placeholder" style="width:100%;height:100%;border-radius:6px;"></div>
+                        <img src="attached_assets/burlington-socks-lord-socks-dark-red-p51098-682619_zoom_1_1765046445801.png" alt="Red Socks">
                     </div>
                 </div>
             </div>
@@ -491,7 +468,7 @@
                         </div>
                         <div class="app-content">
                             <div class="lookbook-image">
-                                <div class="placeholder-img woman-placeholder" style="width:100%;height:100%;"></div>
+                                <img src="attached_assets/Hay-Festival-kids_1_1765046448551.png" alt="Woman in navy coat">
                             </div>
                             <div class="lookbook-info">
                                 <div class="lookbook-title">24 W SS CELESTIAL BLOOM</div>
@@ -504,13 +481,13 @@
                             </div>
                             <div class="app-products">
                                 <div class="app-product">
-                                    <div class="placeholder-img coat-placeholder" style="width:100%;height:100%;border-radius:4px;"></div>
+                                    <img src="attached_assets/DarkGreenJacket_Product1_1765046439735.png" alt="Coat">
                                 </div>
                                 <div class="app-product">
-                                    <div class="placeholder-img bag-placeholder" style="width:100%;height:100%;border-radius:4px;"></div>
+                                    <img src="attached_assets/61ef00bc-b870-4b02-ac69-77cc255896221536215854751-Rapawalk-Men_1765046439734.png" alt="Shoes">
                                 </div>
                                 <div class="app-product">
-                                    <div class="placeholder-img woman-placeholder" style="width:100%;height:100%;border-radius:4px;"></div>
+                                    <img src="attached_assets/AdobeStock_49383807_1765046434316.png" alt="Sunglasses">
                                 </div>
                             </div>
                         </div>
