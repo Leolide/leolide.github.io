@@ -163,6 +163,34 @@
             color: #fafafa;
         }
 
+        .workflow-progress {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 4px;
+            background: #27272a;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 33.33%;
+            height: 100%;
+            background: #22c55e;
+            border-radius: 2px;
+        }
+
+        .progress-text {
+            font-size: 9px;
+            color: #71717a;
+            white-space: nowrap;
+        }
+
         .workflow-list {
             flex: 1;
             padding: 0 8px;
@@ -582,6 +610,12 @@
                                     <span>←</span> Back
                                 </div>
                                 <div class="workflow-title-text">Align three DNAs (via BioPython)</div>
+                                <div class="workflow-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill"></div>
+                                    </div>
+                                    <span class="progress-text">1/3 completed</span>
+                                </div>
                             </div>
                             
                             <div class="workflow-list">
