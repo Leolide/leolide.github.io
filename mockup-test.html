@@ -137,15 +137,12 @@
             border-radius: 8px;
             overflow: hidden;
             transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+            aspect-ratio: 1;
         }
 
         .product-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .product-card.featured {
-            aspect-ratio: 1;
         }
 
         .product-card img {
@@ -154,52 +151,15 @@
             object-fit: cover;
         }
 
-        .product-card.with-label {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-card.with-label .img-wrapper {
-            flex: 1;
-            min-height: 0;
+        .product-card.contain-img {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #f5f5f5;
-            padding: 12px;
+            padding: 16px;
         }
 
-        .product-card.with-label .img-wrapper img {
-            width: 100%;
-            height: 100%;
+        .product-card.contain-img img {
             object-fit: contain;
-        }
-
-        .product-label {
-            padding: 8px;
-            text-align: center;
-            background: #fff;
-        }
-
-        .product-label .name {
-            font-size: 11px;
-            color: #1a1a1a;
-            margin-bottom: 4px;
-        }
-
-        .view-product-btn {
-            display: inline-block;
-            padding: 6px 16px;
-            background: #1a1a1a;
-            color: #fff;
-            font-size: 10px;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s ease;
-        }
-
-        .view-product-btn:hover {
-            background: #333;
         }
 
         .small-products {
@@ -242,56 +202,147 @@
         }
 
         .phone-frame {
-            width: 220px;
-            background: #1a1a1a;
-            border-radius: 36px;
-            padding: 12px;
+            width: 240px;
+            background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
+            border-radius: 44px;
+            padding: 14px;
             box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.4),
-                inset 0 0 0 2px #333;
-        }
-
-        .phone-notch {
-            width: 80px;
-            height: 24px;
-            background: #1a1a1a;
-            border-radius: 12px;
-            margin: 0 auto 8px;
+                0 25px 80px rgba(0, 0, 0, 0.5),
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
             position: relative;
         }
 
-        .phone-notch::before {
-            content: '9:41';
+        .phone-frame::before {
+            content: '';
             position: absolute;
-            left: -50px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 12px;
+            right: -2px;
+            top: 120px;
+            width: 3px;
+            height: 30px;
+            background: #333;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .phone-frame::after {
+            content: '';
+            position: absolute;
+            right: -2px;
+            top: 170px;
+            width: 3px;
+            height: 50px;
+            background: #333;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .phone-screen {
+            background: #000;
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 24px 8px;
+            background: #1a1a1a;
+            position: relative;
+        }
+
+        .status-time {
+            font-size: 14px;
             font-weight: 600;
             color: #fff;
         }
 
-        .phone-screen {
-            background: #1a1a1a;
-            border-radius: 24px;
-            overflow: hidden;
+        .dynamic-island {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 28px;
+            background: #000;
+            border-radius: 20px;
+        }
+
+        .status-icons {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .status-icons svg {
+            width: 16px;
+            height: 16px;
+            fill: #fff;
+        }
+
+        .signal-bars {
+            display: flex;
+            gap: 1px;
+            align-items: flex-end;
+            height: 12px;
+        }
+
+        .signal-bars span {
+            width: 3px;
+            background: #fff;
+            border-radius: 1px;
+        }
+
+        .signal-bars span:nth-child(1) { height: 4px; }
+        .signal-bars span:nth-child(2) { height: 6px; }
+        .signal-bars span:nth-child(3) { height: 8px; }
+        .signal-bars span:nth-child(4) { height: 10px; }
+
+        .battery {
+            width: 22px;
+            height: 11px;
+            border: 1px solid #fff;
+            border-radius: 3px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 1px;
+        }
+
+        .battery::after {
+            content: '';
+            position: absolute;
+            right: -4px;
+            width: 2px;
+            height: 5px;
+            background: #fff;
+            border-radius: 0 1px 1px 0;
+        }
+
+        .battery-fill {
+            width: 80%;
+            height: 100%;
+            background: #fff;
+            border-radius: 1px;
         }
 
         .app-header {
             display: flex;
             align-items: center;
-            padding: 12px 16px;
+            padding: 8px 16px 12px;
             gap: 12px;
+            background: #1a1a1a;
         }
 
         .back-arrow {
             color: #fff;
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: 300;
         }
 
         .app-title {
             color: #fff;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 500;
         }
 
@@ -301,7 +352,7 @@
 
         .lookbook-image {
             width: 100%;
-            height: 160px;
+            height: 180px;
             position: relative;
             overflow: hidden;
         }
@@ -310,81 +361,98 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top;
         }
 
         .lookbook-info {
-            padding: 12px 16px;
+            padding: 14px 16px;
             background: #fff;
         }
 
         .lookbook-title {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
             color: #1a1a1a;
-            margin-bottom: 6px;
-            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
         }
 
         .lookbook-desc {
-            font-size: 10px;
+            font-size: 11px;
             color: #666;
-            line-height: 1.4;
-            margin-bottom: 10px;
+            line-height: 1.5;
+            margin-bottom: 12px;
         }
 
         .lookbook-quote {
-            font-size: 10px;
+            font-size: 11px;
             color: #888;
             font-style: italic;
-            padding: 8px;
+            padding: 10px 12px;
             background: #f9f9f9;
-            border-radius: 4px;
-            margin-bottom: 8px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            line-height: 1.4;
         }
 
         .quote-author {
             font-style: normal;
             font-weight: 500;
-            color: #666;
+            color: #555;
             display: block;
-            margin-top: 4px;
+            margin-top: 6px;
+            text-align: right;
         }
 
         .app-reply-btn {
             display: block;
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background: #1a1a1a;
             color: #fff;
-            font-size: 11px;
+            font-size: 12px;
+            font-weight: 500;
             border: none;
+            border-radius: 6px;
             cursor: pointer;
-            margin-bottom: 12px;
         }
 
         .app-products {
             display: flex;
-            gap: 8px;
-            padding: 0 16px 16px;
+            gap: 10px;
+            padding: 16px;
             background: #fff;
         }
 
         .app-product {
-            width: 50px;
-            height: 50px;
+            width: 54px;
+            height: 54px;
             background: #f5f5f5;
-            border-radius: 6px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            padding: 4px;
+            padding: 6px;
+            transition: transform 0.2s ease;
+        }
+
+        .app-product:hover {
+            transform: scale(1.08);
         }
 
         .app-product img {
             width: 100%;
             height: 100%;
             object-fit: contain;
+        }
+
+        .home-indicator {
+            width: 120px;
+            height: 5px;
+            background: #333;
+            border-radius: 3px;
+            margin: 12px auto;
         }
 
         .project-info {
@@ -431,17 +499,11 @@
                 <button class="reply-btn">Reply to Maria</button>
                 
                 <div class="product-grid">
-                    <div class="product-card featured">
+                    <div class="product-card">
                         <img src="attached_assets/Rectangle_1305_1765046445801.png" alt="Man in olive jacket">
                     </div>
-                    <div class="product-card with-label">
-                        <div class="img-wrapper">
-                            <img src="attached_assets/DarkGreenJacket_Product1_1765046439735.png" alt="Green Trench Coat">
-                        </div>
-                        <div class="product-label">
-                            <div class="name">SS3 Trench Coat</div>
-                            <button class="view-product-btn">View the Product</button>
-                        </div>
+                    <div class="product-card contain-img">
+                        <img src="attached_assets/DarkGreenJacket_Product1_1765046439735.png" alt="Green Trench Coat">
                     </div>
                 </div>
                 
@@ -460,8 +522,19 @@
 
             <div class="phone-mockup">
                 <div class="phone-frame">
-                    <div class="phone-notch"></div>
                     <div class="phone-screen">
+                        <div class="status-bar">
+                            <span class="status-time">9:41</span>
+                            <div class="dynamic-island"></div>
+                            <div class="status-icons">
+                                <div class="signal-bars">
+                                    <span></span><span></span><span></span><span></span>
+                                </div>
+                                <div class="battery">
+                                    <div class="battery-fill"></div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="app-header">
                             <span class="back-arrow">‹</span>
                             <span class="app-title">View lookbook</span>
@@ -491,6 +564,7 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="home-indicator"></div>
                     </div>
                 </div>
             </div>
