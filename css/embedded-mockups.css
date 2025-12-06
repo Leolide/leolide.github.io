@@ -8,6 +8,11 @@
 
 .debrief-mockup .macbook {
     position: relative;
+    transition: transform 0.3s ease-out;
+}
+
+.debrief-mockup:hover .macbook {
+    transform: translateY(-8px) scale(1.02);
 }
 
 .debrief-mockup .macbook-screen {
@@ -407,6 +412,18 @@
     padding: 30px 40px;
     background: linear-gradient(145deg, #1a1a2e 0%, #0f0f1a 100%);
     border-radius: 24px;
+    box-shadow: 
+        0 4px 30px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: box-shadow 0.4s ease-out;
+}
+
+.clientelling-mockup:hover .mockup-wrapper {
+    box-shadow: 
+        0 40px 80px rgba(0, 0, 0, 0.6),
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.15),
+        0 0 60px rgba(255, 255, 255, 0.08);
 }
 
 .clientelling-mockup .desktop-view {
@@ -416,6 +433,11 @@
     width: 340px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    transition: transform 0.3s ease-out;
+}
+
+.clientelling-mockup:hover .desktop-view {
+    transform: translateY(-5px) scale(1.02);
 }
 
 .clientelling-mockup .desktop-header {
@@ -479,6 +501,12 @@
     overflow: hidden;
     aspect-ratio: 1;
     position: relative;
+    transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+}
+
+.clientelling-mockup .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .clientelling-mockup .product-card img {
@@ -513,6 +541,11 @@
     align-items: center;
     justify-content: center;
     padding: 6px;
+    transition: transform 0.25s ease-out;
+}
+
+.clientelling-mockup .small-product:hover {
+    transform: scale(1.05);
 }
 
 .clientelling-mockup .small-product img {
@@ -526,6 +559,11 @@
     position: relative;
     margin-left: -25px;
     z-index: 2;
+    transition: transform 0.3s ease-out;
+}
+
+.clientelling-mockup:hover .phone-mockup {
+    transform: translateY(-10px) translateX(5px) scale(1.03);
 }
 
 .clientelling-mockup .iphone-frame {
