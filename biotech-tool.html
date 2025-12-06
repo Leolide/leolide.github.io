@@ -50,57 +50,39 @@
         }
 
         .logo {
-            padding: 0 24px 24px;
-            font-size: 24px;
+            padding: 0 24px 32px;
+            font-size: 28px;
             font-weight: 600;
+            font-style: italic;
             letter-spacing: -0.5px;
             color: var(--text-primary);
         }
 
         .workflow-title-section {
-            padding: 0 24px 24px;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 20px;
+            padding: 0 24px 32px;
         }
 
         .back-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: var(--text-muted);
-            font-size: 13px;
+            color: var(--text-secondary);
+            font-size: 14px;
             text-decoration: none;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
             cursor: pointer;
             transition: color 0.2s;
         }
 
         .back-link:hover {
-            color: var(--text-secondary);
-        }
-
-        .workflow-title-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .workflow-title-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .workflow-title-icons img {
-            width: 24px;
-            height: 24px;
-            border-radius: 4px;
+            color: var(--text-primary);
         }
 
         .workflow-title-text {
-            font-size: 15px;
-            font-weight: 500;
+            font-size: 16px;
+            font-weight: 600;
             color: var(--text-primary);
+            line-height: 1.4;
         }
 
         .workflow-list {
@@ -113,12 +95,11 @@
         .workflow-item {
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            padding: 14px 12px;
+            gap: 16px;
+            padding: 16px 12px;
             border-radius: 8px;
             cursor: pointer;
             transition: background 0.2s;
-            margin-bottom: 4px;
             position: relative;
         }
 
@@ -134,8 +115,8 @@
             content: '';
             position: absolute;
             left: 23px;
-            top: 40px;
-            bottom: -8px;
+            top: 48px;
+            bottom: -4px;
             width: 1px;
             background: var(--border-color);
         }
@@ -189,14 +170,15 @@
         }
 
         .workflow-content h4 {
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 15px;
+            font-weight: 600;
             color: var(--text-primary);
-            margin-bottom: 2px;
+            margin-bottom: 4px;
+            line-height: 1.4;
         }
 
         .workflow-content p {
-            font-size: 12px;
+            font-size: 13px;
             color: var(--text-muted);
         }
 
