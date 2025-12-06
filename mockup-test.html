@@ -444,6 +444,26 @@
             border-radius: 4px;
             font-size: 7px;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        
+        .action-btn:hover {
+            background: #333;
+            transform: scale(1.02);
+        }
+        
+        .action-btn .chevron {
+            font-size: 8px;
+            transition: transform 0.2s ease;
+        }
+        
+        .action-btn:hover .chevron {
+            transform: translateX(2px);
         }
 
         .product-row {
@@ -601,7 +621,7 @@
                                         <div class="quote-text">"I think this matches your style well—it's contemporary yet classic, just like you."</div>
                                         <div class="quote-author">From Maria Tong</div>
                                     </div>
-                                    <button class="action-btn">Reply to Maria</button>
+                                    <button class="action-btn">Reply <span class="chevron">›</span></button>
                                 </div>
                                 <div class="product-row">
                                     <div class="mini-product">
