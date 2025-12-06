@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioSeq - Sequence Analysis Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #18181b;
+            --bg-card: #1a1a1d;
+            --border-color: #27272a;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent: #22c55e;
+            --accent-dim: rgba(34, 197, 94, 0.15);
+            --purple: #a855f7;
+            --blue: #3b82f6;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            padding: 24px 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            padding: 0 24px 32px;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .workflow-header {
+            padding: 0 24px 16px;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+        }
+
+        .workflow-list {
+            flex: 1;
+            padding: 0 12px;
+        }
+
+        .workflow-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-bottom: 4px;
+        }
+
+        .workflow-item:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .workflow-item.active {
+            background: var(--bg-tertiary);
+        }
+
+        .workflow-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .workflow-icon.completed {
+            background: var(--accent-dim);
+            color: var(--accent);
+        }
+
+        .workflow-icon.active {
+            background: transparent;
+            border: 2px solid var(--accent);
+        }
+
+        .workflow-icon.pending {
+            background: var(--bg-card);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+        }
+
+        .workflow-content h4 {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .workflow-content p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .workflow-content .status-completed {
+            color: var(--accent);
+        }
+
+        .add-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            margin-top: 8px;
+            color: var(--text-muted);
+            font-size: 13px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .add-step:hover {
+            color: var(--text-secondary);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 32px 48px;
+            overflow-y: auto;
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--purple), var(--blue));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .tool-title h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            margin-bottom: 4px;
+        }
+
+        .tool-title p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .overview-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            max-width: 680px;
+        }
+
+        .config-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            max-width: 600px;
+        }
+
+        .config-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .config-field.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .config-field label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .config-select {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 14px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: inherit;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+        }
+
+        .config-select:hover {
+            border-color: #3f3f46;
+        }
+
+        .file-upload-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            max-width: 600px;
+        }
+
+        .file-upload {
+            background: var(--bg-tertiary);
+            border: 1px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .file-upload:hover {
+            border-color: #3f3f46;
+            background: var(--bg-card);
+        }
+
+        .file-upload-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+
+        .file-upload-text h5 {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .file-upload-text p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .params-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            max-width: 600px;
+        }
+
+        .param-field {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .param-field label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .param-field label svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .param-field input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 18px;
+            font-weight: 500;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .code-preview {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            max-width: 700px;
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .code-header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .code-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .code-header span {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .code-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 8px 14px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .code-btn:hover {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .code-body {
+            padding: 20px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            overflow-x: auto;
+        }
+
+        .code-body .keyword {
+            color: var(--purple);
+        }
+
+        .code-body .function {
+            color: var(--blue);
+        }
+
+        .code-body .string {
+            color: var(--accent);
+        }
+
+        .code-body .comment {
+            color: var(--text-muted);
+        }
+
+        .code-body .number {
+            color: #f59e0b;
+        }
+
+        .run-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 24px;
+        }
+
+        .run-btn:hover {
+            background: #16a34a;
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                width: 240px;
+            }
+            .main-content {
+                padding: 24px;
+            }
+            .config-grid,
+            .file-upload-grid,
+            .params-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">Bio<span>Seq</span></div>
+        
+        <div class="workflow-header">Workflow</div>
+        
+        <div class="workflow-list">
+            <div class="workflow-item">
+                <div class="workflow-icon completed">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                </div>
+                <div class="workflow-content">
+                    <h4>Preprocess the data</h4>
+                    <p class="status-completed">Completed</p>
+                </div>
+            </div>
+            
+            <div class="workflow-item active">
+                <div class="workflow-icon active"></div>
+                <div class="workflow-content">
+                    <h4>Global sequence alignment</h4>
+                    <p>Configure & run</p>
+                </div>
+            </div>
+            
+            <div class="workflow-item">
+                <div class="workflow-icon pending">3</div>
+                <div class="workflow-content">
+                    <h4>Analyze results</h4>
+                    <p>Not started</p>
+                </div>
+            </div>
+            
+            <div class="workflow-item">
+                <div class="workflow-icon pending">4</div>
+                <div class="workflow-content">
+                    <h4>Export visualization</h4>
+                    <p>Not started</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="add-step">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Add step
+        </div>
+    </aside>
+    
+    <main class="main-content">
+        <div class="tool-header">
+            <div class="tool-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <path d="M2 12h6l3-9 6 18 3-9h4"/>
+                </svg>
+            </div>
+            <div class="tool-title">
+                <h1>Global sequence alignment</h1>
+                <p>Needleman-Wunsch algorithm</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-label">Overview</div>
+            <p class="overview-text">
+                Global sequence alignment compares two DNA sequences using the Needleman-Wunsch algorithm. 
+                The code involves initializing a matrix with scores, filling it in recursively, and tracing back 
+                to obtain aligned sequences. Libraries like Biopython or EMBOSS can be used to perform the alignment, 
+                and scoring values can be adjusted. It will require two DNA files.
+            </p>
+        </div>
+        
+        <div class="section">
+            <div class="section-label">Configuration</div>
+            <div class="config-grid">
+                <div class="config-field">
+                    <label>Programming language</label>
+                    <select class="config-select">
+                        <option>Python 3.11.2</option>
+                        <option>Python 3.10.0</option>
+                        <option>R 4.3.0</option>
+                    </select>
+                </div>
+                <div class="config-field">
+                    <label>Libraries or modules</label>
+                    <select class="config-select">
+                        <option>Biopython 1.81</option>
+                        <option>EMBOSS 6.6.0</option>
+                        <option>scikit-bio 0.5.8</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-label">Input Files</div>
+            <div class="file-upload-grid">
+                <div class="file-upload">
+                    <div class="file-upload-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                    </div>
+                    <div class="file-upload-text">
+                        <h5>DNA File A</h5>
+                        <p>.fasta, .genbank</p>
+                    </div>
+                </div>
+                <div class="file-upload">
+                    <div class="file-upload-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                    </div>
+                    <div class="file-upload-text">
+                        <h5>DNA File B</h5>
+                        <p>.fasta, .genbank</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-label">Algorithm Parameters</div>
+            <div class="params-grid">
+                <div class="param-field">
+                    <label>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"/>
+                            <rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/>
+                            <rect x="3" y="14" width="7" height="7"/>
+                        </svg>
+                        match_score
+                    </label>
+                    <input type="number" value="1">
+                </div>
+                <div class="param-field">
+                    <label>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"/>
+                            <rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/>
+                            <rect x="3" y="14" width="7" height="7"/>
+                        </svg>
+                        mismatch_score
+                    </label>
+                    <input type="number" value="-1">
+                </div>
+                <div class="param-field">
+                    <label>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"/>
+                            <rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/>
+                            <rect x="3" y="14" width="7" height="7"/>
+                        </svg>
+                        gap_score
+                    </label>
+                    <input type="number" value="-2">
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-label">Code Preview</div>
+            <div class="code-preview">
+                <div class="code-header">
+                    <div class="code-header-left">
+                        <span class="code-dot"></span>
+                        <span>Python 3.11.2</span>
+                    </div>
+                    <button class="code-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
+                        </svg>
+                        Auto-Debug
+                    </button>
+                </div>
+                <div class="code-body">
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="keyword">def</span> <span class="function">needleman_wunsch</span>(seq1, seq2, match_score=<span class="number">1</span>, mismatch_score=<span class="number">-1</span>, gap_score=<span class="number">-2</span>):
+    <span class="comment"># Initialize dynamic programming matrix</span>
+    dp = np.zeros((len(seq1)+<span class="number">1</span>, len(seq2)+<span class="number">1</span>), dtype=int)
+    dp[<span class="number">0</span>,:] = np.arange(len(seq2)+<span class="number">1</span>) * gap_score
+    dp[:,<span class="number">0</span>] = np.arange(len(seq1)+<span class="number">1</span>) * gap_score
+    
+    <span class="comment"># Fill the matrix</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(seq1)+<span class="number">1</span>):
+        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(seq2)+<span class="number">1</span>):
+            match = dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + (match_score <span class="keyword">if</span> seq1[i-<span class="number">1</span>] == seq2[j-<span class="number">1</span>] <span class="keyword">else</span> mismatch_score)
+            delete = dp[i-<span class="number">1</span>][j] + gap_score
+            insert = dp[i][j-<span class="number">1</span>] + gap_score
+            dp[i][j] = max(match, delete, insert)
+    
+    <span class="keyword">return</span> dp, dp[len(seq1)][len(seq2)]
+                </div>
+            </div>
+        </div>
+        
+        <button class="run-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+            Run Analysis
+        </button>
+    </main>
+</body>
+</html>
