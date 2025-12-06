@@ -25,6 +25,27 @@
 .mockup-iframe-container {
     width: 100%;
     height: 700px;
+    position: relative;
+    display: block;
+    text-decoration: none;
+}
+
+.mockup-link {
+    cursor: pointer;
+}
+
+.mockup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: transparent;
+}
+
+.mockup-link:hover .mockup-overlay {
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .mockup-iframe {
