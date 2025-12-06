@@ -158,11 +158,34 @@
             justify-content: center;
             padding: 16px;
             background: #f5f5f5;
+            position: relative;
         }
 
         .product-card.contain-img img {
             object-fit: contain;
             mix-blend-mode: multiply;
+        }
+
+        .product-card.contain-img .hover-tag {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: #1a1a1a;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+
+        .product-card.contain-img:hover .hover-tag {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
 
         .small-products {
@@ -298,13 +321,16 @@
             padding: 40px 12px 10px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            position: relative;
         }
 
         .back-icon {
             color: #fff;
             font-size: 18px;
             opacity: 0.9;
+            position: absolute;
+            left: 12px;
         }
 
         .header-title {
@@ -314,7 +340,7 @@
         }
 
         .app-body {
-            background: #f5f5f5;
+            background: radial-gradient(circle at center, #e8e8e8 0%, #d0d0d0 100%);
             height: calc(100% - 50px);
             overflow: hidden;
         }
@@ -344,7 +370,7 @@
             font-size: 8px;
             font-weight: 600;
             color: #1a1a1a;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
             letter-spacing: 0.3px;
         }
 
@@ -389,28 +415,27 @@
         }
 
         .product-row {
-            display: flex;
-            gap: 6px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
             padding: 10px 8px;
             background: #fff;
         }
 
         .mini-product {
-            width: 40px;
-            height: 40px;
-            background: #f5f5f5;
+            height: 50px;
+            background: #1a1a1a;
             border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 4px;
+            padding: 6px;
         }
 
         .mini-product img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            mix-blend-mode: multiply;
         }
 
         .home-bar {
@@ -473,6 +498,7 @@
                     </div>
                     <div class="product-card contain-img">
                         <img src="attached_assets/DarkGreenJacket_Product1_1765046439735.png" alt="Green Trench Coat">
+                        <span class="hover-tag">View the Product</span>
                     </div>
                 </div>
                 
@@ -517,13 +543,10 @@
                                 </div>
                                 <div class="product-row">
                                     <div class="mini-product">
-                                        <img src="attached_assets/DarkGreenJacket_Product1_1765046439735.png" alt="Coat">
+                                        <img src="attached_assets/AdobeStock_530629419_1765050143462.png" alt="Sweater">
                                     </div>
                                     <div class="mini-product">
-                                        <img src="attached_assets/61ef00bc-b870-4b02-ac69-77cc255896221536215854751-Rapawalk-Men_1765046439734.png" alt="Shoes">
-                                    </div>
-                                    <div class="mini-product">
-                                        <img src="attached_assets/AdobeStock_49383807_1765046434316.png" alt="Sunglasses">
+                                        <img src="attached_assets/AdobeStock_49383807_1765050221040.png" alt="Sunglasses">
                                     </div>
                                 </div>
                             </div>
