@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap');
 
+.mockup-works-section {
+    padding: 80px 0;
+}
+
+.mockup-works-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
 .mockup-cards-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
