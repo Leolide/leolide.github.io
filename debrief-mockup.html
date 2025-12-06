@@ -203,6 +203,29 @@
             border: 1px solid #27272a;
         }
 
+        .workflow-icon.executing {
+            background: rgba(34, 197, 94, 0.15);
+            border: 2px solid #22c55e;
+            color: #22c55e;
+            position: relative;
+        }
+
+        .workflow-icon.executing::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: #22c55e;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .workflow-content h4 {
             font-size: 11px;
             font-weight: 500;
@@ -217,6 +240,10 @@
         }
 
         .workflow-content .status-completed {
+            color: #22c55e;
+        }
+
+        .workflow-content .status-executing {
             color: #22c55e;
         }
 
@@ -567,10 +594,10 @@
                                 </div>
                                 
                                 <div class="workflow-item active">
-                                    <div class="workflow-icon pending">2</div>
+                                    <div class="workflow-icon executing">2</div>
                                     <div class="workflow-content">
                                         <h4>Global sequence alignment using Needleman-Wunsch algorithm</h4>
-                                        <p>Configure & run</p>
+                                        <p class="status-executing">Executing...</p>
                                     </div>
                                 </div>
                                 
