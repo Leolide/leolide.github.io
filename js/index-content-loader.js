@@ -77,6 +77,13 @@ class IndexContentLoader {
 
     // Populate the selected works section
     populateSelectedWorks() {
+        // Check if mockup cards already exist - if so, don't overwrite them
+        const mockupCards = document.querySelector('.mockup-cards-grid');
+        if (mockupCards) {
+            console.log('Mockup cards section found, preserving it');
+            return;
+        }
+        
         const selectedProjects = this.getSelectedProjects();
         let worksContainer = document.querySelector('.collection-list-works.w-dyn-items');
         
@@ -92,6 +99,13 @@ class IndexContentLoader {
 
     // Create enhanced works section
     createEnhancedWorksSection() {
+        // Check if mockup cards already exist - if so, don't overwrite them
+        const mockupCards = document.querySelector('.mockup-cards-grid');
+        if (mockupCards) {
+            console.log('Mockup cards section found in createEnhancedWorksSection, preserving it');
+            return;
+        }
+        
         const selectedProjects = this.getSelectedProjects();
         const worksSection = document.querySelector('#Work') || document.querySelector('.works-square-wrapper');
         
