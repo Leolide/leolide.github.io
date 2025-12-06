@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mockup Hover Effect Prototype</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -18,7 +20,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             padding: 40px 20px;
             gap: 40px;
         }
@@ -30,101 +32,357 @@
             opacity: 0.8;
         }
 
-        .controls {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .control-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            color: #fff;
-            font-size: 14px;
-        }
-
-        .control-group label {
-            opacity: 0.6;
-        }
-
-        .control-group input[type="range"] {
-            width: 150px;
-            accent-color: #fff;
-        }
-
-        .control-group span {
-            text-align: center;
-            font-weight: 500;
-        }
-
         .mockup-container {
-            perspective: 1000px;
-            padding: 20px;
+            perspective: 1200px;
+            padding: 40px;
         }
 
-        .mockup-card {
+        .mockup-wrapper {
             position: relative;
-            width: 600px;
-            max-width: 90vw;
-            border-radius: 16px;
-            overflow: hidden;
-            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0;
             transform-style: preserve-3d;
-            transition: transform 0.15s ease-out, box-shadow 0.3s ease-out;
-            will-change: transform, box-shadow;
+            transition: transform 0.15s ease-out, box-shadow 0.4s ease-out;
+            will-change: transform;
+            padding: 40px 60px;
+            background: linear-gradient(145deg, #1a1a2e 0%, #0f0f1a 100%);
+            border-radius: 24px;
             box-shadow: 
-                0 4px 20px rgba(0, 0, 0, 0.3),
+                0 4px 30px rgba(0, 0, 0, 0.4),
                 0 0 0 1px rgba(255, 255, 255, 0.05);
         }
 
-        .mockup-card:hover {
+        .mockup-wrapper:hover {
             box-shadow: 
-                0 25px 60px rgba(0, 0, 0, 0.5),
-                0 15px 30px rgba(0, 0, 0, 0.4),
+                0 40px 80px rgba(0, 0, 0, 0.6),
+                0 20px 40px rgba(0, 0, 0, 0.4),
                 0 0 0 1px rgba(255, 255, 255, 0.1);
         }
 
-        .mockup-card img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .desktop-view {
+            background: #fff;
+            border-radius: 12px;
+            padding: 32px 40px;
+            width: 420px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease-out;
-        }
-
-        .mockup-card:hover img {
-            transform: scale(var(--scale-amount, 1.03));
-        }
-
-        .mockup-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                135deg,
-                rgba(255, 255, 255, 0.1) 0%,
-                rgba(255, 255, 255, 0) 50%,
-                rgba(0, 0, 0, 0.1) 100%
-            );
-            opacity: 0;
-            transition: opacity 0.3s ease-out;
-            pointer-events: none;
             z-index: 1;
         }
 
-        .mockup-card:hover::before {
-            opacity: 1;
+        .mockup-wrapper:hover .desktop-view {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .desktop-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .from-text {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .brand-name {
+            font-size: 28px;
+            font-weight: 400;
+            color: #1a1a1a;
+            font-family: 'Times New Roman', serif;
+            letter-spacing: 1px;
+        }
+
+        .collection-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .collection-desc {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .reply-btn {
+            display: block;
+            margin: 0 auto 24px;
+            padding: 10px 24px;
+            border: 1px solid #1a1a1a;
+            background: transparent;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .reply-btn:hover {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .product-card {
+            background: #f5f5f5;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card.featured {
+            aspect-ratio: 1;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-card.with-label {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card.with-label img {
+            flex: 1;
+            min-height: 0;
+        }
+
+        .product-label {
+            padding: 8px;
+            text-align: center;
+            background: #fff;
+        }
+
+        .product-label .name {
+            font-size: 11px;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .view-product-btn {
+            display: inline-block;
+            padding: 6px 16px;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 10px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .view-product-btn:hover {
+            background: #333;
+        }
+
+        .small-products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .small-product {
+            background: #f5f5f5;
+            border-radius: 6px;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.25s ease-out;
+            overflow: hidden;
+        }
+
+        .small-product:hover {
+            transform: scale(1.05);
+        }
+
+        .small-product img {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
+        }
+
+        .phone-mockup {
+            position: relative;
+            margin-left: -40px;
+            z-index: 2;
+            transition: transform 0.3s ease-out;
+        }
+
+        .mockup-wrapper:hover .phone-mockup {
+            transform: translateY(-10px) translateX(5px) scale(1.03);
+        }
+
+        .phone-frame {
+            width: 220px;
+            background: #1a1a1a;
+            border-radius: 36px;
+            padding: 12px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                inset 0 0 0 2px #333;
+        }
+
+        .phone-notch {
+            width: 80px;
+            height: 24px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            margin: 0 auto 8px;
+            position: relative;
+        }
+
+        .phone-notch::before {
+            content: '9:41';
+            position: absolute;
+            left: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .phone-screen {
+            background: #1a1a1a;
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            gap: 12px;
+        }
+
+        .back-arrow {
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .app-title {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .app-content {
+            background: #f5f5f5;
+        }
+
+        .lookbook-image {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, #8B7355 0%, #6B5344 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lookbook-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .lookbook-info {
+            padding: 12px 16px;
+            background: #fff;
+        }
+
+        .lookbook-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .lookbook-desc {
+            font-size: 10px;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .lookbook-quote {
+            font-size: 10px;
+            color: #888;
+            font-style: italic;
+            padding: 8px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .quote-author {
+            font-style: normal;
+            font-weight: 500;
+            color: #666;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .app-reply-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 11px;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 12px;
+        }
+
+        .app-products {
+            display: flex;
+            gap: 8px;
+            padding: 0 16px 16px;
+            background: #fff;
+        }
+
+        .app-product {
+            width: 50px;
+            height: 50px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .app-product img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
         }
 
         .project-info {
-            margin-top: 24px;
+            margin-top: 32px;
             text-align: center;
             color: #fff;
         }
 
         .project-info h2 {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 600;
             margin-bottom: 8px;
         }
@@ -135,193 +393,162 @@
             max-width: 400px;
         }
 
-        .effect-toggle {
-            display: flex;
-            gap: 16px;
-            margin-top: 20px;
-        }
-
-        .toggle-btn {
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.2s ease;
-        }
-
-        .toggle-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .toggle-btn.active {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.4);
-        }
-
         .instructions {
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.4);
             font-size: 13px;
             text-align: center;
             max-width: 400px;
+            margin-top: 20px;
+        }
+
+        .placeholder-img {
+            background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 10px;
+        }
+
+        .model-placeholder {
+            background: linear-gradient(180deg, #d4c4b0 0%, #a89080 100%);
+        }
+
+        .coat-placeholder {
+            background: #4a5a4a;
+        }
+
+        .shoe-placeholder {
+            background: #2a2a2a;
+        }
+
+        .jeans-placeholder {
+            background: #4a6080;
+        }
+
+        .socks-placeholder {
+            background: #c04040;
+        }
+
+        .bag-placeholder {
+            background: #1a1a1a;
+        }
+
+        .woman-placeholder {
+            background: linear-gradient(180deg, #c9a86c 0%, #8b6914 100%);
         }
     </style>
 </head>
 <body>
-    <h1>Mockup Hover Effect Prototype</h1>
-    
-    <div class="controls">
-        <div class="control-group">
-            <label>Scale Amount</label>
-            <input type="range" id="scaleSlider" min="100" max="115" value="103">
-            <span id="scaleValue">1.03x</span>
-        </div>
-        <div class="control-group">
-            <label>Tilt Intensity</label>
-            <input type="range" id="tiltSlider" min="0" max="20" value="8">
-            <span id="tiltValue">8°</span>
-        </div>
-        <div class="control-group">
-            <label>Shadow Lift</label>
-            <input type="range" id="shadowSlider" min="0" max="100" value="60">
-            <span id="shadowValue">60px</span>
-        </div>
-    </div>
-
-    <div class="effect-toggle">
-        <button class="toggle-btn active" data-effect="tilt">Tilt Effect</button>
-        <button class="toggle-btn active" data-effect="scale">Scale Effect</button>
-        <button class="toggle-btn active" data-effect="shadow">Shadow Effect</button>
-    </div>
+    <h1>Clientelling App - Interactive Mockup</h1>
 
     <div class="mockup-container">
-        <div class="mockup-card" id="mockupCard">
-            <img src="attached_assets/Screenshot_2025-12-06_at_18.23.28_1765045410600.png" alt="Clientelling App Mockup">
+        <div class="mockup-wrapper" id="mockupWrapper">
+            <div class="desktop-view">
+                <div class="desktop-header">
+                    <div class="from-text">From Maria Tong at</div>
+                    <div class="brand-name">Armoiré Noir</div>
+                </div>
+                
+                <div class="collection-title">Modern Gent</div>
+                <div class="collection-desc">"I find this look perfect for the party you are<br>going to attend this coming Friday."</div>
+                
+                <button class="reply-btn">Reply to Maria</button>
+                
+                <div class="product-grid">
+                    <div class="product-card featured">
+                        <div class="placeholder-img model-placeholder" style="width:100%;height:100%;"></div>
+                    </div>
+                    <div class="product-card with-label">
+                        <div class="placeholder-img coat-placeholder" style="flex:1;"></div>
+                        <div class="product-label">
+                            <div class="name">SS3 Trench Coat</div>
+                            <button class="view-product-btn">View the Product</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="small-products">
+                    <div class="small-product">
+                        <div class="placeholder-img shoe-placeholder" style="width:100%;height:100%;border-radius:6px;"></div>
+                    </div>
+                    <div class="small-product">
+                        <div class="placeholder-img jeans-placeholder" style="width:100%;height:100%;border-radius:6px;"></div>
+                    </div>
+                    <div class="small-product">
+                        <div class="placeholder-img socks-placeholder" style="width:100%;height:100%;border-radius:6px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phone-mockup">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <div class="app-header">
+                            <span class="back-arrow">‹</span>
+                            <span class="app-title">View lookbook</span>
+                        </div>
+                        <div class="app-content">
+                            <div class="lookbook-image">
+                                <div class="placeholder-img woman-placeholder" style="width:100%;height:100%;"></div>
+                            </div>
+                            <div class="lookbook-info">
+                                <div class="lookbook-title">24 W SS CELESTIAL BLOOM</div>
+                                <div class="lookbook-desc">Featuring the sleek black trench coat and effortlessly tailored silk shirt, this look embodies bold sophistication.</div>
+                                <div class="lookbook-quote">
+                                    "I think this matches your style well—it's contemporary yet classic, just like you."
+                                    <span class="quote-author">From Maria Tong</span>
+                                </div>
+                                <button class="app-reply-btn">Reply to Maria</button>
+                            </div>
+                            <div class="app-products">
+                                <div class="app-product">
+                                    <div class="placeholder-img coat-placeholder" style="width:100%;height:100%;border-radius:4px;"></div>
+                                </div>
+                                <div class="app-product">
+                                    <div class="placeholder-img bag-placeholder" style="width:100%;height:100%;border-radius:4px;"></div>
+                                </div>
+                                <div class="app-product">
+                                    <div class="placeholder-img woman-placeholder" style="width:100%;height:100%;border-radius:4px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        
         <div class="project-info">
             <h2>A Clientelling App</h2>
             <p>Boosting sales and enabling personalized customer experiences</p>
         </div>
     </div>
 
-    <p class="instructions">Move your cursor over the mockup to see the effects. Use the sliders to adjust intensity.</p>
+    <p class="instructions">Hover over the mockup to see the interactive effects. The desktop and phone animate independently.</p>
 
     <script>
-        const card = document.getElementById('mockupCard');
+        const wrapper = document.getElementById('mockupWrapper');
         const container = document.querySelector('.mockup-container');
         
-        let effects = {
-            tilt: true,
-            scale: true,
-            shadow: true
-        };
-
-        let settings = {
-            scale: 1.03,
-            tilt: 8,
-            shadow: 60
-        };
-
-        const scaleSlider = document.getElementById('scaleSlider');
-        const tiltSlider = document.getElementById('tiltSlider');
-        const shadowSlider = document.getElementById('shadowSlider');
-
-        scaleSlider.addEventListener('input', (e) => {
-            settings.scale = e.target.value / 100;
-            document.getElementById('scaleValue').textContent = settings.scale.toFixed(2) + 'x';
-            card.style.setProperty('--scale-amount', settings.scale);
-        });
-
-        tiltSlider.addEventListener('input', (e) => {
-            settings.tilt = parseInt(e.target.value);
-            document.getElementById('tiltValue').textContent = settings.tilt + '°';
-        });
-
-        shadowSlider.addEventListener('input', (e) => {
-            settings.shadow = parseInt(e.target.value);
-            document.getElementById('shadowValue').textContent = settings.shadow + 'px';
-        });
-
-        document.querySelectorAll('.toggle-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const effect = btn.dataset.effect;
-                effects[effect] = !effects[effect];
-                btn.classList.toggle('active');
-            });
-        });
-
-        card.style.setProperty('--scale-amount', settings.scale);
+        const tiltIntensity = 6;
 
         container.addEventListener('mousemove', (e) => {
-            if (!effects.tilt) return;
-
-            const rect = card.getBoundingClientRect();
+            const rect = wrapper.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
             
             const mouseX = e.clientX - centerX;
             const mouseY = e.clientY - centerY;
             
-            const rotateX = (mouseY / (rect.height / 2)) * -settings.tilt;
-            const rotateY = (mouseX / (rect.width / 2)) * settings.tilt;
+            const rotateX = (mouseY / (rect.height / 2)) * -tiltIntensity;
+            const rotateY = (mouseX / (rect.width / 2)) * tiltIntensity;
             
-            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            wrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         });
 
         container.addEventListener('mouseleave', () => {
-            card.style.transform = 'rotateX(0deg) rotateY(0deg)';
-        });
-
-        const styleSheet = document.createElement('style');
-        document.head.appendChild(styleSheet);
-
-        function updateShadowStyle() {
-            if (effects.shadow) {
-                styleSheet.textContent = `
-                    .mockup-card:hover {
-                        box-shadow: 
-                            0 ${settings.shadow}px ${settings.shadow * 1.5}px rgba(0, 0, 0, 0.5),
-                            0 ${settings.shadow * 0.4}px ${settings.shadow * 0.6}px rgba(0, 0, 0, 0.4),
-                            0 0 0 1px rgba(255, 255, 255, 0.1) !important;
-                    }
-                `;
-            } else {
-                styleSheet.textContent = `
-                    .mockup-card:hover {
-                        box-shadow: 
-                            0 4px 20px rgba(0, 0, 0, 0.3),
-                            0 0 0 1px rgba(255, 255, 255, 0.05) !important;
-                    }
-                `;
-            }
-        }
-
-        shadowSlider.addEventListener('input', updateShadowStyle);
-        document.querySelector('[data-effect="shadow"]').addEventListener('click', () => {
-            setTimeout(updateShadowStyle, 0);
-        });
-
-        updateShadowStyle();
-
-        const img = card.querySelector('img');
-        const originalTransition = img.style.transition;
-        
-        document.querySelector('[data-effect="scale"]').addEventListener('click', () => {
-            if (!effects.scale) {
-                img.style.transform = 'scale(1)';
-            }
-        });
-
-        card.addEventListener('mouseenter', () => {
-            if (effects.scale) {
-                img.style.transform = `scale(${settings.scale})`;
-            }
-        });
-
-        card.addEventListener('mouseleave', () => {
-            img.style.transform = 'scale(1)';
+            wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
         });
     </script>
 </body>
