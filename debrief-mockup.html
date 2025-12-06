@@ -363,6 +363,27 @@
 
         .status-bar {
             margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .view-log-link {
+            font-size: 9px;
+            color: #71717a;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .progress-indicator {
+            font-size: 9px;
+            color: #71717a;
         }
 
         .more-btn {
@@ -700,6 +721,10 @@
                                     <span class="executing-dot"></span>
                                     Executing
                                 </span>
+                                <div class="status-right">
+                                    <span class="progress-indicator">12/50 iterations</span>
+                                    <span class="view-log-link">View Log</span>
+                                </div>
                             </div>
                             
                             <div class="section">
