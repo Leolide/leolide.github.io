@@ -24,42 +24,19 @@
     }
 }
 
-.mockup-card-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
 .mockup-iframe-container {
     position: relative;
     width: 100%;
-    height: 600px;
+    height: 700px;
     border-radius: 16px;
     overflow: hidden;
     background: #0a0a0a;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.mockup-iframe-container:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
 }
 
 .mockup-iframe {
     width: 100%;
     height: 100%;
     border: none;
-    pointer-events: none;
-}
-
-.mockup-iframe-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    cursor: pointer;
 }
 
 @media (max-width: 991px) {
@@ -68,12 +45,12 @@
     }
     
     .mockup-iframe-container {
-        height: 500px;
+        height: 600px;
     }
 }
 
 @media (max-width: 767px) {
     .mockup-iframe-container {
-        height: 400px;
+        height: 500px;
     }
 }
