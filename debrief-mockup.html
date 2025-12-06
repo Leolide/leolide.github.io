@@ -453,6 +453,11 @@
             margin: 16px 0;
         }
 
+        .section.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
         .section-label {
             font-size: 9px;
             font-weight: 500;
@@ -787,7 +792,7 @@
                                 </div>
                             </div>
                             
-                            <div class="section">
+                            <div class="section disabled">
                                 <div class="section-label">Input Files</div>
                                 <div class="file-upload-grid">
                                     <div class="file-upload uploaded">
@@ -807,7 +812,7 @@
                                 </div>
                             </div>
                             
-                            <div class="section">
+                            <div class="section disabled">
                                 <div class="section-label">Algorithm Parameters</div>
                                 <div class="params-grid">
                                     <div class="param-field">
