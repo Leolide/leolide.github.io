@@ -110,7 +110,10 @@
         }
 
         .reply-btn {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             margin: 0 auto 24px;
             padding: 10px 24px;
             border: 1px solid #1a1a1a;
@@ -124,6 +127,15 @@
         .reply-btn:hover {
             background: #1a1a1a;
             color: #fff;
+        }
+        
+        .reply-btn .chevron {
+            font-size: 14px;
+            transition: transform 0.2s ease;
+        }
+        
+        .reply-btn:hover .chevron {
+            transform: translateX(3px);
         }
 
         .product-grid {
@@ -257,32 +269,19 @@
             position: relative;
             width: 180px;
             height: 380px;
-            background: linear-gradient(135deg, #3a3a3c 0%, #1c1c1e 50%, #2c2c2e 100%);
+            background: #1a1a1a;
             border-radius: 40px;
             padding: 8px;
-            box-shadow: 
-                0 50px 100px rgba(0, 0, 0, 0.5),
-                0 20px 40px rgba(0, 0, 0, 0.4),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
         .iphone-frame::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 40px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%);
-            pointer-events: none;
+            display: none;
         }
 
         .side-button {
             position: absolute;
-            background: linear-gradient(90deg, #2a2a2c 0%, #3a3a3c 50%, #2a2a2c 100%);
+            background: #2a2a2a;
             border-radius: 2px;
         }
 
@@ -568,7 +567,7 @@
                 <div class="collection-title">Modern Gent</div>
                 <div class="collection-desc">"I find this look perfect for the party you are<br>going to attend this coming Friday."</div>
                 
-                <button class="reply-btn">Reply to Maria</button>
+                <button class="reply-btn">Reply <span class="chevron">›</span></button>
                 
                 <div class="product-grid">
                     <div class="product-card">
