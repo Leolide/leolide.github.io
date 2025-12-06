@@ -45,6 +45,8 @@
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
+            height: 100vh;
+            overflow-y: auto;
         }
 
         .logo {
@@ -104,6 +106,8 @@
         .workflow-list {
             flex: 1;
             padding: 0 12px;
+            display: flex;
+            flex-direction: column;
         }
 
         .workflow-item {
@@ -228,12 +232,13 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 24px;
-            margin-top: 8px;
+            padding: 16px 24px;
+            margin-top: auto;
             color: var(--text-muted);
             font-size: 13px;
             cursor: pointer;
             transition: color 0.2s;
+            border-top: 1px solid var(--border-color);
         }
 
         .add-step:hover {
@@ -515,11 +520,13 @@
 
         .code-body {
             padding: 20px;
-            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-family: 'SF Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
             font-size: 13px;
-            line-height: 1.6;
+            line-height: 1.7;
             color: var(--text-secondary);
             overflow-x: auto;
+            white-space: pre;
+            tab-size: 4;
         }
 
         .code-body .keyword {
@@ -832,15 +839,14 @@
                         Auto-Debug
                     </button>
                 </div>
-                <div class="code-body">
-<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+                <div class="code-body"><span class="keyword">import</span> numpy <span class="keyword">as</span> np
 
 <span class="keyword">def</span> <span class="function">needleman_wunsch</span>(seq1, seq2, match_score=<span class="number">1</span>, mismatch_score=<span class="number">-1</span>, gap_score=<span class="number">-2</span>):
     <span class="comment"># Initialize dynamic programming matrix</span>
     dp = np.zeros((len(seq1)+<span class="number">1</span>, len(seq2)+<span class="number">1</span>), dtype=int)
     dp[<span class="number">0</span>,:] = np.arange(len(seq2)+<span class="number">1</span>) * gap_score
     dp[:,<span class="number">0</span>] = np.arange(len(seq1)+<span class="number">1</span>) * gap_score
-    
+
     <span class="comment"># Fill the matrix</span>
     <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(seq1)+<span class="number">1</span>):
         <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(seq2)+<span class="number">1</span>):
@@ -848,9 +854,8 @@
             delete = dp[i-<span class="number">1</span>][j] + gap_score
             insert = dp[i][j-<span class="number">1</span>] + gap_score
             dp[i][j] = max(match, delete, insert)
-    
-    <span class="keyword">return</span> dp, dp[len(seq1)][len(seq2)]
-                </div>
+
+    <span class="keyword">return</span> dp, dp[len(seq1)][len(seq2)]</div>
             </div>
         </div>
         
