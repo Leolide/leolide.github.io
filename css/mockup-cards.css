@@ -44,9 +44,6 @@
     background: transparent;
 }
 
-.mockup-link:hover .mockup-overlay {
-    background: rgba(255, 255, 255, 0.02);
-}
 
 .mockup-iframe {
     width: 100%;
