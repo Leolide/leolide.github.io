@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockup Hover Effect Prototype</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0a0a0a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+            padding: 40px 20px;
+            gap: 40px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        .controls {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .control-group label {
+            opacity: 0.6;
+        }
+
+        .control-group input[type="range"] {
+            width: 150px;
+            accent-color: #fff;
+        }
+
+        .control-group span {
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .mockup-container {
+            perspective: 1000px;
+            padding: 20px;
+        }
+
+        .mockup-card {
+            position: relative;
+            width: 600px;
+            max-width: 90vw;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease-out, box-shadow 0.3s ease-out;
+            will-change: transform, box-shadow;
+            box-shadow: 
+                0 4px 20px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .mockup-card:hover {
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.5),
+                0 15px 30px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .mockup-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease-out;
+        }
+
+        .mockup-card:hover img {
+            transform: scale(var(--scale-amount, 1.03));
+        }
+
+        .mockup-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0) 50%,
+                rgba(0, 0, 0, 0.1) 100%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .mockup-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-info {
+            margin-top: 24px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .project-info h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .project-info p {
+            font-size: 14px;
+            opacity: 0.6;
+            max-width: 400px;
+        }
+
+        .effect-toggle {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .toggle-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .toggle-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .instructions {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+            text-align: center;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mockup Hover Effect Prototype</h1>
+    
+    <div class="controls">
+        <div class="control-group">
+            <label>Scale Amount</label>
+            <input type="range" id="scaleSlider" min="100" max="115" value="103">
+            <span id="scaleValue">1.03x</span>
+        </div>
+        <div class="control-group">
+            <label>Tilt Intensity</label>
+            <input type="range" id="tiltSlider" min="0" max="20" value="8">
+            <span id="tiltValue">8°</span>
+        </div>
+        <div class="control-group">
+            <label>Shadow Lift</label>
+            <input type="range" id="shadowSlider" min="0" max="100" value="60">
+            <span id="shadowValue">60px</span>
+        </div>
+    </div>
+
+    <div class="effect-toggle">
+        <button class="toggle-btn active" data-effect="tilt">Tilt Effect</button>
+        <button class="toggle-btn active" data-effect="scale">Scale Effect</button>
+        <button class="toggle-btn active" data-effect="shadow">Shadow Effect</button>
+    </div>
+
+    <div class="mockup-container">
+        <div class="mockup-card" id="mockupCard">
+            <img src="attached_assets/Screenshot_2025-12-06_at_18.23.28_1765045410600.png" alt="Clientelling App Mockup">
+        </div>
+        <div class="project-info">
+            <h2>A Clientelling App</h2>
+            <p>Boosting sales and enabling personalized customer experiences</p>
+        </div>
+    </div>
+
+    <p class="instructions">Move your cursor over the mockup to see the effects. Use the sliders to adjust intensity.</p>
+
+    <script>
+        const card = document.getElementById('mockupCard');
+        const container = document.querySelector('.mockup-container');
+        
+        let effects = {
+            tilt: true,
+            scale: true,
+            shadow: true
+        };
+
+        let settings = {
+            scale: 1.03,
+            tilt: 8,
+            shadow: 60
+        };
+
+        const scaleSlider = document.getElementById('scaleSlider');
+        const tiltSlider = document.getElementById('tiltSlider');
+        const shadowSlider = document.getElementById('shadowSlider');
+
+        scaleSlider.addEventListener('input', (e) => {
+            settings.scale = e.target.value / 100;
+            document.getElementById('scaleValue').textContent = settings.scale.toFixed(2) + 'x';
+            card.style.setProperty('--scale-amount', settings.scale);
+        });
+
+        tiltSlider.addEventListener('input', (e) => {
+            settings.tilt = parseInt(e.target.value);
+            document.getElementById('tiltValue').textContent = settings.tilt + '°';
+        });
+
+        shadowSlider.addEventListener('input', (e) => {
+            settings.shadow = parseInt(e.target.value);
+            document.getElementById('shadowValue').textContent = settings.shadow + 'px';
+        });
+
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const effect = btn.dataset.effect;
+                effects[effect] = !effects[effect];
+                btn.classList.toggle('active');
+            });
+        });
+
+        card.style.setProperty('--scale-amount', settings.scale);
+
+        container.addEventListener('mousemove', (e) => {
+            if (!effects.tilt) return;
+
+            const rect = card.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            const mouseX = e.clientX - centerX;
+            const mouseY = e.clientY - centerY;
+            
+            const rotateX = (mouseY / (rect.height / 2)) * -settings.tilt;
+            const rotateY = (mouseX / (rect.width / 2)) * settings.tilt;
+            
+            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        container.addEventListener('mouseleave', () => {
+            card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        });
+
+        const styleSheet = document.createElement('style');
+        document.head.appendChild(styleSheet);
+
+        function updateShadowStyle() {
+            if (effects.shadow) {
+                styleSheet.textContent = `
+                    .mockup-card:hover {
+                        box-shadow: 
+                            0 ${settings.shadow}px ${settings.shadow * 1.5}px rgba(0, 0, 0, 0.5),
+                            0 ${settings.shadow * 0.4}px ${settings.shadow * 0.6}px rgba(0, 0, 0, 0.4),
+                            0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+                    }
+                `;
+            } else {
+                styleSheet.textContent = `
+                    .mockup-card:hover {
+                        box-shadow: 
+                            0 4px 20px rgba(0, 0, 0, 0.3),
+                            0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+                    }
+                `;
+            }
+        }
+
+        shadowSlider.addEventListener('input', updateShadowStyle);
+        document.querySelector('[data-effect="shadow"]').addEventListener('click', () => {
+            setTimeout(updateShadowStyle, 0);
+        });
+
+        updateShadowStyle();
+
+        const img = card.querySelector('img');
+        const originalTransition = img.style.transition;
+        
+        document.querySelector('[data-effect="scale"]').addEventListener('click', () => {
+            if (!effects.scale) {
+                img.style.transform = 'scale(1)';
+            }
+        });
+
+        card.addEventListener('mouseenter', () => {
+            if (effects.scale) {
+                img.style.transform = `scale(${settings.scale})`;
+            }
+        });
+
+        card.addEventListener('mouseleave', () => {
+            img.style.transform = 'scale(1)';
+        });
+    </script>
+</body>
+</html>
