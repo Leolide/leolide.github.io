@@ -29,6 +29,22 @@
     cursor: pointer;
 }
 
+.mockup-card-wrapper {
+    background: linear-gradient(145deg, #111113 0%, #0a0a0b 100%);
+    border-radius: 24px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.4s ease-out, border-color 0.3s ease-out;
+}
+
+.mockup-card-link:hover .mockup-card-wrapper {
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
 @media (max-width: 991px) {
     .mockup-works-wrapper {
         padding: 0 20px;
