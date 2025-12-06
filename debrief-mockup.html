@@ -55,38 +55,8 @@
             padding: 40px;
         }
 
-        .mockup-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform-style: preserve-3d;
-            transition: transform 0.15s ease-out, box-shadow 0.4s ease-out;
-            will-change: transform;
-            padding: 50px 60px;
-            background: linear-gradient(145deg, #0d0d14 0%, #060609 100%);
-            border-radius: 24px;
-            box-shadow: 
-                0 4px 30px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(255, 255, 255, 0.05);
-        }
-
-        .mockup-wrapper:hover {
-            box-shadow: 
-                0 40px 80px rgba(0, 0, 0, 0.6),
-                0 20px 40px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(255, 255, 255, 0.15),
-                0 0 60px rgba(255, 255, 255, 0.08),
-                0 0 100px rgba(200, 200, 255, 0.05);
-        }
-
         .macbook {
             position: relative;
-            transition: transform 0.3s ease-out;
-        }
-
-        .mockup-wrapper:hover .macbook {
-            transform: translateY(-8px) scale(1.02);
         }
 
         .macbook-screen {
@@ -700,7 +670,6 @@
     <h1>Debrief AI - Interactive Mockup</h1>
 
     <div class="mockup-container">
-        <div class="mockup-wrapper" id="mockupWrapper">
             <div class="macbook">
                 <div class="macbook-screen">
                     <div class="screen-content">
@@ -874,7 +843,6 @@
                 <div class="macbook-base"></div>
                 <div class="macbook-stand"></div>
             </div>
-        </div>
         
         <div class="project-info">
             <h2>AI-Powered Biotech Workflow Platform for DNA Sequence Analysis</h2>
@@ -888,31 +856,5 @@
         </div>
     </div>
 
-    <p class="instructions">Hover over the mockup to see the interactive effects.</p>
-
-    <script>
-        const wrapper = document.getElementById('mockupWrapper');
-        const container = document.querySelector('.mockup-container');
-        
-        const tiltIntensity = 6;
-
-        container.addEventListener('mousemove', (e) => {
-            const rect = wrapper.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            
-            const mouseX = e.clientX - centerX;
-            const mouseY = e.clientY - centerY;
-            
-            const rotateX = (mouseY / (rect.height / 2)) * -tiltIntensity;
-            const rotateY = (mouseX / (rect.width / 2)) * tiltIntensity;
-            
-            wrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
-
-        container.addEventListener('mouseleave', () => {
-            wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
-        });
-    </script>
 </body>
 </html>
