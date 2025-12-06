@@ -424,12 +424,16 @@
 
         .file-upload {
             background: #18181b;
-            border: 1px dashed #27272a;
+            border: 1px solid #27272a;
             border-radius: 8px;
             padding: 12px;
             display: flex;
             align-items: center;
             gap: 10px;
+        }
+
+        .file-upload.uploaded {
+            border-color: rgba(34, 197, 94, 0.3);
         }
 
         .file-upload-icon {
@@ -444,6 +448,11 @@
             font-size: 12px;
         }
 
+        .file-upload-icon.uploaded {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+        }
+
         .file-upload-text h5 {
             font-size: 11px;
             font-weight: 500;
@@ -454,6 +463,10 @@
         .file-upload-text p {
             font-size: 9px;
             color: #71717a;
+        }
+
+        .file-upload-text p.file-name {
+            color: #22c55e;
         }
 
         .params-grid {
@@ -689,18 +702,18 @@
                             <div class="section">
                                 <div class="section-label">Input Files</div>
                                 <div class="file-upload-grid">
-                                    <div class="file-upload">
-                                        <div class="file-upload-icon">↑</div>
+                                    <div class="file-upload uploaded">
+                                        <div class="file-upload-icon uploaded">✓</div>
                                         <div class="file-upload-text">
                                             <h5>DNA File A</h5>
-                                            <p>.fasta, .genbank</p>
+                                            <p class="file-name">sequence_A.fasta</p>
                                         </div>
                                     </div>
-                                    <div class="file-upload">
-                                        <div class="file-upload-icon">↑</div>
+                                    <div class="file-upload uploaded">
+                                        <div class="file-upload-icon uploaded">✓</div>
                                         <div class="file-upload-text">
                                             <h5>DNA File B</h5>
-                                            <p>.fasta, .genbank</p>
+                                            <p class="file-name">sequence_B.fasta</p>
                                         </div>
                                     </div>
                                 </div>
