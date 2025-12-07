@@ -62,7 +62,7 @@
         0 4px 30px rgba(0, 0, 0, 0.4),
         0 0 0 1px rgba(255, 255, 255, 0.05);
     width: 100%;
-    min-height: 420px;
+    height: 480px;
     box-sizing: border-box;
     justify-content: center;
 }
@@ -77,15 +77,15 @@
 }
 
 .mockup-wrapper.debrief {
-    padding: 40px 30px;
+    padding: 30px 20px;
     background: linear-gradient(145deg, #0d0d14 0%, #060609 100%);
 }
 
 .desktop-view {
     background: #fff;
     border-radius: 12px;
-    padding: 32px 40px;
-    width: 420px;
+    padding: 24px 28px;
+    width: 320px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-out;
     z-index: 1;
@@ -288,11 +288,11 @@
 
 .iphone-frame {
     position: relative;
-    width: 180px;
-    height: 380px;
+    width: 150px;
+    height: 320px;
     background: #1a1a1a;
-    border-radius: 40px;
-    padding: 8px;
+    border-radius: 34px;
+    padding: 6px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
@@ -594,8 +594,8 @@
 }
 
 .macbook .screen-content {
-    width: 600px;
-    height: 400px;
+    width: 480px;
+    height: 320px;
     background: #0a0a0b;
     border-radius: 4px;
     overflow: hidden;
@@ -611,10 +611,10 @@
 }
 
 .sidebar {
-    width: 200px;
+    width: 160px;
     background: #111113;
     border-right: 1px solid #27272a;
-    padding: 16px 0;
+    padding: 12px 0;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
