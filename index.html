@@ -151,80 +151,110 @@
         
         <div class="mockup-card-container" data-mockup="debrief">
           <div class="mockup-wrapper debrief">
-            <div class="macbook">
-              <div class="macbook-screen">
-                <div class="screen-content">
-                  <aside class="sidebar">
-                    <div class="logo">Debrief.</div>
-                    <div class="workflow-title-section">
-                      <div class="back-link"><span>←</span> Back</div>
-                      <div class="workflow-title-text">Align two DNAs (via BioPython)</div>
-                      <div class="workflow-progress">
-                        <div class="progress-bar"><div class="progress-fill"></div></div>
-                        <span class="progress-text">1/3 completed</span>
-                      </div>
-                    </div>
-                    <div class="workflow-list">
-                      <div class="workflow-item">
-                        <div class="workflow-icon completed">✓</div>
-                        <div class="workflow-content">
-                          <h4>Preprocess the data</h4>
-                          <p class="status-completed">Completed</p>
-                        </div>
-                      </div>
-                      <div class="workflow-item active">
-                        <div class="workflow-icon executing">2</div>
-                        <div class="workflow-content">
-                          <h4>Global sequence alignment</h4>
-                          <p class="status-executing">Executing...</p>
-                        </div>
-                      </div>
-                      <div class="workflow-item">
-                        <div class="workflow-icon pending">3</div>
-                        <div class="workflow-content">
-                          <h4>Analyze results</h4>
-                          <p>Not started</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="add-step">✎ Edit Workflow</div>
-                  </aside>
-                  <main class="main-content">
-                    <div class="panel-header">
-                      <div class="tool-header">
-                        <div class="tool-icon">
-                          <img src="attached_assets/software_1765059859640.png" alt="BioPython">
-                        </div>
-                        <div class="tool-title">
-                          <h1>Global sequence alignment</h1>
-                          <p>Needleman-Wunsch algorithm</p>
-                        </div>
-                      </div>
-                      <div class="header-right">
-                        <div class="more-btn">⋯</div>
-                        <div class="close-btn">×</div>
-                      </div>
-                    </div>
-                    <div class="status-bar">
-                      <div class="status-left">
-                        <span class="executing-tag">
-                          <span class="executing-dot"></span>
-                          Executing
-                        </span>
-                        <div class="pause-btn">⏸ Pause</div>
-                      </div>
-                      <div class="status-right">
-                        <span class="last-run">Last run: 2:34 PM</span>
-                        <span class="view-log-link">View Historical Run</span>
-                      </div>
-                    </div>
-                    <div class="section">
-                      <div class="section-label">Overview</div>
-                      <p class="overview-text">Performs global pairwise sequence alignment using the Needleman-Wunsch algorithm to find the optimal alignment between two DNA sequences.</p>
-                    </div>
-                  </main>
+            <div class="debrief-app">
+              <aside class="debrief-sidebar">
+                <div class="debrief-logo">Debrief.</div>
+                <div class="debrief-back">← Back</div>
+                <div class="debrief-workflow-title">Align two DNAs (via BioPython)</div>
+                <div class="debrief-progress-section">
+                  <div class="debrief-progress-bar"><div class="debrief-progress-fill"></div></div>
+                  <span class="debrief-progress-text">1/3 completed</span>
                 </div>
-              </div>
+                <div class="debrief-steps">
+                  <div class="debrief-step completed">
+                    <div class="debrief-step-icon completed">✓</div>
+                    <div class="debrief-step-info">
+                      <div class="debrief-step-title">Preprocess the data</div>
+                      <div class="debrief-step-status completed">Completed</div>
+                    </div>
+                  </div>
+                  <div class="debrief-step active">
+                    <div class="debrief-step-icon active">2</div>
+                    <div class="debrief-step-info">
+                      <div class="debrief-step-title">Global sequence alignment</div>
+                      <div class="debrief-step-status executing">Executing...</div>
+                    </div>
+                  </div>
+                  <div class="debrief-step">
+                    <div class="debrief-step-icon">3</div>
+                    <div class="debrief-step-info">
+                      <div class="debrief-step-title">Analyze results</div>
+                      <div class="debrief-step-status">Not started</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="debrief-edit-btn">✎ Edit Workflow</div>
+              </aside>
+              <main class="debrief-main">
+                <div class="debrief-section-label">CONFIGURATION FOR THIS RUN</div>
+                <div class="debrief-config-row">
+                  <div class="debrief-config-item">
+                    <div class="debrief-config-label">Programming language</div>
+                    <div class="debrief-config-value">Python 3.11.2</div>
+                  </div>
+                  <div class="debrief-config-item">
+                    <div class="debrief-config-label">Libraries or modules</div>
+                    <div class="debrief-config-value">Biopython 1.81</div>
+                  </div>
+                </div>
+                <div class="debrief-section-label">INPUT FILES</div>
+                <div class="debrief-files-row">
+                  <div class="debrief-file-card">
+                    <div class="debrief-file-icon">✓</div>
+                    <div class="debrief-file-info">
+                      <div class="debrief-file-name">DNA File A</div>
+                      <div class="debrief-file-path">sequence_A.fasta</div>
+                    </div>
+                  </div>
+                  <div class="debrief-file-card">
+                    <div class="debrief-file-icon">✓</div>
+                    <div class="debrief-file-info">
+                      <div class="debrief-file-name">DNA File B</div>
+                      <div class="debrief-file-path">sequence_B.fasta</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="debrief-section-label">ALGORITHM PARAMETERS</div>
+                <div class="debrief-params-row">
+                  <div class="debrief-param-card">
+                    <div class="debrief-param-label">match_score</div>
+                    <div class="debrief-param-value">1</div>
+                  </div>
+                  <div class="debrief-param-card">
+                    <div class="debrief-param-label">mismatch_score</div>
+                    <div class="debrief-param-value">-1</div>
+                  </div>
+                  <div class="debrief-param-card">
+                    <div class="debrief-param-label">gap_score</div>
+                    <div class="debrief-param-value">-2</div>
+                  </div>
+                </div>
+                <div class="debrief-section-label">CODE PREVIEW</div>
+                <div class="debrief-code-section">
+                  <div class="debrief-code-header">
+                    <span class="debrief-code-dot"></span>
+                    <span class="debrief-code-lang">Python 3.11.2</span>
+                    <span class="debrief-auto-debug">✦ Auto-Debug</span>
+                  </div>
+                  <pre class="debrief-code"><code><span class="kw">import</span> numpy <span class="kw">as</span> np
+
+<span class="kw">def</span> <span class="fn">needleman_wunsch</span>(seq1, seq2, match_score=<span class="num">1</span>, mismatch_score
+    <span class="cm"># Initialize dynamic programming matrix</span>
+    dp = np.zeros((len(seq1)+<span class="num">1</span>, len(seq2)+<span class="num">1</span>), dtype=int)
+    dp[<span class="num">0</span>,:] = np.arange(len(seq2)+<span class="num">1</span>) * gap_score
+    dp[:,<span class="num">0</span>] = np.arange(len(seq1)+<span class="num">1</span>) * gap_score
+
+    <span class="cm"># Fill the matrix</span>
+    <span class="kw">for</span> i <span class="kw">in</span> range(<span class="num">1</span>, len(seq1)+<span class="num">1</span>):
+        <span class="kw">for</span> j <span class="kw">in</span> range(<span class="num">1</span>, len(seq2)+<span class="num">1</span>):
+            match = dp[i-<span class="num">1</span>][j-<span class="num">1</span>] + (match_score <span class="kw">if</span> seq1[i-<span class="num">1</span>]
+            delete = dp[i-<span class="num">1</span>][j] + gap_score
+            insert = dp[i][j-<span class="num">1</span>] + gap_score
+            dp[i][j] = max(match, delete, insert)
+
+    <span class="kw">return</span> dp, dp[len(seq1)][len(seq2)]</code></pre>
+                </div>
+              </main>
             </div>
           </div>
           <div class="project-info">

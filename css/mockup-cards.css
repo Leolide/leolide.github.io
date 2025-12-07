@@ -1100,3 +1100,314 @@
         border-bottom: 1px solid #27272a;
     }
 }
+
+.debrief-app {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: #0a0a0b;
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.debrief-sidebar {
+    width: 200px;
+    background: #111113;
+    border-right: 1px solid #27272a;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.debrief-logo {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fafafa;
+    margin-bottom: 24px;
+}
+
+.debrief-back {
+    font-size: 11px;
+    color: #71717a;
+    margin-bottom: 8px;
+}
+
+.debrief-workflow-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: #fafafa;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.debrief-progress-section {
+    margin-bottom: 20px;
+}
+
+.debrief-progress-bar {
+    height: 4px;
+    background: #27272a;
+    border-radius: 2px;
+    margin-bottom: 6px;
+    overflow: hidden;
+}
+
+.debrief-progress-fill {
+    width: 33%;
+    height: 100%;
+    background: linear-gradient(90deg, #22c55e 0%, #16a34a 100%);
+    border-radius: 2px;
+}
+
+.debrief-progress-text {
+    font-size: 10px;
+    color: #71717a;
+}
+
+.debrief-steps {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.debrief-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.debrief-step.active {
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.debrief-step-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    background: #27272a;
+    color: #71717a;
+    flex-shrink: 0;
+}
+
+.debrief-step-icon.completed {
+    background: #22c55e;
+    color: #fff;
+}
+
+.debrief-step-icon.active {
+    background: #22c55e;
+    color: #fff;
+}
+
+.debrief-step-info {
+    flex: 1;
+}
+
+.debrief-step-title {
+    font-size: 11px;
+    font-weight: 500;
+    color: #fafafa;
+    margin-bottom: 2px;
+}
+
+.debrief-step-status {
+    font-size: 9px;
+    color: #71717a;
+}
+
+.debrief-step-status.completed {
+    color: #22c55e;
+}
+
+.debrief-step-status.executing {
+    color: #22c55e;
+}
+
+.debrief-edit-btn {
+    font-size: 11px;
+    color: #71717a;
+    margin-top: auto;
+    padding-top: 16px;
+}
+
+.debrief-main {
+    flex: 1;
+    padding: 16px 20px;
+    overflow-y: auto;
+    background: #0a0a0b;
+}
+
+.debrief-section-label {
+    font-size: 9px;
+    font-weight: 500;
+    color: #71717a;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    margin-top: 12px;
+}
+
+.debrief-section-label:first-child {
+    margin-top: 0;
+}
+
+.debrief-config-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.debrief-config-item {
+    flex: 1;
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+
+.debrief-config-label {
+    font-size: 9px;
+    color: #71717a;
+    margin-bottom: 4px;
+}
+
+.debrief-config-value {
+    font-size: 12px;
+    color: #fafafa;
+    font-weight: 500;
+}
+
+.debrief-files-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.debrief-file-card {
+    flex: 1;
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.debrief-file-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #22c55e;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
+
+.debrief-file-name {
+    font-size: 11px;
+    color: #fafafa;
+    font-weight: 500;
+}
+
+.debrief-file-path {
+    font-size: 9px;
+    color: #22c55e;
+}
+
+.debrief-params-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.debrief-param-card {
+    flex: 1;
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+
+.debrief-param-label {
+    font-size: 9px;
+    color: #71717a;
+    margin-bottom: 4px;
+}
+
+.debrief-param-value {
+    font-size: 14px;
+    color: #fafafa;
+    font-weight: 500;
+}
+
+.debrief-code-section {
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.debrief-code-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid #27272a;
+}
+
+.debrief-code-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+}
+
+.debrief-code-lang {
+    font-size: 11px;
+    color: #fafafa;
+}
+
+.debrief-auto-debug {
+    margin-left: auto;
+    font-size: 10px;
+    color: #a78bfa;
+}
+
+.debrief-code {
+    padding: 14px;
+    margin: 0;
+    font-size: 9px;
+    line-height: 1.5;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    color: #e4e4e7;
+    overflow-x: auto;
+    background: transparent;
+}
+
+.debrief-code .kw {
+    color: #c084fc;
+}
+
+.debrief-code .fn {
+    color: #fbbf24;
+}
+
+.debrief-code .num {
+    color: #22c55e;
+}
+
+.debrief-code .cm {
+    color: #71717a;
+}
