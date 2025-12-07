@@ -15,16 +15,27 @@
 }
 
 .mockup-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     gap: 40px;
     margin-top: 40px;
 }
 
+.mockup-cards-grid .mockup-card-container {
+    flex: 1;
+    max-width: 600px;
+}
+
 @media (max-width: 1200px) {
     .mockup-cards-grid {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: center;
         gap: 60px;
+    }
+    
+    .mockup-cards-grid .mockup-card-container {
+        max-width: 100%;
     }
 }
 
@@ -44,12 +55,16 @@
     transform-style: preserve-3d;
     transition: transform 0.15s ease-out, box-shadow 0.4s ease-out;
     will-change: transform;
-    padding: 40px 60px;
+    padding: 40px 30px;
     background: linear-gradient(145deg, #1a1a2e 0%, #0f0f1a 100%);
     border-radius: 24px;
     box-shadow: 
         0 4px 30px rgba(0, 0, 0, 0.4),
         0 0 0 1px rgba(255, 255, 255, 0.05);
+    width: 100%;
+    min-height: 420px;
+    box-sizing: border-box;
+    justify-content: center;
 }
 
 .mockup-wrapper:hover {
@@ -62,9 +77,8 @@
 }
 
 .mockup-wrapper.debrief {
-    padding: 50px 60px;
+    padding: 40px 30px;
     background: linear-gradient(145deg, #0d0d14 0%, #060609 100%);
-    justify-content: center;
 }
 
 .desktop-view {
