@@ -71,12 +71,13 @@
 
 .desktop-view {
     background: #fff;
-    border-radius: 12px;
-    padding: 24px 28px;
-    width: 320px;
+    border-radius: 10px;
+    padding: 18px 20px;
+    width: 260px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-out;
     z-index: 1;
+    flex-shrink: 0;
 }
 
 .mockup-wrapper:hover .desktop-view {
@@ -95,44 +96,44 @@
 }
 
 .brand-name {
-    font-size: 28px;
+    font-size: 20px;
     font-weight: 400;
     color: #1a1a1a;
     font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
 }
 
 .collection-title {
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 600;
     color: #1a1a1a;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     text-align: center;
 }
 
 .collection-desc {
-    font-size: 12px;
+    font-size: 10px;
     color: #666;
     text-align: center;
-    margin-bottom: 16px;
-    line-height: 1.5;
+    margin-bottom: 12px;
+    line-height: 1.4;
 }
 
 .reply-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    margin: 0 auto 24px;
-    padding: 10px 24px;
+    gap: 6px;
+    margin: 0 auto 16px;
+    padding: 8px 18px;
     border: 1px solid #1a1a1a;
     background: #1a1a1a;
     color: #fff;
-    font-size: 12px;
+    font-size: 10px;
     font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
     cursor: pointer;
     transition: all 0.2s ease;
-    border-radius: 6px;
+    border-radius: 5px;
 }
 
 .reply-btn:hover {
@@ -152,8 +153,8 @@
 .product-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 20px;
+    gap: 10px;
+    margin-bottom: 14px;
 }
 
 .product-card {
@@ -238,7 +239,7 @@
 .small-products {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    gap: 8px;
 }
 
 .small-product {
@@ -278,12 +279,13 @@
 
 .iphone-frame {
     position: relative;
-    width: 150px;
-    height: 320px;
+    width: 120px;
+    height: 260px;
     background: #1a1a1a;
-    border-radius: 34px;
-    padding: 6px;
+    border-radius: 28px;
+    padding: 5px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
 }
 
 .iphone-frame::before {
@@ -328,20 +330,20 @@
     width: 100%;
     height: 100%;
     background: #000;
-    border-radius: 32px;
+    border-radius: 24px;
     overflow: hidden;
     position: relative;
 }
 
 .dynamic-island {
     position: absolute;
-    top: 10px;
+    top: 8px;
     left: 50%;
     transform: translateX(-50%);
-    width: 70px;
-    height: 20px;
+    width: 55px;
+    height: 16px;
     background: #000;
-    border-radius: 20px;
+    border-radius: 16px;
     z-index: 10;
 }
 
@@ -353,7 +355,7 @@
 
 .app-header-modern {
     background: #1a1a1a;
-    padding: 40px 12px 10px;
+    padding: 32px 10px 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -382,7 +384,7 @@
 
 .hero-image {
     width: 100%;
-    height: 100px;
+    height: 70px;
     overflow: hidden;
 }
 
@@ -395,9 +397,9 @@
 
 .content-card {
     background: #fff;
-    margin: 8px 8px 0;
-    border-radius: 12px;
-    padding: 12px;
+    margin: 6px 6px 0;
+    border-radius: 10px;
+    padding: 8px;
     position: relative;
 }
 
