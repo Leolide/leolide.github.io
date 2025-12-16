@@ -37,10 +37,11 @@
 
 .scroll-works-sticky {
     position: sticky;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     width: 50%;
-    height: 100vh;
-    padding: 40px;
+    height: 600px;
+    padding: 20px;
     z-index: 50;
     box-sizing: border-box;
 }
@@ -139,8 +140,10 @@
     
     .scroll-works-sticky {
         width: 100%;
-        height: 400px;
+        height: 450px;
         position: relative;
+        top: auto;
+        transform: none;
         padding: 20px;
     }
     
@@ -216,25 +219,25 @@
 }
 
 .macbook.scroll-scale {
-    transform: scale(0.85);
+    transform: scale(1.2);
     transform-origin: center center;
 }
 
 @media (max-width: 1200px) {
     .macbook.scroll-scale {
-        transform: scale(0.75);
+        transform: scale(1);
     }
 }
 
 @media (max-width: 768px) {
     .macbook.scroll-scale {
-        transform: scale(0.65);
+        transform: scale(0.8);
     }
 }
 
 @media (max-width: 480px) {
     .macbook.scroll-scale {
-        transform: scale(0.55);
+        transform: scale(0.6);
     }
 }
 
