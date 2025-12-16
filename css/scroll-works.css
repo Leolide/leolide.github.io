@@ -2,15 +2,18 @@
     padding: 0;
     font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
     background: #000000;
+    overflow-x: hidden;
 }
 
 .scroll-works-container {
-    max-width: 1400px;
+    max-width: 100%;
     margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .scroll-works-header {
-    padding: 80px 40px 40px;
+    padding: 80px 40px 30px;
+    box-sizing: border-box;
 }
 
 .scroll-works-header h2 {
@@ -23,8 +26,17 @@
     display: flex;
     justify-content: space-between;
     gap: 60px;
-    padding: 80px 40px;
+    padding: 60px 40px;
     align-items: flex-start;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border-radius: 8px;
+}
+
+.scroll-works-item:hover {
+    opacity: 0.95;
+    transform: translateY(-2px);
 }
 
 .scroll-works-content {
