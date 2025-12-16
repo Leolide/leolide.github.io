@@ -174,8 +174,10 @@
           </div>
         </div>
         <div class="scroll-works-sticky">
-          <div class="scroll-mockup-container debrief-style">
-            <div class="macbook scroll-scale">
+          <div class="scroll-mockup-viewport">
+            <div class="scroll-mockup-scroller">
+              <div class="scroll-mockup-container debrief-style">
+                <div class="macbook scroll-scale">
               <div class="macbook-screen">
                 <div class="screen-content">
                   <aside class="sidebar">
@@ -264,6 +266,8 @@
                 </div>
               </div>
             </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -291,8 +295,10 @@
           </div>
         </div>
         <div class="scroll-works-sticky">
-          <div class="scroll-mockup-container">
-            <div class="mockup-wrapper scroll-mockup">
+          <div class="scroll-mockup-viewport">
+            <div class="scroll-mockup-scroller">
+              <div class="scroll-mockup-container">
+                <div class="mockup-wrapper scroll-mockup">
               <div class="desktop-view">
                 <div class="desktop-header">
                   <div class="from-text">From Maria Tong at</div>
@@ -366,12 +372,39 @@
                 </div>
               </div>
             </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
     </div>
   </section>
+  <script>
+    // Scroll effect for mockups inside sticky container
+    document.querySelectorAll('.scroll-works-item').forEach((item) => {
+      const content = item.querySelector('.scroll-works-content');
+      const scroller = item.querySelector('.scroll-mockup-scroller');
+      
+      if (content && scroller) {
+        const handleScroll = () => {
+          const contentRect = content.getBoundingClientRect();
+          const containerRect = item.getBoundingClientRect();
+          
+          // Calculate how much the content has scrolled
+          const scrollProgress = Math.max(0, -contentRect.top);
+          const maxScroll = content.scrollHeight - window.innerHeight;
+          const progress = Math.min(scrollProgress / (content.scrollHeight * 0.5), 1);
+          
+          // Translate the mockup scroller
+          const translateY = progress * 200;
+          scroller.style.transform = `translateY(${-translateY}px)`;
+        };
+        
+        window.addEventListener('scroll', handleScroll);
+      }
+    });
+  </script>
   <section class="section-3">
     <div class="w-layout-blockcontainer container medium w-container">
       <div class="w-layout-blockcontainer container-5 w-container">
