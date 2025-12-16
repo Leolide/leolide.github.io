@@ -9,7 +9,7 @@
     max-width: 1400px;
     margin: 0 auto;
     box-sizing: border-box;
-    padding: 0 40px;
+    padding: 0 2.5rem;
 }
 
 .scroll-works-header {
@@ -159,7 +159,7 @@
 
 @media (max-width: 1024px) {
     .scroll-works-container {
-        padding: 0 20px;
+        padding: 0 1.25rem;
     }
     
     .scroll-works-header {
@@ -184,7 +184,7 @@
 
 @media (max-width: 768px) {
     .scroll-works-container {
-        padding: 0 20px;
+        padding: 0 1.25rem;
     }
     
     .scroll-works-header {
@@ -208,7 +208,7 @@
 
 @media (max-width: 480px) {
     .scroll-works-container {
-        padding: 0 16px;
+        padding: 0 1rem;
     }
     
     .scroll-works-header {
@@ -246,8 +246,8 @@
 
 @media (min-width: 1920px) {
     .scroll-works-container {
-        max-width: 1600px;
-        padding: 0 80px;
+        max-width: none;
+        padding: 0 4rem;
     }
     
     .scroll-works-header {
