@@ -151,8 +151,8 @@
         <h2 class="text-size-xlarge">Selected Works</h2>
       </div>
       
-      <div class="scroll-works-wrapper">
-        <div class="scroll-works-content-all">
+      <div class="scroll-works-item">
+        <div class="scroll-works-content">
           <div class="scroll-content-block">
             <div class="scroll-project-meta">2023 Jan - Jul</div>
             <h3>User-Centric Strategy Pivot for Debrief AI to Secure Investment</h3>
@@ -164,24 +164,10 @@
               <span class="scroll-project-tag">LLM</span>
             </div>
           </div>
-        
-          <div class="scroll-content-block">
-            <div class="scroll-project-meta">2024 Aug - Nov</div>
-            <h3>Boosting Sales and Enabling Personalized Customer Experiences</h3>
-            <p>Designed a cross-platform clientelling solution for luxury retail. The system enables sales associates to create personalized lookbooks and product recommendations, delivered seamlessly across desktop and mobile.</p>
-            <div class="scroll-project-tags">
-              <span class="scroll-project-tag">UI/UX Design</span>
-              <span class="scroll-project-tag">Cross-Platform</span>
-              <span class="scroll-project-tag">B2B SaaS</span>
-              <span class="scroll-project-tag">User Research</span>
-            </div>
-          </div>
         </div>
         
-        <div class="scroll-works-sticky">
-          <div class="scroll-mockup-viewport">
-            <div class="scroll-mockup-scroller">
-              <div class="scroll-mockup-container debrief-style">
+        <div class="scroll-works-mockup">
+          <div class="scroll-mockup-container debrief-style">
                 <div class="macbook scroll-scale">
               <div class="macbook-screen">
                 <div class="screen-content">
@@ -271,10 +257,62 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-works-item">
+        <div class="scroll-works-content">
+          <div class="scroll-content-block">
+            <div class="scroll-project-meta">2024 Aug - Nov</div>
+            <h3>Boosting Sales and Enabling Personalized Customer Experiences</h3>
+            <p>Designed a cross-platform clientelling solution for luxury retail. The system enables sales associates to create personalized lookbooks and product recommendations, delivered seamlessly across desktop and mobile.</p>
+            <div class="scroll-project-tags">
+              <span class="scroll-project-tag">UI/UX Design</span>
+              <span class="scroll-project-tag">Cross-Platform</span>
+              <span class="scroll-project-tag">B2B SaaS</span>
+              <span class="scroll-project-tag">User Research</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="scroll-works-mockup">
+          <div class="scroll-mockup-container">
+            <div class="mockup-wrapper">
+              <div class="desktop-view">
+                <div class="desktop-header">
+                  <div class="from-text">From Maria Tong at</div>
+                  <div class="brand-name">Armoiré Noir</div>
+                </div>
+                <div class="collection-title">Modern Gent</div>
+                <div class="collection-desc">"I find this look perfect for the party you are<br>going to attend this coming Friday."</div>
+                <button class="reply-btn">Reply <span class="chevron">›</span></button>
+                <div class="product-grid">
+                  <div class="product-card">
+                    <img src="attached_assets/Rectangle_1305_1765046445801.png" alt="Man in olive jacket">
+                  </div>
+                  <div class="product-card contain-img">
+                    <img src="attached_assets/DarkGreenJacket_Product1_1765046439735.png" alt="Green Trench Coat">
+                    <span class="hover-tag">View the Product</span>
+                  </div>
+                </div>
+                <div class="small-products">
+                  <div class="small-product">
+                    <img src="attached_assets/61ef00bc-b870-4b02-ac69-77cc255896221536215854751-Rapawalk-Men_1765046439734.png" alt="Black Oxford Shoes">
+                    <span class="hover-tag">View the Product</span>
+                  </div>
+                  <div class="small-product">
+                    <img src="attached_assets/AdobeStock_78694659_1765047434982.png" alt="Blue Jeans">
+                    <span class="hover-tag">View the Product</span>
+                  </div>
+                  <div class="small-product">
+                    <img src="attached_assets/burlington-socks-dark-red-p51098-682619_zoom_1_1765046445801.png" alt="Red Socks">
+                    <span class="hover-tag">View the Product</span>
+                  </div>
+                </div>
               </div>
-              
-              <div class="scroll-mockup-container">
-                <div class="mockup-wrapper scroll-mockup">
+            </div>
+            <div class="mockup-wrapper">
               <div class="phone-mockup">
                 <div class="iphone-frame">
                   <div class="side-button power"></div>
@@ -316,27 +354,12 @@
                 </div>
               </div>
             </div>
-            </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
   <script>
-    const contentAll = document.querySelector('.scroll-works-content-all');
-    const scroller = document.querySelector('.scroll-mockup-scroller');
-    
-    if (contentAll && scroller) {
-      const handleScroll = () => {
-        const contentRect = contentAll.getBoundingClientRect();
-        const scrollProgress = Math.max(0, -contentRect.top);
-        const progress = Math.min(scrollProgress / (contentAll.scrollHeight * 0.5), 1);
-        const translateY = progress * 300;
-        scroller.style.transform = `translateY(${-translateY}px)`;
-      };
-      window.addEventListener('scroll', handleScroll);
-    }
   </script>
   <section class="section-3">
     <div class="w-layout-blockcontainer container medium w-container">
