@@ -151,8 +151,8 @@
         <h2 class="text-size-xlarge">Selected Works</h2>
       </div>
       
-      <div class="scroll-works-item" data-mockup="debrief">
-        <div class="scroll-works-content">
+      <div class="scroll-works-wrapper">
+        <div class="scroll-works-content-all">
           <div class="scroll-content-block">
             <div class="scroll-project-meta">2023 Jan - Jul</div>
             <h3>User-Centric Strategy Pivot for Debrief AI to Secure Investment</h3>
@@ -164,7 +164,20 @@
               <span class="scroll-project-tag">LLM</span>
             </div>
           </div>
+        
+          <div class="scroll-content-block">
+            <div class="scroll-project-meta">2024 Aug - Nov</div>
+            <h3>Boosting Sales and Enabling Personalized Customer Experiences</h3>
+            <p>Designed a cross-platform clientelling solution for luxury retail. The system enables sales associates to create personalized lookbooks and product recommendations, delivered seamlessly across desktop and mobile.</p>
+            <div class="scroll-project-tags">
+              <span class="scroll-project-tag">UI/UX Design</span>
+              <span class="scroll-project-tag">Cross-Platform</span>
+              <span class="scroll-project-tag">B2B SaaS</span>
+              <span class="scroll-project-tag">User Research</span>
+            </div>
+          </div>
         </div>
+        
         <div class="scroll-works-sticky">
           <div class="scroll-mockup-viewport">
             <div class="scroll-mockup-scroller">
@@ -259,28 +272,7 @@
               </div>
             </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="scroll-works-item" data-mockup="clientelling">
-        <div class="scroll-works-content">
-          <div class="scroll-content-block">
-            <div class="scroll-project-meta">2024 Aug - Nov</div>
-            <h3>Boosting Sales and Enabling Personalized Customer Experiences</h3>
-            <p>Designed a cross-platform clientelling solution for luxury retail. The system enables sales associates to create personalized lookbooks and product recommendations, delivered seamlessly across desktop and mobile.</p>
-            <div class="scroll-project-tags">
-              <span class="scroll-project-tag">UI/UX Design</span>
-              <span class="scroll-project-tag">Cross-Platform</span>
-              <span class="scroll-project-tag">B2B SaaS</span>
-              <span class="scroll-project-tag">User Research</span>
-            </div>
-          </div>
-        </div>
-        <div class="scroll-works-sticky">
-          <div class="scroll-mockup-viewport">
-            <div class="scroll-mockup-scroller">
+              
               <div class="scroll-mockup-container">
                 <div class="mockup-wrapper scroll-mockup">
               <div class="phone-mockup">
@@ -324,38 +316,27 @@
                 </div>
               </div>
             </div>
-              </div>
+            </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </section>
   <script>
-    // Scroll effect for mockups inside sticky container
-    document.querySelectorAll('.scroll-works-item').forEach((item) => {
-      const content = item.querySelector('.scroll-works-content');
-      const scroller = item.querySelector('.scroll-mockup-scroller');
-      
-      if (content && scroller) {
-        const handleScroll = () => {
-          const contentRect = content.getBoundingClientRect();
-          const containerRect = item.getBoundingClientRect();
-          
-          // Calculate how much the content has scrolled
-          const scrollProgress = Math.max(0, -contentRect.top);
-          const maxScroll = content.scrollHeight - window.innerHeight;
-          const progress = Math.min(scrollProgress / (content.scrollHeight * 0.5), 1);
-          
-          // Translate the mockup scroller
-          const translateY = progress * 200;
-          scroller.style.transform = `translateY(${-translateY}px)`;
-        };
-        
-        window.addEventListener('scroll', handleScroll);
-      }
-    });
+    const contentAll = document.querySelector('.scroll-works-content-all');
+    const scroller = document.querySelector('.scroll-mockup-scroller');
+    
+    if (contentAll && scroller) {
+      const handleScroll = () => {
+        const contentRect = contentAll.getBoundingClientRect();
+        const scrollProgress = Math.max(0, -contentRect.top);
+        const progress = Math.min(scrollProgress / (contentAll.scrollHeight * 0.5), 1);
+        const translateY = progress * 300;
+        scroller.style.transform = `translateY(${-translateY}px)`;
+      };
+      window.addEventListener('scroll', handleScroll);
+    }
   </script>
   <section class="section-3">
     <div class="w-layout-blockcontainer container medium w-container">
