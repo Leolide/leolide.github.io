@@ -1,5 +1,6 @@
 .scroll-works-section {
     padding: 0;
+    margin: 0 4rem;
     font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
     background: #000000;
     overflow-x: hidden;
@@ -9,7 +10,7 @@
     max-width: 1400px;
     margin: 0 auto;
     box-sizing: border-box;
-    padding: 0 2.5rem;
+    padding: 0 4rem;
 }
 
 .scroll-works-header {
@@ -168,8 +169,12 @@
 }
 
 @media (max-width: 1024px) {
+    .scroll-works-section {
+        margin: 0 2.5rem;
+    }
+    
     .scroll-works-container {
-        padding: 0 1.25rem;
+        padding: 0 2.5rem;
     }
     
     .scroll-works-header {
@@ -193,8 +198,12 @@
 }
 
 @media (max-width: 768px) {
+    .scroll-works-section {
+        margin: 0 1.5rem;
+    }
+    
     .scroll-works-container {
-        padding: 0 1.25rem;
+        padding: 0 1.5rem;
     }
     
     .scroll-works-header {
@@ -217,6 +226,10 @@
 }
 
 @media (max-width: 480px) {
+    .scroll-works-section {
+        margin: 0 1rem;
+    }
+    
     .scroll-works-container {
         padding: 0 1rem;
     }
@@ -255,6 +268,10 @@
 }
 
 @media (min-width: 1920px) {
+    .scroll-works-section {
+        margin: 0 4rem;
+    }
+    
     .scroll-works-container {
         max-width: none;
         padding: 0 4rem;
