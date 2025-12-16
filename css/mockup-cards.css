@@ -77,10 +77,11 @@
     border-radius: 10px;
     padding: 18px 20px;
     width: 260px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6);
     transition: transform 0.3s ease-out;
     z-index: 1;
     flex-shrink: 0;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .mockup-wrapper:hover .desktop-view {
