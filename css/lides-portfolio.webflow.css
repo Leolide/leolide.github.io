@@ -4004,10 +4004,10 @@ blockquote {
   grid-column-gap: 8rem;
   grid-row-gap: 8rem;
   flex-flow: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: flex-start;
-  padding-bottom: 8em;
-  /* adjusted padding */
+  padding-bottom: 4em;
+  padding-top: 6em;
   padding-left: 4em;
   display: flex;
 }
@@ -7840,8 +7840,9 @@ blockquote {
   .home-left-content {
     grid-column-gap: 12em;
     grid-row-gap: 12em;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: flex-start;
+    padding-top: 8em;
   }
 
   .home-header {
@@ -7969,6 +7970,8 @@ blockquote {
   .home-left-content {
     grid-column-gap: 12rem;
     grid-row-gap: 12rem;
+    padding-top: 12em;
+    padding-bottom: 4em;
   }
 
   .home-header {
