@@ -50,21 +50,24 @@
     background: linear-gradient(145deg, #1a1a2e 0%, #0f0f1a 100%);
     border-radius: 24px;
     box-shadow: 
-        0 4px 30px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.05);
+        0 8px 40px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     width: 100%;
     height: 480px;
     box-sizing: border-box;
     justify-content: center;
+    backdrop-filter: blur(40px);
 }
 
 .mockup-wrapper:hover {
     box-shadow: 
-        0 40px 80px rgba(0, 0, 0, 0.6),
-        0 20px 40px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.15),
-        0 0 60px rgba(255, 255, 255, 0.08),
-        0 0 100px rgba(200, 200, 255, 0.05);
+        0 50px 100px rgba(0, 0, 0, 0.7),
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        0 0 80px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-8px);
 }
 
 .mockup-wrapper.debrief {
@@ -73,19 +76,26 @@
 }
 
 .desktop-view {
-    background: #fff;
-    border-radius: 10px;
+    background: linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%);
+    border-radius: 12px;
     padding: 18px 20px;
     width: 260px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-    transition: transform 0.3s ease-out;
+    box-shadow: 
+        0 12px 48px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        0 0 1px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
     z-index: 1;
     flex-shrink: 0;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .mockup-wrapper:hover .desktop-view {
-    transform: translateY(-5px) scale(1.02);
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 
+        0 16px 64px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        0 0 2px rgba(0, 0, 0, 0.4);
 }
 
 .desktop-header {
