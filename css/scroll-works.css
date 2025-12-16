@@ -1,0 +1,248 @@
+.scroll-works-section {
+    padding: 0;
+    font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #fafafa;
+}
+
+.scroll-works-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.scroll-works-header {
+    padding: 80px 40px 40px;
+}
+
+.scroll-works-header h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.scroll-works-item {
+    display: flex;
+    justify-content: space-between;
+    min-height: 100vh;
+    position: relative;
+    gap: 40px;
+}
+
+.scroll-works-content {
+    flex: 1;
+    z-index: 10;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    max-width: 50%;
+}
+
+.scroll-works-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    z-index: 20;
+    box-sizing: border-box;
+}
+
+.scroll-content-block {
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 50vh;
+}
+
+.scroll-content-block h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+    line-height: 1.3;
+    max-width: 480px;
+}
+
+.scroll-content-block p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.7;
+    max-width: 440px;
+    margin-bottom: 24px;
+}
+
+.scroll-project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.scroll-project-tag {
+    padding: 6px 14px;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: #666;
+    letter-spacing: 0.5px;
+}
+
+.scroll-project-meta {
+    font-size: 0.875rem;
+    color: #999;
+    margin-bottom: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.scroll-mockup-container {
+    background: linear-gradient(145deg, #1a1a2e 0%, #0f0f1a 100%);
+    border-radius: 24px;
+    padding: 40px 30px;
+    box-shadow: 
+        0 4px 30px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    max-width: 550px;
+    width: 100%;
+}
+
+.scroll-mockup-container.debrief-style {
+    background: linear-gradient(145deg, #0d0d14 0%, #060609 100%);
+    padding: 30px 20px;
+}
+
+@media (max-width: 1024px) {
+    .scroll-works-item {
+        flex-direction: column-reverse;
+        min-height: auto;
+    }
+    
+    .scroll-works-sticky {
+        position: relative;
+        height: auto;
+        max-width: 100%;
+        padding: 40px 20px;
+        justify-content: center;
+    }
+    
+    .scroll-works-content {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    
+    .scroll-content-block {
+        padding: 40px 20px;
+        min-height: auto;
+    }
+    
+    .scroll-content-block h3 {
+        max-width: 100%;
+    }
+    
+    .scroll-content-block p {
+        max-width: 100%;
+    }
+    
+    .scroll-mockup-container {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .scroll-works-header {
+        padding: 60px 20px 30px;
+    }
+    
+    .scroll-content-block {
+        padding: 30px 20px;
+    }
+    
+    .scroll-content-block h3 {
+        font-size: 1.5rem;
+    }
+    
+    .scroll-mockup-container {
+        padding: 20px 15px;
+        border-radius: 16px;
+    }
+    
+    .scroll-works-sticky {
+        padding: 30px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .scroll-works-header {
+        padding: 40px 16px 20px;
+    }
+    
+    .scroll-content-block {
+        padding: 24px 16px;
+    }
+    
+    .scroll-content-block h3 {
+        font-size: 1.25rem;
+    }
+    
+    .scroll-content-block p {
+        font-size: 0.9rem;
+    }
+    
+    .scroll-project-tag {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
+    
+    .scroll-mockup-container {
+        padding: 16px 12px;
+        border-radius: 12px;
+    }
+    
+    .scroll-works-sticky {
+        padding: 20px 12px;
+    }
+}
+
+.macbook.scroll-scale {
+    transform: scale(0.85);
+    transform-origin: center center;
+}
+
+@media (max-width: 1200px) {
+    .macbook.scroll-scale {
+        transform: scale(0.75);
+    }
+}
+
+@media (max-width: 768px) {
+    .macbook.scroll-scale {
+        transform: scale(0.65);
+    }
+}
+
+@media (max-width: 480px) {
+    .macbook.scroll-scale {
+        transform: scale(0.55);
+    }
+}
+
+.mockup-wrapper.scroll-mockup {
+    width: 100%;
+    height: auto;
+    min-height: 400px;
+}
+
+@media (max-width: 768px) {
+    .mockup-wrapper.scroll-mockup {
+        min-height: 320px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mockup-wrapper.scroll-mockup {
+        min-height: 280px;
+    }
+}

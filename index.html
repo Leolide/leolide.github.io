@@ -27,6 +27,7 @@
   <link href="css/debug-mode.css" rel="stylesheet" type="text/css">
   <link href="css/terminal.css" rel="stylesheet" type="text/css">
   <link href="css/mockup-cards.css" rel="stylesheet" type="text/css">
+  <link href="css/scroll-works.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
@@ -144,14 +145,37 @@
       </div>
     </div>
   </section>
-  <section id="SelectedWorks" class="mockup-works-section">
-    <div class="mockup-works-wrapper margin-top">
-      <h2 class="text-size-xlarge">Selected Works</h2>
-      <div class="mockup-cards-grid">
-        
-        <div class="mockup-card-container" data-mockup="debrief">
-          <div class="mockup-wrapper debrief">
-            <div class="macbook">
+  <section id="SelectedWorks" class="scroll-works-section">
+    <div class="scroll-works-container">
+      <div class="scroll-works-header">
+        <h2 class="text-size-xlarge">Selected Works</h2>
+      </div>
+      
+      <div class="scroll-works-item" data-mockup="debrief">
+        <div class="scroll-works-content">
+          <div class="scroll-content-block">
+            <div class="scroll-project-meta">2023 Jan - Jul</div>
+            <h3>User-Centric Strategy Pivot for Debrief AI to Secure Investment</h3>
+            <p>Led the product design for Debrief, an AI-powered workflow automation platform. Designed intuitive interfaces for complex scientific workflows, enabling researchers to automate DNA sequence alignment and other bioinformatics tasks without coding expertise.</p>
+            <div class="scroll-project-tags">
+              <span class="scroll-project-tag">UI/UX Design</span>
+              <span class="scroll-project-tag">AI B2B SaaS</span>
+              <span class="scroll-project-tag">User Research</span>
+              <span class="scroll-project-tag">LLM</span>
+            </div>
+          </div>
+          <div class="scroll-content-block">
+            <h3>Simplifying Complex Workflows</h3>
+            <p>Created a step-by-step workflow builder that breaks down complex scientific processes into manageable tasks. Users can track progress, configure parameters, and monitor execution in real-time.</p>
+          </div>
+          <div class="scroll-content-block">
+            <h3>Intelligent Code Generation</h3>
+            <p>Designed the auto-debug feature and code preview system that allows scientists to understand and customize the generated code without deep programming knowledge.</p>
+          </div>
+        </div>
+        <div class="scroll-works-sticky">
+          <div class="scroll-mockup-container debrief-style">
+            <div class="macbook scroll-scale">
               <div class="macbook-screen">
                 <div class="screen-content">
                   <aside class="sidebar">
@@ -220,7 +244,7 @@
                     </div>
                     <div class="section">
                       <div class="section-label">Overview</div>
-                      <p class="overview-text">Global sequence alignment compares two DNA sequences using the Needleman-Wunsch algorithm. The code involves initializing a matrix with scores, filling it in recursively, and tracing back to obtain aligned sequences.</p>
+                      <p class="overview-text">Global sequence alignment compares two DNA sequences using the Needleman-Wunsch algorithm.</p>
                     </div>
                     <div class="section-divider"></div>
                     <div class="section disabled">
@@ -236,166 +260,116 @@
                         </div>
                       </div>
                     </div>
-                    <div class="section disabled">
-                      <div class="section-label">Input Files</div>
-                      <div class="file-upload-grid">
-                        <div class="file-upload uploaded">
-                          <div class="file-upload-icon uploaded">✓</div>
-                          <div class="file-upload-text">
-                            <h5>DNA File A</h5>
-                            <p class="file-name">sequence_A.fasta</p>
-                          </div>
-                        </div>
-                        <div class="file-upload uploaded">
-                          <div class="file-upload-icon uploaded">✓</div>
-                          <div class="file-upload-text">
-                            <h5>DNA File B</h5>
-                            <p class="file-name">sequence_B.fasta</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="section disabled">
-                      <div class="section-label">Algorithm Parameters</div>
-                      <div class="params-grid">
-                        <div class="param-field">
-                          <label>match_score</label>
-                          <div class="value">1</div>
-                        </div>
-                        <div class="param-field">
-                          <label>mismatch_score</label>
-                          <div class="value">-1</div>
-                        </div>
-                        <div class="param-field">
-                          <label>gap_score</label>
-                          <div class="value">-2</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="section disabled">
-                      <div class="section-label">Code Preview</div>
-                      <div class="code-preview">
-                        <div class="code-header">
-                          <div class="code-header-left">
-                            <span class="code-dot"></span>
-                            <span>Python 3.11.2</span>
-                          </div>
-                          <div class="code-btn">✦ Auto-Debug</div>
-                        </div>
-                        <div class="code-body"><span class="keyword">import</span> numpy <span class="keyword">as</span> np
-
-<span class="keyword">def</span> <span class="function">needleman_wunsch</span>(seq1, seq2, match_score=<span class="number">1</span>, mismatch_score
-    <span class="comment"># Initialize dynamic programming matrix</span>
-    dp = np.zeros((len(seq1)+<span class="number">1</span>, len(seq2)+<span class="number">1</span>), dtype=int)
-    dp[<span class="number">0</span>,:] = np.arange(len(seq2)+<span class="number">1</span>) * gap_score
-    dp[:,<span class="number">0</span>] = np.arange(len(seq1)+<span class="number">1</span>) * gap_score</div>
-                      </div>
-                    </div>
                   </main>
                 </div>
               </div>
             </div>
           </div>
-          <div class="project-info">
-            <h2>User-Centric Strategy Pivot for Debrief AI to Secure Investment</h2>
-            <div class="project-meta">2023 Jan - Jul</div>
-            <div class="project-tags">
-              <span class="project-tag">UI/UX Design</span>
-              <span class="project-tag">AI B2B SaaS</span>
-              <span class="project-tag">User Research</span>
-              <span class="project-tag">LLM</span>
-            </div>
-          </div>
         </div>
-
-        <div class="mockup-card-container" data-mockup="clientelling">
-          <div class="mockup-wrapper">
-            <div class="desktop-view">
-              <div class="desktop-header">
-                <div class="from-text">From Maria Tong at</div>
-                <div class="brand-name">Armoiré Noir</div>
-              </div>
-              <div class="collection-title">Modern Gent</div>
-              <div class="collection-desc">"I find this look perfect for the party you are<br>going to attend this coming Friday."</div>
-              <button class="reply-btn">Reply <span class="chevron">›</span></button>
-              <div class="product-grid">
-                <div class="product-card">
-                  <img src="attached_assets/Rectangle_1305_1765046445801.png" alt="Man in olive jacket">
-                </div>
-                <div class="product-card contain-img">
-                  <img src="attached_assets/DarkGreenJacket_Product1_1765046439735.png" alt="Green Trench Coat">
-                  <span class="hover-tag">View the Product</span>
-                </div>
-              </div>
-              <div class="small-products">
-                <div class="small-product">
-                  <img src="attached_assets/61ef00bc-b870-4b02-ac69-77cc255896221536215854751-Rapawalk-Men_1765046439734.png" alt="Black Oxford Shoes">
-                  <span class="hover-tag">View the Product</span>
-                </div>
-                <div class="small-product">
-                  <img src="attached_assets/AdobeStock_78694659_1765047434982.png" alt="Blue Jeans">
-                  <span class="hover-tag">View the Product</span>
-                </div>
-                <div class="small-product">
-                  <img src="attached_assets/burlington-socks-dark-red-p51098-682619_zoom_1_1765046445801.png" alt="Red Socks">
-                  <span class="hover-tag">View the Product</span>
-                </div>
-              </div>
-            </div>
-            <div class="phone-mockup">
-              <div class="iphone-frame">
-                <div class="side-button power"></div>
-                <div class="side-button volume-up"></div>
-                <div class="side-button volume-down"></div>
-                <div class="side-button mute"></div>
-                <div class="iphone-screen">
-                  <div class="dynamic-island"></div>
-                  <div class="screen-content">
-                    <div class="app-header-modern">
-                      <span class="back-icon">‹</span>
-                      <span class="header-title">View lookbook</span>
-                    </div>
-                    <div class="app-body">
-                      <div class="hero-image">
-                        <img src="attached_assets/Hay-Festival-kids_1_1765046448551.png" alt="Woman in navy coat">
-                      </div>
-                      <div class="content-card">
-                        <div class="content-title">24 W SS CELESTIAL BLOOM</div>
-                        <div class="content-desc">Featuring the sleek black trench coat and effortlessly tailored silk shirt, this look embodies bold sophistication.</div>
-                        <div class="quote-box">
-                          <div class="quote-text">"I think this matches your style well—it's contemporary yet classic, just like you."</div>
-                          <div class="quote-author">From Maria Tong</div>
-                        </div>
-                        <button class="action-btn">Reply <span class="chevron">›</span></button>
-                      </div>
-                      <div class="product-row">
-                        <div class="mini-product">
-                          <img src="attached_assets/AdobeStock_530629419_1765050143462.png" alt="Sweater">
-                        </div>
-                        <div class="mini-product">
-                          <img src="attached_assets/AdobeStock_49383807_1765050221040.png" alt="Sunglasses">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="home-bar"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="project-info">
-            <h2>Boosting Sales and Enabling Personalized Customer Experiences</h2>
-            <div class="project-meta">2024 Aug - Nov</div>
-            <div class="project-tags">
-              <span class="project-tag">UI/UX Design</span>
-              <span class="project-tag">Cross-Platform</span>
-              <span class="project-tag">B2B SaaS</span>
-              <span class="project-tag">User Research</span>
-            </div>
-          </div>
-        </div>
-
       </div>
+
+      <div class="scroll-works-item" data-mockup="clientelling">
+        <div class="scroll-works-content">
+          <div class="scroll-content-block">
+            <div class="scroll-project-meta">2024 Aug - Nov</div>
+            <h3>Boosting Sales and Enabling Personalized Customer Experiences</h3>
+            <p>Designed a cross-platform clientelling solution for luxury retail. The system enables sales associates to create personalized lookbooks and product recommendations, delivered seamlessly across desktop and mobile.</p>
+            <div class="scroll-project-tags">
+              <span class="scroll-project-tag">UI/UX Design</span>
+              <span class="scroll-project-tag">Cross-Platform</span>
+              <span class="scroll-project-tag">B2B SaaS</span>
+              <span class="scroll-project-tag">User Research</span>
+            </div>
+          </div>
+          <div class="scroll-content-block">
+            <h3>Seamless Multi-Device Experience</h3>
+            <p>Created a cohesive experience across desktop and mobile, allowing sales associates to curate looks on desktop while customers receive beautifully presented lookbooks on their phones.</p>
+          </div>
+          <div class="scroll-content-block">
+            <h3>Personal Touch at Scale</h3>
+            <p>Designed the quote and recommendation system that allows sales associates to add personal messages, creating meaningful connections between brand and customer.</p>
+          </div>
+        </div>
+        <div class="scroll-works-sticky">
+          <div class="scroll-mockup-container">
+            <div class="mockup-wrapper scroll-mockup">
+              <div class="desktop-view">
+                <div class="desktop-header">
+                  <div class="from-text">From Maria Tong at</div>
+                  <div class="brand-name">Armoiré Noir</div>
+                </div>
+                <div class="collection-title">Modern Gent</div>
+                <div class="collection-desc">"I find this look perfect for the party you are<br>going to attend this coming Friday."</div>
+                <button class="reply-btn">Reply <span class="chevron">›</span></button>
+                <div class="product-grid">
+                  <div class="product-card">
+                    <img src="attached_assets/Rectangle_1305_1765046445801.png" alt="Man in olive jacket">
+                  </div>
+                  <div class="product-card contain-img">
+                    <img src="attached_assets/DarkGreenJacket_Product1_1765046439735.png" alt="Green Trench Coat">
+                    <span class="hover-tag">View the Product</span>
+                  </div>
+                </div>
+                <div class="small-products">
+                  <div class="small-product">
+                    <img src="attached_assets/61ef00bc-b870-4b02-ac69-77cc255896221536215854751-Rapawalk-Men_1765046439734.png" alt="Black Oxford Shoes">
+                    <span class="hover-tag">View the Product</span>
+                  </div>
+                  <div class="small-product">
+                    <img src="attached_assets/AdobeStock_78694659_1765047434982.png" alt="Blue Jeans">
+                    <span class="hover-tag">View the Product</span>
+                  </div>
+                  <div class="small-product">
+                    <img src="attached_assets/burlington-socks-dark-red-p51098-682619_zoom_1_1765046445801.png" alt="Red Socks">
+                    <span class="hover-tag">View the Product</span>
+                  </div>
+                </div>
+              </div>
+              <div class="phone-mockup">
+                <div class="iphone-frame">
+                  <div class="side-button power"></div>
+                  <div class="side-button volume-up"></div>
+                  <div class="side-button volume-down"></div>
+                  <div class="side-button mute"></div>
+                  <div class="iphone-screen">
+                    <div class="dynamic-island"></div>
+                    <div class="screen-content">
+                      <div class="app-header-modern">
+                        <span class="back-icon">‹</span>
+                        <span class="header-title">View lookbook</span>
+                      </div>
+                      <div class="app-body">
+                        <div class="hero-image">
+                          <img src="attached_assets/Hay-Festival-kids_1_1765046448551.png" alt="Woman in navy coat">
+                        </div>
+                        <div class="content-card">
+                          <div class="content-title">24 W SS CELESTIAL BLOOM</div>
+                          <div class="content-desc">Featuring the sleek black trench coat and effortlessly tailored silk shirt, this look embodies bold sophistication.</div>
+                          <div class="quote-box">
+                            <div class="quote-text">"I think this matches your style well—it's contemporary yet classic, just like you."</div>
+                            <div class="quote-author">From Maria Tong</div>
+                          </div>
+                          <button class="action-btn">Reply <span class="chevron">›</span></button>
+                        </div>
+                        <div class="product-row">
+                          <div class="mini-product">
+                            <img src="attached_assets/AdobeStock_530629419_1765050143462.png" alt="Sweater">
+                          </div>
+                          <div class="mini-product">
+                            <img src="attached_assets/AdobeStock_49383807_1765050221040.png" alt="Sunglasses">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="home-bar"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
   <section class="section-3">
