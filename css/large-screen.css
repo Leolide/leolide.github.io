@@ -34,11 +34,12 @@
         font-size: 1.15em;
     }
     
-    .home-left-content .text-size-medium {
+    .home-left-content p.text-size-medium {
         font-size: 1.15em;
     }
     
-    .home-left-content .text-size-small {
+    .home-left-content p.text-size-small,
+    .home-left-content div.text-size-small {
         font-size: 1.1em;
     }
 }
