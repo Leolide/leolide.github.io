@@ -28,7 +28,7 @@
     justify-content: space-between;
     gap: 60px;
     padding: 60px 0;
-    align-items: flex-start;
+    align-items: center;
     box-sizing: border-box;
     cursor: pointer;
     transition: opacity 0.3s ease, transform 0.3s ease;
