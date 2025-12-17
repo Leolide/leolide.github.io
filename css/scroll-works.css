@@ -19,7 +19,7 @@
 }
 
 .scroll-works-header h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: 1.25rem;
     font-weight: 500;
     color: #ffffff;
 }
@@ -80,11 +80,11 @@
 }
 
 .scroll-content-block h3 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: 1.25rem;
     font-weight: 500;
     color: #ffffff;
     margin-bottom: 16px;
-    line-height: 1.3;
+    line-height: 1.4;
     max-width: 480px;
     display: flex;
     align-items: center;
