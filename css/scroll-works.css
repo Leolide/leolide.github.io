@@ -408,12 +408,12 @@
 
 @media (max-width: 768px) {
     .scroll-mockup-iframe-container {
-        max-width: 400px;
+        max-width: 90vw;
     }
 }
 
 @media (max-width: 480px) {
     .scroll-mockup-iframe-container {
-        max-width: 320px;
+        max-width: 95vw;
     }
 }
