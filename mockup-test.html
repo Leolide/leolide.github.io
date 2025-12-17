@@ -127,12 +127,43 @@
             background: transparent;
             font-size: 12px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reply-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #1a1a1a;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .reply-btn:hover {
+            color: #fff;
+        }
+        
+        .reply-btn:hover::before {
+            left: 0;
+        }
+        
+        .reply-btn:active {
+            transform: scale(0.95);
         }
 
         .reply-btn .chevron {
             font-size: 14px;
+            transition: transform 0.3s ease;
+        }
+        
+        .reply-btn:hover .chevron {
+            transform: translateX(3px);
         }
 
         .product-grid {
@@ -146,15 +177,32 @@
             background: #f5f5f5;
             border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+            transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease;
             aspect-ratio: 1;
             position: relative;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+        
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            border-color: #1a1a1a;
+        }
+        
+        .product-card:active {
+            transform: scale(0.98);
         }
 
         .product-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+        
+        .product-card:hover img {
+            opacity: 0.85;
         }
 
         .product-card .hover-tag {
@@ -170,9 +218,14 @@
             font-weight: 500;
             white-space: nowrap;
             opacity: 0;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             pointer-events: none;
             z-index: 5;
+        }
+        
+        .product-card:hover .hover-tag {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0) scale(1);
         }
 
         .product-card.contain-img {
@@ -201,9 +254,14 @@
             font-weight: 500;
             white-space: nowrap;
             opacity: 0;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             pointer-events: none;
             z-index: 5;
+        }
+        
+        .small-product:hover .hover-tag {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
 
         .small-products {
@@ -219,10 +277,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.25s ease-out;
+            transition: transform 0.25s ease-out, box-shadow 0.25s ease;
             overflow: visible;
             padding: 8px;
             position: relative;
+            cursor: pointer;
+        }
+        
+        .small-product:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        .small-product:active {
+            transform: scale(0.95);
         }
 
         .small-product img {
@@ -230,6 +298,11 @@
             height: 100%;
             object-fit: contain;
             mix-blend-mode: multiply;
+            transition: opacity 0.3s ease;
+        }
+        
+        .small-product:hover img {
+            opacity: 0.8;
         }
 
         .phone-mockup {
@@ -419,6 +492,10 @@
             font-weight: 600;
             display: flex;
             align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
             justify-content: center;
             gap: 4px;
             cursor: pointer;
@@ -529,7 +606,7 @@
                 </div>
                 
                 <div class="collection-title">Modern Gent</div>
-                <div class="collection-desc">"I find this look perfect for the party you are<br>going to attend this coming Friday."</div>
+                <div class="collection-desc">"Perfect for Friday's event."</div>
                 
                 <button class="reply-btn">Reply <span class="chevron">›</span></button>
                 
@@ -578,7 +655,7 @@
                                 </div>
                                 <div class="content-card">
                                     <div class="content-title">24 W SS CELESTIAL BLOOM</div>
-                                    <div class="content-desc">Featuring the sleek black trench coat and effortlessly tailored silk shirt, this look embodies bold sophistication.</div>
+                                    <div class="content-desc">Black trench coat with silk shirt.</div>
                                     <div class="quote-box">
                                         <div class="quote-text">"I think this matches your style well—it's contemporary yet classic, just like you."</div>
                                         <div class="quote-author">From Maria Tong</div>
