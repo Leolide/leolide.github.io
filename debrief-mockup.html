@@ -75,6 +75,19 @@
             padding: 20px;
             background: transparent;
         }
+        
+        .spotlight-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+            border-radius: 12px;
+        }
 
         .macbook {
             position: relative;
@@ -678,6 +691,7 @@
     <div class="mockup-scale-wrapper">
     <div class="mockup-container">
         <div class="mockup-wrapper" id="mockupWrapper">
+            <div class="spotlight-overlay" id="spotlightOverlay"></div>
             <div class="macbook">
                 <div class="macbook-screen">
                     <div class="screen-content">
@@ -859,12 +873,9 @@
     <script>
         const wrapper = document.getElementById('mockupWrapper');
         const container = document.querySelector('.mockup-container');
-        const sidebar = document.querySelector('.sidebar');
-        const mainContent = document.querySelector('.main-content');
+        const spotlight = document.getElementById('spotlightOverlay');
         
         const tiltIntensity = 8;
-        const parallaxIntensitySidebar = 8;   // 侧边栏移动幅度（较小）
-        const parallaxIntensityMain = 20;      // 主内容移动幅度（较大）
 
         container.addEventListener('mousemove', (e) => {
             const rect = wrapper.getBoundingClientRect();
@@ -874,30 +885,24 @@
             const mouseX = e.clientX - centerX;
             const mouseY = e.clientY - centerY;
             
-            // 计算鼠标位置比例 (-1 到 1)
             const ratioX = mouseX / (rect.width / 2);
             const ratioY = mouseY / (rect.height / 2);
             
-            // 3D 倾斜效果
             const rotateX = ratioY * -tiltIntensity;
             const rotateY = ratioX * tiltIntensity;
             
             wrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             
-            // 视差效果 - 侧边栏和主内容以不同速度移动
-            const sidebarMoveX = ratioX * parallaxIntensitySidebar;
-            const sidebarMoveY = ratioY * parallaxIntensitySidebar;
-            const mainMoveX = ratioX * parallaxIntensityMain;
-            const mainMoveY = ratioY * parallaxIntensityMain;
-            
-            sidebar.style.transform = `translate(${sidebarMoveX}px, ${sidebarMoveY}px)`;
-            mainContent.style.transform = `translate(${mainMoveX}px, ${mainMoveY}px)`;
+            // 聚光灯效果
+            const spotX = e.clientX - rect.left;
+            const spotY = e.clientY - rect.top;
+            spotlight.style.background = `radial-gradient(circle 200px at ${spotX}px ${spotY}px, rgba(255,255,255,0.08) 0%, transparent 70%)`;
+            spotlight.style.opacity = '1';
         });
 
         container.addEventListener('mouseleave', () => {
             wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
-            sidebar.style.transform = 'translate(0, 0)';
-            mainContent.style.transform = 'translate(0, 0)';
+            spotlight.style.opacity = '0';
         });
     </script>
 </body>
