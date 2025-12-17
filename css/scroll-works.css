@@ -367,6 +367,10 @@
     border: none;
     border-radius: 16px;
     background: transparent;
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    image-rendering: -webkit-optimize-contrast;
 }
 
 @media (min-width: 1920px) {
