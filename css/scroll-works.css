@@ -206,7 +206,7 @@
     }
     
     .scroll-works-container {
-        padding: 0 2.5rem;
+        padding: 0;
     }
     
     .scroll-works-header {
@@ -234,7 +234,7 @@
     }
     
     .scroll-works-container {
-        padding: 0 2.5rem;
+        padding: 0;
     }
     
     .scroll-works-header {
@@ -362,21 +362,49 @@
 
 .mockup-iframe {
     width: 100%;
-    height: 550px;
+    height: 750px;
     border: none;
     border-radius: 16px;
     background: transparent;
 }
 
 .mockup-iframe.debrief-iframe {
-    height: 600px;
+    height: 800px;
 }
 
 .mockup-iframe.clientelling-iframe {
-    height: 550px;
+    height: 750px;
 }
 
 @media (max-width: 1024px) {
+    .mockup-iframe {
+        height: 650px;
+    }
+    
+    .mockup-iframe.debrief-iframe {
+        height: 700px;
+    }
+    
+    .mockup-iframe.clientelling-iframe {
+        height: 650px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mockup-iframe {
+        height: 550px;
+    }
+    
+    .mockup-iframe.debrief-iframe {
+        height: 600px;
+    }
+    
+    .mockup-iframe.clientelling-iframe {
+        height: 550px;
+    }
+}
+
+@media (max-width: 480px) {
     .mockup-iframe {
         height: 500px;
     }
@@ -387,33 +415,5 @@
     
     .mockup-iframe.clientelling-iframe {
         height: 500px;
-    }
-}
-
-@media (max-width: 768px) {
-    .mockup-iframe {
-        height: 450px;
-    }
-    
-    .mockup-iframe.debrief-iframe {
-        height: 500px;
-    }
-    
-    .mockup-iframe.clientelling-iframe {
-        height: 450px;
-    }
-}
-
-@media (max-width: 480px) {
-    .mockup-iframe {
-        height: 400px;
-    }
-    
-    .mockup-iframe.debrief-iframe {
-        height: 450px;
-    }
-    
-    .mockup-iframe.clientelling-iframe {
-        height: 400px;
     }
 }
