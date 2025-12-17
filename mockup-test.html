@@ -593,8 +593,12 @@
     <script>
         const wrapper = document.getElementById('mockupWrapper');
         const container = document.querySelector('.mockup-container');
+        const desktopView = document.querySelector('.desktop-view');
+        const phoneMockup = document.querySelector('.phone-mockup');
         
-        const tiltIntensity = 6;
+        const tiltIntensity = 8;
+        const parallaxIntensityBg = 15;  // 背景移动幅度（较小）
+        const parallaxIntensityFg = 30;  // 前景移动幅度（较大）
 
         container.addEventListener('mousemove', (e) => {
             const rect = wrapper.getBoundingClientRect();
@@ -604,14 +608,30 @@
             const mouseX = e.clientX - centerX;
             const mouseY = e.clientY - centerY;
             
-            const rotateX = (mouseY / (rect.height / 2)) * -tiltIntensity;
-            const rotateY = (mouseX / (rect.width / 2)) * tiltIntensity;
+            // 计算鼠标位置比例 (-1 到 1)
+            const ratioX = mouseX / (rect.width / 2);
+            const ratioY = mouseY / (rect.height / 2);
+            
+            // 3D 倾斜效果
+            const rotateX = ratioY * -tiltIntensity;
+            const rotateY = ratioX * tiltIntensity;
             
             wrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            
+            // 视差效果 - 前景和背景以不同速度移动
+            const bgMoveX = ratioX * parallaxIntensityBg;
+            const bgMoveY = ratioY * parallaxIntensityBg;
+            const fgMoveX = ratioX * parallaxIntensityFg;
+            const fgMoveY = ratioY * parallaxIntensityFg;
+            
+            desktopView.style.transform = `translate(${bgMoveX}px, ${bgMoveY}px)`;
+            phoneMockup.style.transform = `translate(${fgMoveX}px, ${fgMoveY}px)`;
         });
 
         container.addEventListener('mouseleave', () => {
             wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
+            desktopView.style.transform = 'translate(0, 0)';
+            phoneMockup.style.transform = 'translate(0, 0)';
         });
     </script>
 </body>

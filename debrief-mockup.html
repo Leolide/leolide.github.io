@@ -859,8 +859,12 @@
     <script>
         const wrapper = document.getElementById('mockupWrapper');
         const container = document.querySelector('.mockup-container');
+        const sidebar = document.querySelector('.sidebar');
+        const mainContent = document.querySelector('.main-content');
         
-        const tiltIntensity = 6;
+        const tiltIntensity = 8;
+        const parallaxIntensitySidebar = 8;   // 侧边栏移动幅度（较小）
+        const parallaxIntensityMain = 20;      // 主内容移动幅度（较大）
 
         container.addEventListener('mousemove', (e) => {
             const rect = wrapper.getBoundingClientRect();
@@ -870,14 +874,30 @@
             const mouseX = e.clientX - centerX;
             const mouseY = e.clientY - centerY;
             
-            const rotateX = (mouseY / (rect.height / 2)) * -tiltIntensity;
-            const rotateY = (mouseX / (rect.width / 2)) * tiltIntensity;
+            // 计算鼠标位置比例 (-1 到 1)
+            const ratioX = mouseX / (rect.width / 2);
+            const ratioY = mouseY / (rect.height / 2);
+            
+            // 3D 倾斜效果
+            const rotateX = ratioY * -tiltIntensity;
+            const rotateY = ratioX * tiltIntensity;
             
             wrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            
+            // 视差效果 - 侧边栏和主内容以不同速度移动
+            const sidebarMoveX = ratioX * parallaxIntensitySidebar;
+            const sidebarMoveY = ratioY * parallaxIntensitySidebar;
+            const mainMoveX = ratioX * parallaxIntensityMain;
+            const mainMoveY = ratioY * parallaxIntensityMain;
+            
+            sidebar.style.transform = `translate(${sidebarMoveX}px, ${sidebarMoveY}px)`;
+            mainContent.style.transform = `translate(${mainMoveX}px, ${mainMoveY}px)`;
         });
 
         container.addEventListener('mouseleave', () => {
             wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
+            sidebar.style.transform = 'translate(0, 0)';
+            mainContent.style.transform = 'translate(0, 0)';
         });
     </script>
 </body>
