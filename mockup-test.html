@@ -58,19 +58,6 @@
             background: transparent;
         }
         
-        .spotlight-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 10;
-            border-radius: 12px;
-        }
-
         .desktop-view {
             background: #fff;
             border-radius: 12px;
@@ -124,33 +111,18 @@
             margin: 0 auto 24px;
             padding: 10px 24px;
             border: 1px solid #1a1a1a;
-            background: transparent;
+            background: #1a1a1a;
+            color: #fff;
             font-size: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             border-radius: 6px;
             position: relative;
-            overflow: hidden;
-        }
-        
-        .reply-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: #1a1a1a;
-            transition: left 0.3s ease;
-            z-index: -1;
         }
         
         .reply-btn:hover {
-            color: #fff;
-        }
-        
-        .reply-btn:hover::before {
-            left: 0;
+            background: #333;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
         
         .reply-btn:active {
@@ -598,7 +570,6 @@
     <div class="mockup-scale-wrapper">
     <div class="mockup-container">
         <div class="mockup-wrapper" id="mockupWrapper">
-            <div class="spotlight-overlay" id="spotlightOverlay"></div>
             <div class="desktop-view">
                 <div class="desktop-header">
                     <div class="from-text">From Maria Tong at</div>
@@ -681,33 +652,6 @@
     </div>
     </div>
 
-    <script>
-        const container = document.querySelector('.mockup-container');
-        const spotlight = document.getElementById('spotlightOverlay');
-
-        container.addEventListener('mousemove', (e) => {
-            const rect = spotlight.parentElement.getBoundingClientRect();
-            
-            // 聚光灯效果 - 增强版
-            const spotX = e.clientX - rect.left;
-            const spotY = e.clientY - rect.top;
-            
-            // 更强的聚光灯，产品展示风格
-            spotlight.style.background = `
-                radial-gradient(circle 250px at ${spotX}px ${spotY}px, 
-                rgba(255,255,255,0.12) 0%, 
-                rgba(255,255,255,0.04) 40%,
-                transparent 70%),
-                radial-gradient(circle 80px at ${spotX}px ${spotY}px,
-                rgba(255,255,255,0.06) 0%,
-                transparent 100%)
-            `;
-            spotlight.style.opacity = '1';
-        });
-
-        container.addEventListener('mouseleave', () => {
-            spotlight.style.opacity = '0';
-        });
-    </script>
+    <script></script>
 </body>
 </html>

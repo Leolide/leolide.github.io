@@ -76,19 +76,6 @@
             background: transparent;
         }
         
-        .spotlight-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 10;
-            border-radius: 12px;
-        }
-
         .macbook {
             position: relative;
             transition: transform 0.3s ease-out;
@@ -691,7 +678,6 @@
     <div class="mockup-scale-wrapper">
     <div class="mockup-container">
         <div class="mockup-wrapper" id="mockupWrapper">
-            <div class="spotlight-overlay" id="spotlightOverlay"></div>
             <div class="macbook">
                 <div class="macbook-screen">
                     <div class="screen-content">
@@ -870,33 +856,6 @@
     </div>
     </div>
 
-    <script>
-        const container = document.querySelector('.mockup-container');
-        const spotlight = document.getElementById('spotlightOverlay');
-
-        container.addEventListener('mousemove', (e) => {
-            const rect = spotlight.parentElement.getBoundingClientRect();
-            
-            // 聚光灯效果 - 增强版
-            const spotX = e.clientX - rect.left;
-            const spotY = e.clientY - rect.top;
-            
-            // 更强的聚光灯，产品展示风格
-            spotlight.style.background = `
-                radial-gradient(circle 250px at ${spotX}px ${spotY}px, 
-                rgba(255,255,255,0.12) 0%, 
-                rgba(255,255,255,0.04) 40%,
-                transparent 70%),
-                radial-gradient(circle 80px at ${spotX}px ${spotY}px,
-                rgba(255,255,255,0.06) 0%,
-                transparent 100%)
-            `;
-            spotlight.style.opacity = '1';
-        });
-
-        container.addEventListener('mouseleave', () => {
-            spotlight.style.opacity = '0';
-        });
-    </script>
+    <script></script>
 </body>
 </html>
