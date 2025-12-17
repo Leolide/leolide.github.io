@@ -195,10 +195,21 @@
             padding: 10px 8px;
             border-radius: 6px;
             margin-bottom: 2px;
+            transition: background 0.2s ease, transform 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .workflow-item:hover {
+            background: #1a1a1d;
+            transform: translateX(2px);
         }
 
         .workflow-item.active {
             background: #18181b;
+        }
+        
+        .workflow-item.active:hover {
+            background: #27272a;
         }
 
         .workflow-icon {
@@ -276,6 +287,13 @@
             color: #71717a;
             font-size: 11px;
             border-top: 1px solid #27272a;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .add-step:hover {
+            color: #a1a1aa;
+            background: rgba(255, 255, 255, 0.02);
         }
 
         .main-content {
@@ -358,6 +376,17 @@
             gap: 5px;
             font-size: 9px;
             cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .pause-btn:hover {
+            background: #27272a;
+            border-color: #52525b;
+            color: #a1a1aa;
+        }
+        
+        .pause-btn:active {
+            transform: scale(0.95);
         }
 
         .executing-dot {
@@ -391,6 +420,11 @@
             color: #71717a;
             text-decoration: underline;
             cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        
+        .view-log-link:hover {
+            color: #a1a1aa;
         }
 
         .last-run {
@@ -415,6 +449,18 @@
             justify-content: center;
             font-size: 12px;
             letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .more-btn:hover {
+            background: #27272a;
+            border-color: #52525b;
+            color: #fafafa;
+        }
+        
+        .more-btn:active {
+            transform: scale(0.9);
         }
 
         .close-btn {
@@ -428,6 +474,18 @@
             align-items: center;
             justify-content: center;
             font-size: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .close-btn:hover {
+            background: #27272a;
+            border-color: #52525b;
+            color: #fafafa;
+        }
+        
+        .close-btn:active {
+            transform: scale(0.9);
         }
 
         .section {
@@ -481,6 +539,19 @@
             padding: 8px 10px;
             color: #fafafa;
             font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .config-select:hover {
+            border-color: #52525b;
+            background: #1a1a1d;
+        }
+        
+        .config-select:focus {
+            outline: none;
+            border-color: #71717a;
+            background: #1a1a1d;
         }
 
         .file-upload-grid {
@@ -497,10 +568,23 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .file-upload:hover {
+            border-color: #52525b;
+            background: #1a1a1d;
         }
 
         .file-upload.uploaded {
             border-color: rgba(34, 197, 94, 0.3);
+            background: rgba(34, 197, 94, 0.05);
+        }
+        
+        .file-upload.uploaded:hover {
+            border-color: rgba(34, 197, 94, 0.5);
+            background: rgba(34, 197, 94, 0.08);
         }
 
         .file-upload-icon {
