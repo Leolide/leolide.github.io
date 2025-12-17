@@ -409,17 +409,11 @@
 @media (max-width: 768px) {
     .scroll-mockup-iframe-container {
         max-width: 90vw;
-        aspect-ratio: auto;
-        height: auto;
-        min-height: 350px;
     }
 }
 
 @media (max-width: 480px) {
     .scroll-mockup-iframe-container {
         max-width: 95vw;
-        aspect-ratio: auto;
-        height: auto;
-        min-height: 300px;
     }
 }
