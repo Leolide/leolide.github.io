@@ -3,7 +3,7 @@
     margin: 0 4em;
     font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
     background: #000000;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .scroll-works-container {
