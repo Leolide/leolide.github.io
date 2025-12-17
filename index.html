@@ -198,6 +198,27 @@
     </div>
   </section>
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      const items = document.querySelectorAll('.scroll-works-item');
+      items.forEach(item => {
+        item.style.animationPlayState = 'paused';
+        observer.observe(item);
+      });
+    });
   </script>
   <section class="section-3">
     <div class="w-layout-blockcontainer container medium w-container">

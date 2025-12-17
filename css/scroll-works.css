@@ -34,6 +34,27 @@
     transition: opacity 0.3s ease, transform 0.3s ease;
     border-radius: 8px;
     position: relative;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.scroll-works-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.scroll-works-item:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .scroll-works-item:hover {
