@@ -200,10 +200,6 @@
 }
 
 @media (max-width: 915px) {
-    .scroll-works-section {
-        margin: 0;
-    }
-    
     .scroll-works-container {
         padding: 0;
     }
