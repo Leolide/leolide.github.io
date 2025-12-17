@@ -23,3 +23,10 @@
         transform-origin: center center;
     }
 }
+
+/* 2000px+ screens - increase left padding for home content */
+@media (min-width: 2000px) {
+    .home-left-content {
+        padding-left: 8em;
+    }
+}
