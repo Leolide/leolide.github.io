@@ -871,37 +871,30 @@
     </div>
 
     <script>
-        const wrapper = document.getElementById('mockupWrapper');
         const container = document.querySelector('.mockup-container');
         const spotlight = document.getElementById('spotlightOverlay');
-        
-        const tiltIntensity = 8;
 
         container.addEventListener('mousemove', (e) => {
-            const rect = wrapper.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
+            const rect = spotlight.parentElement.getBoundingClientRect();
             
-            const mouseX = e.clientX - centerX;
-            const mouseY = e.clientY - centerY;
-            
-            const ratioX = mouseX / (rect.width / 2);
-            const ratioY = mouseY / (rect.height / 2);
-            
-            const rotateX = ratioY * -tiltIntensity;
-            const rotateY = ratioX * tiltIntensity;
-            
-            wrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            
-            // 聚光灯效果
+            // 聚光灯效果 - 增强版
             const spotX = e.clientX - rect.left;
             const spotY = e.clientY - rect.top;
-            spotlight.style.background = `radial-gradient(circle 200px at ${spotX}px ${spotY}px, rgba(255,255,255,0.08) 0%, transparent 70%)`;
+            
+            // 更强的聚光灯，产品展示风格
+            spotlight.style.background = `
+                radial-gradient(circle 250px at ${spotX}px ${spotY}px, 
+                rgba(255,255,255,0.12) 0%, 
+                rgba(255,255,255,0.04) 40%,
+                transparent 70%),
+                radial-gradient(circle 80px at ${spotX}px ${spotY}px,
+                rgba(255,255,255,0.06) 0%,
+                transparent 100%)
+            `;
             spotlight.style.opacity = '1';
         });
 
         container.addEventListener('mouseleave', () => {
-            wrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
             spotlight.style.opacity = '0';
         });
     </script>
