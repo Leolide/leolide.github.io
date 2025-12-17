@@ -10,11 +10,11 @@
     max-width: 1400px;
     margin: 0 auto;
     box-sizing: border-box;
-    padding: 0 4rem;
+    padding: 0;
 }
 
 .scroll-works-header {
-    padding: 80px 0 30px;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -199,11 +199,6 @@
     }
 }
 
-@media (max-width: 1220px) {
-    .scroll-works-container {
-        padding: 0;
-    }
-}
 
 @media (max-width: 768px) {
     .scroll-works-section {
