@@ -1,9 +1,9 @@
 /* Large Screen Optimizations */
 
-/* 1920px+ screens - moderate scaling to reduce blur */
+/* 1920px+ screens */
 @media (min-width: 1920px) {
     .spline-wrapper {
-        transform: scale(1.25);
+        transform: scale(1.35);
         transform-origin: center center;
     }
 }
@@ -11,7 +11,7 @@
 /* 2560px+ screens (2K/QHD) */
 @media (min-width: 2560px) {
     .spline-wrapper {
-        transform: scale(1.4);
+        transform: scale(1.5);
         transform-origin: center center;
     }
 }
@@ -19,14 +19,26 @@
 /* 3840px+ screens (4K) */
 @media (min-width: 3840px) {
     .spline-wrapper {
-        transform: scale(1.6);
+        transform: scale(1.8);
         transform-origin: center center;
     }
 }
 
-/* 2000px+ screens - increase left padding for home content */
+/* 2000px+ screens - increase left padding and font size */
 @media (min-width: 2000px) {
     .home-left-content {
         padding-left: 8em;
+    }
+    
+    .home-left-content .heading-style-h1 {
+        font-size: 1.15em;
+    }
+    
+    .home-left-content .text-size-medium {
+        font-size: 1.15em;
+    }
+    
+    .home-left-content .text-size-small {
+        font-size: 1.1em;
     }
 }
