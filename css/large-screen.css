@@ -1,0 +1,34 @@
+/* Large Screen Optimizations */
+
+/* 1920px+ screens */
+@media (min-width: 1920px) {
+    .spline-scene {
+        transform: scale(1.15);
+    }
+    
+    .spline-scene.middle {
+        transform: translate(-15%, -5%) scale(1.5);
+    }
+}
+
+/* 2560px+ screens (2K/QHD) */
+@media (min-width: 2560px) {
+    .spline-scene {
+        transform: scale(1.3);
+    }
+    
+    .spline-scene.middle {
+        transform: translate(-15%, -5%) scale(1.7);
+    }
+}
+
+/* 3840px+ screens (4K) */
+@media (min-width: 3840px) {
+    .spline-scene {
+        transform: scale(1.5);
+    }
+    
+    .spline-scene.middle {
+        transform: translate(-15%, -5%) scale(2);
+    }
+}
