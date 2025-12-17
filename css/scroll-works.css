@@ -352,13 +352,13 @@
 
 .scroll-mockup-iframe-container {
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 16px;
     overflow: hidden;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1 / 1;
 }
 
 .mockup-iframe {
@@ -371,31 +371,24 @@
 
 @media (min-width: 1920px) {
     .scroll-mockup-iframe-container {
-        max-width: 700px;
-        aspect-ratio: 1 / 1;
-    }
-}
-
-@media (max-width: 1400px) {
-    .scroll-mockup-iframe-container {
-        max-width: 520px;
+        max-width: 600px;
     }
 }
 
 @media (max-width: 1024px) {
     .scroll-mockup-iframe-container {
-        max-width: 100%;
+        max-width: 450px;
     }
 }
 
 @media (max-width: 768px) {
     .scroll-mockup-iframe-container {
-        aspect-ratio: 16 / 10;
+        max-width: 400px;
     }
 }
 
 @media (max-width: 480px) {
     .scroll-mockup-iframe-container {
-        aspect-ratio: 16 / 9;
+        max-width: 320px;
     }
 }
