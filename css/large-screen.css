@@ -38,8 +38,11 @@
         font-size: 1.15em;
     }
     
-    .home-left-content p.text-size-small,
-    .home-left-content div.text-size-small {
+    .home-left-content p.text-size-small {
         font-size: 1.1em;
+    }
+    
+    .home-left-content .button-primary {
+        font-size: 1rem;
     }
 }
