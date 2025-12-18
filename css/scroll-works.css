@@ -283,6 +283,10 @@
         flex-direction: column;
         gap: 15px;
     }
+    
+    .title-arrow {
+        display: none;
+    }
 }
 
 .macbook.scroll-scale {
