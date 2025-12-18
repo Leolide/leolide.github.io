@@ -30,19 +30,19 @@
         padding-left: 8em;
     }
     
-    .home-left-content .heading-style-h1 {
-        font-size: 1.15em;
+    .home-left-content .heading-3 {
+        font-size: 2.5rem;
     }
     
-    .home-left-content p.text-size-medium {
-        font-size: 1.15em;
+    .home-left-content .text-size-medium {
+        font-size: 1.5rem;
     }
     
-    .home-left-content p.text-size-small {
-        font-size: 1.1em;
+    .home-left-content .text-size-small {
+        font-size: 1.25rem;
     }
     
     .home-left-content .button-primary {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 }
