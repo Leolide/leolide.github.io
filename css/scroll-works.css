@@ -246,6 +246,10 @@
     .scroll-content-block h3 {
         font-size: 1.5rem;
     }
+    
+    .title-arrow {
+        display: none;
+    }
 }
 
 @media (max-width: 480px) {
