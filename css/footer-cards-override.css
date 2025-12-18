@@ -18,6 +18,7 @@ section:has(.footer-wrapper) {
 .footer-chat-text {
     text-align: left !important;
     margin-top: 4rem !important;
+    font-size: 1.6rem !important;
 }
 
 /* Footer email wrapper styling */
