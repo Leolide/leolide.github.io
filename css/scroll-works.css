@@ -36,6 +36,8 @@
     position: relative;
     opacity: 0;
     animation: fadeInUp 0.8s ease-out forwards;
+    text-decoration: none;
+    color: inherit;
 }
 
 .scroll-works-item:nth-child(2) {
