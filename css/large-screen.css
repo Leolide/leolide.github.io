@@ -31,18 +31,18 @@
     }
     
     .home-left-content .heading-3 {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
     }
     
     .home-left-content .text-size-medium {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
     
     .home-left-content .text-size-small {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
     }
     
     .home-left-content .button-primary {
-        font-size: 1.1rem;
+        font-size: 1.25rem;
     }
 }
