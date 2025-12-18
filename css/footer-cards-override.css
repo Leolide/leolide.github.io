@@ -49,10 +49,11 @@ section:has(.footer-wrapper) {
 }
 
 
-/* Footer email - remove side margins */
+/* Footer email - remove side margins and center alignment */
 .footer-email {
     margin-left: 0 !important;
     margin-right: 0 !important;
+    justify-content: flex-start !important;
 }
 
 /* Footer social wrap - keep icons in one row */
