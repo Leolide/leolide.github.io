@@ -45,6 +45,10 @@
         font-size: 1.75rem !important;
     }
     
+    .text-span-3 {
+        font-size: 1.5rem !important;
+    }
+    
     .home-left-content .text-size-small,
     .home-left-content .button-text-wrapper .text-size-small {
         font-size: 1.25rem !important;
