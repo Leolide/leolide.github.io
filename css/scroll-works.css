@@ -397,10 +397,17 @@
     text-decoration: none;
     color: inherit;
     display: block;
+    cursor: pointer;
+}
+
+.scroll-project-link h3 {
+    transition: opacity 0.2s ease, text-decoration 0.2s ease;
 }
 
 .scroll-project-link:hover h3 {
     opacity: 0.8;
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
 @media (min-width: 1920px) {
