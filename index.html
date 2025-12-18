@@ -155,7 +155,7 @@
         <div class="scroll-works-content">
           <div class="scroll-content-block">
             <div class="scroll-project-meta">2024 Aug - Nov</div>
-            <a href="detail_works-with-code.html?project=a-clientelling-app" class="scroll-project-link" data-project="a-clientelling-app">
+            <a href="password-protection.html?redirect=detail_works-with-code.html%3Fproject%3Da-clientelling-app" class="scroll-project-link">
               <h3>Boosting Sales and Enabling Personalized Customer Experiences <span class="title-arrow">&#8599;</span></h3>
             </a>
             <p>Cross-platform clientelling solution enabling personalized lookbooks and recommendations.</p>
@@ -179,7 +179,7 @@
         <div class="scroll-works-content">
           <div class="scroll-content-block">
             <div class="scroll-project-meta">2023 Jan - Jul</div>
-            <a href="detail_works-with-code.html?project=debrief-ai" class="scroll-project-link" data-project="debrief-ai">
+            <a href="password-protection.html?redirect=detail_works-with-code.html%3Fproject%3Ddebrief-ai" class="scroll-project-link">
               <h3>User-Centric Strategy Pivot for Debrief AI to Secure Investment <span class="title-arrow">&#8599;</span></h3>
             </a>
             <p>Product design for AI-powered workflow automation, enabling researchers to automate complex scientific tasks.</p>
@@ -222,19 +222,6 @@
         observer.observe(item);
       });
 
-      const protectedProjects = ['a-clientelling-app', 'debrief-ai', 'design-system', 'technology-radar'];
-      const hasAccess = sessionStorage.getItem('lide_portfolio_access') === 'granted';
-      
-      document.querySelectorAll('.scroll-project-link[data-project]').forEach(link => {
-        link.addEventListener('click', (e) => {
-          const project = link.getAttribute('data-project');
-          if (protectedProjects.includes(project) && !hasAccess) {
-            e.preventDefault();
-            const redirectUrl = link.getAttribute('href');
-            window.location.href = `password-protection.html?redirect=${encodeURIComponent(redirectUrl)}`;
-          }
-        });
-      });
     });
   </script>
   <section class="section-3">
