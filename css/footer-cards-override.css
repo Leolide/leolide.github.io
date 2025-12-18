@@ -18,7 +18,7 @@ section:has(.footer-wrapper) {
 .footer-chat-text {
     text-align: left !important;
     margin-top: 4rem !important;
-    font-size: 1.6rem !important;
+    font-size: var(--heading-style--h3) !important;
 }
 
 /* Footer email wrapper styling */
@@ -44,28 +44,28 @@ section:has(.footer-wrapper) {
 .footer-email-link {
     text-decoration: underline !important;
     color: inherit !important;
-    font-size: 1.6rem !important;
+    font-size: var(--heading-style--h3) !important;
     line-height: 1.15 !important;
     font-weight: 400 !important;
     font-family: inherit !important;
 }
 
-/* Match responsive font sizes with Let's chat text */
+/* Match responsive font sizes with heading-3 text */
 @media screen and (max-width: 991px) {
     .footer-email-link {
-        font-size: 1.6rem !important;
+        font-size: var(--heading-style--h3) !important;
     }
 }
 
 @media screen and (max-width: 767px) {
     .footer-email-link {
-        font-size: 1.6rem !important;
+        font-size: var(--heading-style--h3) !important;
     }
 }
 
 @media screen and (max-width: 479px) {
     .footer-email-link {
-        font-size: 1.6rem !important;
+        font-size: var(--heading-style--h3) !important;
     }
 }
 
