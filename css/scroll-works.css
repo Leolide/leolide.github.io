@@ -428,11 +428,15 @@
 @media (max-width: 768px) {
     .scroll-mockup-iframe-container {
         max-width: 90vw;
+        aspect-ratio: 9 / 16;
+        min-height: 450px;
     }
 }
 
 @media (max-width: 480px) {
     .scroll-mockup-iframe-container {
         max-width: 95vw;
+        aspect-ratio: 9 / 16;
+        min-height: 500px;
     }
 }
