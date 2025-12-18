@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function scaleIframeContent(iframe) {
+    function scaleIframeContent(iframe, isInitial) {
         try {
             const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
             const wrapper = iframeDoc.querySelector('.mockup-scale-wrapper');
@@ -12,6 +12,12 @@
             const containerWidth = container.clientWidth;
             const containerHeight = container.clientHeight;
 
+            // Hide during initial calculation to prevent flash
+            if (isInitial) {
+                wrapper.style.opacity = '0';
+                wrapper.style.transition = 'none';
+            }
+
             wrapper.style.transform = 'none';
             
             const contentWidth = wrapper.scrollWidth;
@@ -21,7 +27,16 @@
             const scaleY = containerHeight / contentHeight;
             const scale = Math.min(scaleX, scaleY) * 0.85;
 
-            wrapper.style.transform = `scale(${scale})`;
+            // Apply scale immediately without transition for initial load
+            if (isInitial) {
+                wrapper.style.transform = `scale(${scale})`;
+                // Force reflow then fade in
+                wrapper.offsetHeight;
+                wrapper.style.transition = 'opacity 0.3s ease, transform 0.2s ease';
+                wrapper.style.opacity = '1';
+            } else {
+                wrapper.style.transform = `scale(${scale})`;
+            }
         } catch (e) {
             console.log('Could not scale iframe:', e);
         }
@@ -32,11 +47,11 @@
         
         iframes.forEach(iframe => {
             iframe.addEventListener('load', function() {
-                setTimeout(() => scaleIframeContent(iframe), 100);
+                setTimeout(() => scaleIframeContent(iframe, true), 100);
             });
             
             if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
-                setTimeout(() => scaleIframeContent(iframe), 100);
+                setTimeout(() => scaleIframeContent(iframe, true), 100);
             }
         });
 
@@ -44,7 +59,7 @@
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                iframes.forEach(iframe => scaleIframeContent(iframe));
+                iframes.forEach(iframe => scaleIframeContent(iframe, false));
             }, 150);
         });
     }
