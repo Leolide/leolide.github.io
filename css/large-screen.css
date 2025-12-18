@@ -26,14 +26,17 @@
 
 /* 2000px+ screens - increase left padding and font size */
 @media (min-width: 2000px) {
+    :root {
+        --heading-style--h3: 3.5rem;
+    }
+    
     .home-left-content {
         padding-left: 8em;
     }
     
-    .home-left-content .heading-3,
-    .home-left-content h4.heading-3,
-    .home-left-content h1.heading-3,
-    .hero-home-header .heading-3 {
+    .home-hero .home-left-content .hero-home-header .heading-3.text-weight-regular,
+    .home-hero .home-left-content h4.heading-3.text-weight-regular,
+    .section .home-hero .heading-3 {
         font-size: 3.5rem !important;
     }
     
