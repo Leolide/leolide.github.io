@@ -151,11 +151,13 @@
         <h2 class="text-size-xlarge">Selected Works</h2>
       </div>
       
-      <a href="detail_works-with-code.html?project=a-clientelling-app" class="scroll-works-item" data-project="a-clientelling-app">
+      <div class="scroll-works-item">
         <div class="scroll-works-content">
           <div class="scroll-content-block">
             <div class="scroll-project-meta">2024 Aug - Nov</div>
-            <h3>Boosting Sales and Enabling Personalized Customer Experiences <span class="title-arrow">&#8599;</span></h3>
+            <a href="detail_works-with-code.html?project=a-clientelling-app" class="scroll-project-link" data-project="a-clientelling-app">
+              <h3>Boosting Sales and Enabling Personalized Customer Experiences <span class="title-arrow">&#8599;</span></h3>
+            </a>
             <p>Cross-platform clientelling solution enabling personalized lookbooks and recommendations.</p>
             <div class="scroll-project-tags">
               <span class="scroll-project-tag">UI/UX Design</span>
@@ -171,13 +173,15 @@
             <iframe src="mockup-test.html" class="mockup-iframe clientelling-iframe" frameborder="0" scrolling="no"></iframe>
           </div>
         </div>
-      </a>
+      </div>
 
-      <a href="detail_works-with-code.html?project=debrief-ai" class="scroll-works-item" data-project="debrief-ai">
+      <div class="scroll-works-item">
         <div class="scroll-works-content">
           <div class="scroll-content-block">
             <div class="scroll-project-meta">2023 Jan - Jul</div>
-            <h3>User-Centric Strategy Pivot for Debrief AI to Secure Investment <span class="title-arrow">&#8599;</span></h3>
+            <a href="detail_works-with-code.html?project=debrief-ai" class="scroll-project-link" data-project="debrief-ai">
+              <h3>User-Centric Strategy Pivot for Debrief AI to Secure Investment <span class="title-arrow">&#8599;</span></h3>
+            </a>
             <p>Product design for AI-powered workflow automation, enabling researchers to automate complex scientific tasks.</p>
             <div class="scroll-project-tags">
               <span class="scroll-project-tag">UI/UX Design</span>
@@ -193,7 +197,7 @@
             <iframe src="debrief-mockup.html" class="mockup-iframe debrief-iframe" frameborder="0" scrolling="no"></iframe>
           </div>
         </div>
-      </a>
+      </div>
     </div>
   </section>
   <script>
@@ -221,7 +225,7 @@
       const protectedProjects = ['a-clientelling-app', 'debrief-ai', 'design-system', 'technology-radar'];
       const hasAccess = sessionStorage.getItem('lide_portfolio_access') === 'granted';
       
-      document.querySelectorAll('.scroll-works-item[data-project]').forEach(link => {
+      document.querySelectorAll('.scroll-project-link[data-project]').forEach(link => {
         link.addEventListener('click', (e) => {
           const project = link.getAttribute('data-project');
           if (protectedProjects.includes(project) && !hasAccess) {

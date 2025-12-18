@@ -30,14 +30,11 @@
     padding: 60px 0;
     align-items: center;
     box-sizing: border-box;
-    cursor: pointer;
     transition: opacity 0.3s ease, transform 0.3s ease;
     border-radius: 8px;
     position: relative;
     opacity: 0;
     animation: fadeInUp 0.8s ease-out forwards;
-    text-decoration: none;
-    color: inherit;
 }
 
 .scroll-works-item:nth-child(2) {
@@ -394,7 +391,16 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     image-rendering: -webkit-optimize-contrast;
-    pointer-events: none;
+}
+
+.scroll-project-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.scroll-project-link:hover h3 {
+    opacity: 0.8;
 }
 
 @media (min-width: 1920px) {
