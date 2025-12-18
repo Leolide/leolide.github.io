@@ -46,6 +46,11 @@
     padding-left: 0 !important;
 }
 
+/* Footer wrapper padding */
+.footer-wrapper {
+    padding: 8rem !important;
+}
+
 /* Add smaller padding for tablet sizes */
 @media screen and (min-width: 768px) and (max-width: 991px) {
     .works-section-enhanced .works-container-inner {
@@ -90,6 +95,7 @@
     
     /* Footer card section padding */
     .footer-wrapper {
-        padding: 8rem !important;
+        padding-left: 4rem !important;
+        padding-right: 4rem !important;
     }
 }
