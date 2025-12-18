@@ -24,8 +24,8 @@
     }
 }
 
-/* 2000px+ screens - increase left padding and font size */
-@media screen and (min-width: 2000px) {
+/* 1920px+ screens - increase left padding and font size */
+@media screen and (min-width: 1920px) {
     :root {
         --heading-style--h3: 3.5rem;
     }
