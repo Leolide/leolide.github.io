@@ -88,4 +88,9 @@
         padding-right: 4rem !important;
     }
     
+    /* Footer card section padding */
+    .footer-wrapper {
+        padding-left: 4rem !important;
+        padding-right: 4rem !important;
+    }
 }
