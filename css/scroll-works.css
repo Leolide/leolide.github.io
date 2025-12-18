@@ -441,6 +441,6 @@
     .scroll-mockup-iframe-container {
         max-width: 95vw;
         aspect-ratio: 9 / 16;
-        min-height: 500px;
+        min-height: 70vh;
     }
 }
