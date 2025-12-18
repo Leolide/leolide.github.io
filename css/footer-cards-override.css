@@ -53,13 +53,13 @@ section:has(.footer-wrapper) {
 /* Match responsive font sizes with Let's chat text */
 @media screen and (max-width: 991px) {
     .footer-email-link {
-        font-size: 2rem !important;
+        font-size: 1.6rem !important;
     }
 }
 
 @media screen and (max-width: 767px) {
     .footer-email-link {
-        font-size: 1.8rem !important;
+        font-size: 1.6rem !important;
     }
 }
 
