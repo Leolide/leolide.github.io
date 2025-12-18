@@ -36,9 +36,7 @@
     
     h4.heading-3.text-weight-regular,
     h1.heading-3.text-weight-regular,
-    .heading-3.text-weight-regular,
-    .footer-chat-text,
-    .footer-email-link {
+    .heading-3.text-weight-regular {
         font-size: 2rem !important;
     }
     

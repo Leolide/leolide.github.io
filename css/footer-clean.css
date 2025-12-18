@@ -1,0 +1,155 @@
+/* ========================================
+   FOOTER CLEAN STYLING - UNIFIED
+   ======================================== */
+
+/* Footer section container */
+section:has(.footer-wrapper) {
+    padding-bottom: 0 !important;
+}
+
+/* Footer wrapper - main container */
+.footer-wrapper {
+    padding: 8rem !important;
+}
+
+/* Footer top content - arrange in 3 rows */
+.footer-top-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+}
+
+/* ========================================
+   FOOTER TEXT ELEMENTS
+   ======================================== */
+
+/* Footer chat text - "Let's chat" */
+.footer-chat-text {
+    text-align: left !important;
+    margin-top: 4rem !important;
+    font-weight: 400 !important;
+}
+
+/* ========================================
+   FOOTER EMAIL STYLING
+   ======================================== */
+
+/* Email wrapper */
+.footer-email-wrapper {
+    display: flex !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+}
+
+/* Email link container */
+.footer-email-link-container {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1em !important;
+    text-decoration: none !important;
+    transition: opacity 0.25s !important;
+    color: inherit !important;
+}
+
+.footer-email-link-container:hover {
+    opacity: 0.6 !important;
+}
+
+/* Email link text */
+.footer-email-link {
+    text-decoration: underline !important;
+    color: inherit !important;
+    line-height: 1.15 !important;
+    font-weight: 400 !important;
+    font-family: inherit !important;
+}
+
+/* Email container - flex alignment */
+.footer-email {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    justify-content: flex-start !important;
+}
+
+/* ========================================
+   FOOTER SOCIAL LINKS
+   ======================================== */
+
+/* Social wrap - keep icons in one row */
+.footer-social-wrap {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+    padding: 0 !important;
+}
+
+/* Individual social link */
+.footer-social-link {
+    color: rgba(255, 255, 255, 0.6) !important;
+    transition: all 0.2s ease !important;
+    opacity: 0.6 !important;
+    width: 60px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 0.4rem !important;
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.footer-social-link:hover {
+    color: rgba(255, 255, 255, 1) !important;
+    opacity: 1 !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.footer-embed svg {
+    width: 36px !important;
+    height: 36px !important;
+}
+
+/* ========================================
+   RESPONSIVE - TABLET/MOBILE
+   ======================================== */
+
+@media screen and (max-width: 767px) {
+    .footer-wrapper {
+        padding: 4rem !important;
+    }
+
+    .footer-top-content {
+        align-items: flex-start !important;
+    }
+
+    .footer-chat-text {
+        text-align: left !important;
+        margin-top: 2rem !important;
+    }
+
+    .footer-email-wrapper {
+        justify-content: flex-start !important;
+    }
+
+    .footer-email {
+        justify-content: flex-start !important;
+        text-align: left !important;
+    }
+
+    .footer-social-wrap {
+        justify-content: flex-start !important;
+    }
+}
+
+/* ========================================
+   RESPONSIVE - LARGE SCREENS (1920px+)
+   ======================================== */
+
+@media screen and (min-width: 1920px) {
+    .footer-chat-text,
+    .footer-email-link {
+        font-size: 2rem !important;
+    }
+}
