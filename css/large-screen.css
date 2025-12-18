@@ -30,16 +30,21 @@
         padding-left: 8em;
     }
     
-    .home-left-content .heading-3 {
-        font-size: 3.5rem;
+    .home-left-content .heading-3,
+    .home-left-content h4.heading-3,
+    .home-left-content h1.heading-3,
+    .hero-home-header .heading-3 {
+        font-size: 3.5rem !important;
     }
     
-    .home-left-content .text-size-medium {
-        font-size: 2rem;
+    .home-left-content .text-size-medium,
+    .home-left-content p.text-size-medium {
+        font-size: 2rem !important;
     }
     
-    .home-left-content .text-size-small {
-        font-size: 1.5rem;
+    .home-left-content .text-size-small,
+    .home-left-content .button-text-wrapper .text-size-small {
+        font-size: 1.5rem !important;
     }
     
     .home-left-content .button-primary {
