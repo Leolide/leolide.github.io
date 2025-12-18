@@ -35,6 +35,7 @@
     position: relative;
     opacity: 0;
     animation: fadeInUp 0.8s ease-out forwards;
+    animation-play-state: paused;
 }
 
 .scroll-works-item:nth-child(2) {
