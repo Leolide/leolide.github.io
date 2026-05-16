@@ -3,9 +3,22 @@
    ============================================= */
 
 .sw-section {
-  background: #111;
+  background: #000;
   position: relative;
   overflow: hidden;
+}
+
+/* Subtle grid — matches canvas */
+.sw-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.013) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.013) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ---- Header ---- */
@@ -377,6 +390,53 @@
   padding: 4px 10px;
   letter-spacing: 0.03em;
   font-family: 'Satoshi', 'Inter', sans-serif;
+}
+
+/* ---- View all work CTA ---- */
+.sw-cta-wrapper {
+  position: sticky;
+  bottom: 48px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.sw-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.7);
+  font-size: 13px;
+  font-weight: 400;
+  font-family: 'Satoshi', 'Inter', sans-serif;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: auto;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.sw-cta:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.92);
+}
+
+.sw-cta-arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.sw-cta:hover .sw-cta-arrow {
+  transform: translateX(3px);
 }
 
 /* ---- Scroll driver (creates scroll space) ---- */

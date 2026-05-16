@@ -1,122 +1,131 @@
-// Selected Works — Sequential Scroll Stack
+// Selected Works — Sequential Scroll Stack (faithful port of TiltStack canvas)
 (function () {
   'use strict';
 
-  function easeOut(t) {
-    return 1 - Math.pow(1 - t, 3);
-  }
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+  function clamp(v, lo, hi) { return Math.min(Math.max(v, lo || 0), hi !== undefined ? hi : 1); }
+  function lerp(a, b, t) { return a + (b - a) * t; }
 
-  function clamp(v, lo, hi) {
-    return Math.min(Math.max(v, lo), hi);
-  }
-
-  function lerp(a, b, t) {
-    return a + (b - a) * t;
-  }
+  var hoveredIndex = null;
 
   function init() {
-    const section = document.getElementById('SelectedWorks');
+    var section  = document.getElementById('SelectedWorks');
     if (!section) return;
 
-    const cards = Array.from(section.querySelectorAll('.sw-card'));
-    const driver = document.getElementById('swDriver');
+    var cards    = Array.from(section.querySelectorAll('.sw-card'));
+    var driver   = document.getElementById('swDriver');
+    var cta      = document.getElementById('swCTA');
     if (!cards.length || !driver) return;
 
-    const TOTAL = cards.length;
-    const STACK_OFFSET = 8; // px between stacked cards at rest
-    const STACK_SCALE  = 0.025; // scale step per card in stack
+    var TOTAL = cards.length;
 
-    // Inject cursor glow div into each card
-    cards.forEach(card => {
-      const glow = document.createElement('div');
+    // ── Inject cursor-glow div + hover tracking ──────────────────────────
+    cards.forEach(function (card, i) {
+      var glow = document.createElement('div');
       glow.className = 'sw-cursor-glow';
       card.appendChild(glow);
 
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        glow.style.setProperty('--mx', x + '%');
-        glow.style.setProperty('--my', y + '%');
+      card.addEventListener('mousemove', function (e) {
+        var rect = card.getBoundingClientRect();
+        glow.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width * 100) + '%');
+        glow.style.setProperty('--my', ((e.clientY - rect.top)  / rect.height * 100) + '%');
+      });
+
+      card.addEventListener('mouseenter', function () {
+        hoveredIndex = i;
+        frame();
+      });
+      card.addEventListener('mouseleave', function () {
+        hoveredIndex = null;
+        frame();
       });
     });
 
-    function getScrollProgress() {
-      // Progress through the driver div (0 = top of driver, 1 = bottom)
-      const driverRect = driver.getBoundingClientRect();
-      const vh = window.innerHeight;
-      // When driverRect.top === vh, progress = 0 (just entered)
-      // When driverRect.bottom === 0, progress = 1 (fully exited)
-      const total = driverRect.height + vh;
-      const elapsed = vh - driverRect.top;
-      return clamp(elapsed / total, 0, 1);
+    // ── Scroll progress [0,1] driven by the driver div ───────────────────
+    function getSpread() {
+      var r   = driver.getBoundingClientRect();
+      var vh  = window.innerHeight;
+      return clamp((vh - r.top) / (r.height + vh));
     }
 
-    function animate() {
-      const p = getScrollProgress();
+    // ── Per-card accent colors (must match HTML data-accent) ─────────────
+    var accentRgb = cards.map(function (c) { return c.getAttribute('data-accent') || '255,255,255'; });
 
-      // Divide [0,1] into TOTAL equal segments, one per card
-      const segSize = 1 / TOTAL;
+    // ── Main animation frame ─────────────────────────────────────────────
+    function frame() {
+      var spread     = getSpread();
+      var seg        = 1 / TOTAL;
+      var anyHovered = hoveredIndex !== null;
 
-      cards.forEach((card, i) => {
-        // Local progress for this card's segment [0,1]
-        const segStart = i * segSize;
-        const segEnd   = (i + 1) * segSize;
-        const localP   = clamp((p - segStart) / segSize, 0, 1);
+      cards.forEach(function (card, i) {
+        var entryStart = i * seg;
+        var entryEnd   = entryStart + seg * 0.55;
+        var exitStart  = entryStart + seg * 0.70;
+        var exitEnd    = entryStart + seg * 1.15;
 
-        let translateY, scale, opacity, zIndex, rotate;
+        var entryT = easeOut(clamp((spread - entryStart) / (entryEnd - entryStart)));
+        var exitT  = (i < TOTAL - 1)
+          ? easeOut(clamp((spread - exitStart) / (exitEnd - exitStart)))
+          : 0;
 
-        if (p < segStart) {
-          // Card hasn't been reached yet — sits in the stack below
-          // Stack offset: each waiting card is slightly lower and smaller
-          const stackDepth = i - Math.floor(p / segSize);
-          translateY = stackDepth * STACK_OFFSET;
-          scale      = 1 - stackDepth * STACK_SCALE;
-          opacity    = stackDepth === 0 ? 1 : Math.max(0, 1 - stackDepth * 0.18);
-          zIndex     = TOTAL - stackDepth;
-          rotate     = 0;
-        } else if (i < TOTAL - 1 && p >= segEnd) {
-          // Card has already been revealed and exited (not the last card)
-          // Fly upward off screen
-          const exitP  = easeOut(clamp((p - segEnd) / segSize, 0, 1));
-          translateY   = lerp(0, -120, exitP);
-          scale        = lerp(1, 0.92, exitP);
-          opacity      = lerp(1, 0, exitP * 2); // fade faster than translate
-          zIndex       = i + 1;
-          rotate       = 0;
-        } else if (i === TOTAL - 1 && p >= segEnd) {
-          // Last card — stays centered forever
-          translateY = 0;
-          scale      = 1;
-          opacity    = 1;
-          zIndex     = TOTAL;
-          rotate     = 0;
+        // Stacked starting positions (all cards just below center)
+        var stackedY     =  20 + i * 6;
+        var stackedRot   = (i - (TOTAL - 1) / 2) * 1.2;
+        var stackedScale = 1 - i * 0.025;
+
+        var baseY   = lerp(stackedY, 0, entryT);
+        var finalYv = lerp(baseY, -780, exitT);
+        var finalRot   = lerp(stackedRot, 0, entryT);
+        var finalScale = lerp(stackedScale, 1, entryT);
+
+        var isHovered = (hoveredIndex === i);
+
+        // Hover modifiers
+        var liftY  = isHovered ? -14 : 0;
+        var sc     = finalScale * (isHovered ? 1.02 : 1);
+        var rot    = isHovered ? 0 : finalRot;
+        var zIdx   = isHovered ? 50 : (TOTAL - i);
+
+        var opacity;
+        if (exitT > 0.05) {
+          opacity = Math.max(0, 1 - exitT * 1.4);
+        } else if (anyHovered && !isHovered) {
+          opacity = 0.55;
         } else {
-          // Active segment — card rises from stack to center
-          const ep   = easeOut(localP);
-          // Rise from stackOffset below to center (0)
-          translateY = lerp(STACK_OFFSET, 0, ep);
-          scale      = lerp(1 - STACK_SCALE, 1, ep);
-          opacity    = lerp(0.75, 1, ep);
-          zIndex     = TOTAL + 1; // on top while animating in
-          rotate     = 0;
+          opacity = 1;
         }
 
-        card.style.transform  = `translate(-50%, calc(-50% + ${translateY}px)) scale(${scale}) rotate(${rotate}deg)`;
-        card.style.opacity    = opacity;
-        card.style.zIndex     = zIndex;
+        card.style.transform = 'translate(-50%, calc(-50% + ' + (finalYv + liftY) + 'px)) rotate(' + rot + 'deg) scale(' + sc + ')';
+        card.style.opacity   = opacity;
+        card.style.zIndex    = zIdx;
+
+        // Hover box-shadow with accent glow
+        var acc = accentRgb[i];
+        if (isHovered) {
+          card.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.15), 0 28px 60px rgba(0,0,0,0.75), 0 0 80px rgba(' + acc + ',0.18)';
+          card.style.borderColor = 'rgba(255,255,255,0.13)';
+        } else {
+          card.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.08), 0 14px 36px rgba(0,0,0,0.55)';
+          card.style.borderColor = '';
+        }
       });
+
+      // Fade in "View all work" CTA after last card settles
+      if (cta) {
+        var lastEntryEnd = (TOTAL - 1) * seg + seg * 0.55;
+        var ctaT = clamp((spread - lastEntryEnd) / 0.15);
+        cta.style.opacity   = ctaT;
+        cta.style.transform = 'translateY(' + lerp(16, 0, ctaT) + 'px)';
+      }
     }
 
-    // Use rAF loop for smooth 60fps
-    let rafId;
-    function onScroll() {
+    var rafId;
+    window.addEventListener('scroll', function () {
       cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(animate);
-    }
+      rafId = requestAnimationFrame(frame);
+    }, { passive: true });
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    animate(); // run once on load
+    frame();
   }
 
   if (document.readyState === 'loading') {
