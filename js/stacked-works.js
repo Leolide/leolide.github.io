@@ -57,6 +57,17 @@
       var seg        = 1 / TOTAL;
       var anyHovered = hoveredIndex !== null;
 
+      // Determine which card is currently centered (active)
+      // Active = entryT is substantially progressed AND exitT is near zero
+      var activeIndex = TOTAL - 1; // default to last card
+      for (var ai = 0; ai < TOTAL - 1; ai++) {
+        var aEntry = easeOut(clamp((spread - ai * seg) / (seg * 0.55)));
+        var aExit  = easeOut(clamp((spread - (ai * seg + seg * 0.70)) / (seg * 0.45)));
+        if (aEntry >= 0.5 && aExit < 0.5) { activeIndex = ai; break; }
+        if (aExit >= 0.5) continue;
+        if (aEntry < 0.5) { activeIndex = ai; break; }
+      }
+
       cards.forEach(function (card, i) {
         var entryStart = i * seg;
         var entryEnd   = entryStart + seg * 0.55;
@@ -78,7 +89,12 @@
         var finalRot   = lerp(stackedRot, 0, entryT);
         var finalScale = lerp(stackedScale, 1, entryT);
 
-        var isHovered = (hoveredIndex === i);
+        // Only the active (centered) card is interactive
+        var isActive  = (i === activeIndex);
+        card.style.pointerEvents = isActive ? 'auto' : 'none';
+        if (!isActive && hoveredIndex === i) { hoveredIndex = null; }
+
+        var isHovered = isActive && (hoveredIndex === i);
 
         // Hover modifiers
         var liftY  = isHovered ? -14 : 0;
