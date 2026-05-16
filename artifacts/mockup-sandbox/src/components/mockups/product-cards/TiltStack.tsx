@@ -357,12 +357,11 @@ export function TiltStack() {
       {/* Top scroll buffer */}
       <div style={{ height: '15vh' }} />
 
-      {/* Section header */}
+      {/* Section header — scrolls away */}
       <div style={{
         textAlign: 'center',
         padding: '0 0 36px',
-        position: 'sticky',
-        top: 28,
+        position: 'relative',
         zIndex: 1,
       }}>
         <p style={{
