@@ -48,7 +48,7 @@
     border-radius: 12px;
     padding: 8px 20px;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 13px;
+    font-size: var(--fs-sm);
     font-weight: 600;
     z-index: 10001;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -103,7 +103,7 @@
     border-radius: 4px;
     padding: 8px 12px;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 11px;
+    font-size: var(--fs-sm);
     color: #000;
     z-index: 10002;
     pointer-events: none;
@@ -125,7 +125,7 @@
 .debug-spacing-tooltip .spacing-label {
     color: #666 !important;
     text-transform: uppercase;
-    font-size: 9px;
+    font-size: var(--fs-sm);
     letter-spacing: 0.5px;
     background: transparent !important;
     outline: none !important;
@@ -134,7 +134,7 @@
 .debug-spacing-tooltip .spacing-value {
     color: #000 !important;
     font-weight: bold;
-    font-size: 11px;
+    font-size: var(--fs-sm);
     background: transparent !important;
     outline: none !important;
 }
@@ -218,7 +218,7 @@
     padding: 2px 6px;
     border-radius: 3px;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 10px;
+    font-size: var(--fs-sm);
     font-weight: bold;
     white-space: nowrap;
     outline: none !important;
@@ -260,7 +260,7 @@
     padding: 2px 6px;
     border-radius: 3px;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 10px;
+    font-size: var(--fs-sm);
     font-weight: bold;
     white-space: nowrap;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);

@@ -65,7 +65,7 @@
     background: transparent;
     border: none;
     color: var(--omnibar-text);
-    font-size: 16px;
+    font-size: var(--fs-base);
     outline: none;
 }
 
@@ -74,7 +74,7 @@
 }
 
 .omnibar-esc {
-    font-size: 10px;
+    font-size: var(--fs-sm);
     background: #333;
     color: #aaa;
     padding: 2px 6px;
@@ -123,7 +123,7 @@
     padding: 12px 24px;
     border-radius: 8px;
     font-family: sans-serif;
-    font-size: 14px;
+    font-size: var(--fs-base);
     font-weight: 500;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transform: translateY(100px);

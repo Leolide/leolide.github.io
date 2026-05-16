@@ -30,7 +30,7 @@
 }
 
 .sw-header-label {
-  font-size: 10px;
+  font-size: var(--fs-sm);
   font-weight: 500;
   color: rgba(255, 255, 255, 0.25);
   letter-spacing: 0.15em;
@@ -40,7 +40,7 @@
 }
 
 .sw-header-title {
-  font-size: clamp(1.5rem, var(--text-size--xlarge), 1.6rem);
+  font-size: var(--fs-xl);
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
   letter-spacing: 0;
@@ -50,7 +50,7 @@
 }
 
 .sw-header-hint {
-  font-size: 12px;
+  font-size: var(--fs-sm);
   color: rgba(255, 255, 255, 0.22);
   font-weight: 300;
   margin: 0;
@@ -453,7 +453,7 @@
 }
 
 .sw-card-date {
-  font-size: 10px;
+  font-size: var(--fs-sm);
   font-weight: 500;
   color: rgba(255, 255, 255, 0.28);
   letter-spacing: 0.1em;
@@ -468,7 +468,7 @@
 }
 
 .sw-card-title {
-  font-size: 15.5px;
+  font-size: var(--fs-base);
   font-weight: 500;
   color: rgba(255, 255, 255, 0.72);
   line-height: 1.48;
@@ -485,7 +485,7 @@
   display: inline-block;
   opacity: 0;
   margin-left: 5px;
-  font-size: 12px;
+  font-size: var(--fs-sm);
   transition: opacity 0.3s ease, transform 0.3s ease;
   transform: translate(-1px, 0);
 }
@@ -496,7 +496,7 @@
 }
 
 .sw-card-desc {
-  font-size: 12.5px;
+  font-size: var(--fs-sm);
   color: rgba(255, 255, 255, 0.32);
   line-height: 1.65;
   margin-bottom: 16px;
@@ -512,7 +512,7 @@
 }
 
 .sw-tag {
-  font-size: 10px;
+  font-size: var(--fs-sm);
   font-weight: 500;
   color: rgba(255, 255, 255, 0.32);
   background: rgba(255, 255, 255, 0.04);
@@ -542,7 +542,7 @@
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.1);
   color: rgba(255,255,255,0.7);
-  font-size: 13px;
+  font-size: var(--fs-sm);
   font-weight: 400;
   font-family: 'Satoshi', 'Inter', sans-serif;
   text-decoration: none;

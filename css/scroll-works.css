@@ -18,7 +18,7 @@
 }
 
 .scroll-works-header h2 {
-    font-size: 1.25rem;
+    font-size: var(--fs-lg);
     font-weight: 500;
     color: #ffffff;
 }
@@ -63,7 +63,7 @@
 }
 
 .title-arrow {
-    font-size: 1.5rem;
+    font-size: var(--fs-xl);
     color: #ffffff;
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -100,7 +100,7 @@
 }
 
 .scroll-content-block h3 {
-    font-size: 1.25rem;
+    font-size: var(--fs-lg);
     font-weight: 500;
     color: #ffffff;
     margin-bottom: 16px;
@@ -112,7 +112,7 @@
 }
 
 .scroll-content-block p {
-    font-size: 1rem;
+    font-size: var(--fs-base);
     color: #cccccc;
     line-height: 1.7;
     max-width: 440px;
@@ -131,7 +131,7 @@
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 20px;
-    font-size: 0.75rem;
+    font-size: var(--fs-sm);
     color: #999999;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
@@ -145,7 +145,7 @@
 }
 
 .scroll-project-meta {
-    font-size: 0.875rem;
+    font-size: var(--fs-base);
     color: #999999;
     margin-bottom: 12px;
     font-weight: 500;
@@ -244,7 +244,7 @@
     }
     
     .scroll-content-block h3 {
-        font-size: 1.5rem;
+        font-size: var(--fs-xl);
     }
     
     .title-arrow {
@@ -271,15 +271,15 @@
     }
     
     .scroll-content-block h3 {
-        font-size: 1.25rem;
+        font-size: var(--fs-lg);
     }
     
     .scroll-content-block p {
-        font-size: 0.9rem;
+        font-size: var(--fs-base);
     }
     
     .scroll-project-tag {
-        font-size: 0.7rem;
+        font-size: var(--fs-sm);
         padding: 4px 10px;
     }
     
@@ -322,20 +322,20 @@
     }
     
     .scroll-content-block h3 {
-        font-size: 2.5rem;
+        font-size: var(--fs-xl);
         margin-bottom: 24px;
         max-width: 550px;
     }
     
     .scroll-content-block p {
-        font-size: 1.1rem;
+        font-size: var(--fs-base);
         max-width: 500px;
         margin-bottom: 32px;
     }
     
     .scroll-project-tag {
         padding: 8px 18px;
-        font-size: 0.85rem;
+        font-size: var(--fs-base);
     }
     
     .macbook.scroll-scale {

@@ -104,13 +104,13 @@
 }
 
 .from-text {
-    font-size: 12px;
+    font-size: var(--fs-sm);
     color: #666;
     margin-bottom: 4px;
 }
 
 .brand-name {
-    font-size: 20px;
+    font-size: var(--fs-lg);
     font-weight: 400;
     color: #1a1a1a;
     font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -118,7 +118,7 @@
 }
 
 .collection-title {
-    font-size: 13px;
+    font-size: var(--fs-sm);
     font-weight: 600;
     color: #1a1a1a;
     margin-bottom: 6px;
@@ -126,7 +126,7 @@
 }
 
 .collection-desc {
-    font-size: 10px;
+    font-size: var(--fs-sm);
     color: #666;
     text-align: center;
     margin-bottom: 12px;
@@ -143,7 +143,7 @@
     border: 1px solid #1a1a1a;
     background: #1a1a1a;
     color: #fff;
-    font-size: 10px;
+    font-size: var(--fs-sm);
     font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -156,7 +156,7 @@
 }
 
 .reply-btn .chevron {
-    font-size: 14px;
+    font-size: var(--fs-base);
     transition: transform 0.2s ease;
 }
 
@@ -200,7 +200,7 @@
     color: #fff;
     padding: 6px 12px;
     border-radius: 4px;
-    font-size: 10px;
+    font-size: var(--fs-sm);
     font-weight: 500;
     white-space: nowrap;
     opacity: 0;
@@ -236,7 +236,7 @@
     color: #fff;
     padding: 4px 8px;
     border-radius: 3px;
-    font-size: 8px;
+    font-size: var(--fs-sm);
     font-weight: 500;
     white-space: nowrap;
     opacity: 0;
@@ -378,7 +378,7 @@
 
 .back-icon {
     color: #fff;
-    font-size: 18px;
+    font-size: var(--fs-lg);
     opacity: 0.9;
     position: absolute;
     left: 12px;
@@ -386,7 +386,7 @@
 
 .header-title {
     color: #fff;
-    font-size: 11px;
+    font-size: var(--fs-sm);
     font-weight: 500;
 }
 
@@ -418,7 +418,7 @@
 }
 
 .content-title {
-    font-size: 8px;
+    font-size: var(--fs-sm);
     font-weight: 600;
     color: #1a1a1a;
     margin-bottom: 8px;
@@ -427,7 +427,7 @@
 }
 
 .content-desc {
-    font-size: 6px;
+    font-size: var(--fs-sm);
     color: #555;
     line-height: 1.5;
     margin-bottom: 6px;
@@ -443,7 +443,7 @@
 }
 
 .quote-text {
-    font-size: 6px;
+    font-size: var(--fs-sm);
     color: #666;
     font-style: normal;
     line-height: 1.4;
@@ -452,7 +452,7 @@
 }
 
 .quote-author {
-    font-size: 6px;
+    font-size: var(--fs-sm);
     color: #444;
     font-style: normal;
     margin-top: 4px;
@@ -468,7 +468,7 @@
     color: #fff;
     border: none;
     border-radius: 4px;
-    font-size: 7px;
+    font-size: var(--fs-sm);
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -484,7 +484,7 @@
 }
 
 .action-btn .chevron {
-    font-size: 8px;
+    font-size: var(--fs-sm);
     transition: transform 0.2s ease;
 }
 
@@ -538,7 +538,7 @@
 }
 
 .project-info h2 {
-    font-size: 24px;
+    font-size: var(--fs-xl);
     font-weight: 500;
     margin-bottom: 12px;
     font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -547,7 +547,7 @@
 }
 
 .project-meta {
-    font-size: 13px;
+    font-size: var(--fs-sm);
     opacity: 0.5;
     margin-bottom: 16px;
     font-weight: 400;
@@ -566,7 +566,7 @@
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 20px;
-    font-size: 11px;
+    font-size: var(--fs-sm);
     color: rgba(255, 255, 255, 0.7);
     letter-spacing: 0.5px;
 }
@@ -628,7 +628,7 @@
 
 .logo {
     padding: 0 16px 16px;
-    font-size: 16px;
+    font-size: var(--fs-base);
     font-weight: 600;
     color: #fafafa;
 }
@@ -644,12 +644,12 @@
     align-items: center;
     gap: 6px;
     color: #71717a;
-    font-size: 9px;
+    font-size: var(--fs-sm);
     margin-bottom: 8px;
 }
 
 .workflow-title-text {
-    font-size: 11px;
+    font-size: var(--fs-sm);
     font-weight: 500;
     color: #fafafa;
 }
@@ -677,7 +677,7 @@
 }
 
 .progress-text {
-    font-size: 9px;
+    font-size: var(--fs-sm);
     color: #71717a;
     white-space: nowrap;
 }
@@ -716,7 +716,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 9px;
+    font-size: var(--fs-sm);
     flex-shrink: 0;
 }
 
@@ -755,7 +755,7 @@
 }
 
 .workflow-content h4 {
-    font-size: 11px;
+    font-size: var(--fs-sm);
     font-weight: 500;
     color: #fafafa;
     margin-bottom: 2px;
@@ -763,7 +763,7 @@
 }
 
 .workflow-content p {
-    font-size: 9px;
+    font-size: var(--fs-sm);
     color: #71717a;
 }
 
@@ -782,7 +782,7 @@
     padding: 12px 16px;
     margin-top: auto;
     color: #71717a;
-    font-size: 11px;
+    font-size: var(--fs-sm);
     border-top: 1px solid #27272a;
 }
 
@@ -819,14 +819,14 @@
 }
 
 .tool-title h1 {
-    font-size: 13px;
+    font-size: var(--fs-sm);
     font-weight: 600;
     color: #fafafa;
     margin-bottom: 2px;
 }
 
 .tool-title p {
-    font-size: 11px;
+    font-size: var(--fs-sm);
     color: #71717a;
 }
 
@@ -844,7 +844,7 @@
     background: rgba(34, 197, 94, 0.15);
     border: 1px solid rgba(34, 197, 94, 0.3);
     border-radius: 6px;
-    font-size: 11px;
+    font-size: var(--fs-sm);
     color: #22c55e;
 }
 
@@ -864,7 +864,7 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
-    font-size: 9px;
+    font-size: var(--fs-sm);
     cursor: pointer;
 }
 
@@ -900,19 +900,19 @@
 }
 
 .view-log-link {
-    font-size: 9px;
+    font-size: var(--fs-sm);
     color: #71717a;
     text-decoration: underline;
     cursor: pointer;
 }
 
 .last-run {
-    font-size: 9px;
+    font-size: var(--fs-sm);
     color: #52525b;
 }
 
 .progress-indicator {
-    font-size: 9px;
+    font-size: var(--fs-sm);
     color: #71717a;
 }
 
@@ -926,7 +926,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: var(--fs-sm);
     letter-spacing: 1px;
 }
 
@@ -940,7 +940,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: var(--fs-sm);
 }
 
 .section {
@@ -959,7 +959,7 @@
 }
 
 .section-label {
-    font-size: 9px;
+    font-size: var(--fs-sm);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -968,7 +968,7 @@
 }
 
 .overview-text {
-    font-size: 11px;
+    font-size: var(--fs-sm);
     line-height: 1.6;
     color: #a1a1aa;
 }
@@ -980,7 +980,7 @@
 }
 
 .config-field label {
-    font-size: 9px;
+    font-size: var(--fs-sm);
     color: #71717a;
     display: block;
     margin-bottom: 4px;
@@ -993,7 +993,7 @@
     border-radius: 6px;
     padding: 8px 10px;
     color: #fafafa;
-    font-size: 11px;
+    font-size: var(--fs-sm);
 }
 
 .file-upload-grid {
@@ -1025,7 +1025,7 @@
     align-items: center;
     justify-content: center;
     color: #71717a;
-    font-size: 12px;
+    font-size: var(--fs-sm);
 }
 
 .file-upload-icon.uploaded {
@@ -1034,14 +1034,14 @@
 }
 
 .file-upload-text h5 {
-    font-size: 11px;
+    font-size: var(--fs-sm);
     font-weight: 500;
     color: #fafafa;
     margin-bottom: 2px;
 }
 
 .file-upload-text p {
-    font-size: 9px;
+    font-size: var(--fs-sm);
     color: #71717a;
 }
 
@@ -1071,20 +1071,20 @@
 }
 
 .debrief-logo {
-    font-size: 18px;
+    font-size: var(--fs-lg);
     font-weight: 600;
     color: #fafafa;
     margin-bottom: 24px;
 }
 
 .debrief-back {
-    font-size: 11px;
+    font-size: var(--fs-sm);
     color: #71717a;
     margin-bottom: 8px;
 }
 
 .debrief-workflow-title {
-    font-size: 13px;
+    font-size: var(--fs-sm);
     font-weight: 500;
     color: #fafafa;
     margin-bottom: 12px;
@@ -1111,7 +1111,7 @@
 }
 
 .debrief-progress-text {
-    font-size: 10px;
+    font-size: var(--fs-sm);
     color: #71717a;
 }
 
@@ -1141,7 +1141,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: var(--fs-sm);
     font-weight: 600;
     background: #27272a;
     color: #71717a;
@@ -1163,14 +1163,14 @@
 }
 
 .debrief-step-title {
-    font-size: 11px;
+    font-size: var(--fs-sm);
     font-weight: 500;
     color: #fafafa;
     margin-bottom: 2px;
 }
 
 .debrief-step-status {
-    font-size: 9px;
+    font-size: var(--fs-sm);
     color: #71717a;
 }
 
@@ -1183,7 +1183,7 @@
 }
 
 .debrief-edit-btn {
-    font-size: 11px;
+    font-size: var(--fs-sm);
     color: #71717a;
     margin-top: auto;
     padding-top: 16px;
@@ -1197,7 +1197,7 @@
 }
 
 .debrief-section-label {
-    font-size: 9px;
+    font-size: var(--fs-sm);
     font-weight: 500;
     color: #71717a;
     letter-spacing: 0.5px;
@@ -1224,13 +1224,13 @@
 }
 
 .debrief-config-label {
-    font-size: 9px;
+    font-size: var(--fs-sm);
     color: #71717a;
     margin-bottom: 4px;
 }
 
 .debrief-config-value {
-    font-size: 12px;
+    font-size: var(--fs-sm);
     color: #fafafa;
     font-weight: 500;
 }
@@ -1261,17 +1261,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: var(--fs-sm);
 }
 
 .debrief-file-name {
-    font-size: 11px;
+    font-size: var(--fs-sm);
     color: #fafafa;
     font-weight: 500;
 }
 
 .debrief-file-path {
-    font-size: 9px;
+    font-size: var(--fs-sm);
     color: #22c55e;
 }
 
@@ -1290,13 +1290,13 @@
 }
 
 .debrief-param-label {
-    font-size: 9px;
+    font-size: var(--fs-sm);
     color: #71717a;
     margin-bottom: 4px;
 }
 
 .debrief-param-value {
-    font-size: 14px;
+    font-size: var(--fs-base);
     color: #fafafa;
     font-weight: 500;
 }
@@ -1324,20 +1324,20 @@
 }
 
 .debrief-code-lang {
-    font-size: 11px;
+    font-size: var(--fs-sm);
     color: #fafafa;
 }
 
 .debrief-auto-debug {
     margin-left: auto;
-    font-size: 10px;
+    font-size: var(--fs-sm);
     color: #a78bfa;
 }
 
 .debrief-code {
     padding: 14px;
     margin: 0;
-    font-size: 9px;
+    font-size: var(--fs-sm);
     line-height: 1.5;
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
     color: #e4e4e7;
