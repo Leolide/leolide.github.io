@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import './_tilt.css';
 
 const PROJECTS = [
@@ -30,11 +30,13 @@ function StackedCard({
   index,
   activeIndex,
   setActiveIndex,
+  scrollProgress,
 }: {
   project: typeof PROJECTS[0];
   index: number;
   activeIndex: number | null;
   setActiveIndex: (i: number | null) => void;
+  scrollProgress: number; // 0 = stacked, 1 = fully spread
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 50, y: 30 });
@@ -50,9 +52,22 @@ function StackedCard({
     });
   };
 
-  // Stacked position: fan-out with visible overlap
-  const stackOffset = (index - 1) * 56;
-  const stackRotation = (index - 1) * 2.5;
+  // Interpolate between stacked and spread positions based on scroll
+  const stackedOffset = (index - 1) * 6; // tight stack
+  const spreadOffset = (index - 1) * 56; // fan out
+  const currentOffset = stackedOffset + (spreadOffset - stackedOffset) * scrollProgress;
+
+  const stackedRotation = (index - 1) * 0.5;
+  const spreadRotation = (index - 1) * 2.5;
+  const currentRotation = stackedRotation + (spreadRotation - stackedRotation) * scrollProgress;
+
+  const stackedScale = 1 - (index) * 0.02;
+  const spreadScale = 1;
+  const currentScale = stackedScale + (spreadScale - stackedScale) * scrollProgress;
+
+  const stackedOpacity = 1 - (index) * 0.1;
+  const spreadOpacity = anyActive && !isActive ? 0.6 : 1;
+  const currentOpacity = stackedOpacity + (spreadOpacity - stackedOpacity) * scrollProgress;
 
   return (
     <div
@@ -60,10 +75,13 @@ function StackedCard({
         position: 'absolute',
         left: '50%',
         top: 0,
-        transform: `translateX(-50%) translateY(${isActive ? -12 : stackOffset}px) rotate(${isActive ? 0 : stackRotation}deg) scale(${isActive ? 1.03 : anyActive && !isActive ? 0.97 : 1})`,
+        transform: `translateX(-50%) translateY(${isActive ? -12 : currentOffset}px) rotate(${isActive ? 0 : currentRotation}deg) scale(${isActive ? 1.03 : currentScale})`,
         zIndex: isActive ? 30 : 10 - index,
         width: isActive ? 720 : 640,
-        transition: 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)',
+        opacity: anyActive ? (isActive ? 1 : 0.6) : currentOpacity,
+        transition: isActive
+          ? 'all 0.5s cubic-bezier(0.23, 1, 0.32, 1)'
+          : 'transform 0.15s linear, opacity 0.15s linear, width 0.5s cubic-bezier(0.23, 1, 0.32, 1)',
         pointerEvents: 'auto',
       }}
       onMouseEnter={() => setActiveIndex(index)}
@@ -81,7 +99,7 @@ function StackedCard({
             ? 'radial-gradient(ellipse at center, rgba(0,0,0,0.7) 0%, transparent 70%)'
             : 'radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, transparent 70%)',
           filter: isActive ? 'blur(30px)' : 'blur(16px)',
-          transition: 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)',
+          transition: 'all 0.5s cubic-bezier(0.23, 1, 0.32, 1)',
           pointerEvents: 'none',
           zIndex: -1,
         }}
@@ -94,7 +112,6 @@ function StackedCard({
         style={{
           ['--mouse-x' as string]: `${mousePos.x}%`,
           ['--mouse-y' as string]: `${mousePos.y}%`,
-          opacity: anyActive && !isActive ? 0.6 : 1,
         }}
       >
         <div className="luminous-overlay" />
@@ -186,6 +203,29 @@ function StackedCard({
 
 export function TiltStack() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = useCallback(() => {
+    if (!sectionRef.current) return;
+    const rect = sectionRef.current.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Calculate progress: 0 when section top hits bottom of viewport
+    // 1 when section center hits viewport center
+    const triggerStart = windowHeight;
+    const triggerEnd = windowHeight * 0.3;
+    const currentPos = rect.top;
+
+    const progress = Math.min(1, Math.max(0, (triggerStart - currentPos) / (triggerStart - triggerEnd)));
+    setScrollProgress(progress);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // initial
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   return (
     <div style={{
@@ -208,12 +248,13 @@ export function TiltStack() {
             color: 'rgba(255,255,255,0.3)', fontSize: 14,
             fontFamily: "'Inter', sans-serif", fontWeight: 300,
           }}>
-            Hover a card to explore.
+            Scroll to reveal. Hover a card to explore.
           </p>
         </div>
 
         {/* Card stack container */}
         <div
+          ref={sectionRef}
           style={{
             position: 'relative',
             height: activeIndex !== null ? 520 : 420,
@@ -230,6 +271,7 @@ export function TiltStack() {
               index={index}
               activeIndex={activeIndex}
               setActiveIndex={setActiveIndex}
+              scrollProgress={scrollProgress}
             />
           ))}
         </div>
