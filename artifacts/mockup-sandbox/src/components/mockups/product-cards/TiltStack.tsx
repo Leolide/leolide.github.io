@@ -9,7 +9,7 @@ const PROJECTS = [
     desc: "Cross-platform clientelling solution enabling personalized lookbooks and recommendations.",
     tags: ["UI/UX Design", "Cross-Platform", "B2B SaaS", "User Research"],
     accent: "rgba(255, 180, 80, 0.12)",
-    accentLine: "rgba(255, 180, 80, 0.6)",
+    accentLine: "rgba(255, 180, 80, 0.7)",
   },
   {
     id: 1,
@@ -18,7 +18,7 @@ const PROJECTS = [
     desc: "Product design for AI-powered workflow automation, enabling researchers to automate complex scientific tasks.",
     tags: ["UI/UX Design", "AI B2B SaaS", "User Research", "LLM"],
     accent: "rgba(100, 180, 255, 0.12)",
-    accentLine: "rgba(100, 180, 255, 0.6)",
+    accentLine: "rgba(100, 180, 255, 0.7)",
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const PROJECTS = [
     desc: "Led the redesign and implementation of a comprehensive design system for the clienteling app.",
     tags: ["Design System", "iOS", "B2B SaaS", "Retail"],
     accent: "rgba(160, 120, 255, 0.12)",
-    accentLine: "rgba(160, 120, 255, 0.6)",
+    accentLine: "rgba(160, 120, 255, 0.7)",
   },
 ];
 
@@ -37,14 +37,14 @@ function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
 }
 
-function easeInOut(t: number) {
-  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+function easeOut(t: number) {
+  return 1 - Math.pow(1 - t, 3);
 }
 
 function Card({
   project,
   index,
-  spread,        // 0 = tightly stacked, 1 = fully spread
+  spread,
   hoveredIndex,
   setHoveredIndex,
 }: {
@@ -68,35 +68,33 @@ function Card({
     });
   };
 
-  // Stacked state: slight fan, each card peeks behind
-  const stackedY    = index * 6;           // peek below
-  const stackedRot  = (index - 1) * 1.2;  // slight fan
-  const stackedScale = 1 - index * 0.025;
-  const stackedZ    = TOTAL - index;
+  // Stacked: cards nearly on top of each other, tiny peek
+  const stackedY = index * 5;
+  const stackedRot = (index - (TOTAL - 1) / 2) * 1.0;
+  const stackedScale = 1 - index * 0.02;
 
-  // Spread state: evenly distributed vertically
-  const gap = 180;
-  const spreadY    = index * gap - (TOTAL - 1) * gap / 2;
-  const spreadRot  = 0;
+  // Spread: evenly spaced vertically
+  const gap = 176;
+  const spreadY = index * gap - ((TOTAL - 1) * gap) / 2;
+  const spreadRot = 0;
   const spreadScale = 1;
-  const spreadZ    = TOTAL - index;
 
-  const t = easeInOut(spread);
+  // Each card fans out at a different scroll window
+  // Card 0: spread 0→0.33, Card 1: 0.25→0.6, Card 2: 0.5→1
+  const cardStart = index * 0.28;
+  const cardEnd = cardStart + 0.5;
+  const cardT = Math.min(1, Math.max(0, (spread - cardStart) / (cardEnd - cardStart)));
+  const t = easeOut(cardT);
 
-  const currentY     = lerp(stackedY, spreadY, t);
-  const currentRot   = lerp(stackedRot, spreadRot, t);
+  const currentY = lerp(stackedY, spreadY, t);
+  const currentRot = lerp(stackedRot, spreadRot, t);
   const currentScale = lerp(stackedScale, spreadScale, t);
 
-  // Hover lift
-  const hoverY = isHovered ? -16 : 0;
-  const hoverScale = isHovered ? 1.025 : 1;
-  const hoverZ = isHovered ? 50 : spreadZ;
-
-  const finalY     = currentY + hoverY;
-  const finalScale = currentScale * hoverScale;
-  const finalRot   = isHovered ? 0 : currentRot;
-  const finalZ     = hoverZ;
-  const finalOpacity = anyHovered && !isHovered ? 0.5 : 1;
+  const finalY = currentY + (isHovered ? -14 : 0);
+  const finalScale = currentScale * (isHovered ? 1.02 : 1);
+  const finalRot = isHovered ? 0 : currentRot;
+  const finalZ = isHovered ? 50 : TOTAL - index;
+  const finalOpacity = anyHovered && !isHovered ? 0.55 : 1;
 
   return (
     <div
@@ -108,10 +106,10 @@ function Card({
         zIndex: finalZ,
         opacity: finalOpacity,
         width: '100%',
-        maxWidth: 700,
+        maxWidth: 680,
         transition: isHovered
           ? 'transform 0.45s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease'
-          : `transform ${spread > 0 && spread < 1 ? '0.05s linear' : '0.45s cubic-bezier(0.23, 1, 0.32, 1)'}, opacity 0.3s ease`,
+          : 'opacity 0.3s ease',
         cursor: 'pointer',
         pointerEvents: 'auto',
       }}
@@ -121,11 +119,11 @@ function Card({
       {/* Floating shadow */}
       <div style={{
         position: 'absolute',
-        bottom: -20,
-        left: '15%',
-        right: '15%',
-        height: 30,
-        background: 'radial-gradient(ellipse, rgba(0,0,0,0.6) 0%, transparent 70%)',
+        bottom: -18,
+        left: '12%',
+        right: '12%',
+        height: 28,
+        background: 'radial-gradient(ellipse, rgba(0,0,0,0.65) 0%, transparent 70%)',
         filter: `blur(${isHovered ? 28 : 14}px)`,
         transition: 'filter 0.45s ease',
         pointerEvents: 'none',
@@ -137,97 +135,96 @@ function Card({
         ref={cardRef}
         onMouseMove={handleMouseMove}
         style={{
-          background: 'linear-gradient(160deg, #141414 0%, #0d0d0d 100%)',
+          background: 'linear-gradient(155deg, #141414 0%, #0d0d0d 100%)',
           borderRadius: 14,
-          border: `1px solid ${isHovered ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.06)'}`,
+          border: `1px solid ${isHovered ? 'rgba(255,255,255,0.13)' : 'rgba(255,255,255,0.06)'}`,
           boxShadow: isHovered
-            ? `inset 0 1px 0 rgba(255,255,255,0.14), 0 32px 64px rgba(0,0,0,0.7), 0 0 80px ${project.accent}`
-            : 'inset 0 1px 0 rgba(255,255,255,0.07), 0 16px 40px rgba(0,0,0,0.5)',
+            ? `inset 0 1px 0 rgba(255,255,255,0.15), 0 28px 60px rgba(0,0,0,0.75), 0 0 70px ${project.accent}`
+            : 'inset 0 1px 0 rgba(255,255,255,0.08), 0 14px 36px rgba(0,0,0,0.55)',
           transition: 'box-shadow 0.45s ease, border-color 0.45s ease',
           overflow: 'hidden',
           position: 'relative',
           display: 'flex',
-          alignItems: 'center',
-          gap: 0,
+          alignItems: 'stretch',
         }}
       >
-        {/* Cursor glow overlay */}
+        {/* Cursor glow */}
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: `radial-gradient(500px circle at ${mouse.x}% ${mouse.y}%, rgba(255,255,255,0.05), transparent 40%)`,
+          background: `radial-gradient(480px circle at ${mouse.x}% ${mouse.y}%, rgba(255,255,255,0.055), transparent 42%)`,
           opacity: isHovered ? 1 : 0,
-          transition: 'opacity 0.3s ease',
+          transition: 'opacity 0.35s ease',
           pointerEvents: 'none',
           zIndex: 10,
           borderRadius: 14,
         }} />
 
-        {/* Text content */}
-        <div style={{ padding: '32px 32px 32px 36px', flex: 1, minWidth: 0, position: 'relative', zIndex: 2 }}>
-          {/* Accent top line */}
+        {/* Text side */}
+        <div style={{ padding: '30px 30px 30px 34px', flex: 1, minWidth: 0, position: 'relative', zIndex: 2 }}>
           <div style={{
-            width: 28,
+            width: 24,
             height: 2,
             background: project.accentLine,
             borderRadius: 2,
-            marginBottom: 16,
-            opacity: isHovered ? 1 : 0.4,
+            marginBottom: 14,
+            opacity: isHovered ? 1 : 0.35,
             transition: 'opacity 0.4s ease',
           }} />
 
           <div style={{
-            fontSize: 11,
+            fontSize: 10,
             fontWeight: 500,
-            color: 'rgba(255,255,255,0.3)',
+            color: 'rgba(255,255,255,0.28)',
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
-            marginBottom: 10,
+            marginBottom: 9,
             fontFamily: "'Inter', sans-serif",
           }}>
             {project.date}
           </div>
 
           <h3 style={{
-            fontSize: 15,
+            fontSize: 14.5,
             fontWeight: 500,
-            color: isHovered ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.75)',
-            lineHeight: 1.45,
-            marginBottom: 12,
+            color: isHovered ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.72)',
+            lineHeight: 1.48,
+            marginBottom: 11,
             fontFamily: "'Inter', sans-serif",
             transition: 'color 0.3s ease',
           }}>
-            {project.title}{' '}
+            {project.title}
             <span style={{
               opacity: isHovered ? 1 : 0,
               display: 'inline-block',
-              transform: `translate(${isHovered ? 2 : -2}px, ${isHovered ? -2 : 0}px)`,
+              marginLeft: 5,
+              transform: `translate(${isHovered ? 2 : -1}px, ${isHovered ? -2 : 0}px)`,
               transition: 'opacity 0.3s ease, transform 0.3s ease',
-              fontSize: 13,
+              fontSize: 12,
             }}>↗</span>
           </h3>
 
           <p style={{
             fontSize: 12,
-            color: 'rgba(255,255,255,0.35)',
+            color: 'rgba(255,255,255,0.32)',
             lineHeight: 1.65,
-            marginBottom: 20,
+            marginBottom: 18,
             fontFamily: "'Inter', sans-serif",
             fontWeight: 300,
           }}>
             {project.desc}
           </p>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
             {project.tags.map(tag => (
               <span key={tag} style={{
                 fontSize: 10,
                 fontWeight: 500,
-                color: 'rgba(255,255,255,0.35)',
+                color: 'rgba(255,255,255,0.32)',
                 background: 'rgba(255,255,255,0.04)',
                 border: '1px solid rgba(255,255,255,0.07)',
                 borderRadius: 100,
-                padding: '4px 10px',
+                padding: '3px 9px',
                 letterSpacing: '0.03em',
                 fontFamily: "'Inter', sans-serif",
               }}>
@@ -239,57 +236,60 @@ function Card({
 
         {/* Mockup panel */}
         <div style={{
-          width: 220,
+          width: 200,
           flexShrink: 0,
-          alignSelf: 'stretch',
-          background: 'rgba(0,0,0,0.4)',
+          background: 'rgba(0,0,0,0.38)',
           borderLeft: '1px solid rgba(255,255,255,0.04)',
           position: 'relative',
           overflow: 'hidden',
         }}>
-          {/* Grid pattern */}
           <div style={{
             position: 'absolute',
             inset: 0,
             backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)
+              linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px)
             `,
-            backgroundSize: '24px 24px',
+            backgroundSize: '22px 22px',
           }} />
 
-          {/* UI chrome lines */}
-          <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', padding: 20, gap: 8, justifyContent: 'center' }}>
-            {[0.18, 0.12, 0.08, 0.06].map((op, i) => (
+          <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', padding: 18, gap: 7, justifyContent: 'center' }}>
+            {[0.16, 0.10, 0.07].map((op, i) => (
               <div key={i} style={{
-                height: i === 0 ? 8 : 5,
-                borderRadius: 4,
+                height: i === 0 ? 7 : 4,
+                borderRadius: 3,
                 background: `rgba(255,255,255,${op})`,
-                width: i === 2 ? '60%' : i === 3 ? '40%' : '100%',
+                width: i === 1 ? '70%' : i === 2 ? '50%' : '100%',
               }} />
             ))}
-            <div style={{ height: 40, borderRadius: 6, background: `${project.accent}`, marginTop: 8, border: `1px solid ${project.accentLine.replace('0.6', '0.2')}` }} />
-            {[0.06, 0.04].map((op, i) => (
+            <div style={{
+              height: 38,
+              borderRadius: 6,
+              background: project.accent,
+              border: `1px solid ${project.accentLine.replace('0.7', '0.15')}`,
+              marginTop: 6,
+            }} />
+            {[0.06, 0.04, 0.04].map((op, i) => (
               <div key={i} style={{
-                height: 5,
-                borderRadius: 4,
+                height: 4,
+                borderRadius: 3,
                 background: `rgba(255,255,255,${op})`,
-                width: i === 1 ? '75%' : '100%',
+                width: i === 1 ? '80%' : i === 2 ? '55%' : '100%',
               }} />
             ))}
           </div>
 
-          {/* Glow from accent */}
+          {/* Accent glow at bottom */}
           <div style={{
             position: 'absolute',
-            bottom: -30,
+            bottom: -24,
             left: '50%',
             transform: 'translateX(-50%)',
-            width: 120,
-            height: 80,
-            background: project.accentLine.replace('0.6', isHovered ? '0.25' : '0.1'),
-            filter: 'blur(40px)',
-            transition: 'background 0.4s ease',
+            width: 110,
+            height: 70,
+            background: project.accentLine.replace('0.7', isHovered ? '0.22' : '0.08'),
+            filter: 'blur(36px)',
+            transition: 'background 0.45s ease',
             borderRadius: '50%',
           }} />
         </div>
@@ -301,183 +301,154 @@ function Card({
 export function TiltStack() {
   const [spread, setSpread] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [phase, setPhase] = useState<'stacking' | 'spreading' | 'hovering' | 'pausing'>('stacking');
-  const [hoverStep, setHoverStep] = useState(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const animRef = useRef<number | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Scroll-driven on non-iframe
+  // Scroll-driven: use the iframe/page's own scroll
   useEffect(() => {
-    const isIframe = window.self !== window.top;
-    if (isIframe) return;
-
-    const scrollEl = document.documentElement;
+    const el = scrollRef.current;
+    if (!el) return;
 
     const onScroll = () => {
-      const section = sectionRef.current;
-      if (!section) return;
-      // Sticky zone: section is 300vh tall, sticky panel stays in middle
-      const rect = section.getBoundingClientRect();
-      const sectionH = section.offsetHeight;
-      const scrolled = -rect.top;
-      const zone = sectionH - window.innerHeight;
-      const t = Math.min(1, Math.max(0, scrolled / zone));
+      const scrollTop = el.scrollTop;
+      const maxScroll = el.scrollHeight - el.clientHeight;
+      // Animate spread over the middle 70% of scroll range
+      const start = maxScroll * 0.08;
+      const end = maxScroll * 0.78;
+      const t = Math.min(1, Math.max(0, (scrollTop - start) / (end - start)));
       setSpread(t);
     };
 
-    window.addEventListener('scroll', onScroll, { passive: true });
+    el.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => el.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Auto-demo loop for iframe
-  useEffect(() => {
-    const isIframe = window.self !== window.top;
-    if (!isIframe) return;
-
-    let s = 0;
-    let dir = 1;
-    let p: typeof phase = 'spreading';
-    let hStep = 0;
-    let hTimeout: ReturnType<typeof setTimeout> | null = null;
-    let pauseTimeout: ReturnType<typeof setTimeout> | null = null;
-
-    const tick = () => {
-      if (p === 'spreading') {
-        s = Math.min(1, s + 0.008);
-        setSpread(s);
-        if (s >= 1) {
-          p = 'hovering';
-          hStep = 0;
-          hTimeout = setTimeout(doHover, 600);
-          return;
-        }
-      } else if (p === 'stacking') {
-        s = Math.max(0, s - 0.01);
-        setSpread(s);
-        if (s <= 0) {
-          p = 'pausing';
-          pauseTimeout = setTimeout(() => { p = 'spreading'; }, 1200);
-          return;
-        }
-      }
-      animRef.current = requestAnimationFrame(tick);
-    };
-
-    const doHover = () => {
-      if (hStep < TOTAL) {
-        setHoveredIndex(hStep);
-        hStep++;
-        hTimeout = setTimeout(() => {
-          setHoveredIndex(null);
-          hTimeout = setTimeout(doHover, 400);
-        }, 1000);
-      } else {
-        setHoveredIndex(null);
-        p = 'stacking';
-        animRef.current = requestAnimationFrame(tick);
-      }
-    };
-
-    animRef.current = requestAnimationFrame(tick);
-
-    return () => {
-      if (animRef.current) cancelAnimationFrame(animRef.current);
-      if (hTimeout) clearTimeout(hTimeout);
-      if (pauseTimeout) clearTimeout(pauseTimeout);
-    };
-  }, []);
-
-  const containerH = 500 + (TOTAL - 1) * 180; // enough room for spread
+  // Tall container height: enough to let scroll drive the full animation
+  const CARD_HEIGHT = 160; // approx card height
+  const SPREAD_RANGE = (TOTAL - 1) * 176 + CARD_HEIGHT; // fully spread height
+  const stickyH = SPREAD_RANGE + 120; // sticky zone height
+  const scrollH = stickyH * 4; // total scroll height gives lots of scroll room
 
   return (
-    <div style={{
-      background: '#000',
-      minHeight: '100vh',
-      fontFamily: "'Inter', sans-serif",
-      position: 'relative',
-      overflow: 'hidden',
-    }}>
-      {/* Subtle grid */}
+    <div
+      ref={scrollRef}
+      style={{
+        height: '100vh',
+        overflowY: 'scroll',
+        background: '#000',
+        fontFamily: "'Inter', sans-serif",
+        position: 'relative',
+        scrollbarWidth: 'none',
+      }}
+    >
+      {/* Subtle grid background */}
       <div style={{
         position: 'fixed',
         inset: 0,
         backgroundImage: `
-          linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)
+          linear-gradient(rgba(255,255,255,0.013) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.013) 1px, transparent 1px)
         `,
         backgroundSize: '50px 50px',
         pointerEvents: 'none',
         zIndex: 0,
       }} />
 
-      {/* Header */}
+      {/* Top scroll buffer */}
+      <div style={{ height: '15vh' }} />
+
+      {/* Section header */}
       <div style={{
         textAlign: 'center',
-        padding: '80px 0 48px',
-        position: 'relative',
-        zIndex: 2,
+        padding: '0 0 36px',
+        position: 'sticky',
+        top: 28,
+        zIndex: 1,
       }}>
         <p style={{
-          fontSize: 11,
+          fontSize: 10,
           fontWeight: 500,
-          color: 'rgba(255,255,255,0.3)',
+          color: 'rgba(255,255,255,0.25)',
           letterSpacing: '0.15em',
           textTransform: 'uppercase',
-          marginBottom: 12,
+          marginBottom: 10,
         }}>
           Selected Works
         </p>
         <h2 style={{
-          fontSize: 'clamp(28px, 4vw, 48px)',
+          fontSize: 'clamp(22px, 3.5vw, 40px)',
           fontWeight: 500,
-          color: 'rgba(255,255,255,0.85)',
+          color: `rgba(255,255,255,${0.4 + spread * 0.45})`,
           letterSpacing: '-0.02em',
           lineHeight: 1.1,
-          margin: '0 0 16px',
+          margin: '0 0 10px',
+          transition: 'color 0.1s ease',
         }}>
           Projects that matter
         </h2>
         <p style={{
-          fontSize: 13,
-          color: 'rgba(255,255,255,0.3)',
+          fontSize: 12,
+          color: `rgba(255,255,255,${0.15 + spread * 0.15})`,
           fontWeight: 300,
+          transition: 'color 0.1s ease',
         }}>
-          {window.self !== window.top ? 'Watch the demo →' : 'Scroll to reveal each project'}
+          Scroll to reveal ↓
         </p>
       </div>
 
-      {/* Card stack area */}
-      <div
-        ref={sectionRef}
-        style={{
+      {/* Sticky card stack */}
+      <div style={{
+        position: 'sticky',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        height: stickyH,
+        zIndex: 2,
+        pointerEvents: 'none',
+      }}>
+        <div style={{
           position: 'relative',
-          zIndex: 2,
-          height: containerH,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: '0 48px',
-        }}
-      >
-        {PROJECTS.map((project, index) => (
-          <Card
-            key={project.id}
-            project={project}
-            index={index}
-            spread={spread}
-            hoveredIndex={hoveredIndex}
-            setHoveredIndex={setHoveredIndex}
-          />
-        ))}
+          height: '100%',
+          maxWidth: 760,
+          margin: '0 auto',
+          padding: '0 32px',
+          pointerEvents: 'auto',
+        }}>
+          {PROJECTS.map((project, index) => (
+            <Card
+              key={project.id}
+              project={project}
+              index={index}
+              spread={spread}
+              hoveredIndex={hoveredIndex}
+              setHoveredIndex={setHoveredIndex}
+            />
+          ))}
+        </div>
       </div>
 
-      {/* Scroll hint (non-iframe) */}
-      {window.self !== window.top ? null : (
-        <div style={{ textAlign: 'center', padding: '48px 0 80px', position: 'relative', zIndex: 2 }}>
-          <div style={{ width: 1, height: 40, background: 'linear-gradient(to bottom, rgba(255,255,255,0.15), transparent)', margin: '0 auto' }} />
-        </div>
-      )}
+      {/* Scroll space that drives the animation */}
+      <div style={{ height: scrollH }} />
+
+      {/* Scroll indicator line */}
+      <div style={{
+        position: 'fixed',
+        right: 20,
+        top: '50%',
+        transform: 'translateY(-50%)',
+        width: 2,
+        height: 80,
+        background: 'rgba(255,255,255,0.06)',
+        borderRadius: 2,
+        zIndex: 10,
+      }}>
+        <div style={{
+          width: '100%',
+          height: `${spread * 100}%`,
+          background: 'rgba(255,255,255,0.25)',
+          borderRadius: 2,
+          transition: 'height 0.05s linear',
+        }} />
+      </div>
     </div>
   );
 }
