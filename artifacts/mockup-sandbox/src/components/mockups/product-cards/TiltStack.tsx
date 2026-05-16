@@ -74,7 +74,7 @@ function Card({
   const stackedScale = 1 - index * 0.02;
 
   // Spread: evenly spaced vertically
-  const gap = 176;
+  const gap = 280;
   const spreadY = index * gap - ((TOTAL - 1) * gap) / 2;
   const spreadRot = 0;
   const spreadScale = 1;
@@ -325,7 +325,7 @@ export function TiltStack() {
 
   // Tall container height: enough to let scroll drive the full animation
   const CARD_HEIGHT = 160; // approx card height
-  const SPREAD_RANGE = (TOTAL - 1) * 176 + CARD_HEIGHT; // fully spread height
+  const SPREAD_RANGE = (TOTAL - 1) * 280 + CARD_HEIGHT; // fully spread height
   const stickyH = SPREAD_RANGE + 120; // sticky zone height
   const scrollH = stickyH * 4; // total scroll height gives lots of scroll room
 
