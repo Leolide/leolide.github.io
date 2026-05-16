@@ -11,13 +11,13 @@ section:has(.footer-wrapper) {
 .footer-top-content {
     display: flex !important;
     flex-direction: column !important;
-    gap: var(--space-lg) !important;
+    gap: 2rem !important;
 }
 
 /* Footer chat text */
 .footer-chat-text {
     text-align: left !important;
-    margin-top: var(--space-xl) !important;
+    margin-top: 4rem !important;
 }
 
 /* Footer email wrapper styling */
@@ -30,7 +30,7 @@ section:has(.footer-wrapper) {
 .footer-email-link-container {
     display: flex !important;
     align-items: center !important;
-    gap: var(--space-sm) !important;
+    gap: 1em !important;
     text-decoration: none !important;
     transition: opacity 0.25s !important;
     color: inherit !important;
@@ -73,7 +73,7 @@ section:has(.footer-wrapper) {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    gap: var(--space-md) !important;
+    gap: 1.5rem !important;
     padding: 0 !important;
 }
 
@@ -140,14 +140,14 @@ section:has(.footer-wrapper) {
     -webkit-backdrop-filter: blur(10px) !important;
     border: none !important;
     border-radius: 0.4rem !important;
-    padding: var(--space-md) !important;
+    padding: 1.5rem !important;
     transition: all 0.3s ease !important;
 }
 
 .works-card-image {
     border-radius: 0.4rem !important;
     overflow: hidden !important;
-    margin-bottom: var(--space-sm) !important;
+    margin-bottom: 1rem !important;
 }
 
 .works-card-image img {
@@ -162,7 +162,7 @@ section:has(.footer-wrapper) {
 .works-card-tittle h2 {
     font-weight: 400 !important;
     color: rgba(255, 255, 255, 0.9) !important;
-    margin-bottom: var(--space-xs) !important;
+    margin-bottom: 0.5rem !important;
 }
 
 /* Card buttons */
@@ -170,7 +170,7 @@ section:has(.footer-wrapper) {
     background: transparent !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
     color: rgba(255, 255, 255, 0.8) !important;
-    padding: 0.75rem var(--space-md) !important;
+    padding: 0.75rem 1.5rem !important;
     border-radius: 0.4rem !important;
     transition: all 0.2s ease !important;
     font-size: var(--fs-base) !important;
@@ -188,7 +188,7 @@ section:has(.footer-wrapper) {
     background: transparent !important;
     border: 1px solid rgba(255, 255, 255, 0.06) !important;
     border-radius: 0 !important;
-    padding: var(--space-lg) !important;
+    padding: 2rem !important;
     transition: all 0.3s ease !important;
     display: flex !important;
     align-items: center !important;
@@ -262,7 +262,7 @@ section:has(.footer-wrapper) {
     
     .footer-chat-text {
         text-align: left !important;
-        margin-top: var(--space-lg) !important;
+        margin-top: 2rem !important;
     }
     
     .footer-email-wrapper {

@@ -1,6 +1,6 @@
 .scroll-works-section {
     padding: 0;
-    margin: 0 var(--space-xl);
+    margin: 0 4em;
     font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
     background: #000000;
     overflow: hidden;
@@ -13,7 +13,7 @@
 }
 
 .scroll-works-header {
-    padding: var(--space-xl) 0 var(--space-lg) 0;
+    padding: 80px 0 30px 0;
     box-sizing: border-box;
 }
 
@@ -26,8 +26,8 @@
 .scroll-works-item {
     display: flex;
     justify-content: space-between;
-    gap: var(--space-xl);
-    padding: var(--space-xl) 0;
+    gap: 60px;
+    padding: 60px 0;
     align-items: center;
     box-sizing: border-box;
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -68,7 +68,7 @@
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease;
     display: inline-block;
-    margin-left: var(--space-xs);
+    margin-left: 8px;
 }
 
 .scroll-works-item:hover .title-arrow {
@@ -79,14 +79,14 @@
 .scroll-works-content {
     flex: 1;
     max-width: 45%;
-    padding-top: var(--space-lg);
+    padding-top: 40px;
 }
 
 .scroll-works-mockup {
     flex: 1;
     max-width: 45%;
     display: flex;
-    gap: var(--space-sm);
+    gap: 20px;
     align-items: center;
     justify-content: center;
 }
@@ -103,12 +103,12 @@
     font-size: var(--fs-lg);
     font-weight: 500;
     color: #ffffff;
-    margin-bottom: var(--space-sm);
+    margin-bottom: 16px;
     line-height: 1.4;
     max-width: 480px;
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
+    gap: 8px;
 }
 
 .scroll-content-block p {
@@ -116,18 +116,18 @@
     color: #cccccc;
     line-height: 1.7;
     max-width: 440px;
-    margin-bottom: var(--space-md);
+    margin-bottom: 24px;
 }
 
 .scroll-project-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-xs);
-    margin-bottom: var(--space-md);
+    gap: 8px;
+    margin-bottom: 24px;
 }
 
 .scroll-project-tag {
-    padding: var(--space-xs) var(--space-sm);
+    padding: 6px 14px;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 20px;
@@ -147,7 +147,7 @@
 .scroll-project-meta {
     font-size: var(--fs-base);
     color: #999999;
-    margin-bottom: var(--space-sm);
+    margin-bottom: 12px;
     font-weight: 500;
     letter-spacing: 0.5px;
 }
@@ -158,7 +158,7 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    gap: var(--space-sm);
+    gap: 20px;
 }
 
 .scroll-mockup-container.debrief-style {
@@ -180,7 +180,7 @@
 .desktop-view {
     background: #fff !important;
     border-radius: 10px;
-    padding: var(--space-sm);
+    padding: 18px 20px;
     width: 260px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     flex-shrink: 0;
@@ -192,21 +192,21 @@
 
 @media (max-width: 1024px) {
     .scroll-works-section {
-        margin: 0 var(--space-lg);
+        margin: 0 2.5em;
     }
     
     .scroll-works-container {
-        padding: 0 var(--space-lg);
+        padding: 0 2.5rem;
     }
     
     .scroll-works-header {
-        padding: var(--space-xl) 0 var(--space-lg);
+        padding: 80px 0 30px;
     }
     
     .scroll-works-item {
         flex-direction: column;
-        gap: var(--space-lg);
-        padding: var(--space-xl) 0;
+        gap: 40px;
+        padding: 60px 0;
     }
     
     .scroll-works-content {
@@ -215,14 +215,14 @@
     
     .scroll-works-mockup {
         max-width: 100%;
-        gap: var(--space-sm);
+        gap: 15px;
     }
 }
 
 
 @media (max-width: 768px) {
     .scroll-works-section {
-        margin: 0 var(--space-md);
+        margin: 0 1.5em;
     }
     
     .scroll-works-container {
@@ -230,17 +230,17 @@
     }
     
     .scroll-works-header {
-        padding: var(--space-xl) 0 var(--space-lg);
+        padding: 60px 0 30px;
     }
     
     .scroll-works-item {
-        gap: var(--space-sm);
-        padding: var(--space-lg) 0;
+        gap: 20px;
+        padding: 40px 0;
     }
     
     .scroll-works-mockup {
         flex-direction: column;
-        gap: var(--space-sm);
+        gap: 20px;
     }
     
     .scroll-content-block h3 {
@@ -254,7 +254,7 @@
 
 @media (max-width: 480px) {
     .scroll-works-section {
-        margin: 0 var(--space-sm);
+        margin: 0 1em;
     }
     
     .scroll-works-container {
@@ -262,12 +262,12 @@
     }
     
     .scroll-works-header {
-        padding: var(--space-lg) 0 var(--space-sm);
+        padding: 40px 0 20px;
     }
     
     .scroll-works-item {
-        padding: var(--space-lg) 0;
-        gap: var(--space-sm);
+        padding: 30px 0;
+        gap: 20px;
     }
     
     .scroll-content-block h3 {
@@ -280,12 +280,12 @@
     
     .scroll-project-tag {
         font-size: var(--fs-sm);
-        padding: var(--space-xs);
+        padding: 4px 10px;
     }
     
     .scroll-works-mockup {
         flex-direction: column;
-        gap: var(--space-sm);
+        gap: 15px;
     }
     
     .title-arrow {
@@ -300,41 +300,41 @@
 
 @media (min-width: 1920px) {
     .scroll-works-section {
-        margin: 0 var(--space-xl);
+        margin: 0 4em;
     }
     
     .scroll-works-container {
         max-width: none;
-        padding: 0 var(--space-xl);
+        padding: 0 4rem;
     }
     
     .scroll-works-header {
-        padding: var(--space-xl) 0 var(--space-xl);
+        padding: 120px 0 60px;
     }
     
     .scroll-works-item {
-        padding: var(--space-xl) 0;
-        gap: var(--space-xl);
+        padding: 100px 0;
+        gap: 100px;
     }
     
     .scroll-content-block {
-        padding-top: var(--space-xl);
+        padding-top: 60px;
     }
     
     .scroll-content-block h3 {
         font-size: var(--fs-xl);
-        margin-bottom: var(--space-md);
+        margin-bottom: 24px;
         max-width: 550px;
     }
     
     .scroll-content-block p {
         font-size: var(--fs-base);
         max-width: 500px;
-        margin-bottom: var(--space-lg);
+        margin-bottom: 32px;
     }
     
     .scroll-project-tag {
-        padding: var(--space-xs) var(--space-sm);
+        padding: 8px 18px;
         font-size: var(--fs-base);
     }
     

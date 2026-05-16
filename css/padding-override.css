@@ -30,16 +30,16 @@
 }
 
 .works-section-enhanced .works-container-inner {
-    padding: var(--space-sm) !important;
-    margin: var(--space-xl) auto;
+    padding: 1em !important;
+    margin: 4em auto;
 }
 
 .works-container-inner {
-    padding: var(--space-sm) !important;
+    padding: 1em !important;
 }
 
 .logo-card-grid {
-    padding: var(--space-sm) !important;
+    padding: 1em !important;
 }
 
 .dt-nav-container {
@@ -49,15 +49,15 @@
 /* Add smaller padding for tablet sizes */
 @media screen and (min-width: 768px) and (max-width: 991px) {
     .works-section-enhanced .works-container-inner {
-        padding: var(--space-lg) !important;
+        padding: 2em !important;
     }
     
     .works-container-inner {
-        padding: var(--space-lg) !important;
+        padding: 2em !important;
     }
     
     .logo-card-grid {
-        padding: var(--space-lg) !important;
+        padding: 2em !important;
     }
 }
 
@@ -65,32 +65,32 @@
 @media screen and (min-width: 992px) {
     /* Selected Works section padding */
     .works-square-wrapper.margin-top {
-        padding-left: var(--space-xl) !important;
-        padding-right: var(--space-xl) !important;
+        padding-left: 4rem !important;
+        padding-right: 4rem !important;
     }
     
     /* Works container inner padding */
     .works-section-enhanced .works-container-inner {
-        padding: var(--space-xl) !important;
+        padding: 4em !important;
     }
     
     .works-container-inner {
-        padding: var(--space-xl) !important;
+        padding: 4em !important;
     }
     
     .logo-card-grid {
-        padding: var(--space-xl) !important;
+        padding: 4em !important;
     }
     
     /* About me section padding */
     .sticky-services {
-        padding-left: var(--space-xl) !important;
-        padding-right: var(--space-xl) !important;
+        padding-left: 4rem !important;
+        padding-right: 4rem !important;
     }
     
     /* Footer card section padding */
     .footer-wrapper {
-        padding-left: var(--space-xl) !important;
-        padding-right: var(--space-xl) !important;
+        padding-left: 4rem !important;
+        padding-right: 4rem !important;
     }
 }
