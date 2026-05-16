@@ -192,11 +192,11 @@
 
 @media (max-width: 1024px) {
     .scroll-works-section {
-        margin: 0 2.5em;
+        margin: 0 var(--space-r40);
     }
     
     .scroll-works-container {
-        padding: 0 2.5rem;
+        padding: 0 var(--space-r40);
     }
     
     .scroll-works-header {

@@ -170,7 +170,7 @@ section:has(.footer-wrapper) {
     background: transparent !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
     color: rgba(255, 255, 255, 0.8) !important;
-    padding: 0.75rem 1.5rem !important;
+    padding: var(--space-r12) 1.5rem !important;
     border-radius: 0.4rem !important;
     transition: all 0.2s ease !important;
     font-size: var(--fs-base) !important;
