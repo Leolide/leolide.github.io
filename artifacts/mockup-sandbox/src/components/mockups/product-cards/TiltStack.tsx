@@ -111,7 +111,7 @@ function Card({
         zIndex: finalZ,
         opacity: finalOpacity,
         width: '100%',
-        maxWidth: 680,
+        maxWidth: 780,
         transition: isHovered
           ? 'transform 0.45s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease'
           : 'opacity 0.3s ease',
@@ -150,14 +150,14 @@ function Card({
           overflow: 'hidden',
           position: 'relative',
           display: 'flex',
-          alignItems: 'stretch',
+          flexDirection: 'column',
         }}
       >
         {/* Cursor glow */}
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: `radial-gradient(480px circle at ${mouse.x}% ${mouse.y}%, rgba(255,255,255,0.055), transparent 42%)`,
+          background: `radial-gradient(600px circle at ${mouse.x}% ${mouse.y}%, rgba(255,255,255,0.05), transparent 40%)`,
           opacity: isHovered ? 1 : 0,
           transition: 'opacity 0.35s ease',
           pointerEvents: 'none',
@@ -165,36 +165,112 @@ function Card({
           borderRadius: 14,
         }} />
 
-        {/* Text side */}
-        <div style={{ padding: '30px 30px 30px 34px', flex: 1, minWidth: 0, position: 'relative', zIndex: 2 }}>
+        {/* Mockup panel — top, full width */}
+        <div style={{
+          width: '100%',
+          height: 260,
+          flexShrink: 0,
+          background: 'rgba(0,0,0,0.45)',
+          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          position: 'relative',
+          overflow: 'hidden',
+        }}>
+          {/* Grid */}
           <div style={{
-            width: 24,
-            height: 2,
-            background: project.accentLine,
-            borderRadius: 2,
-            marginBottom: 14,
-            opacity: isHovered ? 1 : 0.35,
-            transition: 'opacity 0.4s ease',
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)
+            `,
+            backgroundSize: '28px 28px',
           }} />
 
+          {/* UI chrome mockup */}
+          <div style={{ position: 'absolute', inset: 24, display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {/* Top nav bar */}
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 4 }}>
+              {[0.18, 0.12, 0.08].map((op, i) => (
+                <div key={i} style={{ height: 6, borderRadius: 3, background: `rgba(255,255,255,${op})`, width: i === 0 ? 60 : i === 1 ? 40 : 30 }} />
+              ))}
+              <div style={{ flex: 1 }} />
+              <div style={{ width: 24, height: 24, borderRadius: 6, background: project.accent, border: `1px solid ${project.accentLine.replace('0.7','0.2')}` }} />
+            </div>
+
+            {/* Main content area */}
+            <div style={{ display: 'flex', gap: 12, flex: 1 }}>
+              {/* Left column */}
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <div style={{ height: '55%', borderRadius: 8, background: project.accent, border: `1px solid ${project.accentLine.replace('0.7','0.15')}`, position: 'relative', overflow: 'hidden' }}>
+                  <div style={{ position: 'absolute', bottom: 10, left: 10, right: 10, display: 'flex', flexDirection: 'column', gap: 5 }}>
+                    {[0.2, 0.12].map((op, i) => (
+                      <div key={i} style={{ height: 5, borderRadius: 2, background: `rgba(255,255,255,${op})`, width: i === 1 ? '65%' : '100%' }} />
+                    ))}
+                  </div>
+                </div>
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 5 }}>
+                  {[0.1, 0.07, 0.05].map((op, i) => (
+                    <div key={i} style={{ height: 4, borderRadius: 2, background: `rgba(255,255,255,${op})`, width: i === 1 ? '80%' : i === 2 ? '55%' : '100%' }} />
+                  ))}
+                </div>
+              </div>
+              {/* Right column */}
+              <div style={{ width: '38%', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {[1, 0.6, 0.4].map((scale, i) => (
+                  <div key={i} style={{ height: 50, borderRadius: 7, background: `rgba(255,255,255,${0.03 * scale + 0.02})`, border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', padding: '0 10px', gap: 7 }}>
+                    <div style={{ width: 18, height: 18, borderRadius: 4, background: i === 0 ? project.accent : 'rgba(255,255,255,0.05)', flexShrink: 0 }} />
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                      <div style={{ height: 3, borderRadius: 2, background: `rgba(255,255,255,${0.12 - i * 0.03})`, width: '80%' }} />
+                      <div style={{ height: 3, borderRadius: 2, background: `rgba(255,255,255,0.05)`, width: '55%' }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Accent glow */}
           <div style={{
-            fontSize: 10,
-            fontWeight: 500,
-            color: 'rgba(255,255,255,0.28)',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            marginBottom: 9,
-            fontFamily: "'Inter', sans-serif",
-          }}>
-            {project.date}
+            position: 'absolute',
+            bottom: -30,
+            left: '30%',
+            width: 160,
+            height: 80,
+            background: project.accentLine.replace('0.7', isHovered ? '0.2' : '0.07'),
+            filter: 'blur(40px)',
+            transition: 'background 0.45s ease',
+            borderRadius: '50%',
+            pointerEvents: 'none',
+          }} />
+        </div>
+
+        {/* Text content — below image */}
+        <div style={{ padding: '24px 28px 26px', position: 'relative', zIndex: 2 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+            <div style={{
+              width: 20, height: 2,
+              background: project.accentLine,
+              borderRadius: 2,
+              opacity: isHovered ? 1 : 0.35,
+              transition: 'opacity 0.4s ease',
+              flexShrink: 0,
+            }} />
+            <div style={{
+              fontSize: 10, fontWeight: 500,
+              color: 'rgba(255,255,255,0.28)',
+              letterSpacing: '0.1em', textTransform: 'uppercase',
+              fontFamily: "'Inter', sans-serif",
+            }}>
+              {project.date}
+            </div>
           </div>
 
           <h3 style={{
-            fontSize: 14.5,
+            fontSize: 16,
             fontWeight: 500,
-            color: isHovered ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.72)',
-            lineHeight: 1.48,
-            marginBottom: 11,
+            color: isHovered ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.75)',
+            lineHeight: 1.45,
+            marginBottom: 10,
             fontFamily: "'Inter', sans-serif",
             transition: 'color 0.3s ease',
           }}>
@@ -202,34 +278,32 @@ function Card({
             <span style={{
               opacity: isHovered ? 1 : 0,
               display: 'inline-block',
-              marginLeft: 5,
+              marginLeft: 6,
               transform: `translate(${isHovered ? 2 : -1}px, ${isHovered ? -2 : 0}px)`,
               transition: 'opacity 0.3s ease, transform 0.3s ease',
-              fontSize: 12,
+              fontSize: 13,
             }}>↗</span>
           </h3>
 
           <p style={{
-            fontSize: 12,
+            fontSize: 12.5,
             color: 'rgba(255,255,255,0.32)',
             lineHeight: 1.65,
-            marginBottom: 18,
+            marginBottom: 16,
             fontFamily: "'Inter', sans-serif",
             fontWeight: 300,
           }}>
             {project.desc}
           </p>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
             {project.tags.map(tag => (
               <span key={tag} style={{
-                fontSize: 10,
-                fontWeight: 500,
+                fontSize: 10, fontWeight: 500,
                 color: 'rgba(255,255,255,0.32)',
                 background: 'rgba(255,255,255,0.04)',
                 border: '1px solid rgba(255,255,255,0.07)',
-                borderRadius: 100,
-                padding: '3px 9px',
+                borderRadius: 100, padding: '4px 10px',
                 letterSpacing: '0.03em',
                 fontFamily: "'Inter', sans-serif",
               }}>
@@ -237,66 +311,6 @@ function Card({
               </span>
             ))}
           </div>
-        </div>
-
-        {/* Mockup panel */}
-        <div style={{
-          width: 320,
-          flexShrink: 0,
-          background: 'rgba(0,0,0,0.38)',
-          borderLeft: '1px solid rgba(255,255,255,0.04)',
-          position: 'relative',
-          overflow: 'hidden',
-        }}>
-          <div style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px)
-            `,
-            backgroundSize: '22px 22px',
-          }} />
-
-          <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', padding: 18, gap: 7, justifyContent: 'center' }}>
-            {[0.16, 0.10, 0.07].map((op, i) => (
-              <div key={i} style={{
-                height: i === 0 ? 7 : 4,
-                borderRadius: 3,
-                background: `rgba(255,255,255,${op})`,
-                width: i === 1 ? '70%' : i === 2 ? '50%' : '100%',
-              }} />
-            ))}
-            <div style={{
-              height: 38,
-              borderRadius: 6,
-              background: project.accent,
-              border: `1px solid ${project.accentLine.replace('0.7', '0.15')}`,
-              marginTop: 6,
-            }} />
-            {[0.06, 0.04, 0.04].map((op, i) => (
-              <div key={i} style={{
-                height: 4,
-                borderRadius: 3,
-                background: `rgba(255,255,255,${op})`,
-                width: i === 1 ? '80%' : i === 2 ? '55%' : '100%',
-              }} />
-            ))}
-          </div>
-
-          {/* Accent glow at bottom */}
-          <div style={{
-            position: 'absolute',
-            bottom: -24,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: 110,
-            height: 70,
-            background: project.accentLine.replace('0.7', isHovered ? '0.22' : '0.08'),
-            filter: 'blur(36px)',
-            transition: 'background 0.45s ease',
-            borderRadius: '50%',
-          }} />
         </div>
       </div>
     </div>
