@@ -23,10 +23,22 @@
 
 /* ---- Header ---- */
 .sw-header {
-  padding: 80px 40px 44px;
+  padding: 80px 1.5rem 44px;
   text-align: left;
-  max-width: 900px;
-  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .sw-header {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .sw-header {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
 }
 
 .sw-header-label {
