@@ -146,62 +146,136 @@
       </div>
     </div>
   </section>
-  <section id="SelectedWorks" class="stacked-works-section">
-    <div class="stacked-works-header">
+  <section id="SelectedWorks" class="sw-section">
+
+    <!-- Header scrolls away -->
+    <div class="sw-header">
       <h2 class="text-size-xlarge">Selected Works</h2>
-      <p class="stacked-works-subtitle">Scroll to reveal each project. Hover to explore.</p>
     </div>
 
-    <div class="stacked-works-spacer" style="height: 40vh;"></div>
+    <!-- Sticky card stack -->
+    <div class="sw-sticky-zone" id="swStickyZone">
+      <div class="sw-card-stack" id="swCardStack">
 
-    <div class="stacked-cards-wrapper" id="stackedCardsWrapper">
-      <div class="stacked-cards-container" id="stackedCardsContainer">
-        <!-- Card 1: Clientelling App -->
-        <div class="stacked-card" data-index="0">
-          <div class="stacked-card-inner">
-            <div class="stacked-card-content">
-              <div class="stacked-card-meta">2024 Aug - Nov</div>
-              <a href="password-protection.html?redirect=detail_works-with-code.html%3Fproject%3Da-clientelling-app" class="stacked-card-link">
-                <h3>Boosting Sales and Enabling Personalized Customer Experiences <span class="title-arrow">&#8599;</span></h3>
-              </a>
-              <p>Cross-platform clientelling solution enabling personalized lookbooks and recommendations.</p>
-              <div class="stacked-card-tags">
-                <span class="stacked-card-tag">UI/UX Design</span>
-                <span class="stacked-card-tag">Cross-Platform</span>
-                <span class="stacked-card-tag">B2B SaaS</span>
-                <span class="stacked-card-tag">User Research</span>
+        <!-- Card 0: Clientelling App -->
+        <div class="sw-card" data-index="0" data-accent="255,180,80">
+          <div class="sw-card-image">
+            <div class="sw-card-grid"></div>
+            <div class="sw-card-chrome">
+              <div class="sw-chrome-nav">
+                <span class="sw-chrome-dot"></span>
+                <span class="sw-chrome-dot" style="opacity:0.5"></span>
+                <span class="sw-chrome-dot" style="opacity:0.25"></span>
               </div>
+              <iframe src="mockup-test.html" class="sw-mockup-iframe" frameborder="0" scrolling="no"></iframe>
             </div>
-            <div class="stacked-card-mockup">
-              <iframe src="mockup-test.html" class="mockup-iframe clientelling-iframe" frameborder="0" scrolling="no"></iframe>
+            <div class="sw-card-glow" style="--accent: 255,180,80"></div>
+          </div>
+          <div class="sw-card-body">
+            <div class="sw-card-header-row">
+              <span class="sw-accent-line" style="--accent: 255,180,80"></span>
+              <span class="sw-card-date">2024 Aug – Nov</span>
+            </div>
+            <a href="password-protection.html?redirect=detail_works-with-code.html%3Fproject%3Da-clientelling-app" class="sw-card-title-link">
+              <h3 class="sw-card-title">Boosting Sales and Enabling Personalized Customer Experiences <span class="sw-arrow">↗</span></h3>
+            </a>
+            <p class="sw-card-desc">Cross-platform clientelling solution enabling personalized lookbooks and recommendations.</p>
+            <div class="sw-tags">
+              <span class="sw-tag">UI/UX Design</span>
+              <span class="sw-tag">Cross-Platform</span>
+              <span class="sw-tag">B2B SaaS</span>
+              <span class="sw-tag">User Research</span>
             </div>
           </div>
         </div>
-        <!-- Card 2: Debrief AI -->
-        <div class="stacked-card" data-index="1">
-          <div class="stacked-card-inner">
-            <div class="stacked-card-content">
-              <div class="stacked-card-meta">2023 Jan - Jul</div>
-              <a href="password-protection.html?redirect=detail_works-with-code.html%3Fproject%3Ddebrief-ai" class="stacked-card-link">
-                <h3>User-Centric Strategy Pivot for Debrief AI to Secure Investment <span class="title-arrow">&#8599;</span></h3>
-              </a>
-              <p>Product design for AI-powered workflow automation, enabling researchers to automate complex scientific tasks.</p>
-              <div class="stacked-card-tags">
-                <span class="stacked-card-tag">UI/UX Design</span>
-                <span class="stacked-card-tag">AI B2B SaaS</span>
-                <span class="stacked-card-tag">User Research</span>
-                <span class="stacked-card-tag">LLM</span>
+
+        <!-- Card 1: Debrief AI -->
+        <div class="sw-card" data-index="1" data-accent="100,180,255">
+          <div class="sw-card-image">
+            <div class="sw-card-grid"></div>
+            <div class="sw-card-chrome">
+              <div class="sw-chrome-nav">
+                <span class="sw-chrome-dot"></span>
+                <span class="sw-chrome-dot" style="opacity:0.5"></span>
+                <span class="sw-chrome-dot" style="opacity:0.25"></span>
               </div>
+              <iframe src="debrief-mockup.html" class="sw-mockup-iframe" frameborder="0" scrolling="no"></iframe>
             </div>
-            <div class="stacked-card-mockup">
-              <iframe src="debrief-mockup.html" class="mockup-iframe debrief-iframe" frameborder="0" scrolling="no"></iframe>
+            <div class="sw-card-glow" style="--accent: 100,180,255"></div>
+          </div>
+          <div class="sw-card-body">
+            <div class="sw-card-header-row">
+              <span class="sw-accent-line" style="--accent: 100,180,255"></span>
+              <span class="sw-card-date">2023 Jan – Jul</span>
+            </div>
+            <a href="password-protection.html?redirect=detail_works-with-code.html%3Fproject%3Ddebrief-ai" class="sw-card-title-link">
+              <h3 class="sw-card-title">User-Centric Strategy Pivot for Debrief AI to Secure Investment <span class="sw-arrow">↗</span></h3>
+            </a>
+            <p class="sw-card-desc">Product design for AI-powered workflow automation, enabling researchers to automate complex scientific tasks.</p>
+            <div class="sw-tags">
+              <span class="sw-tag">UI/UX Design</span>
+              <span class="sw-tag">AI B2B SaaS</span>
+              <span class="sw-tag">User Research</span>
+              <span class="sw-tag">LLM</span>
             </div>
           </div>
         </div>
+
+        <!-- Card 2: Design System -->
+        <div class="sw-card" data-index="2" data-accent="160,120,255">
+          <div class="sw-card-image">
+            <div class="sw-card-grid"></div>
+            <div class="sw-card-chrome sw-card-chrome--placeholder">
+              <div class="sw-chrome-nav">
+                <span class="sw-chrome-dot"></span>
+                <span class="sw-chrome-dot" style="opacity:0.5"></span>
+                <span class="sw-chrome-dot" style="opacity:0.25"></span>
+              </div>
+              <div class="sw-placeholder-ui" style="--accent: 160,120,255">
+                <div class="sw-placeholder-topbar">
+                  <div class="sw-ph-bar" style="width:60px; opacity:0.18"></div>
+                  <div class="sw-ph-bar" style="width:40px; opacity:0.12"></div>
+                  <div class="sw-ph-bar" style="width:30px; opacity:0.08"></div>
+                  <div style="flex:1"></div>
+                  <div class="sw-ph-dot" style="background: rgba(160,120,255,0.4)"></div>
+                </div>
+                <div class="sw-placeholder-body">
+                  <div class="sw-ph-panel sw-ph-panel--accent"></div>
+                  <div class="sw-ph-sidebar">
+                    <div class="sw-ph-row"></div>
+                    <div class="sw-ph-row" style="width:80%"></div>
+                    <div class="sw-ph-row" style="width:60%"></div>
+                    <div class="sw-ph-chip" style="background: rgba(160,120,255,0.2)"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sw-card-glow" style="--accent: 160,120,255"></div>
+          </div>
+          <div class="sw-card-body">
+            <div class="sw-card-header-row">
+              <span class="sw-accent-line" style="--accent: 160,120,255"></span>
+              <span class="sw-card-date">2024 Feb – Oct</span>
+            </div>
+            <a href="password-protection.html?redirect=detail_works-with-code.html%3Fproject%3Ddesign-system" class="sw-card-title-link">
+              <h3 class="sw-card-title">Establishing a Design System to Drive Education and Efficiency <span class="sw-arrow">↗</span></h3>
+            </a>
+            <p class="sw-card-desc">Led the redesign and implementation of a comprehensive design system for the clienteling app.</p>
+            <div class="sw-tags">
+              <span class="sw-tag">Design System</span>
+              <span class="sw-tag">iOS</span>
+              <span class="sw-tag">B2B SaaS</span>
+              <span class="sw-tag">Retail</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <div class="stacked-works-spacer" style="height: 40vh;"></div>
+    <!-- Scroll driver — height controls animation speed -->
+    <div class="sw-driver" id="swDriver"></div>
+
   </section>
   <section class="section-3">
     <div class="w-layout-blockcontainer container medium w-container">

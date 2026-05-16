@@ -1,108 +1,127 @@
-// Stacked Works - Scroll-driven sequential card reveal with hover interactions
-(function() {
+// Selected Works — Sequential Scroll Stack
+(function () {
   'use strict';
 
-  const section = document.getElementById('SelectedWorks');
-  if (!section) return;
-
-  const cards = Array.from(section.querySelectorAll('.stacked-card'));
-  if (cards.length === 0) return;
-
-  let scrollProgress = 0;
-  let activeIndex = null;
-
-  // Mouse tracking for cursor glow
-  cards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.querySelector('.stacked-card-inner').getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      card.querySelector('.stacked-card-inner').style.setProperty('--mouse-x', x + '%');
-      card.querySelector('.stacked-card-inner').style.setProperty('--mouse-y', y + '%');
-    });
-
-    card.addEventListener('mouseenter', () => {
-      activeIndex = parseInt(card.dataset.index);
-      updateCards();
-    });
-
-    card.addEventListener('mouseleave', () => {
-      activeIndex = null;
-      updateCards();
-    });
-  });
-
-  function getCardProgress(index) {
-    const cardStart = index * 0.25;
-    const cardEnd = cardStart + 0.5;
-    if (scrollProgress <= cardStart) return 0;
-    if (scrollProgress >= cardEnd) return 1;
-    return (scrollProgress - cardStart) / (cardEnd - cardStart);
+  function easeOut(t) {
+    return 1 - Math.pow(1 - t, 3);
   }
 
-  function updateCards() {
-    const totalCards = cards.length;
+  function clamp(v, lo, hi) {
+    return Math.min(Math.max(v, lo), hi);
+  }
 
-    cards.forEach((card, index) => {
-      const progress = getCardProgress(index);
+  function lerp(a, b, t) {
+    return a + (b - a) * t;
+  }
 
-      // Stacked/fanned transforms
-      const stackOffset = (index - (totalCards - 1) / 2) * 4; // base offset in px
-      const stackRotate = (index - (totalCards - 1) / 2) * 1.5; // base rotation in deg
-      const stackScale = 1 - (totalCards - 1 - index) * 0.02;
+  function init() {
+    const section = document.getElementById('SelectedWorks');
+    if (!section) return;
 
-      // Revealed transforms
-      const revealOffset = (index - (totalCards - 1) / 2) * 40;
-      const revealRotate = 0;
-      const revealScale = 1;
+    const cards = Array.from(section.querySelectorAll('.sw-card'));
+    const driver = document.getElementById('swDriver');
+    if (!cards.length || !driver) return;
 
-      // Interpolate
-      const offset = stackOffset + (revealOffset - stackOffset) * progress;
-      const rotate = stackRotate + (revealRotate - stackRotate) * progress;
-      const scale = stackScale + (revealScale - stackScale) * progress;
+    const TOTAL = cards.length;
+    const STACK_OFFSET = 8; // px between stacked cards at rest
+    const STACK_SCALE  = 0.025; // scale step per card in stack
 
-      // Hover override: active card rises to front, straightens, glows
-      let zIndex = index;
-      let shadow = '0 25px 50px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04)';
-      let borderOpacity = 0.06;
+    // Inject cursor glow div into each card
+    cards.forEach(card => {
+      const glow = document.createElement('div');
+      glow.className = 'sw-cursor-glow';
+      card.appendChild(glow);
 
-      if (activeIndex !== null) {
-        if (index === activeIndex) {
-          zIndex = 100;
-          shadow = '0 35px 70px -15px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.15), 0 0 60px rgba(255,255,255,0.04)';
-          borderOpacity = 0.15;
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        glow.style.setProperty('--mx', x + '%');
+        glow.style.setProperty('--my', y + '%');
+      });
+    });
+
+    function getScrollProgress() {
+      // Progress through the driver div (0 = top of driver, 1 = bottom)
+      const driverRect = driver.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // When driverRect.top === vh, progress = 0 (just entered)
+      // When driverRect.bottom === 0, progress = 1 (fully exited)
+      const total = driverRect.height + vh;
+      const elapsed = vh - driverRect.top;
+      return clamp(elapsed / total, 0, 1);
+    }
+
+    function animate() {
+      const p = getScrollProgress();
+
+      // Divide [0,1] into TOTAL equal segments, one per card
+      const segSize = 1 / TOTAL;
+
+      cards.forEach((card, i) => {
+        // Local progress for this card's segment [0,1]
+        const segStart = i * segSize;
+        const segEnd   = (i + 1) * segSize;
+        const localP   = clamp((p - segStart) / segSize, 0, 1);
+
+        let translateY, scale, opacity, zIndex, rotate;
+
+        if (p < segStart) {
+          // Card hasn't been reached yet — sits in the stack below
+          // Stack offset: each waiting card is slightly lower and smaller
+          const stackDepth = i - Math.floor(p / segSize);
+          translateY = stackDepth * STACK_OFFSET;
+          scale      = 1 - stackDepth * STACK_SCALE;
+          opacity    = stackDepth === 0 ? 1 : Math.max(0, 1 - stackDepth * 0.18);
+          zIndex     = TOTAL - stackDepth;
+          rotate     = 0;
+        } else if (i < TOTAL - 1 && p >= segEnd) {
+          // Card has already been revealed and exited (not the last card)
+          // Fly upward off screen
+          const exitP  = easeOut(clamp((p - segEnd) / segSize, 0, 1));
+          translateY   = lerp(0, -120, exitP);
+          scale        = lerp(1, 0.92, exitP);
+          opacity      = lerp(1, 0, exitP * 2); // fade faster than translate
+          zIndex       = i + 1;
+          rotate       = 0;
+        } else if (i === TOTAL - 1 && p >= segEnd) {
+          // Last card — stays centered forever
+          translateY = 0;
+          scale      = 1;
+          opacity    = 1;
+          zIndex     = TOTAL;
+          rotate     = 0;
         } else {
-          zIndex = index;
-          // Dim non-active cards
-          shadow = '0 15px 30px -10px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03)';
+          // Active segment — card rises from stack to center
+          const ep   = easeOut(localP);
+          // Rise from stackOffset below to center (0)
+          translateY = lerp(STACK_OFFSET, 0, ep);
+          scale      = lerp(1 - STACK_SCALE, 1, ep);
+          opacity    = lerp(0.75, 1, ep);
+          zIndex     = TOTAL + 1; // on top while animating in
+          rotate     = 0;
         }
-      }
 
-      card.style.zIndex = zIndex;
-      card.style.transform = `translateY(${offset}px) rotate(${rotate}deg) scale(${scale})`;
-      card.style.boxShadow = shadow;
-      card.querySelector('.stacked-card-inner').style.borderColor = `rgba(255,255,255,${borderOpacity})`;
+        card.style.transform  = `translate(-50%, calc(-50% + ${translateY}px)) scale(${scale}) rotate(${rotate}deg)`;
+        card.style.opacity    = opacity;
+        card.style.zIndex     = zIndex;
+      });
+    }
 
-      // Fade in opacity as it reveals
-      const opacity = 0.3 + progress * 0.7;
-      card.style.opacity = activeIndex !== null && index !== activeIndex ? opacity * 0.5 : opacity;
-    });
+    // Use rAF loop for smooth 60fps
+    let rafId;
+    function onScroll() {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    animate(); // run once on load
   }
 
-  function handleScroll() {
-    const rect = section.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    const start = windowHeight;
-    const end = -rect.height;
-    const current = rect.top;
-
-    const rawProgress = (start - current) / (start - end);
-    scrollProgress = Math.min(1, Math.max(0, rawProgress));
-
-    updateCards();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
   }
-
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll(); // initial state
 })();
