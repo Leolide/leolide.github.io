@@ -456,13 +456,20 @@
 }
 
 @media (max-width: 720px) {
-  .sw-card-stack,
+  .sw-card-stack {
+    max-width: calc(100vw - 24px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .sw-card {
     max-width: calc(100vw - 24px);
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .sw-card-image {
-    height: 400px;
+    height: 360px;
   }
 
   .sw-header {
