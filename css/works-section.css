@@ -7,11 +7,62 @@
    --fs-lg   : 1.25rem  — card titles, subheadings
    --fs-xl   : 1.5rem   — section headings
    ======================================== */
+
+/* ========================================
+   MICRO-SPACING TOKENS  (pixel-based)
+   For tight component internals where the
+   rem scale is too coarse.
+   --space-2  :  2px  — hairline radius, accent lines
+   --space-3  :  3px  — small border-radius
+   --space-4  :  4px  — xs gap, chip margin
+   --space-5  :  5px  — nav dot gap, arrow offset
+   --space-6  :  6px  — tag gap, small radius
+   --space-7  :  7px  — sidebar item gap
+   --space-8  :  8px  — sm gap, cta gap
+   --space-10 : 10px  — base gap, tag padding-x
+   --space-11 : 11px  — pill/chip border-radius
+   --space-12 : 12px  — sm padding, row gap
+   --space-14 : 14px  — insight padding-y
+   --space-16 : 16px  — chrome inset, desc margin
+   --space-20 : 20px  — scene padding, mobile body pad
+   --space-22 : 22px  — card-body padding-top, cta padding-x
+   --space-24 : 24px  — scene padding-x, mobile header pad
+   --space-26 : 26px  — card-body padding-x
+   --space-30 : 30px  — mobile header padding-bottom
+   --space-32 : 32px  — chat bubble height
+   --space-44 : 44px  — header padding-bottom
+   --space-48 : 48px  — cta wrapper bottom offset
+   --space-60 : 60px  — mobile header padding-top
+   --space-80 : 80px  — desktop header padding-top
+   ======================================== */
 :root {
     --fs-sm:   0.75rem;
     --fs-base: 1rem;
     --fs-lg:   1.25rem;
     --fs-xl:   1.5rem;
+
+    --space-2:   2px;
+    --space-3:   3px;
+    --space-4:   4px;
+    --space-5:   5px;
+    --space-6:   6px;
+    --space-7:   7px;
+    --space-8:   8px;
+    --space-10:  10px;
+    --space-11:  11px;
+    --space-12:  12px;
+    --space-14:  14px;
+    --space-16:  16px;
+    --space-20:  20px;
+    --space-22:  22px;
+    --space-24:  24px;
+    --space-26:  26px;
+    --space-30:  30px;
+    --space-32:  32px;
+    --space-44:  44px;
+    --space-48:  48px;
+    --space-60:  60px;
+    --space-80:  80px;
 }
 
 
