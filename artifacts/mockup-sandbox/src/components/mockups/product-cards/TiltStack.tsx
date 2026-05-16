@@ -73,9 +73,9 @@ function Card({
   const stackedRot = (index - (TOTAL - 1) / 2) * 1.0;
   const stackedScale = 1 - index * 0.02;
 
-  // Spread: evenly spaced vertically
+  // Spread: last card anchored at center, others stack above it
   const gap = 280;
-  const spreadY = index * gap - ((TOTAL - 1) * gap) / 2;
+  const spreadY = (index - (TOTAL - 1)) * gap;
   const spreadRot = 0;
   const spreadScale = 1;
 
