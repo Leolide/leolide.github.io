@@ -252,6 +252,12 @@ body {
     height: 120vh !important;
 }
 
+@media screen and (max-width: 768px) {
+    .home-hero {
+        height: 100vh !important;
+    }
+}
+
 /* Prevent the hero section container from clipping the gradient */
 .section:has(.home-hero) {
     overflow: visible !important;
