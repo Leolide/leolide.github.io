@@ -52,7 +52,7 @@
 }
 
 .sw-header-title {
-  font-size: var(--fs-xl);
+  font-size: clamp(1.5rem, var(--text-size--xlarge), 1.6rem);
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
   letter-spacing: 0;
