@@ -17,6 +17,15 @@
     var cta      = document.getElementById('swCTA');
     if (!cards.length || !driver) return;
 
+    /* Mobile images fallback — complements CSS media query */
+    if (window.innerWidth <= 991) {
+      var mobileImages = ['autopilot-mobile.png', 'kit-mobile.png', 'debrief-mobile.png'];
+      cards.forEach(function(card, i) {
+        var img = card.querySelector('.sw-card-image--screenshot');
+        if (img && mobileImages[i]) img.style.backgroundImage = 'url(images/' + mobileImages[i] + ')';
+      });
+    }
+
     var TOTAL = cards.length;
 
     // ── Inject cursor-glow div + hover tracking ──────────────────────────

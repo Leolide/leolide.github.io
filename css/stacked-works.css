@@ -588,7 +588,7 @@ a.sw-card * {
   height: 220vh;
 }
 
-@media (max-width: 720px) {
+@media screen and (max-width: 991px) {
   .sw-card-stack {
     max-width: calc(100vw - 24px);
     margin-left: auto;
@@ -615,15 +615,15 @@ a.sw-card * {
 
   /* Mobile-optimized screenshots */
   .sw-card[data-index="0"] .sw-card-image--screenshot {
-    background-image: url('images/autopilot-mobile.png') !important;
+    background-image: url('../images/autopilot-mobile.png') !important;
     background-position: center center;
   }
   .sw-card[data-index="1"] .sw-card-image--screenshot {
-    background-image: url('images/kit-mobile.png') !important;
+    background-image: url('../images/kit-mobile.png') !important;
     background-position: center center;
   }
   .sw-card[data-index="2"] .sw-card-image--screenshot {
-    background-image: url('images/debrief-mobile.png') !important;
+    background-image: url('../images/debrief-mobile.png') !important;
     background-position: center center;
   }
 }
