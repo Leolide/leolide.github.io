@@ -91,6 +91,13 @@
 }
 
 /* ---- Individual card ---- */
+a.sw-card,
+a.sw-card:hover,
+a.sw-card * {
+  text-decoration: none !important;
+  color: inherit;
+}
+
 .sw-card {
   position: absolute;
   left: 50%;
@@ -471,12 +478,6 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-family: 'Satoshi', 'Inter', sans-serif;
-}
-
-.sw-card-title-link {
-  text-decoration: none;
-  display: block;
-  margin-bottom: 10px;
 }
 
 .sw-card-title {
