@@ -1,200 +1,297 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './_tilt.css';
 
 const PROJECTS = [
   {
-    id: 1,
+    id: 0,
     title: "Boosting Sales and Enabling Personalized Customer Experiences",
-    date: "2024 Aug - Nov",
+    date: "2024 Aug – Nov",
     desc: "Cross-platform clientelling solution enabling personalized lookbooks and recommendations.",
-    tags: ["UI/UX Design", "Cross-Platform", "B2B SaaS", "User Research"]
+    tags: ["UI/UX Design", "Cross-Platform", "B2B SaaS", "User Research"],
+    accent: "rgba(255, 180, 80, 0.12)",
+    accentLine: "rgba(255, 180, 80, 0.6)",
+  },
+  {
+    id: 1,
+    title: "User-Centric Strategy Pivot for Debrief AI to Secure Investment",
+    date: "2023 Jan – Jul",
+    desc: "Product design for AI-powered workflow automation, enabling researchers to automate complex scientific tasks.",
+    tags: ["UI/UX Design", "AI B2B SaaS", "User Research", "LLM"],
+    accent: "rgba(100, 180, 255, 0.12)",
+    accentLine: "rgba(100, 180, 255, 0.6)",
   },
   {
     id: 2,
-    title: "User-Centric Strategy Pivot for Debrief AI to Secure Investment",
-    date: "2023 Jan - Jul",
-    desc: "Product design for AI-powered workflow automation, enabling researchers to automate complex scientific tasks.",
-    tags: ["UI/UX Design", "AI B2B SaaS", "User Research", "LLM"]
-  },
-  {
-    id: 3,
     title: "Establishing a Design System to Drive Education and Efficiency",
-    date: "2024 Feb - Oct",
+    date: "2024 Feb – Oct",
     desc: "Led the redesign and implementation of a comprehensive design system for the clienteling app.",
-    tags: ["Design System", "iOS", "B2B SaaS", "Retail"]
-  }
+    tags: ["Design System", "iOS", "B2B SaaS", "Retail"],
+    accent: "rgba(160, 120, 255, 0.12)",
+    accentLine: "rgba(160, 120, 255, 0.6)",
+  },
 ];
 
-function StackedCard({
+const TOTAL = PROJECTS.length;
+
+function lerp(a: number, b: number, t: number) {
+  return a + (b - a) * t;
+}
+
+function easeInOut(t: number) {
+  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+}
+
+function Card({
   project,
   index,
-  activeIndex,
-  setActiveIndex,
-  revealProgress,
+  spread,        // 0 = tightly stacked, 1 = fully spread
+  hoveredIndex,
+  setHoveredIndex,
 }: {
   project: typeof PROJECTS[0];
   index: number;
-  activeIndex: number | null;
-  setActiveIndex: (i: number | null) => void;
-  revealProgress: number; // 0 = fully stacked, 1 = fully revealed
+  spread: number;
+  hoveredIndex: number | null;
+  setHoveredIndex: (i: number | null) => void;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 50, y: 30 });
-  const isActive = activeIndex === index;
-  const anyActive = activeIndex !== null;
+  const [mouse, setMouse] = useState({ x: 50, y: 40 });
+  const isHovered = hoveredIndex === index;
+  const anyHovered = hoveredIndex !== null;
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: React.MouseEvent) => {
     if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    setMousePos({
-      x: ((e.clientX - rect.left) / rect.width) * 100,
-      y: ((e.clientY - rect.top) / rect.height) * 100,
+    const r = cardRef.current.getBoundingClientRect();
+    setMouse({
+      x: ((e.clientX - r.left) / r.width) * 100,
+      y: ((e.clientY - r.top) / r.height) * 100,
     });
   };
 
-  // Final spread position for this card
-  const spreadOffset = (index - 1) * 56;
-  const spreadRotation = (index - 1) * 2.5;
+  // Stacked state: slight fan, each card peeks behind
+  const stackedY    = index * 6;           // peek below
+  const stackedRot  = (index - 1) * 1.2;  // slight fan
+  const stackedScale = 1 - index * 0.025;
+  const stackedZ    = TOTAL - index;
+
+  // Spread state: evenly distributed vertically
+  const gap = 180;
+  const spreadY    = index * gap - (TOTAL - 1) * gap / 2;
+  const spreadRot  = 0;
   const spreadScale = 1;
-  const spreadOpacity = anyActive && !isActive ? 0.6 : 1;
+  const spreadZ    = TOTAL - index;
 
-  // Stacked position (all cards on top of each other)
-  const stackedOffset = 0;
-  const stackedRotation = (index - 1) * 0.5;
-  const stackedScale = 1 - (index) * 0.02;
-  const stackedOpacity = 1 - (index) * 0.15;
+  const t = easeInOut(spread);
 
-  const currentOffset = stackedOffset + (spreadOffset - stackedOffset) * revealProgress;
-  const currentRotation = stackedRotation + (spreadRotation - stackedRotation) * revealProgress;
-  const currentScale = stackedScale + (spreadScale - stackedScale) * revealProgress;
-  const currentOpacity = stackedOpacity + (spreadOpacity - stackedOpacity) * revealProgress;
+  const currentY     = lerp(stackedY, spreadY, t);
+  const currentRot   = lerp(stackedRot, spreadRot, t);
+  const currentScale = lerp(stackedScale, spreadScale, t);
+
+  // Hover lift
+  const hoverY = isHovered ? -16 : 0;
+  const hoverScale = isHovered ? 1.025 : 1;
+  const hoverZ = isHovered ? 50 : spreadZ;
+
+  const finalY     = currentY + hoverY;
+  const finalScale = currentScale * hoverScale;
+  const finalRot   = isHovered ? 0 : currentRot;
+  const finalZ     = hoverZ;
+  const finalOpacity = anyHovered && !isHovered ? 0.5 : 1;
 
   return (
     <div
       style={{
         position: 'absolute',
         left: '50%',
-        top: 0,
-        transform: `translateX(-50%) translateY(${isActive ? -12 : currentOffset}px) rotate(${isActive ? 0 : currentRotation}deg) scale(${isActive ? 1.03 : currentScale})`,
-        zIndex: isActive ? 30 : 10 - index,
-        width: isActive ? 720 : 640,
-        opacity: anyActive ? (isActive ? 1 : 0.6) : currentOpacity,
-        transition: isActive
-          ? 'all 0.5s cubic-bezier(0.23, 1, 0.32, 1)'
-          : 'transform 0.15s linear, opacity 0.15s linear, width 0.5s cubic-bezier(0.23, 1, 0.32, 1)',
+        top: '50%',
+        transform: `translate(-50%, calc(-50% + ${finalY}px)) rotate(${finalRot}deg) scale(${finalScale})`,
+        zIndex: finalZ,
+        opacity: finalOpacity,
+        width: '100%',
+        maxWidth: 700,
+        transition: isHovered
+          ? 'transform 0.45s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease'
+          : `transform ${spread > 0 && spread < 1 ? '0.05s linear' : '0.45s cubic-bezier(0.23, 1, 0.32, 1)'}, opacity 0.3s ease`,
+        cursor: 'pointer',
         pointerEvents: 'auto',
       }}
-      onMouseEnter={() => setActiveIndex(index)}
-      onMouseLeave={() => setActiveIndex(null)}
+      onMouseEnter={() => setHoveredIndex(index)}
+      onMouseLeave={() => setHoveredIndex(null)}
     >
       {/* Floating shadow */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: isActive ? -30 : -12,
-          left: '10%',
-          right: '10%',
-          height: 40,
-          background: isActive
-            ? 'radial-gradient(ellipse at center, rgba(0,0,0,0.7) 0%, transparent 70%)'
-            : 'radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, transparent 70%)',
-          filter: isActive ? 'blur(30px)' : 'blur(16px)',
-          transition: 'all 0.5s cubic-bezier(0.23, 1, 0.32, 1)',
-          pointerEvents: 'none',
-          zIndex: -1,
-        }}
-      />
+      <div style={{
+        position: 'absolute',
+        bottom: -20,
+        left: '15%',
+        right: '15%',
+        height: 30,
+        background: 'radial-gradient(ellipse, rgba(0,0,0,0.6) 0%, transparent 70%)',
+        filter: `blur(${isHovered ? 28 : 14}px)`,
+        transition: 'filter 0.45s ease',
+        pointerEvents: 'none',
+        zIndex: -1,
+      }} />
 
+      {/* Card surface */}
       <div
         ref={cardRef}
         onMouseMove={handleMouseMove}
-        className="luminous-card"
         style={{
-          ['--mouse-x' as string]: `${mousePos.x}%`,
-          ['--mouse-y' as string]: `${mousePos.y}%`,
+          background: 'linear-gradient(160deg, #141414 0%, #0d0d0d 100%)',
+          borderRadius: 14,
+          border: `1px solid ${isHovered ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.06)'}`,
+          boxShadow: isHovered
+            ? `inset 0 1px 0 rgba(255,255,255,0.14), 0 32px 64px rgba(0,0,0,0.7), 0 0 80px ${project.accent}`
+            : 'inset 0 1px 0 rgba(255,255,255,0.07), 0 16px 40px rgba(0,0,0,0.5)',
+          transition: 'box-shadow 0.45s ease, border-color 0.45s ease',
+          overflow: 'hidden',
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 0,
         }}
       >
-        <div className="luminous-overlay" />
+        {/* Cursor glow overlay */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: `radial-gradient(500px circle at ${mouse.x}% ${mouse.y}%, rgba(255,255,255,0.05), transparent 40%)`,
+          opacity: isHovered ? 1 : 0,
+          transition: 'opacity 0.3s ease',
+          pointerEvents: 'none',
+          zIndex: 10,
+          borderRadius: 14,
+        }} />
 
-        {/* Thumbnail */}
-        <div className="card-thumbnail" style={{ aspectRatio: '16/9' }}>
-          <div
-            style={{
-              position: 'absolute', inset: 0, opacity: 0.04,
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 12v16M12 20h16' stroke='white' stroke-width='0.5' fill='none'/%3E%3C/svg%3E")`,
-              backgroundSize: '40px 40px',
-            }}
-          />
-          <div style={{ position: 'absolute', top: 24, left: 24, display: 'flex', gap: 6 }}>
-            <div className="dot-indicator" />
-            <div className="dot-indicator" style={{ opacity: 0.5 }} />
-            <div className="dot-indicator" style={{ opacity: 0.25 }} />
-          </div>
-          <div
-            style={{
-              position: 'absolute', top: 24, right: 24,
-              width: 28, height: 28,
-              border: '1px solid rgba(255,255,255,0.06)', borderRadius: 6,
-            }}
-          />
-          <div
-            style={{
-              position: 'absolute', bottom: 24, left: '50%', transform: 'translateX(-50%)',
-              width: 100, height: 1,
-              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)',
-            }}
-          />
-          <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div
-              style={{
-                width: 48, height: 48, borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)',
-                boxShadow: '0 0 40px rgba(255,255,255,0.03)',
-              }}
-            />
-          </div>
-          <div
-            style={{
-              position: 'absolute', inset: 0,
-              background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.3) 100%)',
-            }}
-          />
-        </div>
-
-        {/* Content */}
-        <div style={{ padding: 28, position: 'relative', zIndex: 10 }}>
+        {/* Text content */}
+        <div style={{ padding: '32px 32px 32px 36px', flex: 1, minWidth: 0, position: 'relative', zIndex: 2 }}>
+          {/* Accent top line */}
           <div style={{
-            fontSize: 11, fontWeight: 500, color: 'rgba(255,255,255,0.35)',
-            marginBottom: 12, letterSpacing: '0.12em', textTransform: 'uppercase',
+            width: 28,
+            height: 2,
+            background: project.accentLine,
+            borderRadius: 2,
+            marginBottom: 16,
+            opacity: isHovered ? 1 : 0.4,
+            transition: 'opacity 0.4s ease',
+          }} />
+
+          <div style={{
+            fontSize: 11,
+            fontWeight: 500,
+            color: 'rgba(255,255,255,0.3)',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            marginBottom: 10,
             fontFamily: "'Inter', sans-serif",
           }}>
             {project.date}
           </div>
+
           <h3 style={{
-            fontSize: isActive ? 18 : 16, fontWeight: 500, color: 'rgba(255,255,255,0.85)',
-            lineHeight: 1.4, marginBottom: 12, fontFamily: "'Inter', sans-serif",
-            transition: 'font-size 0.4s ease',
+            fontSize: 15,
+            fontWeight: 500,
+            color: isHovered ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.75)',
+            lineHeight: 1.45,
+            marginBottom: 12,
+            fontFamily: "'Inter', sans-serif",
+            transition: 'color 0.3s ease',
           }}>
-            {project.title}
+            {project.title}{' '}
+            <span style={{
+              opacity: isHovered ? 1 : 0,
+              display: 'inline-block',
+              transform: `translate(${isHovered ? 2 : -2}px, ${isHovered ? -2 : 0}px)`,
+              transition: 'opacity 0.3s ease, transform 0.3s ease',
+              fontSize: 13,
+            }}>↗</span>
           </h3>
+
           <p style={{
-            fontSize: 13, color: 'rgba(255,255,255,0.4)',
-            lineHeight: 1.6, marginBottom: 24,
-            fontFamily: "'Inter', sans-serif", fontWeight: 300,
+            fontSize: 12,
+            color: 'rgba(255,255,255,0.35)',
+            lineHeight: 1.65,
+            marginBottom: 20,
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 300,
           }}>
             {project.desc}
           </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-            {project.tags.map((tag) => (
-              <span key={tag} className="skill-tag" style={{
-                padding: '5px 12px', borderRadius: 9999,
-                fontSize: 11, fontWeight: 500, color: 'rgba(255,255,255,0.5)',
-                whiteSpace: 'nowrap', fontFamily: "'Inter', sans-serif",
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+            {project.tags.map(tag => (
+              <span key={tag} style={{
+                fontSize: 10,
+                fontWeight: 500,
+                color: 'rgba(255,255,255,0.35)',
+                background: 'rgba(255,255,255,0.04)',
+                border: '1px solid rgba(255,255,255,0.07)',
+                borderRadius: 100,
+                padding: '4px 10px',
+                letterSpacing: '0.03em',
+                fontFamily: "'Inter', sans-serif",
               }}>
                 {tag}
               </span>
             ))}
           </div>
+        </div>
+
+        {/* Mockup panel */}
+        <div style={{
+          width: 220,
+          flexShrink: 0,
+          alignSelf: 'stretch',
+          background: 'rgba(0,0,0,0.4)',
+          borderLeft: '1px solid rgba(255,255,255,0.04)',
+          position: 'relative',
+          overflow: 'hidden',
+        }}>
+          {/* Grid pattern */}
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)
+            `,
+            backgroundSize: '24px 24px',
+          }} />
+
+          {/* UI chrome lines */}
+          <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', padding: 20, gap: 8, justifyContent: 'center' }}>
+            {[0.18, 0.12, 0.08, 0.06].map((op, i) => (
+              <div key={i} style={{
+                height: i === 0 ? 8 : 5,
+                borderRadius: 4,
+                background: `rgba(255,255,255,${op})`,
+                width: i === 2 ? '60%' : i === 3 ? '40%' : '100%',
+              }} />
+            ))}
+            <div style={{ height: 40, borderRadius: 6, background: `${project.accent}`, marginTop: 8, border: `1px solid ${project.accentLine.replace('0.6', '0.2')}` }} />
+            {[0.06, 0.04].map((op, i) => (
+              <div key={i} style={{
+                height: 5,
+                borderRadius: 4,
+                background: `rgba(255,255,255,${op})`,
+                width: i === 1 ? '75%' : '100%',
+              }} />
+            ))}
+          </div>
+
+          {/* Glow from accent */}
+          <div style={{
+            position: 'absolute',
+            bottom: -30,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 120,
+            height: 80,
+            background: project.accentLine.replace('0.6', isHovered ? '0.25' : '0.1'),
+            filter: 'blur(40px)',
+            transition: 'background 0.4s ease',
+            borderRadius: '50%',
+          }} />
         </div>
       </div>
     </div>
@@ -202,141 +299,185 @@ function StackedCard({
 }
 
 export function TiltStack() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [spread, setSpread] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [phase, setPhase] = useState<'stacking' | 'spreading' | 'hovering' | 'pausing'>('stacking');
+  const [hoverStep, setHoverStep] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const animRef = useRef<number | null>(null);
 
-  const handleScroll = useCallback(() => {
-    if (!sectionRef.current) return;
-    const rect = sectionRef.current.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
+  // Scroll-driven on non-iframe
+  useEffect(() => {
+    const isIframe = window.self !== window.top;
+    if (isIframe) return;
 
-    // Section top enters viewport = start
-    // Section bottom leaves viewport = end
-    const start = windowHeight;
-    const end = -rect.height;
-    const current = rect.top;
+    const scrollEl = document.documentElement;
 
-    const rawProgress = (start - current) / (start - end);
-    const progress = Math.min(1, Math.max(0, rawProgress));
-    setScrollProgress(progress);
+    const onScroll = () => {
+      const section = sectionRef.current;
+      if (!section) return;
+      // Sticky zone: section is 300vh tall, sticky panel stays in middle
+      const rect = section.getBoundingClientRect();
+      const sectionH = section.offsetHeight;
+      const scrolled = -rect.top;
+      const zone = sectionH - window.innerHeight;
+      const t = Math.min(1, Math.max(0, scrolled / zone));
+      setSpread(t);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
-
-  // Auto-demo mode for iframe preview (no scroll events in iframe)
+  // Auto-demo loop for iframe
   useEffect(() => {
     const isIframe = window.self !== window.top;
     if (!isIframe) return;
 
-    let phase = 0; // 0=stacked, 1=spreading, 2=hover cycle, 3=reset
-    let progress = 0;
-    const interval = setInterval(() => {
-      if (phase === 0) {
-        progress += 0.01;
-        if (progress >= 1) { progress = 1; phase = 1; }
-      } else if (phase === 1) {
-        setActiveIndex(0);
-        setTimeout(() => setActiveIndex(1), 1500);
-        setTimeout(() => setActiveIndex(2), 3000);
-        setTimeout(() => { setActiveIndex(null); phase = 2; }, 4500);
-        phase = -1;
-      } else if (phase === 2) {
-        setTimeout(() => { progress = 0; phase = 0; }, 2000);
-        phase = -1;
+    let s = 0;
+    let dir = 1;
+    let p: typeof phase = 'spreading';
+    let hStep = 0;
+    let hTimeout: ReturnType<typeof setTimeout> | null = null;
+    let pauseTimeout: ReturnType<typeof setTimeout> | null = null;
+
+    const tick = () => {
+      if (p === 'spreading') {
+        s = Math.min(1, s + 0.008);
+        setSpread(s);
+        if (s >= 1) {
+          p = 'hovering';
+          hStep = 0;
+          hTimeout = setTimeout(doHover, 600);
+          return;
+        }
+      } else if (p === 'stacking') {
+        s = Math.max(0, s - 0.01);
+        setSpread(s);
+        if (s <= 0) {
+          p = 'pausing';
+          pauseTimeout = setTimeout(() => { p = 'spreading'; }, 1200);
+          return;
+        }
       }
-      setScrollProgress(progress);
-    }, 50);
-    return () => clearInterval(interval);
+      animRef.current = requestAnimationFrame(tick);
+    };
+
+    const doHover = () => {
+      if (hStep < TOTAL) {
+        setHoveredIndex(hStep);
+        hStep++;
+        hTimeout = setTimeout(() => {
+          setHoveredIndex(null);
+          hTimeout = setTimeout(doHover, 400);
+        }, 1000);
+      } else {
+        setHoveredIndex(null);
+        p = 'stacking';
+        animRef.current = requestAnimationFrame(tick);
+      }
+    };
+
+    animRef.current = requestAnimationFrame(tick);
+
+    return () => {
+      if (animRef.current) cancelAnimationFrame(animRef.current);
+      if (hTimeout) clearTimeout(hTimeout);
+      if (pauseTimeout) clearTimeout(pauseTimeout);
+    };
   }, []);
 
-  // Map overall scroll progress to individual card reveal progress
-  // Card 0: 0% - 33%
-  // Card 1: 20% - 66%
-  // Card 2: 40% - 100%
-  const getCardProgress = (index: number) => {
-    const cardStart = index * 0.25;
-    const cardEnd = cardStart + 0.5;
-    if (scrollProgress <= cardStart) return 0;
-    if (scrollProgress >= cardEnd) return 1;
-    return (scrollProgress - cardStart) / (cardEnd - cardStart);
-  };
+  const containerH = 500 + (TOTAL - 1) * 180; // enough room for spread
 
   return (
     <div style={{
-      width: '100%', background: '#000000',
+      background: '#000',
+      minHeight: '100vh',
       fontFamily: "'Inter', sans-serif",
       position: 'relative',
+      overflow: 'hidden',
     }}>
-      <div className="ambient-crosses" />
+      {/* Subtle grid */}
+      <div style={{
+        position: 'fixed',
+        inset: 0,
+        backgroundImage: `
+          linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)
+        `,
+        backgroundSize: '50px 50px',
+        pointerEvents: 'none',
+        zIndex: 0,
+      }} />
 
-      {/* Scrollable spacer to give scroll room */}
-      <div style={{ height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ textAlign: 'center' }}>
-          <p style={{
-            color: 'rgba(255,255,255,0.2)', fontSize: 14,
-            fontFamily: "'Inter', sans-serif", fontWeight: 300,
-            letterSpacing: '0.05em',
-          }}>
-            Scroll down
-          </p>
-          <div style={{
-            width: 1, height: 40,
-            background: 'linear-gradient(to bottom, rgba(255,255,255,0.2), transparent)',
-            margin: '16px auto 0',
-          }} />
-        </div>
+      {/* Header */}
+      <div style={{
+        textAlign: 'center',
+        padding: '80px 0 48px',
+        position: 'relative',
+        zIndex: 2,
+      }}>
+        <p style={{
+          fontSize: 11,
+          fontWeight: 500,
+          color: 'rgba(255,255,255,0.3)',
+          letterSpacing: '0.15em',
+          textTransform: 'uppercase',
+          marginBottom: 12,
+        }}>
+          Selected Works
+        </p>
+        <h2 style={{
+          fontSize: 'clamp(28px, 4vw, 48px)',
+          fontWeight: 500,
+          color: 'rgba(255,255,255,0.85)',
+          letterSpacing: '-0.02em',
+          lineHeight: 1.1,
+          margin: '0 0 16px',
+        }}>
+          Projects that matter
+        </h2>
+        <p style={{
+          fontSize: 13,
+          color: 'rgba(255,255,255,0.3)',
+          fontWeight: 300,
+        }}>
+          {window.self !== window.top ? 'Watch the demo →' : 'Scroll to reveal each project'}
+        </p>
       </div>
 
-      <div style={{ width: '100%', maxWidth: 900, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-        <div style={{ marginBottom: 80, textAlign: 'center' }}>
-          <h2 style={{
-            fontSize: '1.5rem', fontWeight: 500,
-            color: 'rgba(255,255,255,0.85)', marginBottom: 8,
-            letterSpacing: '-0.01em', fontFamily: "'Inter', sans-serif",
-          }}>
-            Selected Works
-          </h2>
-          <p style={{
-            color: 'rgba(255,255,255,0.3)', fontSize: 14,
-            fontFamily: "'Inter', sans-serif", fontWeight: 300,
-          }}>
-            Scroll to reveal each project. Hover to explore.
-          </p>
-        </div>
-
-        {/* Card stack container - tall for scroll */}
-        <div
-          ref={sectionRef}
-          style={{
-            position: 'relative',
-            height: activeIndex !== null ? 520 : 420,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            transition: 'height 0.5s cubic-bezier(0.23, 1, 0.32, 1)',
-            marginBottom: 200,
-          }}
-        >
-          {PROJECTS.map((project, index) => (
-            <StackedCard
-              key={project.id}
-              project={project}
-              index={index}
-              activeIndex={activeIndex}
-              setActiveIndex={setActiveIndex}
-              revealProgress={getCardProgress(index)}
-            />
-          ))}
-        </div>
+      {/* Card stack area */}
+      <div
+        ref={sectionRef}
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          height: containerH,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '0 48px',
+        }}
+      >
+        {PROJECTS.map((project, index) => (
+          <Card
+            key={project.id}
+            project={project}
+            index={index}
+            spread={spread}
+            hoveredIndex={hoveredIndex}
+            setHoveredIndex={setHoveredIndex}
+          />
+        ))}
       </div>
 
-      {/* More scrollable space below */}
-      <div style={{ height: '40vh' }} />
+      {/* Scroll hint (non-iframe) */}
+      {window.self !== window.top ? null : (
+        <div style={{ textAlign: 'center', padding: '48px 0 80px', position: 'relative', zIndex: 2 }}>
+          <div style={{ width: 1, height: 40, background: 'linear-gradient(to bottom, rgba(255,255,255,0.15), transparent)', margin: '0 auto' }} />
+        </div>
+      )}
     </div>
   );
 }
