@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import './_tilt.css';
 
 const PROJECTS = [
@@ -25,93 +25,133 @@ const PROJECTS = [
   }
 ];
 
-function TiltCard({ project }: { project: typeof PROJECTS[0] }) {
+function LuminousCard({ project }: { project: typeof PROJECTS[0] }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [{ rx, ry }, setRot] = useState({ rx: 0, ry: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 50, y: 30 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const cx = rect.width / 2;
-    const cy = rect.height / 2;
-    const rotateY = ((x - cx) / cx) * 15; // Max 15deg
-    const rotateX = ((cy - y) / cy) * 15;
-    
-    setRot({ rx: rotateX, ry: rotateY });
-  };
-
-  const handleMouseEnter = () => setIsHovered(true);
-  
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    setRot({ rx: 0, ry: 0 });
+    setMousePos({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100
+    });
   };
 
   return (
-    <div className="perspective-container flex-1 min-w-[300px] max-w-[400px]">
-      <div
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        className="tilt-card relative flex flex-col h-full rounded-2xl bg-[#111] border border-white/10 overflow-hidden cursor-pointer transition-all duration-200 ease-out hover:border-white/30"
-        style={{
-          transform: isHovered 
-            ? `rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.05, 1.05, 1.05)` 
-            : 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
-          boxShadow: isHovered 
-            ? `0 20px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)` 
-            : '0 4px 20px rgba(0,0,0,0.5)',
-        }}
-      >
-        {/* Shine effect */}
-        <div 
-          className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-20"
+    <div style={{ width: 320, flexShrink: 0 }}>
+      <div style={{ position: 'relative' }}>
+        {/* Ambient shadow */}
+        <div
           style={{
-            background: `radial-gradient(circle at ${isHovered ? `${rx * 5 + 50}% ${ry * 5 + 50}%` : '50% 0%'}, rgba(255,255,255,0.1) 0%, transparent 60%)`,
-            opacity: isHovered ? 1 : 0
+            position: 'absolute',
+            bottom: isHovered ? -20 : -10,
+            left: '8%',
+            right: '8%',
+            height: 30,
+            background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 70%)',
+            filter: isHovered ? 'blur(20px)' : 'blur(14px)',
+            transition: 'all 0.5s cubic-bezier(0.23, 1, 0.32, 1)',
+            pointerEvents: 'none',
+            zIndex: 0,
           }}
         />
 
-        {/* Thumbnail */}
-        <div className="relative aspect-square w-full overflow-hidden bg-[#050505]">
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent mix-blend-overlay" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/[0.03] via-transparent to-transparent" />
-          
-          {/* Decorative elements in thumbnail */}
-          <div className="absolute top-4 left-4 flex gap-1.5">
-            <div className="w-2 h-2 rounded-full bg-white/20" />
-            <div className="w-2 h-2 rounded-full bg-white/20" />
-            <div className="w-2 h-2 rounded-full bg-white/20" />
-          </div>
-        </div>
+        <div
+          ref={cardRef}
+          onMouseMove={handleMouseMove}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => {
+            setIsHovered(false);
+            setMousePos({ x: 50, y: 30 });
+          }}
+          className="luminous-card"
+          style={{
+            ['--mouse-x' as string]: `${mousePos.x}%`,
+            ['--mouse-y' as string]: `${mousePos.y}%`,
+          }}
+        >
+          <div className="luminous-overlay" />
 
-        {/* Content */}
-        <div className="p-6 flex flex-col flex-1 z-10 bg-gradient-to-b from-[#111] to-[#0a0a0a]">
-          <div className="text-xs font-medium text-white/40 mb-3 tracking-wider uppercase">
-            {project.date}
+          {/* Thumbnail */}
+          <div className="card-thumbnail" style={{ aspectRatio: '4/3' }}>
+            <div
+              style={{
+                position: 'absolute', inset: 0, opacity: 0.04,
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 12v16M12 20h16' stroke='white' stroke-width='0.5' fill='none'/%3E%3C/svg%3E")`,
+                backgroundSize: '40px 40px',
+              }}
+            />
+            <div style={{ position: 'absolute', top: 20, left: 20, display: 'flex', gap: 6 }}>
+              <div className="dot-indicator" />
+              <div className="dot-indicator" style={{ opacity: 0.5 }} />
+              <div className="dot-indicator" style={{ opacity: 0.25 }} />
+            </div>
+            <div
+              style={{
+                position: 'absolute', top: 20, right: 20,
+                width: 24, height: 24,
+                border: '1px solid rgba(255,255,255,0.06)', borderRadius: 4,
+              }}
+            />
+            <div
+              style={{
+                position: 'absolute', bottom: 20, left: '50%', transform: 'translateX(-50%)',
+                width: 80, height: 1,
+                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)',
+              }}
+            />
+            <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div
+                style={{
+                  width: 40, height: 40, borderRadius: '50%',
+                  background: 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)',
+                  boxShadow: '0 0 30px rgba(255,255,255,0.03)',
+                }}
+              />
+            </div>
+            <div
+              style={{
+                position: 'absolute', inset: 0,
+                background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.3) 100%)',
+              }}
+            />
           </div>
-          
-          <h3 className="text-xl font-semibold text-white leading-tight mb-3">
-            {project.title}
-          </h3>
-          
-          <p className="text-sm text-white/60 leading-relaxed mb-6 flex-1">
-            {project.desc}
-          </p>
-          
-          <div className="flex flex-wrap gap-2 mt-auto">
-            {project.tags.map((tag) => (
-              <span 
-                key={tag} 
-                className="px-2.5 py-1 rounded-full text-xs font-medium bg-white/5 text-white/70 border border-white/5 whitespace-nowrap"
-              >
-                {tag}
-              </span>
-            ))}
+
+          {/* Content */}
+          <div style={{ padding: 24, position: 'relative', zIndex: 10 }}>
+            <div style={{
+              fontSize: 11, fontWeight: 500, color: 'rgba(255,255,255,0.35)',
+              marginBottom: 12, letterSpacing: '0.12em', textTransform: 'uppercase',
+              fontFamily: "'Inter', sans-serif",
+            }}>
+              {project.date}
+            </div>
+            <h3 style={{
+              fontSize: 15, fontWeight: 500, color: 'rgba(255,255,255,0.85)',
+              lineHeight: 1.4, marginBottom: 12, fontFamily: "'Inter', sans-serif",
+            }}>
+              {project.title}
+            </h3>
+            <p style={{
+              fontSize: 13, color: 'rgba(255,255,255,0.4)',
+              lineHeight: 1.6, marginBottom: 24,
+              fontFamily: "'Inter', sans-serif", fontWeight: 300,
+            }}>
+              {project.desc}
+            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {project.tags.map((tag) => (
+                <span key={tag} className="skill-tag" style={{
+                  padding: '4px 10px', borderRadius: 9999,
+                  fontSize: 11, fontWeight: 500, color: 'rgba(255,255,255,0.5)',
+                  whiteSpace: 'nowrap', fontFamily: "'Inter', sans-serif",
+                }}>
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -121,31 +161,37 @@ function TiltCard({ project }: { project: typeof PROJECTS[0] }) {
 
 export function TiltStack() {
   return (
-    <div className="min-h-screen bg-black w-full flex items-center justify-center p-8 font-sans">
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap');
-        .font-sans { font-family: 'Geist', sans-serif; }
-      `}</style>
-      
-      <div className="w-full max-w-7xl mx-auto">
-        <div className="mb-12">
-          <h2 className="text-3xl font-semibold text-white mb-2 tracking-tight">Selected Works</h2>
-          <p className="text-white/50">Hover to explore projects.</p>
+    <div style={{
+      minHeight: '100vh', width: '100%', background: '#000000',
+      fontFamily: "'Inter', sans-serif",
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      padding: 40, position: 'relative',
+    }}>
+      <div className="ambient-crosses" />
+      <div style={{ width: '100%', maxWidth: 1200, position: 'relative', zIndex: 1 }}>
+        <div style={{ marginBottom: 64 }}>
+          <h2 style={{
+            fontSize: '1.5rem', fontWeight: 500,
+            color: 'rgba(255,255,255,0.85)', marginBottom: 8,
+            letterSpacing: '-0.01em', fontFamily: "'Inter', sans-serif",
+          }}>
+            Selected Works
+          </h2>
+          <p style={{
+            color: 'rgba(255,255,255,0.3)', fontSize: 14,
+            fontFamily: "'Inter', sans-serif", fontWeight: 300,
+          }}>
+            Hover to explore projects.
+          </p>
         </div>
-        
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-0 justify-center items-center perspective-[2000px] lg:-space-x-12">
-          {PROJECTS.map((project, i) => (
-            <div 
-              key={project.id} 
-              className="transition-all duration-300 ease-out hover:z-50 focus-within:z-50"
-              style={{
-                zIndex: PROJECTS.length - i,
-                transform: `scale(${1 - (i * 0.05)})`,
-                transformOrigin: 'left center'
-              }}
-            >
-              <TiltCard project={project} />
-            </div>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 320px)',
+          gap: 40,
+          justifyContent: 'center',
+        }}>
+          {PROJECTS.map((project) => (
+            <LuminousCard key={project.id} project={project} />
           ))}
         </div>
       </div>
