@@ -252,10 +252,16 @@ body {
     height: 120vh !important;
 }
 
+/* Prevent the hero section container from clipping the gradient */
+.section:has(.home-hero) {
+    overflow: visible !important;
+}
+
 /* ========================================
    HERO BOTTOM GRADIENT FADE
    ======================================== */
-.hero-bottom-fade {
+.home-hero::after {
+    content: '';
     position: absolute;
     bottom: 0;
     left: 0;
@@ -263,22 +269,12 @@ body {
     height: 20vh;
     background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0.35) 0%,
+        rgba(0, 0, 0, 0.3) 0%,
         rgba(0, 0, 0, 0.75) 30%,
-        #000 70%
+        #000 100%
     );
     pointer-events: none;
     z-index: 10;
-}
-
-@media screen and (max-width: 767px) {
-    .home-hero {
-        overflow: hidden;
-    }
-
-    .hero-bottom-fade {
-        height: 20vh;
-    }
 }
 
 /* ========================================
