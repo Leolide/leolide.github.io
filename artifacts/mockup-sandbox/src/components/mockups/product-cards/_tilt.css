@@ -2,7 +2,7 @@
 
 .luminous-card {
   position: relative;
-  width: 320px;
+  width: 100%;
   box-sizing: border-box;
   background: linear-gradient(165deg, #111111 0%, #0c0c0c 60%, #080808 100%);
   border: 1px solid rgba(255, 255, 255, 0.05);

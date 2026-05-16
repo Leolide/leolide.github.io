@@ -40,7 +40,7 @@ function LuminousCard({ project }: { project: typeof PROJECTS[0] }) {
   };
 
   return (
-    <div style={{ width: 320, flexShrink: 0 }}>
+    <div style={{ width: '100%', maxWidth: 1000 }}>
       <div style={{ position: 'relative' }}>
         {/* Ambient shadow */}
         <div
@@ -75,7 +75,7 @@ function LuminousCard({ project }: { project: typeof PROJECTS[0] }) {
           <div className="luminous-overlay" />
 
           {/* Thumbnail */}
-          <div className="card-thumbnail" style={{ aspectRatio: '4/3' }}>
+          <div className="card-thumbnail" style={{ aspectRatio: '16/9' }}>
             <div
               style={{
                 position: 'absolute', inset: 0, opacity: 0.04,
@@ -185,10 +185,10 @@ export function TiltStack() {
           </p>
         </div>
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 320px)',
-          gap: 40,
-          justifyContent: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 56,
         }}>
           {PROJECTS.map((project) => (
             <LuminousCard key={project.id} project={project} />
