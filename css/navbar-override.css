@@ -12,11 +12,28 @@
    --fs-lg   : 1.25rem  — card titles, subheadings
    --fs-xl   : 1.5rem   — section headings
    ======================================== */
+
+/* ========================================
+   SPACING SCALE TOKENS (canonical source: css/works-section.css)
+   Mirrored here for the same reason as the type scale above.
+   --space-xs : 0.5rem  — small gaps, tag padding, tiny margins
+   --space-sm : 1rem    — inner padding, small margins
+   --space-md : 1.5rem  — card content padding, component gaps
+   --space-lg : 2rem    — grid gaps, container margins
+   --space-xl : 4rem    — large section padding, page-level margins
+   ======================================== */
 :root {
     --fs-sm:   0.75rem;
     --fs-base: 1rem;
     --fs-lg:   1.25rem;
     --fs-xl:   1.5rem;
+
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-2xl: 3rem;
+    --space-xl: 4rem;
 }
 
 /* ========================================
@@ -37,7 +54,7 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
     
     /* Full width positioning */
-    padding: 1rem 2rem;
+    padding: var(--space-sm) var(--space-lg);
     width: 100% !important;
     max-width: none;
     min-width: auto;
@@ -135,7 +152,7 @@
     background: transparent !important;
     
     /* Minimal styling */
-    padding: 0.5rem 1rem !important;
+    padding: var(--space-xs) var(--space-sm) !important;
     border-radius: 0 !important;
     letter-spacing: 0 !important;
     line-height: 1.5 !important;
