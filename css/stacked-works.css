@@ -144,6 +144,126 @@
   overflow: hidden;
 }
 
+/* ---- Placeholder scene (replaces real images) ---- */
+.sw-ph-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px 16px;
+  gap: 12px;
+}
+
+.sw-ph-topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.sw-ph-body {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  overflow: hidden;
+}
+
+.sw-ph-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.12);
+}
+
+.sw-ph-chip {
+  height: 22px;
+  width: 60px;
+  border-radius: 11px;
+  flex-shrink: 0;
+}
+
+/* Kanban columns (Palantir card) */
+.sw-ph-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 130px;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.sw-ph-kanban {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+}
+
+.sw-ph-col {
+  flex: 1;
+  border-radius: 8px;
+  background: rgba(var(--c), 0.08);
+  border: 1px solid rgba(var(--c), 0.15);
+  min-height: 120px;
+}
+
+/* Gallery (Clientelling card) */
+.sw-ph-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 52%;
+  flex-shrink: 0;
+}
+
+.sw-ph-img {
+  flex: 1;
+  border-radius: 6px;
+  background: rgba(var(--c), 0.1);
+  border: 1px solid rgba(var(--c), 0.18);
+}
+
+.sw-ph-rows {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+/* Chat bubbles (Debrief card) */
+.sw-ph-chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.sw-ph-bubble {
+  height: 32px;
+  width: 70%;
+  border-radius: 12px;
+  background: rgba(var(--c), 0.1);
+  border: 1px solid rgba(var(--c), 0.2);
+}
+
+.sw-ph-bubble--out {
+  align-self: flex-end;
+  background: rgba(var(--c), 0.18);
+}
+
+.sw-ph-insight {
+  width: 38%;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(var(--c), 0.2);
+  background: rgba(var(--c), 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 12px;
+}
+
 /* Screenshot variant — shows a real image instead of chrome/iframe */
 .sw-card-image--screenshot {
   background-size: cover;
