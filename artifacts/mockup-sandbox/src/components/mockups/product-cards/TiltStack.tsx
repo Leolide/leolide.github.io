@@ -30,13 +30,13 @@ function StackedCard({
   index,
   activeIndex,
   setActiveIndex,
-  scrollProgress,
+  revealProgress,
 }: {
   project: typeof PROJECTS[0];
   index: number;
   activeIndex: number | null;
   setActiveIndex: (i: number | null) => void;
-  scrollProgress: number; // 0 = stacked, 1 = fully spread
+  revealProgress: number; // 0 = fully stacked, 1 = fully revealed
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 50, y: 30 });
@@ -52,22 +52,22 @@ function StackedCard({
     });
   };
 
-  // Interpolate between stacked and spread positions based on scroll
-  const stackedOffset = (index - 1) * 6; // tight stack
-  const spreadOffset = (index - 1) * 56; // fan out
-  const currentOffset = stackedOffset + (spreadOffset - stackedOffset) * scrollProgress;
-
-  const stackedRotation = (index - 1) * 0.5;
+  // Final spread position for this card
+  const spreadOffset = (index - 1) * 56;
   const spreadRotation = (index - 1) * 2.5;
-  const currentRotation = stackedRotation + (spreadRotation - stackedRotation) * scrollProgress;
-
-  const stackedScale = 1 - (index) * 0.02;
   const spreadScale = 1;
-  const currentScale = stackedScale + (spreadScale - stackedScale) * scrollProgress;
-
-  const stackedOpacity = 1 - (index) * 0.1;
   const spreadOpacity = anyActive && !isActive ? 0.6 : 1;
-  const currentOpacity = stackedOpacity + (spreadOpacity - stackedOpacity) * scrollProgress;
+
+  // Stacked position (all cards on top of each other)
+  const stackedOffset = 0;
+  const stackedRotation = (index - 1) * 0.5;
+  const stackedScale = 1 - (index) * 0.02;
+  const stackedOpacity = 1 - (index) * 0.15;
+
+  const currentOffset = stackedOffset + (spreadOffset - stackedOffset) * revealProgress;
+  const currentRotation = stackedRotation + (spreadRotation - stackedRotation) * revealProgress;
+  const currentScale = stackedScale + (spreadScale - stackedScale) * revealProgress;
+  const currentOpacity = stackedOpacity + (spreadOpacity - stackedOpacity) * revealProgress;
 
   return (
     <div
@@ -211,31 +211,62 @@ export function TiltStack() {
     const rect = sectionRef.current.getBoundingClientRect();
     const windowHeight = window.innerHeight;
 
-    // Calculate progress: 0 when section top hits bottom of viewport
-    // 1 when section center hits viewport center
-    const triggerStart = windowHeight;
-    const triggerEnd = windowHeight * 0.3;
-    const currentPos = rect.top;
+    // Section top enters viewport = start
+    // Section bottom leaves viewport = end
+    const start = windowHeight;
+    const end = -rect.height;
+    const current = rect.top;
 
-    const progress = Math.min(1, Math.max(0, (triggerStart - currentPos) / (triggerStart - triggerEnd)));
+    const rawProgress = (start - current) / (start - end);
+    const progress = Math.min(1, Math.max(0, rawProgress));
     setScrollProgress(progress);
   }, []);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // initial
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
+  // Map overall scroll progress to individual card reveal progress
+  // Card 0: 0% - 33%
+  // Card 1: 20% - 66%
+  // Card 2: 40% - 100%
+  const getCardProgress = (index: number) => {
+    const cardStart = index * 0.25;
+    const cardEnd = cardStart + 0.5;
+    if (scrollProgress <= cardStart) return 0;
+    if (scrollProgress >= cardEnd) return 1;
+    return (scrollProgress - cardStart) / (cardEnd - cardStart);
+  };
+
   return (
     <div style={{
-      minHeight: '100vh', width: '100%', background: '#000000',
+      width: '100%', background: '#000000',
       fontFamily: "'Inter', sans-serif",
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      padding: '80px 40px', position: 'relative',
+      position: 'relative',
     }}>
       <div className="ambient-crosses" />
-      <div style={{ width: '100%', maxWidth: 900, position: 'relative', zIndex: 1 }}>
+
+      {/* Scrollable spacer to give scroll room */}
+      <div style={{ height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ textAlign: 'center' }}>
+          <p style={{
+            color: 'rgba(255,255,255,0.2)', fontSize: 14,
+            fontFamily: "'Inter', sans-serif", fontWeight: 300,
+            letterSpacing: '0.05em',
+          }}>
+            Scroll down
+          </p>
+          <div style={{
+            width: 1, height: 40,
+            background: 'linear-gradient(to bottom, rgba(255,255,255,0.2), transparent)',
+            margin: '16px auto 0',
+          }} />
+        </div>
+      </div>
+
+      <div style={{ width: '100%', maxWidth: 900, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <div style={{ marginBottom: 80, textAlign: 'center' }}>
           <h2 style={{
             fontSize: '1.5rem', fontWeight: 500,
@@ -248,11 +279,11 @@ export function TiltStack() {
             color: 'rgba(255,255,255,0.3)', fontSize: 14,
             fontFamily: "'Inter', sans-serif", fontWeight: 300,
           }}>
-            Scroll to reveal. Hover a card to explore.
+            Scroll to reveal each project. Hover to explore.
           </p>
         </div>
 
-        {/* Card stack container */}
+        {/* Card stack container - tall for scroll */}
         <div
           ref={sectionRef}
           style={{
@@ -262,6 +293,7 @@ export function TiltStack() {
             justifyContent: 'center',
             alignItems: 'center',
             transition: 'height 0.5s cubic-bezier(0.23, 1, 0.32, 1)',
+            marginBottom: 200,
           }}
         >
           {PROJECTS.map((project, index) => (
@@ -271,11 +303,14 @@ export function TiltStack() {
               index={index}
               activeIndex={activeIndex}
               setActiveIndex={setActiveIndex}
-              scrollProgress={scrollProgress}
+              revealProgress={getCardProgress(index)}
             />
           ))}
         </div>
       </div>
+
+      {/* More scrollable space below */}
+      <div style={{ height: '40vh' }} />
     </div>
   );
 }
