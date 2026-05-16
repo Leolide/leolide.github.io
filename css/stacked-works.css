@@ -40,13 +40,13 @@
 }
 
 .sw-header-title {
-  font-size: clamp(26px, 4vw, 44px);
+  font-size: clamp(1.5rem, var(--text-size--xlarge), 1.6rem);
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  letter-spacing: 0;
+  line-height: 1.25;
   margin: 0 0 12px;
-  font-family: 'Satoshi', 'Inter', sans-serif;
+  font-family: inherit;
 }
 
 .sw-header-hint {
@@ -54,7 +54,7 @@
   color: rgba(255, 255, 255, 0.22);
   font-weight: 300;
   margin: 0;
-  font-family: 'Satoshi', 'Inter', sans-serif;
+  font-family: inherit;
 }
 
 /* ---- Sticky zone ---- */
@@ -72,8 +72,8 @@
 /* ---- Card stack ---- */
 .sw-card-stack {
   position: relative;
-  width: 100%;
-  max-width: 1000px;
+  width: calc(100% - 80px);
+  max-width: 840px;
   height: 100vh;
   pointer-events: none;
 }
@@ -85,7 +85,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  max-width: 1000px;
+  max-width: 840px;
   border-radius: 16px;
   background: linear-gradient(165deg, #1c1c1e 0%, #141414 100%);
   border: 1px solid rgba(255, 255, 255, 0.07);
