@@ -35,17 +35,6 @@
    --space-60 : 60px  — mobile header padding-top
    --space-80 : 80px  — desktop header padding-top
    ======================================== */
-
-/* ========================================
-   REM-BASED SPACING TOKENS
-   Used where layout rhythm needs to scale
-   with the root font size rather than stay
-   fixed in pixels.
-   --space-r4  : 0.25rem — tag padding-y (quarter-base step)
-   --space-r12 : 0.75rem — date margin, tag gap margin, button pad-y
-   --space-r20 : 1.25rem — card body padding at 768 px breakpoint
-   --space-r40 : 2.5rem  — scroll-works responsive margin / padding at 1024 px
-   ======================================== */
 :root {
     --fs-sm:   0.75rem;
     --fs-base: 1rem;
@@ -74,11 +63,6 @@
     --space-48:  48px;
     --space-60:  60px;
     --space-80:  80px;
-
-    --space-r4:  0.25rem;
-    --space-r12: 0.75rem;
-    --space-r20: 1.25rem;
-    --space-r40: 2.5rem;
 }
 
 
@@ -204,7 +188,7 @@
 .work-date-enhanced {
     font-size: var(--fs-base);
     color: #9ca3af;
-    margin: 0 0 var(--space-r12) 0;
+    margin: 0 0 0.75rem 0;
     font-weight: 500;
     transition: opacity 0.3s ease;
 }
@@ -213,7 +197,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin: var(--space-r12) 0;
+    margin: 0.75rem 0;
     transition: opacity 0.3s ease;
 }
 
@@ -221,7 +205,7 @@
     background: #2a2a2a;
     color: #e5e7eb;
     border: 1px solid #3a3a3a;
-    padding: var(--space-r4) var(--space-r12);
+    padding: 0.25rem 0.75rem;
     border-radius: 0.4rem;
     font-size: var(--fs-sm);
     font-weight: 500;
@@ -290,7 +274,7 @@
     }
     
     .work-content-enhanced {
-        padding: var(--space-r20);
+        padding: 1.25rem;
     }
     
     .work-image-container-enhanced {
