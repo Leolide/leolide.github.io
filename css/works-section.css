@@ -1,5 +1,21 @@
 /* Works Section Styling - Dark Mode */
 
+/* ========================================
+   TYPE SCALE TOKENS
+   --fs-sm   : 0.75rem  — tags, badges, captions
+   --fs-base : 1rem     — body copy, nav labels, dates
+   --fs-lg   : 1.25rem  — card titles, subheadings
+   --fs-xl   : 1.5rem   — section headings
+   ======================================== */
+:root {
+    --fs-sm:   0.75rem;
+    --fs-base: 1rem;
+    --fs-lg:   1.25rem;
+    --fs-xl:   1.5rem;
+}
+
+
+
 /* Global dark mode for works section and surrounding area */
 #Work,
 .works-square-wrapper,
@@ -47,7 +63,7 @@
 .works-title-enhanced {
     font-weight: 500;
     line-height: 1.25;
-    font-size: clamp(1.5rem, var(--text-size--xlarge), 1.6rem);
+    font-size: var(--fs-xl);
     text-decoration: none;
     margin-bottom: 3rem;
     color: #ffffff;
@@ -106,7 +122,7 @@
 }
 
 .work-title-enhanced {
-    font-size: 1.25rem;
+    font-size: var(--fs-lg);
     font-weight: 400;
     color: #ffffff;
     margin: 0 0 0.5rem 0;
@@ -119,7 +135,7 @@
 
 
 .work-date-enhanced {
-    font-size: 0.875rem;
+    font-size: var(--fs-base);
     color: #9ca3af;
     margin: 0 0 0.75rem 0;
     font-weight: 500;
@@ -140,7 +156,7 @@
     border: 1px solid #3a3a3a;
     padding: 0.25rem 0.75rem;
     border-radius: 0.4rem;
-    font-size: 0.75rem;
+    font-size: var(--fs-sm);
     font-weight: 500;
 }
 
@@ -168,7 +184,7 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 0.5rem 1rem;
     border-radius: 20px;
-    font-size: 0.75rem;
+    font-size: var(--fs-sm);
     font-weight: 600;
     z-index: 5;
     backdrop-filter: blur(10px);
@@ -196,7 +212,7 @@
     }
     
     .works-title-enhanced {
-        font-size: 1.5rem;
+        font-size: var(--fs-xl);
         margin-bottom: 2rem;
         text-align: left;
     }
@@ -225,21 +241,21 @@
     }
     
     .works-title-enhanced {
-        font-size: 1.2rem;
+        font-size: var(--fs-lg);
         margin-bottom: 1.5rem;
     }
     
     .work-title-enhanced {
-        font-size: 1rem;
+        font-size: var(--fs-base);
         line-height: 1.4;
     }
     
     .work-date-enhanced {
-        font-size: 0.75rem;
+        font-size: var(--fs-sm);
     }
     
     .work-tag-enhanced {
-        font-size: 0.7rem;
+        font-size: var(--fs-sm);
         padding: 0.2rem 0.6rem;
     }
     

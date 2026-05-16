@@ -2,12 +2,21 @@
    NAVBAR OVERRIDE STYLES
    ======================================== */
 
-/* Reset font size for all navbar elements */
-.dt-navbar,
-.dt-navbar *,
-.navbar,
-.navbar * {
-    font-size: inherit !important;
+/* ========================================
+   TYPE SCALE TOKENS (canonical source: css/works-section.css)
+   Mirrored here because pages such as fun.html load this file
+   but do NOT load works-section.css, so the tokens must be
+   defined in both to guarantee availability site-wide.
+   --fs-sm   : 0.75rem  — tags, badges, captions
+   --fs-base : 1rem     — body copy, nav labels, dates
+   --fs-lg   : 1.25rem  — card titles, subheadings
+   --fs-xl   : 1.5rem   — section headings
+   ======================================== */
+:root {
+    --fs-sm:   0.75rem;
+    --fs-base: 1rem;
+    --fs-lg:   1.25rem;
+    --fs-xl:   1.5rem;
 }
 
 /* ========================================
@@ -17,7 +26,7 @@
 .navbar {
     /* Override Webflow defaults */
     height: auto !important;
-    font-size: 0.875rem !important;
+    font-size: var(--fs-base) !important;
     position: fixed !important;
     z-index: 100 !important;
     
@@ -118,7 +127,7 @@
 .dt-nav-menu .dt-nav-link {
     /* Override Webflow defaults */
     color: rgba(255, 255, 255, 0.6) !important;
-    font-size: 0.875rem !important;
+    font-size: var(--fs-base) !important;
     font-weight: 400 !important;
     text-decoration: none !important;
     border: none !important;
@@ -169,7 +178,7 @@
    ======================================== */
 .dt-nav-link.linear-style {
     /* Linear's minimal style */
-    font-size: 0.875rem !important;
+    font-size: var(--fs-base) !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
     letter-spacing: 0 !important;
@@ -199,7 +208,7 @@
 
 .navbar-link-block .text-size-small {
     color: rgba(255, 255, 255, 0.8) !important;
-    font-size: 0.875rem !important;
+    font-size: var(--fs-base) !important;
     font-weight: 500 !important;
     letter-spacing: 0 !important;
     text-transform: uppercase !important;

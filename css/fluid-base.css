@@ -1,0 +1,37 @@
+/* ========================================
+   FLUID BASE FONT SCALING — ROOT REM INFRASTRUCTURE
+   ======================================== */
+/*
+   This file contains Webflow-generated root-level rem scaling rules
+   that were previously inline in work.html's <style> block.
+
+   IMPORTANT: These are NOT typography tokens and do NOT fall under the
+   4-step type scale consolidation. They define what 1rem equals in pixels
+   at each breakpoint — the unit foundation that --fs-sm/base/lg/xl build on.
+   Replacing these with a token (e.g. html { font-size: var(--fs-base) })
+   would break the layout because the tokens themselves use rem units.
+
+   Equivalent rules exist in lides-portfolio.webflow.css for other pages.
+   This file serves only work.html, which has its own inline scaling block.
+*/
+html {
+    font-size: calc(0.625rem + 0.41666666666666663vw);
+}
+
+@media screen and (max-width: 1920px) {
+    html {
+        font-size: calc(0.625rem + 0.41666666666666674vw);
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    html {
+        font-size: calc(0.8126951092611863rem + 0.20811654526534862vw);
+    }
+}
+
+@media screen and (max-width: 479px) {
+    html {
+        font-size: calc(0.7494769874476988rem + 0.8368200836820083vw);
+    }
+}
