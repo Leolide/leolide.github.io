@@ -68,33 +68,38 @@ function Card({
     });
   };
 
-  // Stacked: cards nearly on top of each other, tiny peek
-  const stackedY = index * 5;
-  const stackedRot = (index - (TOTAL - 1) / 2) * 1.0;
-  const stackedScale = 1 - index * 0.02;
+  // Sequential relay: each card rises to center, then exits up when next arrives
+  // scroll [0,1] divided into TOTAL equal segments
+  const seg = 1 / TOTAL;
+  const entryStart = index * seg;
+  const entryEnd   = entryStart + seg * 0.55;
+  const exitStart  = entryStart + seg * 0.7;
+  const exitEnd    = entryStart + seg * 1.15;
 
-  // Spread: last card anchored at center, others stack above it
-  const gap = 280;
-  const spreadY = (index - (TOTAL - 1)) * gap;
-  const spreadRot = 0;
-  const spreadScale = 1;
+  const clamp = (v: number) => Math.min(1, Math.max(0, v));
+  const entryT = easeOut(clamp((spread - entryStart) / (entryEnd - entryStart)));
+  const exitT  = index < TOTAL - 1
+    ? easeOut(clamp((spread - exitStart)  / (exitEnd  - exitStart)))
+    : 0; // last card never exits
 
-  // Each card fans out at a different scroll window
-  // Card 0: spread 0→0.33, Card 1: 0.25→0.6, Card 2: 0.5→1
-  const cardStart = index * 0.28;
-  const cardEnd = cardStart + 0.5;
-  const cardT = Math.min(1, Math.max(0, (spread - cardStart) / (cardEnd - cardStart)));
-  const t = easeOut(cardT);
+  // Positions
+  const stackedY  =  20 + index * 6;   // all start just below center, stacked
+  const stackedRot = (index - (TOTAL - 1) / 2) * 1.2;
+  const stackedScale = 1 - index * 0.025;
+  const centerY   =  0;
+  const exitedY   = -780;              // flies off the top
 
-  const currentY = lerp(stackedY, spreadY, t);
-  const currentRot = lerp(stackedRot, spreadRot, t);
-  const currentScale = lerp(stackedScale, spreadScale, t);
+  const baseY     = lerp(stackedY, centerY,  entryT);
+  const currentY  = lerp(baseY,    exitedY,  exitT);
+  const currentRot   = lerp(stackedRot, 0, entryT);
+  const currentScale = lerp(stackedScale, 1, entryT);
 
-  const finalY = currentY + (isHovered ? -14 : 0);
+  const finalY     = currentY + (isHovered ? -14 : 0);
   const finalScale = currentScale * (isHovered ? 1.02 : 1);
-  const finalRot = isHovered ? 0 : currentRot;
-  const finalZ = isHovered ? 50 : TOTAL - index;
-  const finalOpacity = anyHovered && !isHovered ? 0.55 : 1;
+  const finalRot   = isHovered ? 0 : currentRot;
+  const finalZ     = isHovered ? 50 : TOTAL - index;
+  const finalOpacity = (exitT > 0.05) ? Math.max(0, 1 - exitT * 1.4)
+    : anyHovered && !isHovered ? 0.55 : 1;
 
   return (
     <div
