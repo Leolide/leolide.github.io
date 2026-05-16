@@ -19,7 +19,7 @@
 
     /* Mobile images fallback — complements CSS media query */
     if (window.innerWidth <= 991) {
-      var mobileImages = ['autopilot-mobile.png', 'kit-mobile.png', 'debrief-mobile.png'];
+      var mobileImages = ['autopilot-mobile.webp', 'kit-mobile.webp', 'debrief-mobile.webp'];
       cards.forEach(function(card, i) {
         var img = card.querySelector('.sw-card-image--screenshot');
         if (img && mobileImages[i]) img.style.backgroundImage = 'url(images/' + mobileImages[i] + ')';

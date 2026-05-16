@@ -615,15 +615,15 @@ a.sw-card * {
 
   /* Mobile-optimized screenshots */
   .sw-card[data-index="0"] .sw-card-image--screenshot {
-    background-image: url('../images/autopilot-mobile.png') !important;
+    background-image: url('../images/autopilot-mobile.webp') !important;
     background-position: center center;
   }
   .sw-card[data-index="1"] .sw-card-image--screenshot {
-    background-image: url('../images/kit-mobile.png') !important;
+    background-image: url('../images/kit-mobile.webp') !important;
     background-position: center center;
   }
   .sw-card[data-index="2"] .sw-card-image--screenshot {
-    background-image: url('../images/debrief-mobile.png') !important;
+    background-image: url('../images/debrief-mobile.webp') !important;
     background-position: center center;
   }
 }
