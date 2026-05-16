@@ -1,0 +1,186 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "Alliance No.1",
+      "role": "body"
+    },
+    {
+      "family": "Roboto",
+      "role": "body"
+    }
+  ],
+  "colors": {
+    "primary": "#2B5945",
+    "secondary": "#CCAA11",
+    "accent": "#2B5945",
+    "background": "#FFFFFF",
+    "textPrimary": "#1E2124",
+    "link": "#368CFF"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Alliance No.1",
+      "heading": "Alliance No.1"
+    },
+    "fontStacks": {
+      "heading": [
+        "Alliance No.2",
+        "Alliance No.1",
+        "system-ui",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Roboto",
+        "Oxygen",
+        "Ubuntu",
+        "Cantarell",
+        "Fira Sans",
+        "Droid Sans",
+        "Helvetica Neue",
+        "Helvetica",
+        "Arial",
+        "sans-serif"
+      ],
+      "body": [
+        "Alliance No.1",
+        "system-ui",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Roboto",
+        "Oxygen",
+        "Ubuntu",
+        "Cantarell",
+        "Fira Sans",
+        "Droid Sans",
+        "Helvetica Neue",
+        "Helvetica",
+        "Arial",
+        "sans-serif"
+      ],
+      "paragraph": [
+        "Alliance No.1",
+        "system-ui",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Roboto",
+        "Oxygen",
+        "Ubuntu",
+        "Cantarell",
+        "Fira Sans",
+        "Droid Sans",
+        "Helvetica Neue",
+        "Helvetica",
+        "Arial",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "40px",
+      "h2": "16px",
+      "body": "14px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "borderRadius": "0px"
+  },
+  "components": {
+    "input": {
+      "background": "transparent",
+      "textColor": "#1E2124",
+      "borderColor": null,
+      "borderRadius": "0px",
+      "borderRadiusCorners": {
+        "topLeft": "0px",
+        "topRight": "0px",
+        "bottomRight": "0px",
+        "bottomLeft": "0px"
+      },
+      "shadow": "none"
+    },
+    "buttonPrimary": {
+      "background": "#2B5945",
+      "textColor": "#FFFFFF",
+      "borderColor": "#FFFFFF",
+      "borderRadius": "0px",
+      "borderRadiusCorners": {
+        "topLeft": "0px",
+        "topRight": "0px",
+        "bottomRight": "0px",
+        "bottomLeft": "0px"
+      },
+      "shadow": "none"
+    },
+    "buttonSecondary": {
+      "background": "#FFFFFF",
+      "textColor": "#1E2124",
+      "borderColor": "#2B5945",
+      "borderRadius": "0px",
+      "borderRadiusCorners": {
+        "topLeft": "0px",
+        "topRight": "0px",
+        "bottomRight": "0px",
+        "bottomLeft": "0px"
+      },
+      "shadow": "none"
+    }
+  },
+  "images": {
+    "favicon": "https://www.palantir.com/docs/favicon.ico",
+    "ogImage": "https://palantir.com/docs/resources/homepage/iso-grid.png",
+    "logoHref": "//www.palantir.com",
+    "logoAlt": "Palantir"
+  },
+  "__llm_logo_reasoning": {
+    "selectedIndex": 1,
+    "reasoning": "Selected #1 because it is visible, has the correct alt text ('Palantir'), and links to the homepage, making it the main brand logo.",
+    "confidence": 0.9,
+    "source": "llm"
+  },
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": 0,
+      "text": "Send feedback",
+      "reasoning": "Button #0 has a vibrant brand color (#2B5945) and action-oriented text ('Send feedback'), making it the primary CTA."
+    },
+    "secondary": {
+      "index": 4,
+      "text": "en",
+      "reasoning": "Button #4 has a different background color (#FFFFFF) and serves a secondary function ('en'), making it suitable as a secondary button."
+    },
+    "confidence": 0.95
+  },
+  "personality": {
+    "tone": "professional",
+    "energy": "medium",
+    "targetAudience": "business professionals"
+  },
+  "designSystem": {
+    "framework": "custom",
+    "componentLibrary": ""
+  },
+  "confidence": {
+    "buttons": 0.95,
+    "colors": 0.9,
+    "overall": 0.925
+  },
+  "__llm_metadata": {
+    "logoSelection": {
+      "llmCalled": true,
+      "llmSucceeded": true,
+      "finalSource": "llm",
+      "rawLogoSelection": {
+        "selectedLogoIndex": 1,
+        "selectedLogoReasoning": "Selected #1 because it is visible, has the correct alt text ('Palantir'), and links to the homepage, making it the main brand logo.",
+        "confidence": 0.9
+      }
+    },
+    "buttonClassification": {
+      "llmCalled": true,
+      "llmSucceeded": true
+    }
+  }
+}

@@ -144,6 +144,17 @@
   overflow: hidden;
 }
 
+/* Screenshot variant — shows a real image instead of chrome/iframe */
+.sw-card-image--screenshot {
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
+.sw-card-image--screenshot .sw-card-grid {
+  display: none;
+}
+
 .sw-card-grid {
   position: absolute;
   inset: 0;
