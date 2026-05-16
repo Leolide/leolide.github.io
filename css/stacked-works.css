@@ -5,7 +5,7 @@
 .sw-section {
   background: #000;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Subtle grid — matches canvas */
