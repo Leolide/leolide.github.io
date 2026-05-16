@@ -1,0 +1,21 @@
+.perspective-container {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.tilt-card > * {
+  transform: translateZ(20px);
+}
+
+.tilt-card .text-xl {
+  transform: translateZ(40px);
+}
+
+.tilt-card .text-sm {
+  transform: translateZ(30px);
+}
