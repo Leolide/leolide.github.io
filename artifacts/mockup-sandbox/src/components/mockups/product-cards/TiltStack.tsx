@@ -241,7 +241,7 @@ function Card({
 
         {/* Mockup panel */}
         <div style={{
-          width: 200,
+          width: 320,
           flexShrink: 0,
           background: 'rgba(0,0,0,0.38)',
           borderLeft: '1px solid rgba(255,255,255,0.04)',
