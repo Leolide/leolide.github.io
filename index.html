@@ -28,6 +28,7 @@
   <link href="css/terminal.css" rel="stylesheet" type="text/css">
   <link href="css/mockup-cards.css" rel="stylesheet" type="text/css">
   <link href="css/scroll-works.css" rel="stylesheet" type="text/css">
+  <link href="css/stacked-works.css" rel="stylesheet" type="text/css">
   <link href="css/large-screen.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
@@ -145,85 +146,63 @@
       </div>
     </div>
   </section>
-  <section id="SelectedWorks" class="scroll-works-section">
-    <div class="scroll-works-container">
-      <div class="scroll-works-header">
-        <h2 class="text-size-xlarge">Selected Works</h2>
-      </div>
-      
-      <div class="scroll-works-item">
-        <div class="scroll-works-content">
-          <div class="scroll-content-block">
-            <div class="scroll-project-meta">2024 Aug - Nov</div>
-            <a href="password-protection.html?redirect=detail_works-with-code.html%3Fproject%3Da-clientelling-app" class="scroll-project-link">
-              <h3>Boosting Sales and Enabling Personalized Customer Experiences <span class="title-arrow">&#8599;</span></h3>
-            </a>
-            <p>Cross-platform clientelling solution enabling personalized lookbooks and recommendations.</p>
-            <div class="scroll-project-tags">
-              <span class="scroll-project-tag">UI/UX Design</span>
-              <span class="scroll-project-tag">Cross-Platform</span>
-              <span class="scroll-project-tag">B2B SaaS</span>
-              <span class="scroll-project-tag">User Research</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="scroll-works-mockup">
-          <div class="scroll-mockup-iframe-container">
-            <iframe src="mockup-test.html" class="mockup-iframe clientelling-iframe" frameborder="0" scrolling="no"></iframe>
-          </div>
-        </div>
-      </div>
+  <section id="SelectedWorks" class="stacked-works-section">
+    <div class="stacked-works-header">
+      <h2 class="text-size-xlarge">Selected Works</h2>
+      <p class="stacked-works-subtitle">Scroll to reveal each project. Hover to explore.</p>
+    </div>
 
-      <div class="scroll-works-item">
-        <div class="scroll-works-content">
-          <div class="scroll-content-block">
-            <div class="scroll-project-meta">2023 Jan - Jul</div>
-            <a href="password-protection.html?redirect=detail_works-with-code.html%3Fproject%3Ddebrief-ai" class="scroll-project-link">
-              <h3>User-Centric Strategy Pivot for Debrief AI to Secure Investment <span class="title-arrow">&#8599;</span></h3>
-            </a>
-            <p>Product design for AI-powered workflow automation, enabling researchers to automate complex scientific tasks.</p>
-            <div class="scroll-project-tags">
-              <span class="scroll-project-tag">UI/UX Design</span>
-              <span class="scroll-project-tag">AI B2B SaaS</span>
-              <span class="scroll-project-tag">User Research</span>
-              <span class="scroll-project-tag">LLM</span>
+    <div class="stacked-works-spacer" style="height: 40vh;"></div>
+
+    <div class="stacked-cards-wrapper" id="stackedCardsWrapper">
+      <div class="stacked-cards-container" id="stackedCardsContainer">
+        <!-- Card 1: Clientelling App -->
+        <div class="stacked-card" data-index="0">
+          <div class="stacked-card-inner">
+            <div class="stacked-card-content">
+              <div class="stacked-card-meta">2024 Aug - Nov</div>
+              <a href="password-protection.html?redirect=detail_works-with-code.html%3Fproject%3Da-clientelling-app" class="stacked-card-link">
+                <h3>Boosting Sales and Enabling Personalized Customer Experiences <span class="title-arrow">&#8599;</span></h3>
+              </a>
+              <p>Cross-platform clientelling solution enabling personalized lookbooks and recommendations.</p>
+              <div class="stacked-card-tags">
+                <span class="stacked-card-tag">UI/UX Design</span>
+                <span class="stacked-card-tag">Cross-Platform</span>
+                <span class="stacked-card-tag">B2B SaaS</span>
+                <span class="stacked-card-tag">User Research</span>
+              </div>
+            </div>
+            <div class="stacked-card-mockup">
+              <iframe src="mockup-test.html" class="mockup-iframe clientelling-iframe" frameborder="0" scrolling="no"></iframe>
             </div>
           </div>
         </div>
-        
-        <div class="scroll-works-mockup">
-          <div class="scroll-mockup-iframe-container">
-            <iframe src="debrief-mockup.html" class="mockup-iframe debrief-iframe" frameborder="0" scrolling="no"></iframe>
+        <!-- Card 2: Debrief AI -->
+        <div class="stacked-card" data-index="1">
+          <div class="stacked-card-inner">
+            <div class="stacked-card-content">
+              <div class="stacked-card-meta">2023 Jan - Jul</div>
+              <a href="password-protection.html?redirect=detail_works-with-code.html%3Fproject%3Ddebrief-ai" class="stacked-card-link">
+                <h3>User-Centric Strategy Pivot for Debrief AI to Secure Investment <span class="title-arrow">&#8599;</span></h3>
+              </a>
+              <p>Product design for AI-powered workflow automation, enabling researchers to automate complex scientific tasks.</p>
+              <div class="stacked-card-tags">
+                <span class="stacked-card-tag">UI/UX Design</span>
+                <span class="stacked-card-tag">AI B2B SaaS</span>
+                <span class="stacked-card-tag">User Research</span>
+                <span class="stacked-card-tag">LLM</span>
+              </div>
+            </div>
+            <div class="stacked-card-mockup">
+              <iframe src="debrief-mockup.html" class="mockup-iframe debrief-iframe" frameborder="0" scrolling="no"></iframe>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="stacked-works-spacer" style="height: 40vh;"></div>
   </section>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.animationPlayState = 'running';
-            observer.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
-
-      const items = document.querySelectorAll('.scroll-works-item');
-      items.forEach(item => {
-        item.style.animationPlayState = 'paused';
-        observer.observe(item);
-      });
-
-    });
-  </script>
   <section class="section-3">
     <div class="w-layout-blockcontainer container medium w-container">
       <div class="w-layout-blockcontainer container-5 w-container">
@@ -752,6 +731,7 @@
   <script src="js/terminal.js" type="text/javascript"></script>
   <script src="js/mockup-tilt.js" type="text/javascript"></script>
   <script src="js/iframe-scaler.js" type="text/javascript"></script>
+  <script src="js/stacked-works.js" type="text/javascript"></script>
 </body>
 
 </html>

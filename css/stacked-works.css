@@ -1,0 +1,243 @@
+/* Stacked Works Section - Dark Premium Card Design */
+
+.stacked-works-section {
+  position: relative;
+  background: #000000;
+  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 0;
+  overflow: visible;
+}
+
+/* Cross pattern ambient background */
+.stacked-works-section::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.03), transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(255,255,255,0.01), transparent 40%),
+    repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(255,255,255,0.008) 49px, rgba(255,255,255,0.008) 50px),
+    repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(255,255,255,0.008) 49px, rgba(255,255,255,0.008) 50px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stacked-works-header {
+  text-align: center;
+  padding: 80px 0 20px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.stacked-works-header h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.stacked-works-subtitle {
+  color: rgba(255,255,255,0.3);
+  font-size: 14px;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* Card stack container */
+.stacked-cards-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 2em;
+}
+
+.stacked-cards-container {
+  position: relative;
+  height: 560px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Individual card */
+.stacked-card {
+  position: absolute;
+  width: 100%;
+  max-width: 720px;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              z-index 0s;
+  will-change: transform, box-shadow;
+  cursor: pointer;
+}
+
+.stacked-card-inner {
+  background: linear-gradient(180deg, #111111 0%, #0c0c0c 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 32px 40px;
+  gap: 40px;
+  /* Top edge luminescence */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    0 25px 50px -12px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(255,255,255,0.04);
+}
+
+/* Radial floating shadow behind card */
+.stacked-card-inner::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.4), transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Cursor-tracking glow overlay */
+.stacked-card-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 0%),
+    rgba(255,255,255,0.06),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.stacked-card:hover .stacked-card-inner::after {
+  opacity: 1;
+}
+
+/* Card content (text side) */
+.stacked-card-content {
+  flex: 1;
+  min-width: 0;
+  z-index: 3;
+}
+
+.stacked-card-meta {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 12px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.stacked-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.stacked-card-link h3 {
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.3;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+}
+
+.stacked-card:hover .stacked-card-link h3 {
+  color: rgba(255,255,255,0.9);
+}
+
+.stacked-card-content > p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+}
+
+.stacked-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stacked-card-tag {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 100px;
+  padding: 4px 12px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* Card mockup (iframe side) */
+.stacked-card-mockup {
+  flex: 0 0 280px;
+  height: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  z-index: 3;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: #0a0a0a;
+}
+
+.stacked-card-mockup iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Arrow on hover */
+.title-arrow {
+  font-size: 1.2rem;
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  margin-left: 6px;
+}
+
+.stacked-card:hover .title-arrow {
+  opacity: 1;
+  transform: translate(3px, -3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .stacked-cards-container {
+    height: auto;
+    min-height: 400px;
+  }
+
+  .stacked-card-inner {
+    flex-direction: column;
+    padding: 24px;
+    gap: 20px;
+  }
+
+  .stacked-card-mockup {
+    flex: none;
+    width: 100%;
+    height: 160px;
+  }
+
+  .stacked-card-link h3 {
+    font-size: 1.1rem;
+  }
+
+  .stacked-works-section {
+    margin: 0 1em;
+  }
+}

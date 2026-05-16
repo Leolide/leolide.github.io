@@ -228,6 +228,32 @@ export function TiltStack() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
+  // Auto-demo mode for iframe preview (no scroll events in iframe)
+  useEffect(() => {
+    const isIframe = window.self !== window.top;
+    if (!isIframe) return;
+
+    let phase = 0; // 0=stacked, 1=spreading, 2=hover cycle, 3=reset
+    let progress = 0;
+    const interval = setInterval(() => {
+      if (phase === 0) {
+        progress += 0.01;
+        if (progress >= 1) { progress = 1; phase = 1; }
+      } else if (phase === 1) {
+        setActiveIndex(0);
+        setTimeout(() => setActiveIndex(1), 1500);
+        setTimeout(() => setActiveIndex(2), 3000);
+        setTimeout(() => { setActiveIndex(null); phase = 2; }, 4500);
+        phase = -1;
+      } else if (phase === 2) {
+        setTimeout(() => { progress = 0; phase = 0; }, 2000);
+        phase = -1;
+      }
+      setScrollProgress(progress);
+    }, 50);
+    return () => clearInterval(interval);
+  }, []);
+
   // Map overall scroll progress to individual card reveal progress
   // Card 0: 0% - 33%
   // Card 1: 20% - 66%
