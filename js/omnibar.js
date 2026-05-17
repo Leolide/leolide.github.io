@@ -29,7 +29,7 @@ let selectedIndex = -1;
 // Commands
 // Dynamic Commands
 function getCommands() {
-    const isFunPage = window.location.pathname.includes('/fun/') || window.location.pathname.includes('fun.html');
+    const isFunPage = window.location.pathname.includes('/fun/');
 
     return [
         {
