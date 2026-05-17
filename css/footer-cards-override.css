@@ -283,6 +283,14 @@ section:has(.footer-wrapper) {
    BUTTON RESPONSIVE STYLING
    ======================================== */
 
+/* Footer button — left-aligned, auto width */
+.footer-button {
+    margin-top: 2rem !important;
+    width: auto !important;
+    display: inline-flex !important;
+    max-width: max-content !important;
+}
+
 /* Download CV button - don't fill width on mobile/tablet */
 @media screen and (max-width: 991px) {
     .button-primary {
