@@ -1,0 +1,28 @@
+<div data-w-id="8a46c08f-6cda-3f7c-61ef-4f77a8b37472" style="opacity: 1;" class="logo-card-grid">
+          <div id="w-node-_8a46c08f-6cda-3f7c-61ef-4f77a8b3747f-806d4b85" class="logo-card">
+            <div class="logo-image"><img sizes="100vw" srcset="images/Daco_3081096-p-500.png 500w, images/Daco_3081096-p-800.png 800w, images/Daco_3081096.png 1501w" alt="" src="images/Daco_3081096.png" loading="lazy" class="image-412"></div>
+            <div class="opacity-87"></div>
+          </div>
+          <div id="w-node-_8a46c08f-6cda-3f7c-61ef-4f77a8b37473-806d4b85" class="logo-card">
+            <div class="logo-image"><img sizes="100vw" srcset="images/deloitte-p-500.png 500w, images/deloitte.png 1050w" alt="" src="images/deloitte.png" loading="lazy" class="image-412"></div>
+            <div class="opacity-87"></div>
+          </div>
+          <div id="w-node-_8a46c08f-6cda-3f7c-61ef-4f77a8b37479-806d4b85" class="logo-card">
+            <div class="logo-image"><img loading="lazy" src="images/Group-1261152804.png" alt="" class="image-412">
+            </div>
+            <div class="opacity-87"></div>
+          </div>
+          <div id="w-node-_8a46c08f-6cda-3f7c-61ef-4f77a8b37485-806d4b85" class="logo-card">
+            <div class="logo-image"><img sizes="100vw" srcset="images/Cambridgeuniversitylogo-p-500.png 500w, images/Cambridgeuniversitylogo.png 640w" alt="" src="images/Cambridgeuniversitylogo.png" loading="lazy" class="image-412"></div>
+            <div class="opacity-87"></div>
+          </div>
+          <div id="w-node-_8a46c08f-6cda-3f7c-61ef-4f77a8b3748b-806d4b85" class="logo-card">
+            <div class="logo-image"><img loading="lazy" src="images/logo-ucberkeley-white.png" alt="" class="image-412">
+            </div>
+            <div class="opacity-87"></div>
+          </div>
+          <div id="w-node-_8a46c08f-6cda-3f7c-61ef-4f77a8b37491-806d4b85" class="logo-card">
+            <div class="logo-image"><img sizes="100vw" srcset="images/pngegg-p-500.png 500w, images/pngegg-p-800.png 800w, images/pngegg-p-1080.png 1080w, images/pngegg-p-1600.png 1600w, images/pngegg-p-2000.png 2000w, images/pngegg-p-2600.png 2600w, images/pngegg-p-3200.png 3200w, images/pngegg.png 3403w" alt="" src="images/pngegg.png" loading="lazy" class="image-412"></div>
+            <div class="opacity-87"></div>
+          </div>
+        </div>

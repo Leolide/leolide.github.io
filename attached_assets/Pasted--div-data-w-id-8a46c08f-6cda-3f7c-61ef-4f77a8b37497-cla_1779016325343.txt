@@ -1,0 +1,85 @@
+<div data-w-id="8a46c08f-6cda-3f7c-61ef-4f77a8b37497" class="dt-master-testimonials-2">
+          <div style="transform: translate3d(-35.943%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; will-change: transform;" class="dt-inside-testimonials-2">
+            <div class="dt-single-testimonials-2">
+              <div class="dt-tile-testimonials-2">
+                <div class="bottom-testimonial-tile">
+                  <div class="dt-text-testimonials-2">"I had the pleasure of working alongside Lide during a
+                    pivotal period of change transformation within the asset team, and I cannot recommend them highly
+                    enough for their exceptional contributions as a junior product designer."</div>
+                  <div class="dt-person-wrap-testimonials-5"><img loading="lazy" src="images/1632163145751.jpeg" alt="" class="dt-image-person-testimonials-2">
+                    <div class="dt-right-person-testimonials-2">
+                      <div>Lyanne Earls</div>
+                      <div class="dt-body-small dt-fade-out">Head of Product Management in Deloitte Business Innovation
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="dt-tile-testimonials-2">
+                <div class="bottom-testimonial-tile">
+                  <div class="dt-text-testimonials-2">“Lide has brilliant UX and design research skills. As a Product
+                    Designer on my team, Lide consistently impressed me with his dedication, creativity, and
+                    user-centric approach.”</div>
+                  <div class="dt-person-wrap-testimonials-5"><img sizes="100vw" srcset="images/1679644359023-p-500.jpeg 500w, images/1679644359023.jpeg 800w" alt="" src="images/1679644359023.jpeg" loading="lazy" class="dt-image-person-testimonials-2">
+                    <div class="dt-right-person-testimonials-2">
+                      <div>Rachita Sharma</div>
+                      <div class="dt-body-small dt-fade-out">Lead Product Manager in Deloitte Business Innovation</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="dt-tile-testimonials-2">
+                <div class="bottom-testimonial-tile">
+                  <div class="dt-text-testimonials-2">“I appreciate the attention to detail around the various states
+                    and edge cases, resolutions and variations in data. This has allowed the end product to be very
+                    refined.”</div>
+                  <div class="dt-person-wrap-testimonials-5"><img loading="lazy" src="images/1714493004651.jpeg" alt="" class="dt-image-person-testimonials-2">
+                    <div class="dt-right-person-testimonials-2">
+                      <div>David Moorhead</div>
+                      <div class="dt-body-small dt-fade-out">Lead Frontend Developer at Food Connected Ltd</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="dt-tile-testimonials-2">
+                <div class="bottom-testimonial-tile">
+                  <div class="dt-text-testimonials-2">“Lide's leadership in aligning teams through storytelling and
+                    prototyping has consistently driven innovative and impactful results.”</div>
+                  <div class="dt-person-wrap-testimonials-5"><img sizes="100vw" srcset="images/1676236378486-p-500.jpeg 500w, images/1676236378486.jpeg 800w" alt="" src="images/1676236378486.jpeg" loading="lazy" class="dt-image-person-testimonials-2">
+                    <div class="dt-right-person-testimonials-2">
+                      <div>Huiwen Shi</div>
+                      <div class="dt-body-small dt-fade-out">UX Designer at Mobi System</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="dt-tile-testimonials-2">
+                <div class="bottom-testimonial-tile">
+                  <div class="dt-text-testimonials-2">“Lide’s entrepreneurial mindset and technical expertise make him
+                    an indispensable collaborator. His ability to balance creative thinking with practical execution
+                    consistently exceeded my expectations.”</div>
+                  <div class="dt-person-wrap-testimonials-5"><img sizes="100vw" srcset="images/1706768978512-p-500.jpeg 500w, images/1706768978512.jpeg 800w" alt="" src="images/1706768978512.jpeg" loading="lazy" class="dt-image-person-testimonials-2">
+                    <div class="dt-right-person-testimonials-2">
+                      <div>Zhen Li</div>
+                      <div class="dt-body-small dt-fade-out">Staff AI Engineer at Replit</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="dt-single-testimonials-2">
+              <div class="dt-tile-testimonials-2">
+                <div class="bottom-testimonial-tile">
+                  <div class="dt-text-testimonials-2">“Lide Li’s influence as a mentor has been instrumental in shaping
+                    the skills and confidence of<br>numerous budding designers and engineers.”</div>
+                  <div class="dt-person-wrap-testimonials-5"><img loading="lazy" src="images/1604689962460.jpeg" alt="" class="dt-image-person-testimonials-2">
+                    <div class="dt-right-person-testimonials-2">
+                      <div>Ke(Alex) Shang</div>
+                      <div class="dt-body-small dt-fade-out"> Watch Product Design Engineer</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
