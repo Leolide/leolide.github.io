@@ -288,10 +288,10 @@ body {
     z-index: 10;
 }
 
-/* Mobile-safe gradient sizing — prevents obscuring CTA and social links */
+/* Mobile — hide the bottom gradient fade entirely */
 @media screen and (max-width: 768px) {
     .home-hero::after {
-        height: 20vh;
+        display: none;
     }
 }
 
