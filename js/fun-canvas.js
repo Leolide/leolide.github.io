@@ -248,6 +248,11 @@
           '<path d="M6 10L10 6M10 6H7M10 6V9M3 13H13V3H3V13Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
         '</svg>' +
       '</button>' +
+      '<button class="fab-btn fab-edit" title="Edit text">' +
+        '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+          '<path d="M8 2L12 6M8 2L2 8V12H6L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '</svg>' +
+      '</button>' +
       '<button class="fab-btn fab-close" title="Deselect">' +
         '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">' +
           '<path d="M1 1L7 7M7 7L13 1M7 7L1 13M7 7L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
@@ -263,6 +268,23 @@
       }
     });
 
+    floatingMenu.querySelector('.fab-edit').addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (selectedCard && selectedCard.classList.contains('text-item')) {
+        var noteText = selectedCard.querySelector('.note-text');
+        if (noteText) {
+          setEditMode(true);
+          noteText.focus();
+          var range = document.createRange();
+          range.selectNodeContents(noteText);
+          range.collapse(false);
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        }
+      }
+    });
+
     floatingMenu.querySelector('.fab-close').addEventListener('click', function (e) {
       e.stopPropagation();
       deselectCard();
@@ -274,6 +296,16 @@
 
   function showFloatingMenu() {
     if (!floatingMenu) createFloatingMenu();
+    var editBtn = floatingMenu.querySelector('.fab-edit');
+    if (editBtn) {
+      var showEdit = selectedCard && selectedCard.classList.contains('text-item');
+      editBtn.style.display = showEdit ? '' : 'none';
+    }
+    var linkBtn = floatingMenu.querySelector('.fab-link');
+    if (linkBtn) {
+      var showLink = selectedCard && selectedCard.getAttribute('data-href');
+      linkBtn.style.display = showLink ? '' : 'none';
+    }
     floatingMenu.classList.add('is-visible');
     updateFloatingMenu();
   }
@@ -325,7 +357,8 @@
 
   /* ---------- ITEM DRAG ---------- */
   function onItemPointerDown(e) {
-    if (!isEditMode) return;
+    var isTextItem = this.classList.contains('text-item');
+    if (!isEditMode && !isTextItem) return;
     if (e.button !== undefined && e.button !== 0) return;
     var item = this;
     e.stopPropagation();
