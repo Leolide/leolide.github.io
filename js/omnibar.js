@@ -29,7 +29,7 @@ let selectedIndex = -1;
 // Commands
 // Dynamic Commands
 function getCommands() {
-    const isFunPage = window.location.pathname.includes('fun.html');
+    const isFunPage = window.location.pathname.includes('/fun/') || window.location.pathname.includes('fun.html');
 
     return [
         {
@@ -74,7 +74,7 @@ function getCommands() {
             icon: isFunPage
                 ? '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>'
                 : '<polygon points="5 3 19 12 5 21 5 3"></polygon>',
-            action: () => window.location.href = isFunPage ? 'index.html' : 'fun.html'
+            action: () => window.location.href = isFunPage ? 'index.html' : 'fun/'
         },
         {
             label: 'Toggle Debug Mode',
