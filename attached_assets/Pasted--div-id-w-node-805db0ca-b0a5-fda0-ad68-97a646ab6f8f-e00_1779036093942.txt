@@ -1,0 +1,232 @@
+<div id="w-node-_805db0ca-b0a5-fda0-ad68-97a646ab6f8f-e00aaedb" class="dt-right-feature-16">
+                <div class="dt-single-feature-16 first-value">
+                  <h3 class="dt-h3">Community Building</h3><img sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 940px" srcset="images/IMG_5937-p-500.jpg 500w, images/IMG_5937-p-800.jpg 800w, images/IMG_5937-p-1080.jpg 1080w, images/IMG_5937-p-1600.jpg 1600w, images/IMG_5937-p-2000.jpg 2000w, images/IMG_5937-p-2600.jpg 2600w, images/IMG_5937.jpg 5712w" alt="" src="images/IMG_5937.jpg" loading="lazy" class="dt-image-feature-16">
+                  <div class="dt-body-big">I built a vibrant design community of creatives in UX, UI, product design
+                    with more than 250 highly active members. I host playful, bold events that spark connection, fresh
+                    ideas, and skill-sharing on a regular basis.<br>‍<br>‍<br><span class="text-span-12">Skills:
+                    </span><span class="text-span-6">Leadership, Community Building, Public Speaking</span><br></div>
+                  <a href="https://www.fouxysquad.com/" class="button-primary w-inline-block" style="will-change: transform; transform: translate3d(1.8144%, 6.048%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                    <div class="button-text-wrapper align-center" style="will-change: transform; transform: translate3d(2.4192%, 12.096%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                      <div class="text-size-small text-weight-medium">View our website</div>
+                    </div>
+                    <div class="fill-top"></div>
+                    <div class="fill-bottom"></div>
+                    <div class="fill-left"></div>
+                    <div class="fill-right"></div>
+                    <div class="embed-border w-embed"><svg width="166" height="50" viewBox="0 0 166 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13V2C1 1.44772 1.44772 1 2 1H13M165 13V2C165 1.44772 164.552 1 164 1H153M1 39V50C1 50.5523 1.44772 51 2 51H13M165 39V50C165 50.5523 164.552 51 164 51H153" stroke="#EFEEEC" stroke-linecap="round"></path>
+                      </svg></div>
+                  </a>
+                  <div class="dt-divider-fade-out"></div>
+                </div>
+                <div class="dt-single-feature-16 first-value">
+                  <h3 class="dt-h3">Architecture Design</h3><img sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 940px" srcset="images/Solar_8-p-500.jpg 500w, images/Solar_8-p-800.jpg 800w, images/Solar_8.jpg 1000w" alt="" src="images/Solar_8.jpg" loading="lazy" class="dt-image-feature-16">
+                  <div class="dt-body-big">My built architecture <span class="text-span-4">Long Plan</span> in Dezhou,
+                    China, achieved the championship in the <em class="italic-text-4">Solar Decathlon China 2018</em>,
+                    showcasing sustainable and innovative architectural solutions. Additionally, my art installation
+                    <span class="text-span-20">Kaleidoscope</span> in Guangzhou combines conceptual depth with public
+                    engagement.<br>‍<br><span class="text-span-12">Skills: </span><span class="text-span-6">Rhino3D,
+                      Revit, Interior Design, UI/UX Design</span>
+                  </div>
+                  <a href="https://chinaroom.polito.it/portfolio/solar-decathlon-long-plan/" class="button-primary w-inline-block" style="will-change: transform; transform: translate3d(1.8144%, 6.048%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                    <div class="button-text-wrapper align-center" style="will-change: transform; transform: translate3d(2.4192%, 12.096%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                      <div class="text-size-small text-weight-medium">View my work</div>
+                    </div>
+                    <div class="fill-top"></div>
+                    <div class="fill-bottom"></div>
+                    <div class="fill-left"></div>
+                    <div class="fill-right"></div>
+                    <div class="embed-border w-embed"><svg width="166" height="50" viewBox="0 0 166 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13V2C1 1.44772 1.44772 1 2 1H13M165 13V2C165 1.44772 164.552 1 164 1H153M1 39V50C1 50.5523 1.44772 51 2 51H13M165 39V50C165 50.5523 164.552 51 164 51H153" stroke="#EFEEEC" stroke-linecap="round"></path>
+                      </svg></div>
+                  </a>
+                </div>
+                <div class="dt-single-feature-16">
+                  <h3 class="dt-h3">Urban Planning</h3><img sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 940px" srcset="images/FOD-p-500.png 500w, images/FOD-p-800.png 800w, images/FOD-p-1080.png 1080w, images/FOD.png 1440w" alt="" src="images/FOD.png" loading="lazy" class="dt-image-feature-16">
+                  <div class="dt-body-big">I contributed to an award-winning urban planning project for West Oakland,
+                    securing the <em class="italic-text-3">ASLA 2020 Student Competition Award of Excellence in Planning
+                      and Analysis</em>, which highlighted innovative and data-driven approaches to urban
+                    revitalisation.<br><br><span class="text-span-13">Skills: </span><span class="text-span-7">Adobe
+                      Creative Suites, Big Data, Data visualisation</span></div>
+                  <a href="https://www.asla.org/2020studentawards/945.html" class="button-primary w-inline-block" style="will-change: transform; transform: translate3d(1.8144%, 6.048%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                    <div class="button-text-wrapper align-center" style="will-change: transform; transform: translate3d(2.4192%, 12.096%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                      <div class="text-size-small text-weight-medium">View my work</div>
+                    </div>
+                    <div class="fill-top"></div>
+                    <div class="fill-bottom"></div>
+                    <div class="fill-left"></div>
+                    <div class="fill-right"></div>
+                    <div class="embed-border w-embed"><svg width="166" height="50" viewBox="0 0 166 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13V2C1 1.44772 1.44772 1 2 1H13M165 13V2C165 1.44772 164.552 1 164 1H153M1 39V50C1 50.5523 1.44772 51 2 51H13M165 39V50C165 50.5523 164.552 51 164 51H153" stroke="#EFEEEC" stroke-linecap="round"></path>
+                      </svg></div>
+                  </a>
+                </div>
+                <div class="dt-single-feature-16">
+                  <h3 class="dt-h3">Sticker Design</h3>
+                  <section class="stickerwrapper">
+                    <div id="w-node-_373f17ef-2ab4-8cae-7394-1119e249e61d-e00aaedb" class="w-layout-blockcontainer slider-wrapper w-container">
+                      <div data-delay="4000" data-animation="slide" class="slider w-slider" data-autoplay="true" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="3" data-duration="500" data-infinite="true" role="region" aria-label="carousel">
+                        <div class="fun-slider w-slider-mask" id="w-slider-mask-0"><div class="slide-2 sizer w-slide" aria-label="1 of 8" role="group" style="transition: all, transform 500ms; transform: translateX(-1000px); opacity: 1;" aria-hidden="true"></div><div class="slide-3 sizer w-slide" aria-label="2 of 8" role="group" style="transition: all, transform 500ms; transform: translateX(-1000px); opacity: 1;" aria-hidden="true"></div><div class="slide-4 w-slide" aria-label="3 of 8" role="group" style="transition: all, transform 500ms; transform: translateX(-1000px); opacity: 1;" aria-hidden="true"></div><div class="slide-5 w-slide" aria-label="4 of 8" role="group" style="transition: all, transform 500ms; transform: translateX(-1000px); opacity: 1;" aria-hidden="true"></div><div class="slide-6 w-slide" aria-label="5 of 8" role="group" style="transition: all, transform 500ms; transform: translateX(-1000px); opacity: 1;"></div><div class="slide-7 sizer w-slide" aria-label="6 of 8" role="group" style="transition: all, transform 500ms; transform: translateX(-1000px); opacity: 1;" aria-hidden="true"></div><div class="slide-8 sizer w-slide" aria-label="7 of 8" role="group" style="transition: all, transform 500ms; transform: translateX(-1000px); opacity: 1;" aria-hidden="true"></div><div class="slide-9 sizer w-slide" aria-label="8 of 8" role="group" style="transition: all, transform 500ms; transform: translateX(-1000px); opacity: 1;" aria-hidden="true"></div><div aria-live="off" aria-atomic="true" class="w-slider-aria-label" data-wf-ignore="">Slide 4 of 7.</div></div>
+                        <div class="left-arrow w-slider-arrow-left" role="button" tabindex="0" aria-controls="w-slider-mask-0" aria-label="previous slide">
+                          <div class="icon w-icon-slider-left"></div>
+                        </div>
+                        <div class="w-slider-arrow-right" role="button" tabindex="0" aria-controls="w-slider-mask-0" aria-label="next slide">
+                          <div class="icon-2 w-icon-slider-right"></div>
+                        </div>
+                        <div class="slide-nav-2 w-slider-nav w-round w-num"><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 1 of 7" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">1</div><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 2 of 7" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">2</div><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 3 of 7" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">3</div><div class="w-slider-dot w-active" data-wf-ignore="" aria-label="Show slide 4 of 7" aria-pressed="true" role="button" tabindex="0" style="margin-left: 3px; margin-right: 3px;">4</div><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 5 of 7" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">5</div><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 6 of 7" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">6</div><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 7 of 7" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">7</div></div>
+                      </div>
+                      <div class="text-wrapper">
+                        <div class="heading-3 text-size-medium">
+                          <a href="https://store.line.me/stickershop/product/26587664/en"><strong class="bold-text-8">Baobao the Buddly Dino<br>‍</strong></a><br>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="w-node-_373f17ef-2ab4-8cae-7394-1119e249e635-e00aaedb" class="w-layout-blockcontainer slider-wrapper w-container">
+                      <div data-delay="4000" data-animation="slide" class="slider w-slider" data-autoplay="true" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="3" data-duration="500" data-infinite="true" role="region" aria-label="carousel">
+                        <div class="lazycats w-slider-mask" id="w-slider-mask-1"><div class="slide-10 w-slide" aria-label="1 of 9" role="group" style="transition: all, transform 500ms; transform: translateX(-450px); opacity: 1;" aria-hidden="true"></div><div class="slide-12 w-slide" aria-label="2 of 9" role="group" style="transition: all, transform 500ms; transform: translateX(-450px); opacity: 1;"></div><div class="slide-13 w-slide" aria-label="3 of 9" role="group" style="transition: all, transform 500ms; transform: translateX(-450px); opacity: 1;" aria-hidden="true"></div><div class="slide-14 w-slide" aria-label="4 of 9" role="group" style="transition: all, transform 500ms; transform: translateX(-450px); opacity: 1;" aria-hidden="true"></div><div class="slide-15 w-slide" aria-label="5 of 9" role="group" style="transition: all, transform 500ms; transform: translateX(-450px); opacity: 1;" aria-hidden="true"></div><div class="slide-16 w-slide" aria-label="6 of 9" role="group" style="transition: all, transform 500ms; transform: translateX(-450px); opacity: 1;" aria-hidden="true"></div><div class="slide-17 w-slide" aria-label="7 of 9" role="group" style="transition: all, transform 500ms; transform: translateX(-450px); opacity: 1;" aria-hidden="true"></div><div class="slide-18 w-slide" aria-label="8 of 9" role="group" style="transition: all, transform 500ms; transform: translateX(-450px); opacity: 1;" aria-hidden="true"></div><div class="slide-19 w-slide" aria-label="9 of 9" role="group" style="transition: all, transform 500ms; transform: translateX(-450px); opacity: 1;" aria-hidden="true"></div><div aria-live="off" aria-atomic="true" class="w-slider-aria-label" data-wf-ignore="">Slide 2 of 9.</div></div>
+                        <div class="w-slider-arrow-left" role="button" tabindex="0" aria-controls="w-slider-mask-1" aria-label="previous slide">
+                          <div class="icon-4 w-icon-slider-left"></div>
+                        </div>
+                        <div class="w-slider-arrow-right" role="button" tabindex="0" aria-controls="w-slider-mask-1" aria-label="next slide">
+                          <div class="icon-3 w-icon-slider-right"></div>
+                        </div>
+                        <div class="slide-nav-2 w-slider-nav w-round w-num"><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 1 of 9" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">1</div><div class="w-slider-dot w-active" data-wf-ignore="" aria-label="Show slide 2 of 9" aria-pressed="true" role="button" tabindex="0" style="margin-left: 3px; margin-right: 3px;">2</div><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 3 of 9" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">3</div><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 4 of 9" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">4</div><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 5 of 9" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">5</div><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 6 of 9" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">6</div><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 7 of 9" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">7</div><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 8 of 9" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">8</div><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 9 of 9" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">9</div></div>
+                      </div>
+                      <div class="text-wrapper">
+                        <div class="heading-3 text-size-medium">
+                          <a href="https://store.line.me/stickershop/product/26588611/en?from=sticker"><strong class="bold-text-7">Lazy Cat's Daily</strong></a><br>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w-layout-blockcontainer slider-wrapper-plant w-container">
+                      <div data-delay="4000" data-animation="slide" class="slider w-slider" data-autoplay="true" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="3" data-duration="500" data-infinite="true" role="region" aria-label="carousel">
+                        <div class="w-slider-mask" id="w-slider-mask-2"><div class="slide-20 w-slide" aria-label="1 of 6" role="group" style="transition: all, transform 500ms; transform: translateX(-1440px); opacity: 1;" aria-hidden="true"></div><div class="slide-21 w-slide" aria-label="2 of 6" role="group" style="transition: all, transform 500ms; transform: translateX(-1440px); opacity: 1;" aria-hidden="true"></div><div class="slide-22 w-slide" aria-label="3 of 6" role="group" style="transition: all, transform 500ms; transform: translateX(-1440px); opacity: 1;" aria-hidden="true"></div><div class="slide-23 w-slide" aria-label="4 of 6" role="group" style="transition: all, transform 500ms; transform: translateX(-1440px); opacity: 1;" aria-hidden="true"></div><div class="slide-24 w-slide" aria-label="5 of 6" role="group" style="transition: all, transform 500ms; transform: translateX(-1440px); opacity: 1;"></div><div class="slide-25 w-slide" aria-label="6 of 6" role="group" style="transition: all, transform 500ms; transform: translateX(-1440px); opacity: 1;" aria-hidden="true"></div><div aria-live="off" aria-atomic="true" class="w-slider-aria-label" data-wf-ignore="">Slide 5 of 6.</div></div>
+                        <div class="w-slider-arrow-left" role="button" tabindex="0" aria-controls="w-slider-mask-2" aria-label="previous slide">
+                          <div class="icon-6 w-icon-slider-left"></div>
+                        </div>
+                        <div class="w-slider-arrow-right" role="button" tabindex="0" aria-controls="w-slider-mask-2" aria-label="next slide">
+                          <div class="icon-5 w-icon-slider-right"></div>
+                        </div>
+                        <div class="slide-nav-2 w-slider-nav w-round w-num"><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 1 of 6" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">1</div><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 2 of 6" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">2</div><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 3 of 6" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">3</div><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 4 of 6" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">4</div><div class="w-slider-dot w-active" data-wf-ignore="" aria-label="Show slide 5 of 6" aria-pressed="true" role="button" tabindex="0" style="margin-left: 3px; margin-right: 3px;">5</div><div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 6 of 6" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 3px; margin-right: 3px;">6</div></div>
+                      </div>
+                      <div class="text-wrapper">
+                        <div class="heading-3 text-size-medium">
+                          <a href="https://store.line.me/stickershop/product/26587664/en"><strong class="bold-text-9">Plants</strong></a><br>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  <div class="dt-body-big">I designed two successful sticker series, <em class="italic-text">Baobao the
+                      Buddy Dino</em> and <em class="italic-text-2">Lazy Cat’s Daily</em>, garnering over 7,000
+                    downloads on platforms like Line and WeChat, with over 200,000 stickers sent, bringing everyday joy
+                    to users worldwide.<br>‍<br><span class="text-span-14">Skills: </span><span class="text-span-8">Doodling, Procreate</span></div>
+                  <a href="https://store.line.me/stickershop/author/4727135/en" class="button-primary w-inline-block" style="will-change: transform; transform: translate3d(1.8144%, 6.048%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                    <div class="button-text-wrapper align-center" style="will-change: transform; transform: translate3d(2.4192%, 12.096%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                      <div class="text-size-small text-weight-medium">View my work</div>
+                    </div>
+                    <div class="fill-top"></div>
+                    <div class="fill-bottom"></div>
+                    <div class="fill-left"></div>
+                    <div class="fill-right"></div>
+                    <div class="embed-border w-embed"><svg width="166" height="50" viewBox="0 0 166 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13V2C1 1.44772 1.44772 1 2 1H13M165 13V2C165 1.44772 164.552 1 164 1H153M1 39V50C1 50.5523 1.44772 51 2 51H13M165 39V50C165 50.5523 164.552 51 164 51H153" stroke="#EFEEEC" stroke-linecap="round"></path>
+                      </svg></div>
+                  </a>
+                </div>
+                <div class="dt-single-feature-16 first-value">
+                  <div class="dt-divider-fade-out"></div>
+                  <h3 class="dt-h3">Graphic Design</h3><img sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 940px" srcset="images/01_Hero-p-500.png 500w, images/01_Hero-p-800.png 800w, images/01_Hero-p-1080.png 1080w, images/01_Hero.png 1440w" alt="" src="images/01_Hero.png" loading="lazy" class="dt-image-feature-16">
+                  <div class="dt-body-big">As the design lead for my <span class="text-span-10">Architecture
+                      Department’s Branding Department</span> and <em class="italic-text-5">TEDxSCUT</em>, I directed
+                    the creation of over <span>100 </span>posters and digital posts, establishing cohesive visual
+                    identities and enhancing audience engagement.<br><br><span class="text-span-15">Skills: </span><span class="text-span-9">Adobe Creative Suites</span></div>
+                  <a href="https://dribbble.com/shots/14918317-TedxSCUT-poster-and-art-installation" data-w-id="ee5ea4c2-6080-0939-79c3-c5440bc5fd2f" target="_blank" class="button-primary w-inline-block" style="will-change: transform; transform: translate3d(1.8144%, 6.048%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                    <div class="button-text-wrapper align-center" style="will-change: transform; transform: translate3d(2.4192%, 12.096%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                      <div class="text-size-small text-weight-medium">View my work</div>
+                    </div>
+                    <div class="fill-top"></div>
+                    <div class="fill-bottom"></div>
+                    <div class="fill-left"></div>
+                    <div class="fill-right"></div>
+                    <div class="embed-border w-embed"><svg width="166" height="50" viewBox="0 0 166 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13V2C1 1.44772 1.44772 1 2 1H13M165 13V2C165 1.44772 164.552 1 164 1H153M1 39V50C1 50.5523 1.44772 51 2 51H13M165 39V50C165 50.5523 164.552 51 164 51H153" stroke="#EFEEEC" stroke-linecap="round"></path>
+                      </svg></div>
+                  </a>
+                </div>
+                <div class="dt-single-feature-16 first-value">
+                  <div class="dt-divider-fade-out"></div>
+                  <h3 class="dt-h3">Manga Drawing</h3><img sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 940px" srcset="images/01_Hero_1-p-500.png 500w, images/01_Hero_1-p-800.png 800w, images/01_Hero_1-p-1080.png 1080w, images/01_Hero_1.png 1440w" alt="" src="images/01_Hero_1.png" loading="lazy" class="dt-image-feature-16">
+                  <div class="dt-body-big">I was in charge of the branding department for the architecture project Long
+                    Plan, where I&nbsp;initiated and directed the creation of a manga series <em class="italic-text-9">Folk
+                      in Long-Plan</em><br><br><span class="text-span-15">Skills: </span><span class="text-span-9">Manga
+                      Editing, Indesign</span></div>
+                  <a href="https://drive.google.com/file/d/1LAa6T4Eoc7vRyeHXOLzW9sjDXyLWwTQq/view?usp=sharing" class="button-primary w-inline-block" style="will-change: transform; transform: translate3d(1.8144%, 6.048%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                    <div class="button-text-wrapper align-center" style="will-change: transform; transform: translate3d(2.4192%, 12.096%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                      <div class="text-size-small text-weight-medium">View my work</div>
+                    </div>
+                    <div class="fill-top"></div>
+                    <div class="fill-bottom"></div>
+                    <div class="fill-left"></div>
+                    <div class="fill-right"></div>
+                    <div class="embed-border w-embed"><svg width="166" height="50" viewBox="0 0 166 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13V2C1 1.44772 1.44772 1 2 1H13M165 13V2C165 1.44772 164.552 1 164 1H153M1 39V50C1 50.5523 1.44772 51 2 51H13M165 39V50C165 50.5523 164.552 51 164 51H153" stroke="#EFEEEC" stroke-linecap="round"></path>
+                      </svg></div>
+                  </a>
+                </div>
+                <div class="dt-single-feature-16 first-value">
+                  <div class="dt-divider-fade-out"></div>
+                  <h3 class="dt-h3">AR/VR Design</h3><img sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 940px" srcset="images/AR-p-500.png 500w, images/AR-p-800.png 800w, images/AR-p-1080.png 1080w, images/AR-p-1600.png 1600w, images/AR-p-2000.png 2000w, images/AR-p-2600.png 2600w, images/AR.png 2880w" alt="" src="images/AR.png" loading="lazy" class="dt-image-feature-16">
+                  <div class="dt-body-big">I helped the YongQing Fang develop a product for an AR exhibition showcasing
+                    <span class="text-span-21">Bruce Lee’s ancestral home</span>, blending cultural heritage with
+                    immersive digital technologies in collaboration with MIT professor Takehiko Nagakura.<br><br><span class="text-span-16">Skills: </span><span class="text-span-11">Unity 3D, Drone, Photogrammetry,
+                      Video Editing</span>
+                  </div>
+                  <a href="https://drive.google.com/file/d/1G56hgrdgLb-pdCCcAGBw6kDNx-C971uB/view?usp=sharing" class="button-primary w-inline-block" style="will-change: transform; transform: translate3d(1.8144%, 6.048%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                    <div class="button-text-wrapper align-center" style="will-change: transform; transform: translate3d(2.4192%, 12.096%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                      <div class="text-size-small text-weight-medium">View my work</div>
+                    </div>
+                    <div class="fill-top"></div>
+                    <div class="fill-bottom"></div>
+                    <div class="fill-left"></div>
+                    <div class="fill-right"></div>
+                    <div class="embed-border w-embed"><svg width="166" height="50" viewBox="0 0 166 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13V2C1 1.44772 1.44772 1 2 1H13M165 13V2C165 1.44772 164.552 1 164 1H153M1 39V50C1 50.5523 1.44772 51 2 51H13M165 39V50C165 50.5523 164.552 51 164 51H153" stroke="#EFEEEC" stroke-linecap="round"></path>
+                      </svg></div>
+                  </a>
+                </div>
+                <div class="dt-single-feature-16">
+                  <h3 class="dt-h3">Innovation Research</h3><img sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 940px" srcset="images/Cetizen-p-500.png 500w, images/Cetizen-p-800.png 800w, images/Cetizen-p-1080.png 1080w, images/Cetizen.png 1440w" alt="" src="images/Cetizen.png" loading="lazy" class="dt-image-feature-16">
+                  <div class="dt-body-big">My research into the feasibility of Living Labs in China earned the <em class="italic-text-6">Cambridge University Distinction</em>, analyzing four institutions and
+                    contributing to exhibitions at the <em class="italic-text-7">Seoul UABB</em> and <em class="italic-text-8">Shenzhen UABB</em>.<br>‍<br><span class="text-span-17">Skills: Adobe
+                      Creative Suites, Rhino 3D, CAD, Workshop planning, Data visualisation</span></div>
+                  <a href="https://issuu.com/lideli1931/docs/lide_li_maud_dissertation_singlepage" class="button-primary w-inline-block" style="will-change: transform; transform: translate3d(1.8144%, 6.048%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                    <div class="button-text-wrapper align-center" style="will-change: transform; transform: translate3d(2.4192%, 12.096%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                      <div class="text-size-small text-weight-medium">View my work</div>
+                    </div>
+                    <div class="fill-top"></div>
+                    <div class="fill-bottom"></div>
+                    <div class="fill-left"></div>
+                    <div class="fill-right"></div>
+                    <div class="embed-border w-embed"><svg width="166" height="50" viewBox="0 0 166 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13V2C1 1.44772 1.44772 1 2 1H13M165 13V2C165 1.44772 164.552 1 164 1H153M1 39V50C1 50.5523 1.44772 51 2 51H13M165 39V50C165 50.5523 164.552 51 164 51H153" stroke="#EFEEEC" stroke-linecap="round"></path>
+                      </svg></div>
+                  </a>
+                </div>
+                <div class="dt-single-feature-16">
+                  <h3 class="dt-h3">Aspiring Chef</h3><img sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 940px" srcset="images/Coffee-Beans-p-500.png 500w, images/Coffee-Beans-p-800.png 800w, images/Coffee-Beans-p-1080.png 1080w, images/Coffee-Beans-p-1600.png 1600w, images/Coffee-Beans-p-2000.png 2000w, images/Coffee-Beans-p-2600.png 2600w, images/Coffee-Beans.png 2880w" alt="" src="images/Coffee-Beans.png" loading="lazy" class="dt-image-feature-16">
+                  <div class="dt-body-big">I also have a food account(<span class="text-span-19">lide.food</span>) where
+                    I document what I cook everyday. I am proficient in cooking Japanese and Chinese food.<br>‍<br><span class="text-span-17">Skills: Cooking</span></div>
+                  <a href="https://www.instagram.com/lide.food/?locale=zh_CN&amp;hl=ar" class="button-primary w-inline-block" style="will-change: transform; transform: translate3d(1.8144%, 6.048%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                    <div class="button-text-wrapper align-center" style="will-change: transform; transform: translate3d(2.4192%, 12.096%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                      <div class="text-size-small text-weight-medium">View my work</div>
+                    </div>
+                    <div class="fill-top"></div>
+                    <div class="fill-bottom"></div>
+                    <div class="fill-left"></div>
+                    <div class="fill-right"></div>
+                    <div class="embed-border w-embed"><svg width="166" height="50" viewBox="0 0 166 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13V2C1 1.44772 1.44772 1 2 1H13M165 13V2C165 1.44772 164.552 1 164 1H153M1 39V50C1 50.5523 1.44772 51 2 51H13M165 39V50C165 50.5523 164.552 51 164 51H153" stroke="#EFEEEC" stroke-linecap="round"></path>
+                      </svg></div>
+                  </a>
+                </div>
+              </div>

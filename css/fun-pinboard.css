@@ -1,0 +1,336 @@
+/* ========================================
+   FUN PAGE — PINBOARD CARD LAYOUT
+   All .dt-single-feature-16 items become
+   dark pinboard cards on fun.html.
+   ======================================== */
+
+/* ----------------------------------------
+   HIDE LEFT SIDEBAR on fun.html
+   ---------------------------------------- */
+.dt-master-left-feature-16 {
+    display: none !important;
+}
+
+/* ----------------------------------------
+   FULL-WIDTH PINBOARD CONTAINER
+   ---------------------------------------- */
+.dt-grid-feature-16 {
+    grid-template-columns: 1fr !important;
+    grid-column-gap: 0 !important;
+    grid-row-gap: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.dt-right-feature-16 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 40px;
+    padding: 48px 2rem 64px;
+    align-items: stretch;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    position: relative;
+}
+
+
+/* ----------------------------------------
+   DT-SECTION BACKGROUND (fun.html pinboard area)
+   Two-layer background: black base + dark gray panel with strokes
+   ---------------------------------------- */
+.dt-section {
+    position: relative;
+    overflow: visible;
+    background: transparent !important;
+}
+
+/* Black base layer (full viewport width) */
+.dt-section::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100%;
+    top: 0;
+    background: #000000;
+    z-index: -2;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+/* Dark gray panel with strokes at its left/right edges */
+.dt-section::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90vw;
+    height: 100%;
+    top: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        /* subtle grid pattern (very faint) */
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 40px 40px,
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 40px 40px,
+        /* dark gray radial fill emanating from hero bottom */
+        radial-gradient(ellipse at 50% 0%, #1a1a1a 0%, #141414 50%, #0a0a0a 100%);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+/* ----------------------------------------
+   CARD BASE — ALL .dt-single-feature-16 items
+   Dark card with image on top, content below.
+   Overrides Webflow's 48px grid-gap and
+   border-top on each item.
+   ---------------------------------------- */
+.dt-right-feature-16 .dt-single-feature-16 {
+    width: 55%;
+    max-width: 620px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #1a1a1a;
+    border-radius: 14px;
+    border: 1px solid #2a2a2a;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+
+    /* Override Webflow defaults */
+    grid-column-gap: 0 !important;
+    grid-row-gap: 0 !important;
+    border-top: none !important;
+    padding-top: 0 !important;
+
+    transform: rotate(0deg);
+    transition:
+        transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.25s ease;
+    will-change: transform;
+}
+
+/* ----------------------------------------
+   IMAGE — flush to the top of the card
+   ---------------------------------------- */
+.dt-right-feature-16 .dt-single-feature-16 .dt-image-feature-16 {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    order: 1;
+    border-radius: 0;
+    flex-shrink: 0;
+}
+
+/* ----------------------------------------
+   TITLE — reordered below the image
+   ---------------------------------------- */
+.dt-right-feature-16 .dt-single-feature-16 .dt-h3 {
+    order: 2;
+    margin: 0;
+    padding: 14px 20px 6px;
+    color: #efeeec;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+}
+
+/* ----------------------------------------
+   BODY COPY — below title
+   ---------------------------------------- */
+.dt-right-feature-16 .dt-single-feature-16 .dt-body-big {
+    order: 3;
+    padding: 0 20px 12px;
+    color: rgba(239, 238, 236, 0.7);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+/* ----------------------------------------
+   CTA BUTTON — retained at card bottom
+   ---------------------------------------- */
+.dt-right-feature-16 .dt-single-feature-16 .button-primary {
+    order: 4;
+    margin: 0 20px 20px;
+    align-self: stretch;
+    background: #252525 !important;
+    border: 1px solid #3a3a3a !important;
+    border-radius: 8px !important;
+    padding: 12px 24px !important;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    position: relative;
+    color: #efeeec !important;
+}
+
+.dt-right-feature-16 .dt-single-feature-16 .button-primary .text-size-small {
+    color: #efeeec !important;
+}
+
+/* ----------------------------------------
+   DIVIDERS — hidden inside cards
+   ---------------------------------------- */
+.dt-right-feature-16 .dt-single-feature-16 .dt-divider-fade-out {
+    display: none;
+}
+
+/* ----------------------------------------
+   STICKER WRAPPER — contained inside card
+   ---------------------------------------- */
+.dt-right-feature-16 .dt-single-feature-16 .stickerwrapper {
+    order: 1;
+    width: 100%;
+}
+
+/* Remove slider background colors so they blend into card */
+.dt-right-feature-16 .dt-single-feature-16 .slider,
+.dt-right-feature-16 .dt-single-feature-16 .w-slider {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* ----------------------------------------
+   SCATTERED LEFT / RIGHT ALIGNMENT
+   Odd cards → left, Even cards → right
+   ---------------------------------------- */
+.dt-right-feature-16 .dt-single-feature-16:nth-child(odd) {
+    align-self: flex-start;
+    margin-left: 12%;
+}
+.dt-right-feature-16 .dt-single-feature-16:nth-child(even) {
+    align-self: flex-end;
+    margin-right: 12%;
+}
+
+/* ----------------------------------------
+   CUTE FADE-IN ANIMATION SETUP
+   Cards start hidden, slide up & spin in.
+   ---------------------------------------- */
+.dt-right-feature-16 .dt-single-feature-16 {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96) rotate(var(--card-rot, 0deg));
+    transition:
+        opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Visible state — slide up, fade in, settle into rotation */
+.dt-right-feature-16 .dt-single-feature-16.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(var(--card-rot, 0deg));
+}
+
+/* Per-card rotation + staggered delay */
+.dt-right-feature-16 .dt-single-feature-16:nth-child(1) { --card-rot: -2.2deg; transition-delay: 0s; }
+.dt-right-feature-16 .dt-single-feature-16:nth-child(2) { --card-rot: 1.8deg;  transition-delay: 0.08s; }
+.dt-right-feature-16 .dt-single-feature-16:nth-child(3) { --card-rot: -1.1deg; transition-delay: 0.16s; }
+.dt-right-feature-16 .dt-single-feature-16:nth-child(4) { --card-rot: 2.8deg;   transition-delay: 0.24s; }
+.dt-right-feature-16 .dt-single-feature-16:nth-child(5) { --card-rot: -0.7deg;  transition-delay: 0.32s; }
+.dt-right-feature-16 .dt-single-feature-16:nth-child(6) { --card-rot: 1.5deg;   transition-delay: 0.40s; }
+.dt-right-feature-16 .dt-single-feature-16:nth-child(7) { --card-rot: -2.0deg;  transition-delay: 0.48s; }
+.dt-right-feature-16 .dt-single-feature-16:nth-child(8) { --card-rot: 0.9deg;   transition-delay: 0.56s; }
+.dt-right-feature-16 .dt-single-feature-16:nth-child(9) { --card-rot: -1.4deg;  transition-delay: 0.64s; }
+
+/* ----------------------------------------
+   HOVER — card lifts, rotation settles
+   ---------------------------------------- */
+.dt-right-feature-16 .dt-single-feature-16:hover {
+    transform: translateY(-8px) scale(1.02) rotate(0deg) !important;
+    box-shadow:
+        0 16px 48px rgba(0, 0, 0, 0.7),
+        0 4px 16px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    z-index: 10;
+    position: relative;
+}
+
+.dt-right-feature-16 .dt-single-feature-16:hover .button-primary {
+    background: #333333 !important;
+    border-color: #4a4a4a !important;
+}
+
+/* Override Webflow fill animation to dark tones */
+.dt-right-feature-16 .dt-single-feature-16 .button-primary .fill-top,
+.dt-right-feature-16 .dt-single-feature-16 .button-primary .fill-bottom,
+.dt-right-feature-16 .dt-single-feature-16 .button-primary .fill-left,
+.dt-right-feature-16 .dt-single-feature-16 .button-primary .fill-right {
+    background-color: #3a3a3a !important;
+}
+
+/* ----------------------------------------
+   MOBILE — soften rotations
+   ---------------------------------------- */
+@media screen and (max-width: 767px) {
+    .dt-right-feature-16 {
+        gap: 20px;
+        padding: 20px 0 32px;
+    }
+
+    .dt-right-feature-16 .dt-single-feature-16 {
+        width: 90%;
+        max-width: 100%;
+    }
+
+    .dt-right-feature-16 .dt-single-feature-16:nth-child(odd)  { margin-left: 2%; }
+    .dt-right-feature-16 .dt-single-feature-16:nth-child(even) { margin-right: 2%; }
+
+    .dt-right-feature-16 .dt-single-feature-16:nth-child(1) { transform: rotate(-0.8deg); }
+    .dt-right-feature-16 .dt-single-feature-16:nth-child(2) { transform: rotate(0.7deg); }
+    .dt-right-feature-16 .dt-single-feature-16:nth-child(3) { transform: rotate(-0.4deg); }
+    .dt-right-feature-16 .dt-single-feature-16:nth-child(4) { transform: rotate(1.0deg); }
+    .dt-right-feature-16 .dt-single-feature-16:nth-child(5) { transform: rotate(-0.3deg); }
+    .dt-right-feature-16 .dt-single-feature-16:nth-child(6) { transform: rotate(0.6deg); }
+    .dt-right-feature-16 .dt-single-feature-16:nth-child(7) { transform: rotate(-0.7deg); }
+    .dt-right-feature-16 .dt-single-feature-16:nth-child(8) { transform: rotate(0.4deg); }
+    .dt-right-feature-16 .dt-single-feature-16:nth-child(9) { transform: rotate(-0.5deg); }
+
+    .dt-right-feature-16 .dt-single-feature-16:hover {
+        transform: rotate(0deg) translateY(-5px) !important;
+    }
+}
+
+/* ----------------------------------------
+   CARD CLICKABLE + HOVER ARROW
+   ---------------------------------------- */
+/* Clickable cards */
+.dt-right-feature-16 .dt-single-feature-16[data-href] {
+    cursor: pointer;
+}
+
+/* Hover arrow to the right of the title */
+.dt-right-feature-16 .dt-single-feature-16[data-href] .dt-h3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.dt-right-feature-16 .dt-single-feature-16[data-href] .dt-h3::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 12L12 4M12 4H6M12 4V10' stroke='rgba(255,255,255,0.5)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+    opacity: 0;
+    transform: translate(2px, -2px);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dt-right-feature-16 .dt-single-feature-16[data-href]:hover .dt-h3::after {
+    opacity: 1;
+    transform: translate(0, 0);
+}
