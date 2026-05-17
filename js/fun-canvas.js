@@ -791,6 +791,23 @@
     applyPositions(null, true);
   }
 
+  /* ---------- FOCUS ON HERO ---------- */
+  function focusOnHero() {
+    var hero = document.getElementById('canvas-hero');
+    if (!hero) return;
+    deselectCard();
+    var heroPos = DEFAULT_POSITIONS['canvas-hero'] || { left: 1145.62, top: 692.251 };
+    var heroW = 480;
+    var heroH = 160;
+    var rect = viewport.getBoundingClientRect();
+    var targetScale = 1.0;
+    panX = (rect.width / 2) - (heroPos.left + heroW / 2) * targetScale;
+    panY = (rect.height / 2) - (heroPos.top + heroH / 2) * targetScale;
+    scale = targetScale;
+    applyCanvasTransform(true);
+    savePan();
+  }
+
   /* ---------- EXPORT CURRENT LAYOUT ---------- */
   function exportLayout() {
     var saved;
@@ -906,6 +923,11 @@
     var resetBtn = document.getElementById('fun-reset-btn');
     if (resetBtn) resetBtn.addEventListener('click', function () {
       resetLayout();
+    });
+
+    var focusBtn = document.getElementById('fun-focus-btn');
+    if (focusBtn) focusBtn.addEventListener('click', function () {
+      focusOnHero();
     });
 
     var exportBtn = document.getElementById('fun-export-btn');
