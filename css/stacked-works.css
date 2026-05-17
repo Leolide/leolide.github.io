@@ -664,6 +664,7 @@ a.sw-card * {
 
 @media screen and (max-width: 991px) {
   .sw-card-stack {
+    width: calc(100% - 48px);   /* 24px gutters, matches About me */
     max-width: calc(100vw - 48px);
     margin-left: auto;
     margin-right: auto;
