@@ -365,9 +365,9 @@ body {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 991px) {
     .section:has(.home-hero) .bg-image.mobile {
-        height: 100vh; /* match .home-hero on mobile */
+        height: 100vh; /* match .home-hero on tablet and mobile */
     }
 }
 
