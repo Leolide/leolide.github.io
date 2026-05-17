@@ -973,6 +973,16 @@
 
     window.addEventListener('resize', updateFloatingMenu);
 
+    /* Re-center on hero whenever the window resizes (desktop only) */
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      if (isMobile()) return;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        focusOnHero();
+      }, 150);
+    });
+
     /* Reset to defaults when switching from mobile back to desktop */
     var wasMobile = isMobile();
     window.addEventListener('resize', function () {
