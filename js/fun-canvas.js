@@ -107,10 +107,12 @@
     document.querySelectorAll('.canvas-item').forEach(function (item) {
       var id = item.id;
       var def = DEFAULT_POSITIONS[id];
+      var rotVal = item.style.getPropertyValue('--canvas-rot') || (def ? def.rot + 'deg' : '0deg');
+      var rotNum = parseFloat(rotVal) || 0;
       var rec = {
         left: parseFloat(item.style.left) || 0,
         top:  parseFloat(item.style.top)  || 0,
-        rot:  def ? def.rot : 0
+        rot:  rotNum
       };
       var w = parseFloat(item.style.width);
       var h = parseFloat(item.style.height);
@@ -308,7 +310,7 @@
     if (modeLabel) modeLabel.textContent = edit ? 'Edit' : 'Read';
     else if (modeBtn) modeBtn.textContent = edit ? 'Edit' : 'Read';
 
-    var editBtns = ['fun-reset-btn', 'fun-export-btn', 'fun-add-text-btn'];
+    var editBtns = ['fun-export-btn', 'fun-add-text-btn'];
     editBtns.forEach(function (id) {
       var btn = document.getElementById(id);
       if (btn) btn.style.display = edit ? '' : 'none';
@@ -491,6 +493,14 @@
         item.classList.add('is-editing');
       }, 50);
     }
+
+    var rh = document.createElement('div');
+    rh.className = 'rot-handle';
+    rh.title = 'Drag to rotate';
+    item.appendChild(rh);
+    rh.addEventListener('mousedown',  onRotPointerDown);
+    rh.addEventListener('touchstart', onRotPointerDown, { passive: false });
+
     savePositions();
     return item;
   }
@@ -572,6 +582,80 @@
     resizing.classList.remove('is-resizing');
     savePositions();
     resizing = null;
+  }
+
+  /* ---------- ROTATION ---------- */
+  var rotating = null;
+  var rotStartAngle = 0;
+  var rotStartRot = 0;
+
+  function getItemCenter(item) {
+    var rect = item.getBoundingClientRect();
+    return {
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2
+    };
+  }
+
+  function onRotPointerDown(e) {
+    if (!isEditMode) return;
+    e.stopPropagation();
+    e.preventDefault();
+    var item = this.closest('.canvas-item');
+    rotating = item;
+    item.classList.add('is-rotating');
+    deselectCard();
+
+    var c = getItemCenter(item);
+    var clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+    var clientY = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
+    rotStartAngle = Math.atan2(clientY - c.y, clientX - c.x);
+    var rotVal = item.style.getPropertyValue('--canvas-rot') || '0deg';
+    rotStartRot = parseFloat(rotVal) || 0;
+
+    if (e.type === 'mousedown') {
+      document.addEventListener('mousemove', onRotMouseMove, { passive: false });
+      document.addEventListener('mouseup',   onRotMouseUp,   { once: true });
+    } else {
+      document.addEventListener('touchmove', onRotTouchMove, { passive: false });
+      document.addEventListener('touchend',  onRotTouchEnd,  { once: true });
+    }
+  }
+
+  function applyRotation(clientX, clientY) {
+    if (!rotating) return;
+    var c = getItemCenter(rotating);
+    var angle = Math.atan2(clientY - c.y, clientX - c.x);
+    var delta = (angle - rotStartAngle) * (180 / Math.PI);
+    var newRot = rotStartRot + delta;
+    rotating.style.setProperty('--canvas-rot', newRot + 'deg');
+  }
+
+  function onRotMouseMove(e) {
+    applyRotation(e.clientX, e.clientY);
+  }
+
+  function onRotMouseUp() {
+    document.removeEventListener('mousemove', onRotMouseMove);
+    finishRotation();
+  }
+
+  function onRotTouchMove(e) {
+    if (!e.touches.length) return;
+    e.preventDefault();
+    applyRotation(e.touches[0].clientX, e.touches[0].clientY);
+  }
+
+  function onRotTouchEnd() {
+    document.removeEventListener('touchmove', onRotTouchMove);
+    finishRotation();
+  }
+
+  function finishRotation() {
+    if (!rotating) return;
+    rotating.classList.remove('is-rotating');
+    savePositions();
+    rotating = null;
   }
 
   /* ---------- CANVAS PAN ---------- */
@@ -768,12 +852,27 @@
       handle.addEventListener('touchstart', onResizePointerDown, { passive: false });
     });
 
+    // Inject rotation handles into all items
+    document.querySelectorAll('.canvas-item').forEach(function (item) {
+      if (!item.querySelector('.rot-handle')) {
+        var rh = document.createElement('div');
+        rh.className = 'rot-handle';
+        rh.title = 'Drag to rotate';
+        item.appendChild(rh);
+      }
+    });
+
+    document.querySelectorAll('.rot-handle').forEach(function (handle) {
+      handle.addEventListener('mousedown',  onRotPointerDown);
+      handle.addEventListener('touchstart', onRotPointerDown, { passive: false });
+    });
+
     // Default to read mode on load
     setEditMode(false);
 
     var resetBtn = document.getElementById('fun-reset-btn');
     if (resetBtn) resetBtn.addEventListener('click', function () {
-      if (isEditMode) resetLayout();
+      resetLayout();
     });
 
     var exportBtn = document.getElementById('fun-export-btn');

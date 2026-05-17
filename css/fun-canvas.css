@@ -322,6 +322,46 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
     background: rgba(239, 238, 236, 0.85);
 }
 
+/* Rotation handle — visible on all items in edit mode */
+.rot-handle {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(239, 238, 236, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    cursor: grab;
+    opacity: 0;
+    transition: opacity 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+}
+
+body.fun-canvas-mode.edit-mode .canvas-item:hover .rot-handle,
+body.fun-canvas-mode.edit-mode .canvas-item.is-selected .rot-handle,
+body.fun-canvas-mode.edit-mode .canvas-item.is-rotating .rot-handle {
+    opacity: 1;
+}
+
+.rot-handle:hover {
+    background: rgba(239, 238, 236, 0.9);
+    transform: translateX(-50%) scale(1.15);
+}
+
+/* Rotation connector line */
+.rot-handle::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 1px;
+    height: 8px;
+    background: rgba(239, 238, 236, 0.4);
+    transform: translateX(-50%);
+}
+
 /* Hide hover arrow on canvas cards */
 .canvas-item.card-item .dt-h3::after {
     display: none !important;
@@ -552,6 +592,13 @@ body.fun-canvas-mode.read-mode .toolbar-group--edit {
 }
 
 /* Keep mode + zoom visible in both modes */
+body.fun-canvas-mode.read-mode .toolbar-group--mode,
+body.fun-canvas-mode.read-mode .toolbar-group--zoom {
+    display: flex;
+}
+
+/* Always-visible groups (reset + mode + zoom) */
+body.fun-canvas-mode.read-mode .toolbar-group--reset,
 body.fun-canvas-mode.read-mode .toolbar-group--mode,
 body.fun-canvas-mode.read-mode .toolbar-group--zoom {
     display: flex;
