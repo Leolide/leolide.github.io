@@ -271,12 +271,11 @@ body {
 }
 
 /* ========================================
-   HERO BOTTOM GRADIENT FADE
+   HERO BOTTOM GRADIENT FADE (desktop only)
    ========================================
-   This gradient overlay uses a pseudo-element so it scales with the
-   hero section. On desktop (30vh) it provides a smooth transition to
-   black. On mobile (20vh) it stays short so the CTA and social links
-   remain fully visible. Do NOT reintroduce a fixed-height overlay div. */
+   On desktop this sits on the hero section as an overlay.
+   On mobile/tablet it moves to .bg-image.mobile so it doesn't
+   obscure any content above it. */
 .home-hero::after {
     content: '';
     position: absolute;
@@ -295,29 +294,46 @@ body {
     z-index: 10;
 }
 
-/* Mobile — short gradient that doesn't obscure CTA or social links */
-@media screen and (max-width: 767px) {
+/* Hide hero gradient on mobile/tablet — moved to bg-image.mobile */
+@media screen and (max-width: 991px) {
     .home-hero::after {
-        height: 18vh;
-        background: linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0) 0%,
-            rgba(0, 0, 0, 0.35) 45%,
-            rgba(0, 0, 0, 0.75) 80%,
-            #000 100%
-        );
+        display: none;
     }
 }
 
-/* Tablet/iPad — gradient anchored to bottom of the 120vh hero */
-@media screen and (min-width: 768px) and (max-width: 991px) {
-    .home-hero::after {
+/* Mobile/tablet: gradient lives on the background layer, not hero */
+@media screen and (max-width: 991px) {
+    .section:has(.home-hero) .bg-image.mobile {
+        background-image: none !important;
+    }
+    .section:has(.home-hero) .bg-image.mobile::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
         height: 25vh;
         background: linear-gradient(
             to bottom,
             rgba(0, 0, 0, 0) 0%,
             rgba(0, 0, 0, 0.30) 40%,
             rgba(0, 0, 0, 0.70) 75%,
+            #000 100%
+        );
+        pointer-events: none;
+        z-index: 1;
+    }
+}
+
+/* Mobile-only: shorter gradient */
+@media screen and (max-width: 767px) {
+    .section:has(.home-hero) .bg-image.mobile::after {
+        height: 18vh;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.35) 45%,
+            rgba(0, 0, 0, 0.75) 80%,
             #000 100%
         );
     }
