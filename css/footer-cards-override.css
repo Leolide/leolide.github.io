@@ -309,6 +309,16 @@
     .footer-social-wrap {
         justify-content: flex-start !important;
     }
+
+    .sticky-services {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+
+    .services-content,
+    .services-content-first {
+        padding: 2rem 0.5rem !important;
+    }
 }
 
 /* ========================================
