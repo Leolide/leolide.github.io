@@ -315,66 +315,44 @@
    BUTTON RESPONSIVE STYLING
    ======================================== */
 
-/* Footer button — matches standard button-primary hover behavior.
-   Default: white fill bars cover the button (appears white, dark text).
-   Hover: fill bars slide outward, revealing dark background, text turns white. */
+/* Footer button — simple hover */
 .footer-wrapper .button-primary {
     margin-top: 2rem !important;
     width: auto !important;
     display: inline-flex !important;
     max-width: max-content !important;
-    position: relative !important;
-    overflow: hidden !important;
-    /* No background-color — fill bars provide the white appearance */
-    color: #000 !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    visibility: visible !important;
+    padding: 1.125rem 1.5rem !important;
+    border: 1px solid #efeeec !important;
+    border-radius: .4rem !important;
+    background: transparent !important;
+    color: #efeeec !important;
+    transition: background 0.25s ease, color 0.25s ease !important;
 }
 
-/* Default text: dark on white fill bars */
 .footer-wrapper .button-primary .text-size-small,
 .footer-wrapper .button-primary .button-text-wrapper {
-    color: #000 !important;
-    position: relative !important;
-    z-index: 5 !important;
-    transition: color 0.3s ease !important;
+    color: #efeeec !important;
+    transition: color 0.25s ease !important;
 }
 
-/* Default: fill bars visible (white), covering the button */
+/* Hide the fill bars and corner brackets — not needed for simple hover */
 .footer-wrapper .button-primary .fill-top,
 .footer-wrapper .button-primary .fill-bottom,
 .footer-wrapper .button-primary .fill-left,
-.footer-wrapper .button-primary .fill-right {
-    opacity: 1 !important;
-    background-color: #efeeec !important;
-    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
-    pointer-events: none !important;
-}
-
-/* Default: corner brackets hidden (standard buttons don't use them) */
+.footer-wrapper .button-primary .fill-right,
 .footer-wrapper .button-primary .embed-border {
-    opacity: 0 !important;
     display: none !important;
 }
 
-/* Hover: fill bars slide outward, revealing dark background underneath */
-.footer-wrapper .button-primary:hover .fill-left {
-    transform: translateX(-101%) !important;
-}
-.footer-wrapper .button-primary:hover .fill-top {
-    transform: translateY(-101%) !important;
-}
-.footer-wrapper .button-primary:hover .fill-bottom {
-    transform: translateY(101%) !important;
-}
-.footer-wrapper .button-primary:hover .fill-right {
-    transform: translateX(101%) !important;
+/* Hover: invert colors */
+.footer-wrapper .button-primary:hover {
+    background: #efeeec !important;
+    color: #000 !important;
 }
 
-/* Hover: text turns white to contrast against revealed dark background */
 .footer-wrapper .button-primary:hover .text-size-small,
 .footer-wrapper .button-primary:hover .button-text-wrapper {
-    color: #efeeec !important;
+    color: #000 !important;
 }
 
 /* Download CV button - don't fill width on mobile/tablet */
