@@ -9,7 +9,7 @@
   var MIN_SCALE = 0.25;
   var MAX_SCALE = 3.5;
 
-  var DEFAULT_CAMERA = { panX: -982.7556995554623, panY: -676.8090662915642, scale: 1.180853428463634 };
+  var DEFAULT_CAMERA = { panX: -1250, panY: -676.8090662915642, scale: 1.180853428463634 };
 
   var DEFAULT_POSITIONS = {
     'canvas-card-0':  { left: 1692.13, top: 971.123, rot: -2.2 },
