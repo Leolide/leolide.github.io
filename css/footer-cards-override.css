@@ -351,6 +351,70 @@
     color: #efeeec !important;
 }
 
+/* ========================================
+   EXPERIENCE CARDS
+   ======================================== */
+
+/* Card container styling for experience entries */
+.services-content,
+.services-content-first {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: .5rem;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: .75rem;
+    background: rgba(255, 255, 255, 0.02);
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    cursor: default;
+}
+
+/* Hover: subtle lift and brighter border */
+.services-content:hover,
+.services-content-first:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Cards that contain a link should be clickable */
+.services-content:has(a),
+.services-content-first:has(a) {
+    cursor: pointer;
+}
+
+/* Make the internal link cover the whole card for clickability */
+.services-content:has(a) .sticky-services-content,
+.services-content-first:has(a) .sticky-services-content {
+    position: relative;
+}
+
+/* Link styling inside cards */
+.services-content a,
+.services-content-first a {
+    text-decoration: none;
+}
+
+.services-content a:hover,
+.services-content-first a:hover {
+    text-decoration: underline;
+}
+
+/* Keep the icon at a consistent size within cards */
+.services-content .sticky-icon,
+.services-content-first .sticky-icon {
+    width: 2.5rem;
+    min-width: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.services-content .sticky-icon img,
+.services-content-first .sticky-icon img {
+    max-width: 100%;
+    max-height: 2.5rem;
+    object-fit: contain;
+}
+
 /* Download CV button - don't fill width on mobile/tablet */
 @media screen and (max-width: 991px) {
     .button-primary {
