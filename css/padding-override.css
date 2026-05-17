@@ -12,6 +12,11 @@
         padding-left: 1.5rem !important;
         padding-right: 1.5rem !important;
     }
+    /* Remove .section-3 margin so padding is the only gutter */
+    .section-3 {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
 }
 
 .works-square-wrapper.margin-top {
