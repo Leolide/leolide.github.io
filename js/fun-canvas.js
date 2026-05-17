@@ -806,12 +806,14 @@
       addHandwrittenNote(worldX, worldY, '');
     });
 
-    // Click cards to open links in read mode
+    // In read mode, click/tap selects the item and shows the floating menu
     document.querySelectorAll('.canvas-item').forEach(function (item) {
       item.addEventListener('click', function (e) {
         if (isEditMode) return;
-        var href = item.getAttribute('data-href');
-        if (href) window.open(href, '_blank');
+        // Skip if tapping on an inner <a> link
+        if (e.target.closest('a[href]')) return;
+        // Select and show the floating menu
+        selectCard(item);
       });
     });
 
