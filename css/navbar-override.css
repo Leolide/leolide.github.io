@@ -302,10 +302,10 @@ body {
     }
 }
 
-/* Tablet/iPad — keep gradient on hero only */
+/* Tablet/iPad — gradient anchored to bottom of the 120vh hero */
 @media screen and (min-width: 768px) and (max-width: 991px) {
     .home-hero::after {
-        height: 22vh;
+        height: 25vh;
         background: linear-gradient(
             to bottom,
             rgba(0, 0, 0, 0) 0%,
@@ -367,7 +367,7 @@ body {
 
 @media screen and (max-width: 991px) {
     .section:has(.home-hero) .bg-image.mobile {
-        height: 100vh; /* match .home-hero on tablet and mobile */
+        height: 120vh; /* match .home-hero on tablet and mobile */
     }
 }
 
