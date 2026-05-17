@@ -1,0 +1,722 @@
+/* ========================================
+   FUN PAGE — FREE-FORM DRAGGABLE CANVAS
+   ======================================== */
+
+/* Disable canvas on mobile; show original page */
+@media screen and (max-width: 767px) {
+    #fun-canvas-viewport,
+    #fun-zoom-controls,
+    #fun-reset-btn,
+    #fun-export-btn,
+    #fun-add-text-btn,
+    #fun-footer-strip {
+        display: none !important;
+    }
+
+    body.fun-canvas-mode {
+        overflow: auto !important;
+        height: auto !important;
+    }
+
+    #fun-mobile-content {
+        display: block !important;
+    }
+
+    body.fun-canvas-mode .section.fun-mobile-fallback,
+    body.fun-canvas-mode .section.fun-mobile-fallback .w-layout-blockcontainer.container.w-container {
+        display: block !important;
+    }
+
+    /* Force pinboard cards visible on mobile (override opacity:0 from fun-pinboard.css)
+       Higher specificity needed because fun-pinboard.css loads AFTER fun-canvas.css. */
+    body.fun-canvas-mode #fun-mobile-content .dt-right-feature-16 .dt-single-feature-16,
+    body.fun-canvas-mode #fun-mobile-content .dt-single-feature-16 {
+        opacity: 1 !important;
+        transform: translateY(0) scale(1) !important;
+    }
+
+    /* Pin hero text size so it doesn't shrink on narrow viewports */
+    body.fun-canvas-mode #fun-mobile-content .dt-text-scroll-move-1 {
+        font-size: 3rem !important;
+    }
+}
+
+/* Hide mobile fallback by default (desktop), show only on mobile */
+#fun-mobile-content {
+    display: none !important;
+}
+
+@media screen and (max-width: 767px) {
+    #fun-mobile-content {
+        display: block !important;
+    }
+}
+
+/* ----------------------------------------
+   LAYOUT TOKENS
+   Single source of truth for navbar/footer
+   heights — change here to ripple everywhere.
+   ---------------------------------------- */
+:root {
+    --fc-navbar-h: 60px;
+    --fc-footer-h: 48px;
+}
+
+/* Pin hero text size on fun page so it doesn't scale with viewport */
+body.fun-canvas-mode .dt-text-scroll-move-1 {
+    font-size: 60px !important;
+}
+
+/* ----------------------------------------
+   VIEWPORT & BODY OVERRIDE
+   ---------------------------------------- */
+@media screen and (min-width: 768px) {
+    body.fun-canvas-mode {
+        overflow: hidden !important;
+        height: 100dvh;
+    }
+}
+
+/* Mobile fallback content is controlled by #fun-mobile-content display rules above */
+
+/* ----------------------------------------
+   CANVAS VIEWPORT
+   Sits below navbar, above footer strip
+   ---------------------------------------- */
+#fun-canvas-viewport {
+    position: fixed;
+    top: var(--fc-navbar-h);
+    left: 0;
+    right: 0;
+    bottom: var(--fc-footer-h);
+    overflow: hidden;
+    cursor: grab;
+    background: #0a0a0a;
+    z-index: 1;
+}
+
+#fun-canvas-viewport.is-panning {
+    cursor: grabbing;
+}
+
+/* ----------------------------------------
+   CANVAS BACKGROUND — dot grid pattern
+   ---------------------------------------- */
+#fun-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5000px;
+    height: 4000px;
+    transform-origin: 0 0;
+    will-change: transform;
+    background-color: #0a0a0a;
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* ----------------------------------------
+   CANVAS ITEMS — base
+   ---------------------------------------- */
+.canvas-item {
+    position: absolute;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+    will-change: left, top;
+}
+
+.canvas-item.is-dragging {
+    cursor: grabbing;
+    z-index: 9999 !important;
+    transition: box-shadow 0.2s ease;
+}
+
+/* ----------------------------------------
+   HERO TEXT ITEM
+   ---------------------------------------- */
+.canvas-item.hero-item {
+    width: 480px;
+    padding: 32px 36px 28px;
+    background: transparent;
+    z-index: 10;
+}
+
+.canvas-item.hero-item .dt-master-scroll-move-1 {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.canvas-item.hero-item .dt-text-scroll-move-1 {
+    color: #efeeec;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.canvas-item.hero-item .dt-second-scroll-move-2 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.canvas-item.hero-item .dt-pill-scroll-move-1 {
+    height: 2.8rem;
+    width: auto;
+    border-radius: 100px;
+    object-fit: contain;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* ----------------------------------------
+   DISCIPLINE CARDS
+   ---------------------------------------- */
+.canvas-item.card-item {
+    width: 320px;
+    background: #1a1a1a;
+    border-radius: 14px;
+    border: 1px solid #2a2a2a;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.canvas-item.card-item[data-href] {
+    cursor: grab;
+}
+
+.canvas-item.card-item.is-dragging {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.canvas-item.card-item:not(.is-dragging):hover {
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7), 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+    transform: translateY(-4px) scale(1.01) rotate(var(--canvas-rot, 0deg)) !important;
+}
+
+.canvas-item.card-item .dt-image-feature-16 {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+    pointer-events: none;
+    border-radius: 0;
+}
+
+.canvas-item.card-item .dt-h3 {
+    margin: 0;
+    padding: 12px 16px 6px;
+    color: #efeeec;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem;
+}
+
+.canvas-item.card-item[data-href] .dt-h3::after {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 12L12 4M12 4H6M12 4V10' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+    opacity: 0;
+    transform: translate(2px, -2px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.canvas-item.card-item[data-href]:not(.is-dragging):hover .dt-h3::after {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.canvas-item.card-item .dt-body-big {
+    padding: 0 16px 14px;
+    color: rgba(239, 238, 236, 0.7);
+    font-size: 0.8rem;
+    line-height: 1.55;
+    flex-grow: 1;
+}
+
+.canvas-item.card-item.is-selected {
+    box-shadow:
+        0 0 0 2px rgba(239, 238, 236, 0.5),
+        0 16px 48px rgba(0, 0, 0, 0.8),
+        0 4px 16px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+    transform: translateY(-6px) scale(1.02) rotate(var(--canvas-rot, 0deg)) !important;
+}
+
+.canvas-item.card-item .dt-divider-fade-out {
+    display: none;
+}
+
+/* Sticker wrapper inside card */
+.canvas-item.card-item .stickerwrapper {
+    width: 100%;
+    pointer-events: none;
+}
+
+.canvas-item.card-item .stickerwrapper .slider,
+.canvas-item.card-item .stickerwrapper .w-slider {
+    background: transparent !important;
+    background-color: transparent !important;
+    height: 200px;
+}
+
+/* ----------------------------------------
+   PHOTO TILES
+   ---------------------------------------- */
+.canvas-item.photo-item {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.06);
+    line-height: 0;
+}
+
+.canvas-item.photo-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.canvas-item.photo-item:not(.is-dragging):hover {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    transform: scale(1.02) rotate(var(--canvas-rot, 0deg)) !important;
+}
+
+/* Resize handle */
+.resize-handle {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    background: rgba(239, 238, 236, 0.5);
+    cursor: nwse-resize;
+    opacity: 0;
+    transition: opacity 0.2s ease, background 0.2s ease;
+    z-index: 10;
+}
+
+.canvas-item.photo-item:hover .resize-handle,
+.canvas-item.photo-item.is-selected .resize-handle,
+.canvas-item.photo-item.is-resizing .resize-handle {
+    opacity: 1;
+}
+
+.canvas-item.photo-item .resize-handle:hover {
+    background: rgba(239, 238, 236, 0.85);
+}
+
+/* Hide hover arrow on canvas cards */
+.canvas-item.card-item .dt-h3::after {
+    display: none !important;
+}
+
+/* ----------------------------------------
+   HANDWRITTEN TEXT NOTES
+   ---------------------------------------- */
+.canvas-item.text-item {
+    min-width: 60px;
+    min-height: 30px;
+    cursor: grab;
+    user-select: none;
+    font-family: 'Caveat', 'Kalam', cursive;
+    font-size: 1.6rem;
+    line-height: 1.3;
+    color: rgba(239, 238, 236, 0.9);
+    z-index: 10;
+    white-space: nowrap;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.canvas-item.text-item.is-editing {
+    cursor: text;
+    user-select: text;
+}
+
+.canvas-item.text-item.is-selected {
+    text-shadow: 0 0 8px rgba(239, 238, 236, 0.3), 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.canvas-item.text-item .note-text {
+    outline: none;
+    display: inline-block;
+    min-width: 10px;
+}
+
+.canvas-item.text-item .note-text:empty::before {
+    content: 'Write something...';
+    color: rgba(239, 238, 236, 0.35);
+}
+
+/* ----------------------------------------
+   ROTATION via CSS variable set inline
+   ---------------------------------------- */
+.canvas-item {
+    transform: rotate(var(--canvas-rot, 0deg));
+}
+
+.canvas-item.is-dragging {
+    transform: rotate(var(--canvas-rot, 0deg)) scale(1.03) !important;
+}
+
+/* ----------------------------------------
+   FIXED FOOTER STRIP
+   ---------------------------------------- */
+#fun-footer-strip {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--fc-footer-h);
+    background: rgba(20, 20, 20, 0.92);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 100;
+    gap: 16px;
+}
+
+#fun-footer-strip .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#fun-footer-strip a {
+    color: rgba(239, 238, 236, 0.8);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+
+#fun-footer-strip a:hover {
+    color: #efeeec;
+}
+
+#fun-footer-strip .footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+#fun-footer-strip .footer-socials a {
+    display: flex;
+    align-items: center;
+    color: rgba(239, 238, 236, 0.7);
+}
+
+#fun-footer-strip .footer-socials a:hover {
+    color: #efeeec;
+}
+
+#fun-footer-strip .footer-socials svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* ----------------------------------------
+   DT-SECTION OVERLAY IMAGE
+   ---------------------------------------- */
+.canvas-item.overlay-item {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255,255,255,0.06);
+    line-height: 0;
+}
+
+.canvas-item.overlay-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+/* ----------------------------------------
+   ZOOM CONTROLS
+   ---------------------------------------- */
+#fun-zoom-controls {
+    position: fixed;
+    bottom: calc(var(--fc-footer-h) + 16px);
+    right: 20px;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.zoom-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+    user-select: none;
+}
+
+.zoom-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+.zoom-btn:active {
+    transform: translateY(0);
+}
+
+/* ----------------------------------------
+   FLOATING ACTION MENU
+   ---------------------------------------- */
+#fun-floating-menu {
+    position: fixed;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#fun-floating-menu.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.fab-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(239, 238, 236, 0.9);
+    border: none;
+    color: #1a1a1a;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    transition: background 0.2s ease, transform 0.15s ease;
+    user-select: none;
+}
+
+.fab-btn:hover {
+    background: #efeeec;
+    transform: scale(1.08);
+}
+
+.fab-btn:active {
+    transform: scale(0.96);
+}
+
+/* ----------------------------------------
+   RESET LAYOUT BUTTON
+   ---------------------------------------- */
+#fun-reset-btn {
+    position: fixed;
+    bottom: calc(var(--fc-footer-h) + 16px);
+    right: 68px;
+    z-index: 200;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 100px;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-family: inherit;
+    letter-spacing: 0.05em;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    user-select: none;
+}
+
+#fun-reset-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+#fun-reset-btn:active {
+    transform: translateY(0);
+}
+
+#fun-export-btn {
+    position: fixed;
+    bottom: calc(var(--fc-footer-h) + 16px);
+    right: 168px;
+    z-index: 200;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 100px;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-family: inherit;
+    letter-spacing: 0.05em;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    user-select: none;
+}
+
+#fun-export-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+#fun-export-btn:active {
+    transform: translateY(0);
+}
+
+#fun-add-text-btn {
+    position: fixed;
+    bottom: calc(var(--fc-footer-h) + 16px);
+    right: 262px;
+    z-index: 200;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 100px;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-family: inherit;
+    letter-spacing: 0.05em;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    user-select: none;
+}
+
+#fun-add-text-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+#fun-add-text-btn:active {
+    transform: translateY(0);
+}
+
+/* ----------------------------------------
+   MODE TOGGLE
+   ---------------------------------------- */
+#fun-mode-btn {
+    position: fixed;
+    bottom: calc(var(--fc-footer-h) + 16px);
+    right: 356px;
+    z-index: 200;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 100px;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+    user-select: none;
+}
+
+#fun-mode-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+#fun-mode-btn:active {
+    transform: translateY(0);
+}
+
+body.fun-canvas-mode.read-mode .canvas-item {
+    cursor: pointer !important;
+}
+
+body.fun-canvas-mode.read-mode .canvas-item.is-selected {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* ----------------------------------------
+   MOBILE — touch-friendly adjustments
+   ---------------------------------------- */
+@media screen and (max-width: 767px) {
+    #fun-canvas-viewport {
+        top: var(--fc-navbar-h);
+        bottom: var(--fc-footer-h);
+    }
+
+    #fun-footer-strip {
+        height: var(--fc-footer-h);
+        padding: 0 16px;
+    }
+
+    #fun-footer-strip .footer-links {
+        gap: 12px;
+    }
+
+    #fun-footer-strip a {
+        font-size: 0.72rem;
+    }
+
+    #fun-reset-btn {
+        bottom: calc(var(--fc-footer-h) + 14px);
+        right: 64px;
+        font-size: 0.7rem;
+        padding: 6px 12px;
+    }
+
+    #fun-zoom-controls {
+        bottom: calc(var(--fc-footer-h) + 14px);
+        right: 14px;
+    }
+
+    .canvas-item.card-item {
+        width: 260px;
+    }
+
+    .canvas-item.hero-item {
+        width: 320px;
+        padding: 24px 24px 20px;
+    }
+
+    .canvas-item.hero-item .dt-text-scroll-move-1 {
+        font-size: 2rem;
+    }
+}
