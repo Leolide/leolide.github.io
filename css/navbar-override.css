@@ -254,7 +254,7 @@ body {
 
 @media screen and (max-width: 991px) {
     .home-hero {
-        height: 100vh !important;
+        height: 120vh !important;
     }
 }
 
