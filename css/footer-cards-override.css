@@ -358,7 +358,7 @@
 /* Card container styling for experience entries */
 .services-content,
 .services-content-first {
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid transparent;
     border-radius: .5rem;
     padding: 1.25rem 1.5rem;
     margin-bottom: .75rem;
@@ -367,11 +367,11 @@
     cursor: default;
 }
 
-/* Hover: subtle lift and brighter border */
+/* Hover: subtle lift and border appears */
 .services-content:hover,
 .services-content-first:hover {
     background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
 }
 
