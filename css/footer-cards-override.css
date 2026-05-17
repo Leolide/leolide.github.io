@@ -315,44 +315,40 @@
    BUTTON RESPONSIVE STYLING
    ======================================== */
 
-/* Footer button — simple hover */
-.footer-wrapper .button-primary {
-    margin-top: 2rem !important;
-    width: auto !important;
-    display: inline-flex !important;
-    max-width: max-content !important;
+/* All buttons — simple hover */
+.button-primary {
     padding: 1.125rem 1.5rem !important;
     border: 1px solid #efeeec !important;
     border-radius: .4rem !important;
-    background: transparent !important;
-    color: #efeeec !important;
+    background: #efeeec !important;
+    color: #000 !important;
     transition: background 0.25s ease, color 0.25s ease !important;
 }
 
-.footer-wrapper .button-primary .text-size-small,
-.footer-wrapper .button-primary .button-text-wrapper {
-    color: #efeeec !important;
+.button-primary .text-size-small,
+.button-primary .button-text-wrapper {
+    color: #000 !important;
     transition: color 0.25s ease !important;
 }
 
 /* Hide the fill bars and corner brackets — not needed for simple hover */
-.footer-wrapper .button-primary .fill-top,
-.footer-wrapper .button-primary .fill-bottom,
-.footer-wrapper .button-primary .fill-left,
-.footer-wrapper .button-primary .fill-right,
-.footer-wrapper .button-primary .embed-border {
+.button-primary .fill-top,
+.button-primary .fill-bottom,
+.button-primary .fill-left,
+.button-primary .fill-right,
+.button-primary .embed-border {
     display: none !important;
 }
 
 /* Hover: invert colors */
-.footer-wrapper .button-primary:hover {
-    background: #efeeec !important;
-    color: #000 !important;
+.button-primary:hover {
+    background: transparent !important;
+    color: #efeeec !important;
 }
 
-.footer-wrapper .button-primary:hover .text-size-small,
-.footer-wrapper .button-primary:hover .button-text-wrapper {
-    color: #000 !important;
+.button-primary:hover .text-size-small,
+.button-primary:hover .button-text-wrapper {
+    color: #efeeec !important;
 }
 
 /* Download CV button - don't fill width on mobile/tablet */
