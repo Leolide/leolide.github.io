@@ -1288,7 +1288,6 @@
 }
 
 body {
-  background-color: var(--color--background-color);
   color: var(--color--primary-font-color);
   font-family: Satoshi, sans-serif;
   font-size: 1vw;
