@@ -318,7 +318,7 @@
 /* Footer button — matches standard button-primary hover behavior.
    Default: white fill bars cover the button (appears white, dark text).
    Hover: fill bars slide outward, revealing dark background, text turns white. */
-.footer-button {
+.footer-wrapper .button-primary {
     margin-top: 2rem !important;
     width: auto !important;
     display: inline-flex !important;
@@ -332,8 +332,8 @@
 }
 
 /* Default text: dark on white fill bars */
-.footer-button .text-size-small,
-.footer-button .button-text-wrapper {
+.footer-wrapper .button-primary .text-size-small,
+.footer-wrapper .button-primary .button-text-wrapper {
     color: #000 !important;
     position: relative !important;
     z-index: 5 !important;
@@ -341,10 +341,10 @@
 }
 
 /* Default: fill bars visible (white), covering the button */
-.footer-button .fill-top,
-.footer-button .fill-bottom,
-.footer-button .fill-left,
-.footer-button .fill-right {
+.footer-wrapper .button-primary .fill-top,
+.footer-wrapper .button-primary .fill-bottom,
+.footer-wrapper .button-primary .fill-left,
+.footer-wrapper .button-primary .fill-right {
     opacity: 1 !important;
     background-color: #efeeec !important;
     transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
@@ -352,28 +352,28 @@
 }
 
 /* Default: corner brackets hidden (standard buttons don't use them) */
-.footer-button .embed-border {
+.footer-wrapper .button-primary .embed-border {
     opacity: 0 !important;
     display: none !important;
 }
 
 /* Hover: fill bars slide outward, revealing dark background underneath */
-.footer-button:hover .fill-left {
+.footer-wrapper .button-primary:hover .fill-left {
     transform: translateX(-101%) !important;
 }
-.footer-button:hover .fill-top {
+.footer-wrapper .button-primary:hover .fill-top {
     transform: translateY(-101%) !important;
 }
-.footer-button:hover .fill-bottom {
+.footer-wrapper .button-primary:hover .fill-bottom {
     transform: translateY(101%) !important;
 }
-.footer-button:hover .fill-right {
+.footer-wrapper .button-primary:hover .fill-right {
     transform: translateX(101%) !important;
 }
 
 /* Hover: text turns white to contrast against revealed dark background */
-.footer-button:hover .text-size-small,
-.footer-button:hover .button-text-wrapper {
+.footer-wrapper .button-primary:hover .text-size-small,
+.footer-wrapper .button-primary:hover .button-text-wrapper {
     color: #efeeec !important;
 }
 
