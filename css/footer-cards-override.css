@@ -315,20 +315,28 @@
    BUTTON RESPONSIVE STYLING
    ======================================== */
 
-/* All buttons — simple hover */
+/* All buttons — simple hover, no transform animations */
+.button-primary,
+.button-primary * {
+    transform: none !important;
+}
+
 .button-primary {
     padding: 1.125rem 1.5rem !important;
     border: 1px solid #efeeec !important;
     border-radius: .4rem !important;
     background: #efeeec !important;
     color: #000 !important;
-    transition: background 0.25s ease, color 0.25s ease !important;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease !important;
+    overflow: visible !important;
 }
 
 .button-primary .text-size-small,
 .button-primary .button-text-wrapper {
     color: #000 !important;
     transition: color 0.25s ease !important;
+    transform: none !important;
+    position: static !important;
 }
 
 /* Hide the fill bars and corner brackets — not needed for simple hover */
@@ -349,6 +357,7 @@
 .button-primary:hover .text-size-small,
 .button-primary:hover .button-text-wrapper {
     color: #efeeec !important;
+    transform: none !important;
 }
 
 /* ========================================
