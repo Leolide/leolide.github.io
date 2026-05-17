@@ -358,20 +358,18 @@
 /* Card container styling for experience entries */
 .services-content,
 .services-content-first {
-    border: 1px solid transparent;
     border-radius: .5rem;
     padding: 1.25rem 1.5rem;
-    margin-bottom: .35rem;
+    margin-bottom: .1rem;
     background: rgba(255, 255, 255, 0.02);
-    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    transition: background 0.25s ease, transform 0.25s ease;
     cursor: default;
 }
 
-/* Hover: subtle lift and border appears */
+/* Hover: subtle lift and brighter background */
 .services-content:hover,
 .services-content-first:hover {
     background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
 }
 
