@@ -81,6 +81,26 @@
   z-index: 2;
 }
 
+/* Subtle vertical dividers — frame the card stack */
+.sw-card-stack::before,
+.sw-card-stack::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.sw-card-stack::before {
+  left: 0;
+}
+
+.sw-card-stack::after {
+  right: 0;
+}
+
 /* ---- Card stack ---- */
 .sw-card-stack {
   position: relative;
