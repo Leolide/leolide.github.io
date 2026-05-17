@@ -252,7 +252,7 @@ body {
     height: 120vh !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 991px) {
     .home-hero {
         height: 100vh !important;
     }
