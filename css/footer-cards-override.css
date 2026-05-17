@@ -387,15 +387,16 @@
     position: relative;
 }
 
-/* Link styling inside cards */
+/* Link styling inside cards — no underline */
 .services-content a,
-.services-content-first a {
-    text-decoration: none;
-}
-
+.services-content-first a,
 .services-content a:hover,
-.services-content-first a:hover {
-    text-decoration: underline;
+.services-content-first a:hover,
+.services-content .link,
+.services-content-first .link,
+.services-content .link-10,
+.services-content-first .link-10 {
+    text-decoration: none !important;
 }
 
 /* Keep the icon at a consistent size within cards */
