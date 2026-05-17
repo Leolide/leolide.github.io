@@ -882,9 +882,7 @@
     if (savedPan) {
       loadPan();
     } else {
-      panX = DEFAULT_CAMERA.panX;
-      panY = DEFAULT_CAMERA.panY;
-      scale = DEFAULT_CAMERA.scale;
+      focusOnHero();
     }
     applyCanvasTransform(false);
 
