@@ -9,13 +9,13 @@
   var MIN_SCALE = 0.25;
   var MAX_SCALE = 3.5;
 
-  var DEFAULT_CAMERA = { panX: -724.604277192979, panY: -520.5779642586772, scale: 0.9869598123431222 };
+  var DEFAULT_CAMERA = { panX: -982.7556995554623, panY: -676.8090662915642, scale: 1.180853428463634 };
 
   var DEFAULT_POSITIONS = {
     'canvas-card-0':  { left: 1692.13, top: 971.123, rot: -2.2 },
     'canvas-card-1':  { left: 1644.37, top: 361.18,  rot: 1.8  },
     'canvas-card-2':  { left: 2358.22, top: 226.97,  rot: -1.1 },
-    'canvas-card-3':  { left: 1282.81, top: 1104.3,  rot: 2.8  },
+    'canvas-card-3':  { left: 1282.81, top: 1104.3,  rot: -0.76212121083267 },
     'canvas-card-4':  { left: 1415.69, top: 1424.46, rot: -0.7 },
     'canvas-card-5':  { left: 1058.16, top: 1363.67, rot: 1.5  },
     'canvas-card-6':  { left: 925.168, top: 323.198, rot: -2.0 },
@@ -24,9 +24,9 @@
     'canvas-hero':    { left: 1145.62, top: 692.251, rot: -0.5 },
     'canvas-note-1':  { left: 159.736, top: 588.97,  rot: 0, text: "I like exploring and researching cities!" },
     'canvas-note-2':  { left: 1974.42, top: 590.896, rot: 0, text: "I have built architecture in the world!" },
-    'canvas-note-3':  { left: 1269.46, top: 956.105, rot: 0, text: "Drag items & pan the canvas to explore" },
+    'canvas-note-3':  { left: 1269.46, top: 956.105, rot: 0.13506228490013983, text: "Drag items & pan the canvas to explore" },
     'canvas-note-4':  { left: 2641.71, top: 851.24,  rot: 0, text: "Fun fact: Hablo un poco Español!" },
-    'canvas-note-5':  { left: 1751.51, top: 1422.22, rot: 0, text: "I happened to start a designer community in London" },
+    'canvas-note-5':  { left: 1751.51, top: 1422.22, rot: -5.2573647884465675, text: "I happened to start a designer community in London" },
     'canvas-note-6':  { left: 2105.35, top: 1174.5,  rot: 0, text: "Cooking is meditating for me" },
     'canvas-note-7':  { left: 657.367, top: 1422.04, rot: 0, text: "I love being outdoor" },
     'canvas-note-8':  { left: 1023.79, top: 1758.68, rot: 0, text: "I still have a manga dream" },

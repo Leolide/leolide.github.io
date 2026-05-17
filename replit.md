@@ -29,7 +29,7 @@ This is Lide Li's personal portfolio website - a static site showcasing product 
 ```
 /
 ├── index.html              # Homepage
-├── fun.html               # Fun projects page
+├── fun/index.html         # Fun projects page (interactive canvas)
 ├── about.html             # About page
 ├── work.html              # Works listing
 ├── detail_*.html          # Various detail page templates
