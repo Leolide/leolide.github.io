@@ -802,7 +802,7 @@
     var rect = viewport.getBoundingClientRect();
     var targetScale = 1.0;
     panX = (rect.width / 2) - (heroPos.left + heroW / 2) * targetScale;
-    panY = (rect.height / 2) - (heroPos.top + heroH / 2) * targetScale - 200;
+    panY = (rect.height / 2) - (heroPos.top + heroH / 2) * targetScale - 150;
     scale = targetScale;
     applyCanvasTransform(true);
     savePan();
