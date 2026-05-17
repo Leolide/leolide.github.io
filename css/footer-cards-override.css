@@ -414,6 +414,33 @@
     object-fit: contain;
 }
 
+/* Cards that contain a link should be clickable */
+.services-content:has(a),
+.services-content-first:has(a) {
+    cursor: pointer;
+    position: relative;
+}
+
+/* Card arrow icon — positioned top-right */
+.card-arrow {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 14px;
+    height: 14px;
+    opacity: 0.5;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Arrow brightens and shifts on hover */
+.services-content:has(a):hover .card-arrow,
+.services-content-first:has(a):hover .card-arrow {
+    opacity: 0.8;
+    transform: translate(2px, -2px);
+}
+
 /* Download CV button - don't fill width on mobile/tablet */
 @media screen and (max-width: 991px) {
     .button-primary {
