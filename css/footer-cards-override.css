@@ -43,28 +43,28 @@ section:has(.footer-wrapper) {
 .footer-email-link {
     text-decoration: underline !important;
     color: inherit !important;
-    font-size: var(--text-size--huge) !important;
-    line-height: 1.15 !important;
-    font-weight: 400 !important;
+    font-size: clamp(1.5rem, var(--text-size--xlarge), 1.6rem) !important;
+    line-height: 1.25 !important;
+    font-weight: 500 !important;
     font-family: inherit !important;
 }
 
 /* Match responsive font sizes with Let's chat text */
 @media screen and (max-width: 991px) {
     .footer-email-link {
-        font-size: 2rem !important;
+        font-size: 1.5rem !important;
     }
 }
 
 @media screen and (max-width: 767px) {
     .footer-email-link {
-        font-size: 1.8rem !important;
+        font-size: 1.3rem !important;
     }
 }
 
 @media screen and (max-width: 479px) {
     .footer-email-link {
-        font-size: 1.6rem !important;
+        font-size: 1.2rem !important;
     }
 }
 
