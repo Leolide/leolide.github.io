@@ -254,7 +254,7 @@ body {
 
 @media screen and (max-width: 991px) {
     .home-hero {
-        height: 120vh !important;
+        height: 100vh !important;
     }
 }
 
@@ -390,7 +390,7 @@ body {
 
 @media screen and (max-width: 991px) {
     .section:has(.home-hero) .bg-image.mobile {
-        height: 120vh; /* match .home-hero on tablet and mobile */
+        height: 100vh; /* match .home-hero on tablet and mobile */
     }
 }
 

@@ -273,7 +273,7 @@
 @media screen and (max-width: 991px) {
     /* Full height hero section on tablet and mobile */
     section:has(.home-hero) {
-        min-height: 120vh !important;
+        min-height: 100vh !important;
         display: flex !important;
         align-items: center !important;
     }
