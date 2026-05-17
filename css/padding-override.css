@@ -6,16 +6,23 @@
     padding-right: 0 !important;
 }
 
-/* Mobile: align sticky-services padding with Selected Works (1.5rem = 24px) */
+/* Mobile: uniform 24px page gutter on both About me and Selected Works */
 @media screen and (max-width: 767px) {
-    .sticky-services {
-        padding-left: 1.5rem !important;
-        padding-right: 1.5rem !important;
-    }
-    /* Remove .section-3 margin so padding is the only gutter */
     .section-3 {
         margin-left: 0 !important;
         margin-right: 0 !important;
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+
+    .sticky-services {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .sw-section {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
     }
 }
 
