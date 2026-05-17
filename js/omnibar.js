@@ -48,11 +48,11 @@ function getCommands() {
             label: 'Selected Works',
             icon: '<rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect>',
             action: () => {
-                const section = document.getElementById('Work');
+                const section = document.getElementById('SelectedWorks');
                 if (section) {
                     section.scrollIntoView({ behavior: 'smooth' });
                 } else {
-                    window.location.href = 'index.html#Work';
+                    window.location.href = 'index.html#SelectedWorks';
                 }
             }
         },
