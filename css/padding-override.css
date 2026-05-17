@@ -1,8 +1,17 @@
 /* Remove 4em/4rem padding throughout the page for tighter spacing */
 
+/* Desktop: remove padding for tighter layout */
 .sticky-services {
     padding-left: 0 !important;
     padding-right: 0 !important;
+}
+
+/* Mobile: align sticky-services padding with Selected Works (1.5rem = 24px) */
+@media screen and (max-width: 767px) {
+    .sticky-services {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
 }
 
 .works-square-wrapper.margin-top {
