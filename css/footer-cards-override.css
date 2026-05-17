@@ -2,9 +2,66 @@
    FOOTER MINIMALIST STYLING
    ======================================== */
 
-/* Remove bottom padding from footer section */
-section:has(.footer-wrapper) {
+/* Footer section with divider lines and subtle background */
+.footer-section {
     padding-bottom: 0 !important;
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* ---- Vertical divider lines framing the footer ---- */
+.footer-section::before,
+.footer-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.15) 30%,
+        rgba(255, 255, 255, 0.15) 70%,
+        rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.footer-section::before {
+    left: 1.5rem;
+}
+
+.footer-section::after {
+    right: 1.5rem;
+}
+
+/* Position wrapper so footer-bg can be absolute within it */
+.footer-wrapper {
+    position: relative !important;
+}
+
+/* ---- Subtle column background between dividers ----
+   Fades in from black at top (smooth transition from section above),
+   then holds a slightly brighter tone through the footer */
+.footer-bg {
+    position: absolute;
+    top: 0;
+    left: 1.5rem;
+    right: 1.5rem;
+    bottom: 0;
+    background: linear-gradient(to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0) 20%,
+        rgba(28, 28, 32, 0.75) 50%,
+        rgba(28, 28, 32, 0.75) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Footer content sits above the background */
+.footer-top-content,
+.footer-social-wrap {
+    position: relative !important;
+    z-index: 2 !important;
 }
 
 /* Footer top content - arrange in 3 rows */
