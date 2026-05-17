@@ -284,6 +284,13 @@ body {
     z-index: 10;
 }
 
+/* Mobile-safe gradient sizing — prevents obscuring CTA and social links */
+@media screen and (max-width: 768px) {
+    .home-hero::after {
+        height: 20vh;
+    }
+}
+
 /* ========================================
    ABOUT PHOTO CARD — matches product card styling
    ======================================== */
