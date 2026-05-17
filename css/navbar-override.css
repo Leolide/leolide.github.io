@@ -258,9 +258,16 @@ body {
     }
 }
 
-/* Prevent the hero section container from clipping the gradient */
+/* Prevent the hero section container from clipping the gradient on desktop */
 .section:has(.home-hero) {
     overflow: visible !important;
+}
+
+/* On tablet/mobile, hide overflow so nothing spills outside the hero */
+@media screen and (max-width: 991px) {
+    .section:has(.home-hero) {
+        overflow: hidden !important;
+    }
 }
 
 /* ========================================
