@@ -174,7 +174,7 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
    DISCIPLINE CARDS
    ---------------------------------------- */
 .canvas-item.card-item {
-    width: 320px;
+    width: 280px;
     background: #1a1a1a;
     border-radius: 14px;
     border: 1px solid #2a2a2a;
@@ -713,7 +713,7 @@ body.fun-canvas-mode.read-mode .canvas-item.is-selected {
     }
 
     .canvas-item.card-item {
-        width: 260px;
+        width: 240px;
     }
 
     .canvas-item.hero-item {
