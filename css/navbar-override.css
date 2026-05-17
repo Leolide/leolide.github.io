@@ -265,7 +265,11 @@ body {
 
 /* ========================================
    HERO BOTTOM GRADIENT FADE
-   ======================================== */
+   ========================================
+   This gradient overlay uses a pseudo-element so it scales with the
+   hero section. On desktop (30vh) it provides a smooth transition to
+   black. On mobile (20vh) it stays short so the CTA and social links
+   remain fully visible. Do NOT reintroduce a fixed-height overlay div. */
 .home-hero::after {
     content: '';
     position: absolute;
