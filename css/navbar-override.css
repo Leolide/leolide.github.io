@@ -308,6 +308,11 @@ body {
    TABLET FIXES - REMOVE SCROLLBAR & WHITE STYLING
    ======================================== */
 @media screen and (max-width: 991px) {
+    /* Fix: ensure link-10 overrides text-size-xxlarge.text-weight-medium on mobile */
+    .text-size-xxlarge.text-weight-medium.link-10 {
+        font-size: clamp(1.5rem, var(--text-size--xxlarge), 1.8rem) !important;
+    }
+
     .dt-nav-menu {
         overflow: hidden !important;
         background: transparent !important;
