@@ -27,7 +27,7 @@
   <link href="../css/webflow.css" rel="stylesheet" type="text/css">
   <link href="../css/lides-portfolio.webflow.css" rel="stylesheet" type="text/css">
   <link href="../css/navbar-override.css" rel="stylesheet" type="text/css">
-  <link href="../css/fun-canvas.css?v=2" rel="stylesheet" type="text/css">
+  <link href="../css/fun-canvas.css?v=5" rel="stylesheet" type="text/css">
   <link href="../css/fun-pinboard.css?v=16" rel="stylesheet" type="text/css">
   <link href="../css/footer-cards-override.css?v=28" rel="stylesheet" type="text/css">
   <link href="../css/padding-override.css" rel="stylesheet" type="text/css">
@@ -697,16 +697,38 @@
     /* Make pinboard cards clickable */
 </script>
 
-  <!-- ZOOM CONTROLS -->
-  <div id="fun-zoom-controls">
-    <button id="fun-zoom-in" class="zoom-btn" title="Zoom in">+</button>
-    <button id="fun-zoom-out" class="zoom-btn" title="Zoom out">−</button>
-  </div>
+  <!-- BOTTOM TOOLBAR -->
+  <div id="fun-toolbar">
+    <div class="toolbar-group toolbar-group--edit">
+      <button id="fun-add-text-btn" title="Add a handwritten note">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>Add Note</span>
+      </button>
+      <button id="fun-export-btn" title="Copy current layout as code">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Export</span>
+      </button>
+      <button id="fun-reset-btn" title="Reset all items to default positions">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h1.5A5.5 5.5 0 0 1 12 7v0M12 7l-2-2M12 7l-2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Reset</span>
+      </button>
+    </div>
 
-  <button id="fun-mode-btn" class="mode-btn" title="Toggle read/edit mode">Read</button>
-  <button id="fun-reset-btn" title="Reset all items to default positions">Reset layout</button>
-  <button id="fun-export-btn" title="Copy current layout as code">Export</button>
-  <button id="fun-add-text-btn" title="Add a handwritten note">Add Note</button>
+    <div class="toolbar-divider"></div>
+
+    <div class="toolbar-group toolbar-group--mode">
+      <button id="fun-mode-btn" class="mode-btn" title="Toggle read/edit mode">
+        <span id="fun-mode-label">Read</span>
+      </button>
+    </div>
+
+    <div class="toolbar-divider"></div>
+
+    <div class="toolbar-group toolbar-group--zoom">
+      <button id="fun-zoom-out" class="zoom-btn" title="Zoom out">−</button>
+      <button id="fun-zoom-in" class="zoom-btn" title="Zoom in">+</button>
+    </div>
+  </div>
 
   <div id="fun-footer-strip">
     <div class="footer-links">

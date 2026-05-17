@@ -304,7 +304,9 @@
     document.body.classList.toggle('edit-mode', edit);
 
     var modeBtn = document.getElementById('fun-mode-btn');
-    if (modeBtn) modeBtn.textContent = edit ? 'Edit' : 'Read';
+    var modeLabel = document.getElementById('fun-mode-label');
+    if (modeLabel) modeLabel.textContent = edit ? 'Edit' : 'Read';
+    else if (modeBtn) modeBtn.textContent = edit ? 'Edit' : 'Read';
 
     var editBtns = ['fun-reset-btn', 'fun-export-btn', 'fun-add-text-btn'];
     editBtns.forEach(function (id) {
