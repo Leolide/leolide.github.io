@@ -128,6 +128,37 @@
   }
 }
 
+/* Subtle column background between dividers */
+.sw-column-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  background:
+    linear-gradient(to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(18, 18, 20, 0.35) 15%,
+      rgba(18, 18, 20, 0.35) 85%,
+      rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .sw-column-bg {
+    left: 2rem;
+    right: 2rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .sw-column-bg {
+    left: 4rem;
+    right: 4rem;
+  }
+}
+
 /* ---- Individual card ---- */
 a.sw-card,
 a.sw-card:hover,
