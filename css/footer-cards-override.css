@@ -291,6 +291,18 @@ section:has(.footer-wrapper) {
     max-width: max-content !important;
     position: relative !important;
     overflow: hidden !important;
+    background-color: #efeeec !important;
+    color: #000 !important;
+    border: 1px solid #efeeec !important;
+    visibility: visible !important;
+}
+
+/* Footer button text styling */
+.footer-button .text-size-small,
+.footer-button .button-text-wrapper {
+    color: #000 !important;
+    position: relative !important;
+    z-index: 5 !important;
 }
 
 /* Hide fill bars and corner brackets by default */
@@ -301,6 +313,7 @@ section:has(.footer-wrapper) {
 .footer-button .embed-border {
     opacity: 0 !important;
     transition: opacity 0.3s ease !important;
+    pointer-events: none !important;
 }
 
 /* Show corner brackets on hover */
