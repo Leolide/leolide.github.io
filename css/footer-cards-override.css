@@ -289,6 +289,31 @@ section:has(.footer-wrapper) {
     width: auto !important;
     display: inline-flex !important;
     max-width: max-content !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Hide fill bars and corner brackets by default */
+.footer-button .fill-top,
+.footer-button .fill-bottom,
+.footer-button .fill-left,
+.footer-button .fill-right,
+.footer-button .embed-border {
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+}
+
+/* Show corner brackets on hover */
+.footer-button:hover .embed-border {
+    opacity: 1 !important;
+}
+
+/* Keep fill elements hidden on hover to avoid strikethrough */
+.footer-button:hover .fill-top,
+.footer-button:hover .fill-bottom,
+.footer-button:hover .fill-left,
+.footer-button:hover .fill-right {
+    opacity: 0 !important;
 }
 
 /* Download CV button - don't fill width on mobile/tablet */
