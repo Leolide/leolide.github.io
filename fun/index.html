@@ -746,6 +746,21 @@
   <script src="../js/omnibar.js?v=2"></script>
   <script src="../js/debug-mode.js"></script>
   <script src="../js/fun-canvas.js?v=7"></script>
+
+  <!-- Mobile-only: make dt-section cards tappable -->
+  <script>
+    (function () {
+      function isMobile() { return window.innerWidth <= 767; }
+      if (!isMobile()) return;
+      document.querySelectorAll('.dt-single-feature-16[data-href]').forEach(function (card) {
+        card.addEventListener('click', function (e) {
+          var href = card.getAttribute('data-href');
+          if (href) window.open(href, '_blank');
+        });
+        card.style.cursor = 'pointer';
+      });
+    })();
+  </script>
 </body>
 
 </html>
