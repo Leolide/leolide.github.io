@@ -92,6 +92,23 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
     z-index: 1;
 }
 
+#fun-canvas-viewport::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30vh;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.50) 50%,
+        rgba(0, 0, 0, 0.85) 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+}
+
 #fun-canvas-viewport.is-panning {
     cursor: grabbing;
 }
@@ -109,8 +126,8 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
     will-change: transform;
     background-color: #0a0a0a;
     background-image:
-        radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
-    background-size: 40px 40px;
+        radial-gradient(circle, rgba(255,255,255,0.14) 1.5px, transparent 1.5px);
+    background-size: 60px 60px;
 }
 
 /* ----------------------------------------
