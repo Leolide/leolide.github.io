@@ -777,20 +777,6 @@
     zoomToPoint(delta, cx + rect.left, cy + rect.top);
   }
 
-  /* ---------- RESET ---------- */
-  function resetLayout() {
-    try {
-      localStorage.removeItem(STORAGE_KEY);
-      localStorage.removeItem(PAN_STORAGE_KEY);
-    } catch (e) {}
-    deselectCard();
-    scale = DEFAULT_CAMERA.scale;
-    panX = DEFAULT_CAMERA.panX;
-    panY = DEFAULT_CAMERA.panY;
-    applyCanvasTransform(true);
-    applyPositions(null, true);
-  }
-
   /* ---------- FOCUS ON HERO ---------- */
   function focusOnHero() {
     var hero = document.getElementById('canvas-hero');
@@ -918,11 +904,6 @@
     // Default to read mode on load
     setEditMode(false);
 
-    var resetBtn = document.getElementById('fun-reset-btn');
-    if (resetBtn) resetBtn.addEventListener('click', function () {
-      resetLayout();
-    });
-
     var focusBtn = document.getElementById('fun-focus-btn');
     if (focusBtn) focusBtn.addEventListener('click', function () {
       focusOnHero();
@@ -983,13 +964,13 @@
       }, 150);
     });
 
-    /* Reset to defaults when switching from mobile back to desktop */
+    /* Focus on hero when switching from mobile back to desktop */
     var wasMobile = isMobile();
     window.addEventListener('resize', function () {
       var nowMobile = isMobile();
       if (wasMobile && !nowMobile) {
-        // Transitioned from mobile → desktop: reset canvas
-        resetLayout();
+        // Transitioned from mobile → desktop: focus on hero
+        focusOnHero();
       }
       wasMobile = nowMobile;
     });
