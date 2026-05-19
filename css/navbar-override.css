@@ -227,6 +227,7 @@
 /* Add space below navbar for progress bar */
 body {
     padding-top: 0 !important;
+    background-color: #000 !important;
 }
 
 /* If there's a progress bar, it should be positioned below the navbar */
