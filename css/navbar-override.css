@@ -302,7 +302,7 @@ body {
     }
 }
 
-/* Mobile/tablet: gradient completely invisible (transparent) */
+/* Mobile/tablet: subtle bottom gradient fade */
 @media screen and (max-width: 991px) {
     .section:has(.home-hero) .bg-image.mobile {
         background-image: none !important;
@@ -317,21 +317,23 @@ body {
         background: linear-gradient(
             to bottom,
             transparent 0%,
-            transparent 100%
+            rgba(0, 0, 0, 0.20) 50%,
+            rgba(0, 0, 0, 0.50) 100%
         );
         pointer-events: none;
         z-index: 1;
     }
 }
 
-/* Mobile-only: same invisible gradient */
+/* Mobile-only: shorter gradient */
 @media screen and (max-width: 767px) {
     .section:has(.home-hero) .bg-image.mobile::after {
         height: 18vh;
         background: linear-gradient(
             to bottom,
             transparent 0%,
-            transparent 100%
+            rgba(0, 0, 0, 0.25) 50%,
+            rgba(0, 0, 0, 0.55) 100%
         );
     }
 }
