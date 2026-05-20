@@ -3980,7 +3980,7 @@ blockquote {
 .spline-wrapper {
   position: absolute;
   inset: 0%;
-  overflow: clip;
+  overflow: hidden;
 }
 
 .spline-wrapper.contact {
