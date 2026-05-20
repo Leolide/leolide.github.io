@@ -34,6 +34,7 @@
 .works-section-enhanced .works-container-inner {
     margin: 4em auto;
     padding: 4em;
+    max-width: 1400px;
 }
 
 
@@ -73,8 +74,30 @@
 .works-grid-enhanced {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 2.5rem;
     margin-bottom: 2rem;
+}
+
+@media (min-width: 1400px) {
+    .works-grid-enhanced {
+        gap: 3.5rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .works-section-enhanced .works-container-inner {
+        max-width: 1600px;
+        padding: 4em 5em;
+    }
+}
+
+/* Ultra-wide screens: cards scale up to fill the extra space */
+@media (min-width: 1800px) {
+    .works-section-enhanced .works-container-inner {
+        max-width: 1800px;
+        padding: 4em 6em;
+    }
+    .works-grid-enhanced {
+        gap: 4rem;
+    }
 }
 
 .work-card-enhanced {
