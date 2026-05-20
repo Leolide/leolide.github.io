@@ -78,29 +78,31 @@
     margin-bottom: 2rem;
 }
 
+/* Large screens: 2 columns for balance */
 @media (min-width: 1400px) {
-    .works-grid-enhanced {
-        gap: 3.5rem;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
     .works-section-enhanced .works-container-inner {
         max-width: 1600px;
         padding: 4em 5em;
     }
+    .works-grid-enhanced {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3.5rem;
+    }
 }
 
-/* Ultra-wide screens: cards scale up to fill the extra space */
+/* Ultra-wide screens: single column = very wide cards */
 @media (min-width: 1800px) {
     .works-section-enhanced .works-container-inner {
         max-width: 1800px;
         padding: 4em 6em;
     }
     .works-grid-enhanced {
+        grid-template-columns: 1fr;
         gap: 4rem;
     }
 }
 
-/* Extra-wide screens: even wider cards */
+/* Extra-wide screens: even wider */
 @media (min-width: 2200px) {
     .works-section-enhanced .works-container-inner {
         max-width: 2200px;
@@ -108,9 +110,6 @@
     }
     .works-grid-enhanced {
         gap: 5rem;
-    }
-    .work-image-wrapper-enhanced {
-        aspect-ratio: 16/9;
     }
 }
 
