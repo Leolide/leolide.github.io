@@ -251,13 +251,13 @@ body {
     padding-top: 0 !important;
     margin-top: 0 !important;
     height: 120vh !important;
-    overflow: hidden !important;
 }
 
-/* Very large screens: cap hero at 100vh to avoid excessive empty space */
+/* Very large screens: cap hero at 100vh and clip overflow */
 @media screen and (min-width: 1600px) {
     .home-hero {
         height: 100vh !important;
+        overflow: clip !important;
     }
     .spline-wrapper {
         height: 100vh !important;
