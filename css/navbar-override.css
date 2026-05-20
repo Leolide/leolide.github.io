@@ -258,6 +258,9 @@ body {
     .home-hero {
         height: 100vh !important;
     }
+    .spline-wrapper {
+        height: 100vh !important;
+    }
 }
 
 /* Prevent the hero section container from clipping the gradient on desktop */
