@@ -251,6 +251,7 @@ body {
     padding-top: 0 !important;
     margin-top: 0 !important;
     height: 120vh !important;
+    overflow: hidden !important;
 }
 
 /* Very large screens: cap hero at 100vh to avoid excessive empty space */
