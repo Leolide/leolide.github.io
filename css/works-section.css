@@ -100,6 +100,20 @@
     }
 }
 
+/* Extra-wide screens: even wider cards */
+@media (min-width: 2200px) {
+    .works-section-enhanced .works-container-inner {
+        max-width: 2200px;
+        padding: 4em 8em;
+    }
+    .works-grid-enhanced {
+        gap: 5rem;
+    }
+    .work-image-wrapper-enhanced {
+        aspect-ratio: 16/9;
+    }
+}
+
 .work-card-enhanced {
     background: #1a1a1a;
     border-radius: 0.4rem;
