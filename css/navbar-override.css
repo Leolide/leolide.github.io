@@ -283,24 +283,16 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 70vh;
+    height: 35vh;
     background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0.08) 25%,
-        rgba(0, 0, 0, 0.30) 55%,
-        rgba(0, 0, 0, 0.70) 85%,
+        transparent 0%,
+        rgba(0, 0, 0, 0.10) 60%,
+        rgba(0, 0, 0, 0.40) 85%,
         #000 100%
     );
     pointer-events: none;
     z-index: 10;
-}
-
-/* Extra-large screens: gradient covers most of the hero for seamless blend */
-@media screen and (min-width: 1400px) {
-    .home-hero::after {
-        height: 90vh;
-    }
 }
 
 /* Hide hero gradient on mobile/tablet — moved to bg-image.mobile */
