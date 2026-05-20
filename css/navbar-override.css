@@ -253,7 +253,8 @@ body {
     height: 120vh !important;
 }
 
-@media screen and (max-width: 991px) {
+/* Very large screens: cap hero at 100vh to avoid excessive empty space */
+@media screen and (min-width: 1600px) {
     .home-hero {
         height: 100vh !important;
     }
@@ -372,7 +373,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 120vh; /* match .home-hero height */
+    height: 100vh; /* match .home-hero height */
     display: none;
     pointer-events: none;
     z-index: 0;
