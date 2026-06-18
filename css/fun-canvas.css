@@ -139,12 +139,48 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
     will-change: transform;
     background-color: #0a0a0a;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 16v8M16 20h8' stroke='rgba(255,255,255,0.18)' stroke-width='1.5' stroke-linecap='square'/%3E%3C/svg%3E");
+    animation: crossShimmer 3s ease-in-out infinite alternate;
+}
+
+@keyframes crossShimmer {
+    0%, 100% {
+        opacity: 0.15;
+        filter: brightness(0.6);
+    }
+    50% {
+        opacity: 1;
+        filter: brightness(1.4);
+    }
 }
 
 /* Mobile/tablet only: bigger crosses */
 @media screen and (max-width: 991px) {
     #fun-canvas {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 24v32M24 40h32' stroke='rgba(255,255,255,0.28)' stroke-width='3.5' stroke-linecap='square'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M60 34v52M34 60h52' stroke='rgba(255,255,255,0.35)' stroke-width='5' stroke-linecap='square'/%3E%3C/svg%3E");
+        animation: crossDrift 10s ease-in-out infinite, crossPulse 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes crossDrift {
+        0% {
+            background-position: 0 0;
+        }
+        50% {
+            background-position: 30px 30px;
+        }
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    @keyframes crossPulse {
+        0%, 100% {
+            opacity: 0.15;
+            filter: brightness(0.4);
+        }
+        50% {
+            opacity: 1;
+            filter: brightness(1.6);
+        }
     }
 }
 
