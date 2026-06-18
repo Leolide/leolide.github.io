@@ -92,7 +92,7 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
     z-index: 1;
 }
 
-/* Mobile/tablet only: bottom gradient fade */
+/* Mobile/tablet only: bottom gradient fade with animated shimmer */
 @media screen and (max-width: 991px) {
     #fun-canvas-viewport::after {
         content: '';
@@ -109,6 +109,16 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
         );
         pointer-events: none;
         z-index: 2;
+        animation: gradientPulse 8s ease-in-out infinite;
+    }
+
+    @keyframes gradientPulse {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.6;
+        }
     }
 }
 
@@ -133,12 +143,49 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
     background-size: 40px 40px;
 }
 
-/* Mobile/tablet only: bigger dots */
+/* Mobile/tablet only: bigger dots with animated drift */
 @media screen and (max-width: 991px) {
     #fun-canvas {
         background-image:
             radial-gradient(circle, rgba(255,255,255,0.14) 1.5px, transparent 1.5px);
         background-size: 60px 60px;
+        animation: dotDrift 12s ease-in-out infinite;
+    }
+
+    #fun-canvas::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+            radial-gradient(circle, rgba(255,255,255,0.28) 1.5px, transparent 1.5px);
+        background-size: 60px 60px;
+        background-position: 15px 15px;
+        animation: dotBreathe 4s ease-in-out infinite alternate;
+        pointer-events: none;
+    }
+
+    @keyframes dotDrift {
+        0% {
+            background-position: 0 0;
+        }
+        50% {
+            background-position: 30px 30px;
+        }
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    @keyframes dotBreathe {
+        0% {
+            opacity: 0.05;
+        }
+        50% {
+            opacity: 0.45;
+        }
+        100% {
+            opacity: 0.05;
+        }
     }
 }
 
