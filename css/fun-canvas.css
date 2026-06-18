@@ -720,6 +720,18 @@ body.fun-canvas-mode.read-mode .toolbar-group--zoom {
     transform: scale(0.96);
 }
 
+/* Mobile/tablet: larger floating buttons */
+@media screen and (max-width: 991px) {
+    .fab-btn {
+        width: 52px;
+        height: 52px;
+    }
+    .fab-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
 body.fun-canvas-mode.read-mode .canvas-item {
     cursor: pointer !important;
 }
