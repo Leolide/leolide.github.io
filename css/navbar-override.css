@@ -432,10 +432,8 @@ body {
     height: 100vh !important;
 }
 
-/* home-left-content: push header to middle, social icons to bottom */
+/* home-left-content */
 .home-left-content {
-    justify-content: space-between !important;
-    padding-bottom: 2em !important;
     width: 90vw !important;
 }
 
@@ -447,6 +445,9 @@ body {
     }
     .spline-wrapper {
         height: 120vh !important;
+    }
+    .home-left-content {
+        padding-bottom: 5vh !important;
     }
 }
 
