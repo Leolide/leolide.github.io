@@ -221,7 +221,7 @@
     border-radius: 100px !important;
     font-size: var(--fs-base) !important;
     font-weight: 400 !important;
-    color: rgba(255, 255, 255, 0.5) !important;
+    color: rgba(255, 255, 255, 0.6) !important;
     text-decoration: none !important;
     transition: all 0.2s ease !important;
     letter-spacing: 0 !important;
@@ -231,12 +231,12 @@
 }
 
 .nav-segment-item:hover {
-    color: rgba(255, 255, 255, 0.8) !important;
+    color: rgba(255, 255, 255, 0.85) !important;
 }
 
 .nav-segment-item.w--current {
-    background: rgba(255, 255, 255, 0.12) !important;
-    color: rgba(255, 255, 255, 0.9) !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 1) !important;
     font-weight: 500 !important;
 }
 
