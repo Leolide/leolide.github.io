@@ -158,4 +158,6 @@
   } else {
     init();
   }
+
+  document.addEventListener('pageswap', init);
 })();

@@ -298,9 +298,7 @@ class IndexContentLoader {
     }
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Only run on index page
+function initIndexContentLoader() {
     if (window.location.pathname.includes('index.html') || 
         window.location.pathname === '/' ||
         window.location.pathname.endsWith('/')) {
@@ -310,7 +308,13 @@ document.addEventListener('DOMContentLoaded', () => {
             indexLoader.updateProjectLinks();
         });
     }
-});
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', initIndexContentLoader);
+
+// Re-initialize after SPA page swap
+document.addEventListener('pageswap', initIndexContentLoader);
 
 // Export for use in other scripts
 window.IndexContentLoader = IndexContentLoader;
