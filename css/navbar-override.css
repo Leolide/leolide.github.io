@@ -298,13 +298,15 @@
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 36px !important;
+    width: auto !important;
     height: 36px !important;
     border-radius: 8px !important;
     color: rgba(255, 255, 255, 0.5) !important;
     transition: all 0.2s ease !important;
     margin-right: 0.5rem !important;
     text-decoration: none !important;
+    padding: 0 0.5rem !important;
+    gap: 0.4rem !important;
 }
 
 .nav-search-icon:hover {
@@ -314,6 +316,31 @@
 
 .nav-search-icon svg {
     display: block !important;
+}
+
+.nav-search-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+    letter-spacing: 0.02em;
+}
+
+.nav-search-shortcut {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    padding: 1px 4px;
+    line-height: 1;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+}
+
+@media screen and (max-width: 767px) {
+    .nav-search-label,
+    .nav-search-shortcut {
+        display: none;
+    }
 }
 
 /* ========================================
@@ -497,13 +524,13 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 45vh;
+    height: 30vh;
     background: linear-gradient(
         to top,
         rgb(0, 0, 0) 0%,
-        rgb(0, 0, 0) 20%,
-        rgba(0, 0, 0, 0.80) 40%,
-        rgba(0, 0, 0, 0.40) 65%,
+        rgb(0, 0, 0) 12%,
+        rgba(0, 0, 0, 0.60) 35%,
+        rgba(0, 0, 0, 0.25) 60%,
         transparent 100%
     );
     pointer-events: none;
