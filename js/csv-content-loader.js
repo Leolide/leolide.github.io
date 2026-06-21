@@ -226,11 +226,6 @@ class CSVContentLoader {
     // Populate gallery images
     populateGallery(project) {
         if (project['Gallery final']) {
-            // Skip gallery for clientelling-app
-            if (project.Slug === 'a-clientelling-app') {
-                return;
-            }
-
             const galleryUrls = project['Gallery final'].split(';').map(url => url.trim()).filter(url => url);
             
             // Find gallery container or create one
