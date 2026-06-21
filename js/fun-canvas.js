@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var STORAGE_VERSION = 'v4';
+  var STORAGE_VERSION = 'v5';
   var STORAGE_KEY = 'fun-canvas-' + STORAGE_VERSION;
   var PAN_STORAGE_KEY = 'fun-canvas-pan-' + STORAGE_VERSION;
   var DRAG_THRESHOLD = 5;
@@ -9,37 +9,37 @@
   var MIN_SCALE = 0.25;
   var MAX_SCALE = 3.5;
 
-  var DEFAULT_CAMERA = { panX: -770, panY: -676.8090662915642, scale: 1.180853428463634 };
+  var DEFAULT_CAMERA = { panX: -1670, panY: -1576.8090662915642, scale: 1.180853428463634 };
 
   var DEFAULT_POSITIONS = {
-    'canvas-card-0':  { left: 1692.13, top: 971.123, rot: -2.2 },
-    'canvas-card-1':  { left: 1644.37, top: 361.18,  rot: 1.8  },
-    'canvas-card-2':  { left: 2358.22, top: 226.97,  rot: -1.1 },
-    'canvas-card-3':  { left: 1282.81, top: 1104.3,  rot: -0.76212121083267 },
-    'canvas-card-4':  { left: 1415.69, top: 1424.46, rot: -0.7 },
-    'canvas-card-5':  { left: 1058.16, top: 1363.67, rot: 1.5  },
-    'canvas-card-6':  { left: 925.168, top: 323.198, rot: -2.0 },
-    'canvas-card-7':  { left: 264.716, top: 181.107, rot: 0.9  },
-    'canvas-card-8':  { left: 2162.44, top: 793.421, rot: -1.4 },
-    'canvas-hero':    { left: 1145.62, top: 692.251, rot: -0.5 },
-    'canvas-note-1':  { left: 159.736, top: 588.97,  rot: 0, text: "I like exploring and researching cities!" },
-    'canvas-note-2':  { left: 1974.42, top: 590.896, rot: 0, text: "I have built architecture in the world!" },
-    'canvas-note-3':  { left: 1269.46, top: 956.105, rot: 0.13506228490013983, text: "Drag items & pan the canvas to explore" },
-    'canvas-note-4':  { left: 2641.71, top: 851.24,  rot: 0, text: "Fun fact: Hablo un poco Español!" },
-    'canvas-note-5':  { left: 1751.51, top: 1422.22, rot: -5.2573647884465675, text: "I happened to start a designer community in London" },
-    'canvas-note-6':  { left: 2105.35, top: 1174.5,  rot: 0, text: "Cooking is meditating for me" },
-    'canvas-note-7':  { left: 657.367, top: 1422.04, rot: 0, text: "I love being outdoor" },
-    'canvas-note-8':  { left: 1023.79, top: 1758.68, rot: 0, text: "I still have a manga dream" },
-    'canvas-note-9':  { left: 1299.7,  top: 1060.59, rot: 0, text: "I do stickers... WHAT" },
-    'canvas-photo-0': { left: 281.945, top: 860.93,  rot: -1.8, width: 280, height: 360 },
-    'canvas-photo-1': { left: 1964.94, top: 268.547, rot: 2.2,  width: 240, height: 300 },
-    'canvas-photo-2': { left: 521.975, top: 1109.8,  rot: -0.6, width: 340, height: 260 },
-    'canvas-photo-3': { left: 854.719, top: 641.915, rot: 1.4,  width: 260, height: 330 },
-    'canvas-photo-4': { left: 2545.39, top: 477.694, rot: -2.0, width: 374, height: 348 },
-    'canvas-photo-5': { left: 790.251, top: 1059.48, rot: 2.5,  width: 260, height: 340 },
-    'canvas-photo-6': { left: 286.573, top: 1266.08, rot: -1.5, width: 340, height: 260 },
-    'canvas-photo-7': { left: 2386.52, top: 1028.48, rot: 1.0,  width: 260, height: 320 },
-    'canvas-photo-8': { left: 558.82,  top: 404.064, rot: -3.0, width: 280, height: 360 }
+    'canvas-card-0':  { left: 792.13,  top: 71.123,  rot: -2.2 },
+    'canvas-card-1':  { left: 744.37,  top: -538.82, rot: 1.8  },
+    'canvas-card-2':  { left: 1458.22, top: -673.03, rot: -1.1 },
+    'canvas-card-3':  { left: 382.81,  top: 204.3,   rot: -0.76212121083267 },
+    'canvas-card-4':  { left: 515.69,  top: 524.46,  rot: -0.7 },
+    'canvas-card-5':  { left: 158.16,  top: 463.67,  rot: 1.5  },
+    'canvas-card-6':  { left: 25.168,  top: -576.802, rot: -2.0 },
+    'canvas-card-7':  { left: -635.284, top: -718.893, rot: 0.9  },
+    'canvas-card-8':  { left: 1262.44,  top: -106.579, rot: -1.4 },
+    'canvas-hero':    { left: 245.62,  top: -207.749, rot: -0.5 },
+    'canvas-note-1':  { left: -740.264, top: -311.03,  rot: 0, text: "I like exploring and researching cities!" },
+    'canvas-note-2':  { left: 1074.42,  top: -309.104, rot: 0, text: "I have built architecture in the world!" },
+    'canvas-note-3':  { left: 369.46,   top: 56.105,   rot: 0.13506228490013983, text: "Drag items & pan the canvas to explore" },
+    'canvas-note-4':  { left: 1741.71,  top: -48.76,   rot: 0, text: "Fun fact: Hablo un poco Español!" },
+    'canvas-note-5':  { left: 851.51,   top: 522.22,   rot: -5.2573647884465675, text: "I happened to start a designer community in London" },
+    'canvas-note-6':  { left: 1205.35,  top: 274.5,    rot: 0, text: "Cooking is meditating for me" },
+    'canvas-note-7':  { left: -242.633, top: 522.04,   rot: 0, text: "I love being outdoor" },
+    'canvas-note-8':  { left: 123.79,   top: 858.68,   rot: 0, text: "I still have a manga dream" },
+    'canvas-note-9':  { left: 399.7,    top: 160.59,   rot: 0, text: "I do stickers... WHAT" },
+    'canvas-photo-0': { left: -618.055, top: -39.07,   rot: -1.8, width: 280, height: 360 },
+    'canvas-photo-1': { left: 1064.94,  top: -631.453, rot: 2.2,  width: 240, height: 300 },
+    'canvas-photo-2': { left: -378.025, top: 209.8,    rot: -0.6, width: 340, height: 260 },
+    'canvas-photo-3': { left: -45.281,   top: -258.085, rot: 1.4,  width: 260, height: 330 },
+    'canvas-photo-4': { left: 1645.39,  top: -422.306, rot: -2.0, width: 374, height: 348 },
+    'canvas-photo-5': { left: -109.749, top: 159.48,   rot: 2.5,  width: 260, height: 340 },
+    'canvas-photo-6': { left: -613.427, top: 366.08,   rot: -1.5, width: 340, height: 260 },
+    'canvas-photo-7': { left: 1486.52,  top: 128.48,   rot: 1.0,  width: 260, height: 320 },
+    'canvas-photo-8': { left: -341.18,   top: -495.936, rot: -3.0, width: 280, height: 360 }
   };
 
   var viewport, canvas;
@@ -782,7 +782,7 @@
     var hero = document.getElementById('canvas-hero');
     if (!hero) return;
     deselectCard();
-    var heroPos = DEFAULT_POSITIONS['canvas-hero'] || { left: 1145.62, top: 692.251 };
+    var heroPos = DEFAULT_POSITIONS['canvas-hero'] || { left: 245.62, top: -207.749 };
     var heroW = 480;
     var heroH = 160;
     var rect = viewport.getBoundingClientRect();
