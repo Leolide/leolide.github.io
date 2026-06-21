@@ -782,19 +782,6 @@ spline-viewer {
     display: block !important;
 }
 
-/* Cover the "Built with Spline" watermark badge — always visible, even during load */
-.spline-badge-cover {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 72px;
-    background: linear-gradient(to top, #08090b 55%, transparent 100%);
-    z-index: 9999;
-    pointer-events: none;
-}
-
 /* ========================================
    HERO SOCIAL DOCK (inline, next to CTA)
    ======================================== */

@@ -139,7 +139,6 @@
       </div>
       <div class="spline-wrapper">
         <spline-viewer url="https://prod.spline.design/7CNqumqyYForOYJY/scene.splinecode" class="spline-scene hide-mobile" loading="lazy"></spline-viewer>
-        <div class="spline-badge-cover"></div>
       </div>
     </div>
   </section>
@@ -509,30 +508,6 @@
   <script src="js/bounce-cards.js"></script>
   <script src="js/hero-mobile-bg.js?v=13"></script>
   <script src="js/fun-canvas.js?v=10"></script>
-  <script>
-    function hideSplineBadge() {
-      var viewer = document.querySelector('spline-viewer');
-      if (!viewer) return;
-      var attempts = 0;
-      var interval = setInterval(function () {
-        attempts++;
-        var shadow = viewer.shadowRoot;
-        if (shadow) {
-          var existing = shadow.querySelector('#spline-badge-hide');
-          if (!existing) {
-            var style = document.createElement('style');
-            style.id = 'spline-badge-hide';
-            style.textContent = 'a, #logo, [class*="logo"], [class*="badge"], [class*="watermark"] { display: none !important; }';
-            shadow.appendChild(style);
-          }
-          clearInterval(interval);
-        }
-        if (attempts > 40) clearInterval(interval);
-      }, 250);
-    }
-    hideSplineBadge();
-    document.addEventListener('pageswap', hideSplineBadge);
-  </script>
   </div>
 </body>
 
