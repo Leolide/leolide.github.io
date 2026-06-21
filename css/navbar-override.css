@@ -490,9 +490,10 @@ body {
     height: 45vh;
     background: linear-gradient(
         to top,
-        #000 0%,
-        rgba(0, 0, 0, 0.75) 25%,
-        rgba(0, 0, 0, 0.35) 55%,
+        rgb(0, 0, 0) 0%,
+        rgb(0, 0, 0) 20%,
+        rgba(0, 0, 0, 0.80) 40%,
+        rgba(0, 0, 0, 0.40) 65%,
         transparent 100%
     );
     pointer-events: none;
