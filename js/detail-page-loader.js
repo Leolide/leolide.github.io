@@ -383,7 +383,7 @@ class DetailPageLoader {
                 <h1>Unable to Load Project</h1>
                 <p>There was an error loading the project data. Please check the console for details.</p>
                 <p><small>CSV files may need to be served from a web server to work properly.</small></p>
-                <a href="index.html" style="color: #fe4f32; text-decoration: none;">← Back to Home</a>
+                <a href="/" style="color: #fe4f32; text-decoration: none;">← Back to Home</a>
             </div>
         `;
     }
@@ -395,7 +395,7 @@ class DetailPageLoader {
             <div style="text-align: center; padding: 4rem 2rem; color: #666;">
                 <h1>Project Not Found</h1>
                 <p>The requested project could not be found.</p>
-                <a href="index.html" style="color: #fe4f32; text-decoration: none;">← Back to Home</a>
+                <a href="/" style="color: #fe4f32; text-decoration: none;">← Back to Home</a>
             </div>
         `;
     }
