@@ -77,10 +77,11 @@ class IndexContentLoader {
 
     // Populate the selected works section
     populateSelectedWorks() {
-        // Check if mockup cards already exist - if so, don't overwrite them
+        // Check if mockup cards or sticky cards already exist - if so, don't overwrite them
         const mockupCards = document.querySelector('.mockup-cards-grid');
-        if (mockupCards) {
-            console.log('Mockup cards section found, preserving it');
+        const stickyCards = document.querySelector('.sw-card-stack');
+        if (mockupCards || stickyCards) {
+            console.log('Card stack already found, preserving it');
             return;
         }
         
@@ -99,10 +100,11 @@ class IndexContentLoader {
 
     // Create enhanced works section
     createEnhancedWorksSection() {
-        // Check if mockup cards already exist - if so, don't overwrite them
+        // Check if mockup cards or sticky cards already exist - if so, don't overwrite them
         const mockupCards = document.querySelector('.mockup-cards-grid');
-        if (mockupCards) {
-            console.log('Mockup cards section found in createEnhancedWorksSection, preserving it');
+        const stickyCards = document.querySelector('.sw-card-stack');
+        if (mockupCards || stickyCards) {
+            console.log('Card stack already found in createEnhancedWorksSection, preserving it');
             return;
         }
         
