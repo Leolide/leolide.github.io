@@ -32,12 +32,37 @@
     }
   }
 
+  function rebaseUrls(container, targetUrl) {
+    var base = new URL(targetUrl, window.location.href);
+    container.querySelectorAll('img[src], video[src], source[src], audio[src]').forEach(function(el) {
+      var val = el.getAttribute('src');
+      if (val && !/^(https?:|data:|\/\/|\/)/.test(val)) {
+        el.setAttribute('src', new URL(val, base).pathname);
+      }
+    });
+    container.querySelectorAll('[srcset]').forEach(function(el) {
+      var srcset = el.getAttribute('srcset');
+      if (!srcset) return;
+      el.setAttribute('srcset', srcset.split(',').map(function(part) {
+        var pieces = part.trim().split(/\s+/);
+        if (pieces[0] && !/^(https?:|data:|\/\/|\/)/.test(pieces[0])) {
+          pieces[0] = new URL(pieces[0], base).pathname;
+        }
+        return pieces.join(' ');
+      }).join(', '));
+    });
+  }
+
   function swapContent(html, url) {
     var parser = new DOMParser();
     var doc = parser.parseFromString(html, 'text/html');
     var newContent = doc.querySelector('.page-content');
     var oldContent = document.querySelector('.page-content');
     if (!newContent || !oldContent) return false;
+
+    // Rebase relative image/media paths against the target page's URL
+    // so they resolve correctly regardless of which page we're navigating from
+    rebaseUrls(newContent, url);
 
     // Swap
     oldContent.parentNode.replaceChild(newContent, oldContent);
