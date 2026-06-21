@@ -386,7 +386,6 @@ body {
    ======================================== */
 .hero-home-header .heading-3.text-weight-regular {
     width: 100% !important;
-    font-size: clamp(1rem, 1.25vw, 1.6rem) !important;
     white-space: nowrap !important;
 }
 .hero-home-header .heading-3.text-weight-regular br {
