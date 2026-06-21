@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var BREAKPOINT = 9999; // render on all screen sizes
+  var BREAKPOINT = 991; // only render below desktop (Spline handles desktop)
   var animFrame = null;
   var canvas = null;
   var ctx = null;
@@ -11,10 +11,10 @@
 
   /* ── pixel blast configuration ── */
   var CONFIG = {
-    pixelSize: 3,
-    color: [180, 150, 210],
+    pixelSize: 12,
+    color: [155, 155, 155],
     patternScale: 0.6,
-    patternDensity: 0.12,
+    patternDensity: 0.09,
     rippleSpeed: 0.4,
     rippleIntensity: 1.5,
     edgeFade: 0.05,
