@@ -20,7 +20,7 @@
   <link href="css/webflow.css" rel="stylesheet" type="text/css">
   <link href="css/lides-portfolio.webflow.css" rel="stylesheet" type="text/css">
   <link href="css/works-section.css" rel="stylesheet" type="text/css">
-  <link href="css/navbar-override.css?v=5" rel="stylesheet" type="text/css">
+  <link href="css/navbar-override.css?v=6" rel="stylesheet" type="text/css">
   <link href="css/footer-cards-override.css?v=29" rel="stylesheet" type="text/css">
   <link href="css/padding-override.css" rel="stylesheet" type="text/css">
   <link href="css/omnibar.css" rel="stylesheet" type="text/css">
@@ -42,6 +42,16 @@
 </head>
 
 <body class="body">
+  <!-- SVG Gooey Filter - kept for future use if needed -->
+  <svg class="gooey-filter-svg" style="position:fixed;left:0;top:0;width:1px;height:1px;opacity:0;pointer-events:none;z-index:-9999" aria-hidden="true">
+    <defs>
+      <filter id="gooey-nav">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -10" result="goo" />
+        <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+      </filter>
+    </defs>
+  </svg>
   <div data-animation="default" class="dt-navbar w-nav" data-easing2="ease" data-easing="ease" data-collapse="medium"
     data-w-id="995f6dff-5dd3-e2c1-ad25-604ea77ebb4a" role="banner" data-no-scroll="1" data-duration="400">
     <div class="dt-nav-container">
@@ -56,8 +66,9 @@
           </svg>
         </a>
         <div class="nav-segment">
-          <a href="index.html" aria-current="page" class="nav-segment-item is-current">Home</a>
-          <a href="fun/" class="nav-segment-item">Fun</a>
+          <a href="index.html" aria-current="page" class="nav-segment-item is-current" id="home-nav-btn">Home</a>
+          <a href="fun/" class="nav-segment-item" id="fun-gooey-btn">Fun</a>
+          <canvas class="nav-gooey-canvas" id="nav-gooey-canvas"></canvas>
         </div>
       </nav>
       <div class="menu-button-2 w-nav-button">
@@ -529,6 +540,7 @@
   <script src="js/terminal.js" type="text/javascript"></script>
   <script src="js/mockup-tilt.js" type="text/javascript"></script>
   <script src="js/iframe-scaler.js" type="text/javascript"></script>
+  <script src="js/gooey-nav.js?v=3" type="text/javascript"></script>
   <script src="js/stacked-works.js?v=7" type="text/javascript"></script>
   <script>
     // Make experience cards fully clickable when they contain a link
