@@ -39,30 +39,17 @@
     z-index: 2 !important;
 }
 
-/* Footer top content - arrange in rows */
+/* Footer top content - arrange in 3 rows */
 .footer-top-content {
     display: flex !important;
     flex-direction: column !important;
-    gap: 1.5rem !important;
+    gap: 2rem !important;
 }
 
-/* Footer email / fun link — match reference */
-.footer-email {
-    justify-content: flex-start !important;
-    align-items: center !important;
+/* Footer chat text */
+.footer-chat-text {
     text-align: left !important;
-    margin-top: 0 !important;
-    text-decoration: none !important;
-}
-
-.footer-email h2 {
-    text-decoration: underline !important;
-    text-underline-offset: 4px !important;
-    margin: 0 !important;
-}
-
-.footer-email .footer-arrow {
-    margin-left: 0.5rem !important;
+    margin-top: 4rem !important;
 }
 
 /* Footer email wrapper styling */
