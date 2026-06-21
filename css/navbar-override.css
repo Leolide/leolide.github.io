@@ -442,6 +442,10 @@ body {
     margin-top: 0 !important;
 }
 
+.link {
+    font-size: inherit !important;
+}
+
 .home-hero {
     padding-top: 0 !important;
     margin-top: 0 !important;
