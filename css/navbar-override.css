@@ -208,7 +208,7 @@
     align-items: center !important;
     background: rgba(255, 255, 255, 0.06) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 8px !important;
+    border-radius: 100px !important;
     padding: 3px !important;
     gap: 2px !important;
 }
@@ -218,7 +218,7 @@
     align-items: center !important;
     justify-content: center !important;
     padding: 0.4rem 1.1rem !important;
-    border-radius: 6px !important;
+    border-radius: 100px !important;
     font-size: var(--fs-base) !important;
     font-weight: 400 !important;
     color: rgba(255, 255, 255, 0.5) !important;
@@ -227,6 +227,7 @@
     letter-spacing: 0 !important;
     line-height: 1.5 !important;
     white-space: nowrap !important;
+    text-transform: none !important;
 }
 
 .nav-segment-item:hover {
@@ -251,7 +252,7 @@
     border-radius: 8px !important;
     color: rgba(255, 255, 255, 0.5) !important;
     transition: all 0.2s ease !important;
-    margin-left: 0.5rem !important;
+    margin-right: 0.5rem !important;
     text-decoration: none !important;
 }
 
