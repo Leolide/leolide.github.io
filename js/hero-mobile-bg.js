@@ -12,14 +12,14 @@
   /* ── pixel blast configuration ── */
   var CONFIG = {
     pixelSize: 5,
-    color: [180, 180, 180],
+    color: [160, 160, 160],
     patternScale: 0.6,
-    patternDensity: 0.34,
+    patternDensity: 0.28,
     rippleSpeed: 0.4,
     rippleIntensity: 1.5,
     edgeFade: 0.05,
     speed: 0.6,
-    alpha: 0.45
+    alpha: 0.22
   };
 
   var MAX_CLICKS = 10;
