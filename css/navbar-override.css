@@ -551,6 +551,27 @@ body {
 }
 
 /* ========================================
+   HERO BACKGROUND - PIXELBLAST EFFECT
+   ======================================== */
+/* Hide old bg-image, show .bg-image.mobile for pixelblast canvas */
+.bg-image {
+    display: none !important;
+}
+.bg-image.mobile {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: none !important;
+    opacity: 1;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ========================================
    SOCIAL ICONS - MODERN MINIMAL STYLE
    ======================================== */
 .footer-social-wrap.homepage {

@@ -1,135 +1,213 @@
 (function () {
   'use strict';
 
-  var BREAKPOINT = 991;
+  var BREAKPOINT = 9999; // render on all screen sizes
   var animFrame = null;
   var canvas = null;
   var ctx = null;
   var startTime = null;
+  var dpr = 1;
+  var isRunning = false;
 
-  /* ── card silhouette definitions ── */
-  var CARD_DEFS = [
-    { xFrac: 0.72, yFrac: 0.18, w: 160, h: 220, speed: 0.009, phase: 0.00 },
-    { xFrac: 0.10, yFrac: 0.55, w: 130, h: 180, speed: 0.007, phase: 2.10 },
-    { xFrac: 0.55, yFrac: 0.70, w: 110, h: 150, speed: 0.011, phase: 4.20 }
-  ];
+  /* ── pixel blast configuration ── */
+  var CONFIG = {
+    pixelSize: 3,
+    color: [180, 150, 210],
+    patternScale: 0.6,
+    patternDensity: 0.12,
+    rippleSpeed: 0.4,
+    rippleIntensity: 1.5,
+    edgeFade: 0.05,
+    speed: 0.6,
+    alpha: 0.35
+  };
 
-  /* ── helpers ── */
-  function isMobile() {
-    return window.innerWidth <= BREAKPOINT;
+  var MAX_CLICKS = 10;
+  var clickRipples = [];
+  for (var i = 0; i < MAX_CLICKS; i++) {
+    clickRipples.push({ x: -1, y: -1, time: 0, active: false });
+  }
+  var rippleIx = 0;
+
+  /* ── noise functions ── */
+  function hash(n) {
+    return (Math.sin(n) * 43758.5453) - Math.floor(Math.sin(n) * 43758.5453);
   }
 
-  function roundRect(c, x, y, w, h, r) {
-    c.beginPath();
-    c.moveTo(x + r, y);
-    c.lineTo(x + w - r, y);
-    c.quadraticCurveTo(x + w, y, x + w, y + r);
-    c.lineTo(x + w, y + h - r);
-    c.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-    c.lineTo(x + r, y + h);
-    c.quadraticCurveTo(x, y + h, x, y + h - r);
-    c.lineTo(x, y + r);
-    c.quadraticCurveTo(x, y, x + r, y);
-    c.closePath();
+  function hash2(x, y) {
+    return hash(x * 127.1 + y * 311.7);
+  }
+
+  function noise2(x, y) {
+    var ix = Math.floor(x);
+    var iy = Math.floor(y);
+    var fx = x - ix;
+    var fy = y - iy;
+    var ux = fx * fx * (3 - 2 * fx);
+    var uy = fy * fy * (3 - 2 * fy);
+    var a = hash2(ix, iy);
+    var b = hash2(ix + 1, iy);
+    var c = hash2(ix, iy + 1);
+    var d = hash2(ix + 1, iy + 1);
+    return a + (b - a) * ux + (c - a) * uy + (a - b - c + d) * ux * uy;
+  }
+
+  function fbm2(x, y, t) {
+    var sum = 0;
+    var amp = 0.5;
+    var freq = 1;
+    for (var i = 0; i < 5; i++) {
+      sum += amp * noise2(x * freq + t * 0.1, y * freq + t * 0.15);
+      freq *= 1.25;
+      amp *= 0.7;
+    }
+    return sum;
+  }
+
+  /* ── bayer 8x8 dither matrix ── */
+  var BAYER8 = [
+    0, 32, 8, 40, 2, 34, 10, 42,
+    48, 16, 56, 24, 50, 18, 58, 26,
+    12, 44, 4, 36, 14, 46, 6, 38,
+    60, 28, 52, 20, 62, 30, 54, 22,
+    3, 35, 11, 43, 1, 33, 9, 41,
+    51, 19, 59, 27, 49, 17, 57, 25,
+    15, 47, 7, 39, 13, 45, 5, 37,
+    63, 31, 55, 23, 61, 29, 53, 21
+  ];
+
+  function bayer8(x, y) {
+    var idx = (Math.floor(x) % 8) + (Math.floor(y) % 8) * 8;
+    return (BAYER8[idx] / 64) - 0.5;
   }
 
   /* ── draw a single frame ── */
   function draw(ts) {
-    if (!canvas || !ctx) return;
+    if (!canvas || !ctx || !isRunning) return;
     if (!startTime) startTime = ts;
-    var elapsed = (ts - startTime) * 0.001; /* seconds */
+    var elapsed = (ts - startTime) * 0.001 * CONFIG.speed;
 
     var W = canvas.width;
     var H = canvas.height;
+    var pixelSize = Math.max(CONFIG.pixelSize * dpr, 2);
+    var cellSize = pixelSize * 8;
 
-    ctx.clearRect(0, 0, W, H);
-
-    /* 1. background fill */
+    // Clear
     ctx.fillStyle = '#08090b';
     ctx.fillRect(0, 0, W, H);
 
-    /* 2. "+" crosshatch grid */
-    var gridStep = 40;
-    var armLen   = 5;
-    var armW     = 1;
-    ctx.strokeStyle = 'rgba(255,255,255,0.05)';
-    ctx.lineWidth = armW;
-    for (var gx = 0; gx <= W + gridStep; gx += gridStep) {
-      for (var gy = 0; gy <= H + gridStep; gy += gridStep) {
-        ctx.beginPath();
-        ctx.moveTo(gx - armLen, gy);
-        ctx.lineTo(gx + armLen, gy);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(gx, gy - armLen);
-        ctx.lineTo(gx, gy + armLen);
-        ctx.stroke();
+    var cols = Math.ceil(W / cellSize);
+    var rows = Math.ceil(H / cellSize);
+
+    var r = CONFIG.color[0];
+    var g = CONFIG.color[1];
+    var b = CONFIG.color[2];
+    var baseAlpha = CONFIG.alpha;
+
+    for (var row = 0; row < rows; row++) {
+      for (var col = 0; col < cols; col++) {
+        var cx = col * cellSize;
+        var cy = row * cellSize;
+
+        var nx = col / cols;
+        var ny = row / rows;
+
+        // Noise with gradient fade from right side
+        var noise = fbm2(nx * CONFIG.patternScale * 10, ny * CONFIG.patternScale * 10, elapsed);
+        // Gradient fade: stronger on right side, fades to left
+        var gradFade = Math.min((nx + 0.15) * 2.0, 1.0);
+        noise *= gradFade;
+
+        // Apply click ripples
+        for (var i = 0; i < MAX_CLICKS; i++) {
+          var rip = clickRipples[i];
+          if (!rip.active) continue;
+          var t = elapsed - rip.time;
+          if (t < 0) continue;
+
+          var rx = (rip.x / W) * cols;
+          var ry = (rip.y / H) * rows;
+          var dx = col - rx;
+          var dy = row - ry;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+
+          var waveR = CONFIG.rippleSpeed * t * cols;
+          var ring = Math.exp(-Math.pow((dist - waveR) / 2, 2));
+          var atten = Math.exp(-1.0 * t) * Math.exp(-0.5 * dist);
+          noise = Math.max(noise, ring * atten * CONFIG.rippleIntensity);
+        }
+
+        // Edge fade
+        var edgeDist = Math.min(Math.min(nx, ny), Math.min(1 - nx, 1 - ny));
+        var edgeFade = edgeDist < CONFIG.edgeFade ? (edgeDist / CONFIG.edgeFade) : 1;
+
+        // Dither within 8x8 cell
+        for (var dy = 0; dy < 8; dy++) {
+          for (var dx = 0; dx < 8; dx++) {
+            var bayer = bayer8(dx, dy);
+            var val = noise + bayer + (CONFIG.patternDensity - 0.5);
+
+            if (val > 0.5) {
+              var px = cx + dx * pixelSize;
+              var py = cy + dy * pixelSize;
+              var a = Math.min((val - 0.5) * 3, 1) * baseAlpha * edgeFade;
+
+              if (a > 0.01) {
+                var radius = pixelSize * 0.5 * 0.9;
+                ctx.beginPath();
+                ctx.arc(px + pixelSize * 0.5, py + pixelSize * 0.5, radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+                ctx.fill();
+              }
+            }
+          }
+        }
       }
     }
 
-    /* 3. radial glow — lower-right, echoes Spline triangle light */
-    var glowX  = W * 0.82;
-    var glowY  = H * 0.78;
-    var glowR  = Math.max(W, H) * 0.55;
-    var glow   = ctx.createRadialGradient(glowX, glowY, 0, glowX, glowY, glowR);
-    glow.addColorStop(0,   'rgba(80, 120, 180, 0.09)');
-    glow.addColorStop(0.4, 'rgba(60,  90, 150, 0.04)');
-    glow.addColorStop(1,   'rgba(0,    0,   0, 0.00)');
-    ctx.fillStyle = glow;
-    ctx.fillRect(0, 0, W, H);
-
-    /* 4. floating card silhouettes */
-    for (var i = 0; i < CARD_DEFS.length; i++) {
-      var def = CARD_DEFS[i];
-      /* slow drift: sinusoidal offset */
-      var driftX = Math.sin(elapsed * def.speed * 6.28 + def.phase) * 18;
-      var driftY = Math.cos(elapsed * def.speed * 6.28 + def.phase * 0.7) * 12;
-
-      var cx = def.xFrac * W + driftX - def.w * 0.5;
-      var cy = def.yFrac * H + driftY - def.h * 0.5;
-
-      /* very faint frosted-glass fill */
-      ctx.save();
-      roundRect(ctx, cx, cy, def.w, def.h, 12);
-      ctx.fillStyle = 'rgba(255,255,255,0.015)';
-      ctx.fill();
-
-      /* subtle border */
-      ctx.strokeStyle = 'rgba(255,255,255,0.07)';
-      ctx.lineWidth = 0.75;
-      ctx.stroke();
-      ctx.restore();
-
-      /* tiny interior highlight line at top of card */
-      ctx.save();
-      ctx.strokeStyle = 'rgba(255,255,255,0.05)';
-      ctx.lineWidth = 0.5;
-      ctx.beginPath();
-      ctx.moveTo(cx + 14, cy + 1);
-      ctx.lineTo(cx + def.w - 14, cy + 1);
-      ctx.stroke();
-      ctx.restore();
-    }
-
     animFrame = requestAnimationFrame(draw);
   }
 
-  /* ── mount canvas into .bg-image.mobile ── */
+  /* ── mount canvas ── */
   function mount() {
     var host = document.querySelector('.section .bg-image.mobile');
     if (!host) return;
+    if (canvas && canvas.parentNode === host) return;
 
     canvas = document.createElement('canvas');
-    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;';
+    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;';
     host.appendChild(canvas);
+
     ctx = canvas.getContext('2d');
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
     resize();
     startTime = null;
+    isRunning = true;
     animFrame = requestAnimationFrame(draw);
+
+    canvas.addEventListener('pointerdown', function (e) {
+      var rect = canvas.getBoundingClientRect();
+      var scaleX = canvas.width / rect.width;
+      var scaleY = canvas.height / rect.height;
+      var fx = (e.clientX - rect.left) * scaleX;
+      var fy = (e.clientY - rect.top) * scaleY;
+      clickRipples[rippleIx] = {
+        x: fx,
+        y: fy,
+        time: elapsedTime(),
+        active: true
+      };
+      rippleIx = (rippleIx + 1) % MAX_CLICKS;
+    }, { passive: true });
   }
 
-  /* ── unmount and cancel ── */
+  function elapsedTime() {
+    return startTime ? (performance.now() - startTime) * 0.001 * CONFIG.speed : 0;
+  }
+
+  /* ── unmount ── */
   function unmount() {
+    isRunning = false;
     if (animFrame) {
       cancelAnimationFrame(animFrame);
       animFrame = null;
@@ -142,17 +220,15 @@
     startTime = null;
   }
 
-  /* ── resize canvas to match host ── */
+  /* ── resize ── */
   function resize() {
     if (!canvas) return;
     var host = canvas.parentNode;
     if (!host) return;
-    var dpr = window.devicePixelRatio || 1;
-    var w = host.offsetWidth  || window.innerWidth;
+    var w = host.offsetWidth || window.innerWidth;
     var h = host.offsetHeight || window.innerHeight;
-    canvas.width  = w * dpr;
+    canvas.width = w * dpr;
     canvas.height = h * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
   /* ── handle viewport changes ── */
@@ -169,9 +245,17 @@
     }, 120);
   }
 
+  function isMobile() {
+    return window.innerWidth <= BREAKPOINT;
+  }
+
   /* ── init ── */
   document.addEventListener('DOMContentLoaded', function () {
     if (isMobile()) mount();
     window.addEventListener('resize', onResize);
   });
+
+  if (document.readyState !== 'loading') {
+    if (isMobile()) mount();
+  }
 }());
