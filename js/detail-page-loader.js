@@ -221,6 +221,12 @@ class DetailPageLoader {
 
     // Update project images from gallery
     updateProjectImages(project) {
+        // Skip gallery for clientelling-app
+        if (project.Slug === 'a-clientelling-app') {
+            console.log('Skipping gallery for clientelling-app');
+            return;
+        }
+
         // Try multiple selectors to find all placeholder images
         const imageSelectors = [
             '.image.w-dyn-bind-empty',

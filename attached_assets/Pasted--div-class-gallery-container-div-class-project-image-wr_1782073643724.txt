@@ -1,0 +1,49 @@
+<div class="gallery-container"><div class="project-image-wrapper margin-bottom">
+                    <div class="mask-frame-works"></div>
+                    <img loading="lazy" src="https://cdn.prod.website-files.com/6761ab332b66a4214242de66/67e01d3dce2c79cb6d4e0016_Lide_Portfolio_Review_Palantir_Page_08.jpg" alt="Project Image" class="image">
+                </div><div class="project-image-wrapper margin-bottom">
+                    <div class="mask-frame-works"></div>
+                    <img loading="lazy" src="https://cdn.prod.website-files.com/6761ab332b66a4214242de66/67e01d2cce2c79cb6d4def92_Lide_Portfolio_Review_Palantir_Page_05.jpg" alt="Project Image" class="image">
+                </div><div class="project-image-wrapper margin-bottom">
+                    <div class="mask-frame-works"></div>
+                    <img loading="lazy" src="https://cdn.prod.website-files.com/6761ab332b66a4214242de66/67e01d354e71669977b2b270_Lide_Portfolio_Review_Palantir_Page_07.jpg" alt="Project Image" class="image">
+                </div><div class="project-image-wrapper margin-bottom">
+                    <div class="mask-frame-works"></div>
+                    <img loading="lazy" src="https://cdn.prod.website-files.com/6761ab332b66a4214242de66/67e01d706e1c07f5f085fe85_Screenshot%202025-03-23%20at%2014.40.40.png" alt="Project Image" class="image">
+                </div><div class="project-image-wrapper margin-bottom">
+                    <div class="mask-frame-works"></div>
+                    <img loading="lazy" src="https://cdn.prod.website-files.com/6761ab332b66a4214242de66/67e01d5840ba14c0f26ae025_Lide_Portfolio_Review_Palantir_Page_10.jpg" alt="Project Image" class="image">
+                </div><div class="project-image-wrapper margin-bottom">
+                    <div class="mask-frame-works"></div>
+                    <img loading="lazy" src="https://cdn.prod.website-files.com/6761ab332b66a4214242de66/67e01d7bbdea44f6b2ac3bfd_Lide_Portfolio_Review_Palantir_Page_11.jpg" alt="Project Image" class="image">
+                </div><div class="project-image-wrapper margin-bottom">
+                    <div class="mask-frame-works"></div>
+                    <img loading="lazy" src="https://cdn.prod.website-files.com/6761ab332b66a4214242de66/67e01da66e7ca5acbd7ed416_Screenshot%202025-03-23%20at%2014.41.20.png" alt="Project Image" class="image">
+                </div><div class="project-image-wrapper margin-bottom">
+                    <div class="mask-frame-works"></div>
+                    <img loading="lazy" src="https://cdn.prod.website-files.com/6761ab332b66a4214242de66/677f1298d2b60f59603e7833_The%20Lookbook_Page_07.jpg" alt="Project Image" class="image">
+                </div><div class="project-image-wrapper margin-bottom">
+                    <div class="mask-frame-works"></div>
+                    <img loading="lazy" src="https://cdn.prod.website-files.com/6761ab332b66a4214242de66/677f12999ac27d28e7835005_The%20Lookbook_Page_08.jpg" alt="Project Image" class="image">
+                </div><div class="project-image-wrapper margin-bottom">
+                    <div class="mask-frame-works"></div>
+                    <img loading="lazy" src="https://cdn.prod.website-files.com/6761ab332b66a4214242de66/677f1299d9120589427c0dca_The%20Lookbook_Page_09.jpg" alt="Project Image" class="image">
+                </div><div class="project-image-wrapper margin-bottom">
+                    <div class="mask-frame-works"></div>
+                    <img loading="lazy" src="https://cdn.prod.website-files.com/6761ab332b66a4214242de66/677f129989b2b30a5db58f54_The%20Lookbook_Page_10.jpg" alt="Project Image" class="image">
+                </div><div class="project-image-wrapper margin-bottom">
+                    <div class="mask-frame-works"></div>
+                    <img loading="lazy" src="https://cdn.prod.website-files.com/6761ab332b66a4214242de66/677f12993fe4a8ad368db4d2_The%20Lookbook_Page_11.jpg" alt="Project Image" class="image">
+                </div><div class="project-image-wrapper margin-bottom">
+                    <div class="mask-frame-works"></div>
+                    <img loading="lazy" src="https://cdn.prod.website-files.com/6761ab332b66a4214242de66/677f1299d9120589427c0de5_The%20Lookbook_Page_12.jpg" alt="Project Image" class="image">
+                </div><div class="project-image-wrapper margin-bottom">
+                    <div class="mask-frame-works"></div>
+                    <img loading="lazy" src="https://cdn.prod.website-files.com/6761ab332b66a4214242de66/67e01da0cd46156653beb51f_Lide_Portfolio_Review_Palantir_Page_29.jpg" alt="Project Image" class="image">
+                </div><div class="project-image-wrapper margin-bottom">
+                    <div class="mask-frame-works"></div>
+                    <img loading="lazy" src="https://cdn.prod.website-files.com/6761ab332b66a4214242de66/677f1299e5696cf30eb8032b_The%20Lookbook_Page_13.jpg" alt="Project Image" class="image">
+                </div><div class="project-image-wrapper margin-bottom">
+                    <div class="mask-frame-works"></div>
+                    <img loading="lazy" src="https://cdn.prod.website-files.com/6761ab332b66a4214242de66/6793fe5d4785ca254e830099_The%20Lookbook%20(Copy)2_Page_16.png" alt="Project Image" class="image">
+                </div></div>
