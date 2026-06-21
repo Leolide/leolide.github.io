@@ -369,7 +369,7 @@ body {
 .home-hero {
     padding-top: 0 !important;
     margin-top: 0 !important;
-    height: 120vh !important;
+    height: 100vh !important;
 }
 
 /* Very large screens: cap hero at 100vh and clip overflow */
