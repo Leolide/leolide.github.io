@@ -52,6 +52,23 @@
     var event = new Event('pageswap');
     document.dispatchEvent(event);
 
+    // Webflow sets opacity:0 on data-w-id elements for scroll animations.
+    // After SPA swap its interaction engine never re-runs, so those elements
+    // stay invisible. Use an IntersectionObserver to reveal them instead.
+    (function revealWebflowElements() {
+      var hidden = document.querySelectorAll('[data-w-id][style*="opacity"]');
+      if (!hidden.length) return;
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.style.transition = 'opacity 0.5s ease';
+          entry.target.style.opacity = '1';
+          io.unobserve(entry.target);
+        });
+      }, { threshold: 0.1 });
+      hidden.forEach(function(el) { io.observe(el); });
+    })();
+
     // Clean up fun-canvas body class if not on fun page
     var hasViewport = newContent.querySelector('#fun-canvas-viewport');
     if (!hasViewport) {
