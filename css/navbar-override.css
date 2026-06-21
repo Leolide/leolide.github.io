@@ -631,6 +631,83 @@ body {
     border-radius: 0 !important;
 }
 
+/* ========================================
+   HERO BUTTONS
+   ======================================== */
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.button-secondary {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.75rem 1.25rem !important;
+    font-size: var(--fs-sm) !important;
+    font-weight: 500 !important;
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 0.4rem !important;
+    text-decoration: none !important;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.button-secondary .text-size-small,
+.button-secondary .button-text-wrapper,
+.button-secondary .button-text-wrapper .text-size-small,
+.button-secondary .button-text-wrapper.align-center .text-size-small {
+    color: #fff !important;
+}
+
+.button-secondary .fill-top,
+.button-secondary .fill-bottom,
+.button-secondary .fill-left,
+.button-secondary .fill-right {
+    display: none !important;
+}
+
+.button-secondary:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+.hero-social-icons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.25rem;
+}
+
+.hero-social-icon {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 8px !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
+}
+
+.hero-social-icon:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.hero-social-icon svg {
+    display: block !important;
+}
+
 .footer-social-wrap.homepage .footer-social-link .footer-embed svg {
     width: 16px !important;
     height: 16px !important;
