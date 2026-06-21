@@ -1,0 +1,34 @@
+<div class="home-left-content">
+        <div class="home-header">
+          <div class="hero-home-header">
+            <div class="interaction-overflow hide-mobile"></div>
+            <div class="interaction-overflow hide-mobile">
+              <h4 class="heading-3 text-weight-regular">Lide is a Product Designer crafting experiences that blend <span class="text-span-29">Design, Data, and AI</span></h4>
+            </div>
+            <div href="#" class="mobile-header">
+              <h1 class="heading-3 text-weight-regular size grey">Lide is a Product Designer crafting experiences that blends <span class="text-span-27">Design, Data, and AI</span></h1>
+              <div class="embed-border w-embed"><svg width="166" height="50" viewBox="0 0 166 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 13V2C1 1.44772 1.44772 1 2 1H13M165 13V2C165 1.44772 164.552 1 164 1H153M1 39V50C1 50.5523 1.44772 51 2 51H13M165 39V50C165 50.5523 164.552 51 164 51H153" stroke="#EFEEEC" stroke-linecap="round"></path>
+                </svg></div>
+            </div>
+          </div>
+          <p class="text-size-medium line-height-150"><span class="text-span-3">Lide currently works for</span>
+            <a href="https://www.palantir.com/uk/" target="_blank" class="link">Palantir<br></a>
+          </p>
+          <div class="hero-buttons">
+            <a href="#SelectedWorks" class="button-primary w-inline-block" style="">
+              <div class="button-text-wrapper align-center" style="">
+                <div class="text-size-small text-weight-medium">View my work</div>
+              </div>
+              <div class="fill-top"></div>
+              <div class="fill-bottom"></div>
+              <div class="fill-left"></div>
+              <div class="fill-right"></div>
+              <div class="embed-border w-embed"><svg width="166" height="50" viewBox="0 0 166 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 13V2C1 1.44772 1.44772 1 2 1H13M165 13V2C165 1.44772 164.552 1 164 1H153M1 39V50C1 50.5523 1.44772 51 2 51H13M165 39V50C165 50.5523 164.552 51 164 51H153" stroke="#EFEEEC" stroke-linecap="round"></path>
+                </svg></div>
+            </a>
+          </div>
+        </div>
+        <div class="max-width-61ch"></div>
+      </div>
