@@ -77,6 +77,13 @@
     color: #e0e0e0;
 }
 
+/* Hide terminal on mobile — viewport resize on scroll causes it to peek */
+@media screen and (max-width: 991px) {
+    #terminal-footer {
+        display: none !important;
+    }
+}
+
 /* Scrollbar */
 #terminal-footer ::-webkit-scrollbar {
     width: 6px;
