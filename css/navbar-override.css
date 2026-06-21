@@ -432,14 +432,31 @@ body {
     height: 100vh !important;
 }
 
-/* Very large screens: cap hero at 100vh and clip overflow */
-@media screen and (min-width: 1600px) {
+/* home-left-content: push header to middle, social icons to bottom */
+.home-left-content {
+    justify-content: space-between !important;
+    padding-bottom: 2em !important;
+}
+
+/* Large screens: 120vh hero */
+@media screen and (min-width: 1280px) {
     .home-hero {
-        height: 100vh !important;
+        height: 120vh !important;
         overflow: clip !important;
     }
     .spline-wrapper {
-        height: 100vh !important;
+        height: 120vh !important;
+    }
+}
+
+/* Very large screens */
+@media screen and (min-width: 1600px) {
+    .home-hero {
+        height: 120vh !important;
+        overflow: clip !important;
+    }
+    .spline-wrapper {
+        height: 120vh !important;
     }
 }
 
