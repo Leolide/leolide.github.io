@@ -712,3 +712,46 @@ body {
     width: 16px !important;
     height: 16px !important;
 }
+
+/* ========================================
+   BOUNCE CARDS
+   ======================================== */
+.bounce-cards {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 220px;
+    margin-bottom: 2rem;
+}
+
+.bc-card {
+    position: absolute;
+    width: 160px;
+    aspect-ratio: 1;
+    border: 3px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    will-change: transform;
+}
+
+.bc-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+}
+
+@media (max-width: 767px) {
+    .bounce-cards {
+        height: 180px;
+    }
+    .bc-card {
+        width: 130px;
+    }
+}
