@@ -408,6 +408,13 @@ body {
         text-align: left !important;
         align-items: flex-start !important;
     }
+    .hero-buttons {
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+    }
+    .hero-social-dock {
+        justify-content: flex-start !important;
+    }
 }
 
 /* ========================================
