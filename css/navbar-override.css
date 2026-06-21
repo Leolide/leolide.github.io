@@ -507,7 +507,7 @@ body {
         transparent 100%
     );
     pointer-events: none;
-    z-index: 10;
+    z-index: 1;
 }
 
 /* Hide hero gradient on mobile/tablet — moved to bg-image.mobile */
