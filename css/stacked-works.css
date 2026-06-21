@@ -672,6 +672,7 @@ a.sw-card * {
 @media screen and (min-width: 2000px) {
   .sw-card {
     max-height: 60vh;
+    max-width: 2040px;
   }
 
   .sw-card-image {
