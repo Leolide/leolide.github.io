@@ -765,6 +765,46 @@ spline-viewer {
 }
 
 /* ========================================
+   HERO SOCIAL DOCK (bottom-left)
+   ======================================== */
+.hero-social-dock {
+    position: absolute;
+    bottom: 2rem;
+    left: 4em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 20;
+}
+
+.hero-dock-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.hero-dock-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+@media screen and (max-width: 991px) {
+    .hero-social-dock {
+        left: 1em;
+        bottom: 1.5rem;
+    }
+}
+
+/* ========================================
    BOUNCE CARDS
    ======================================== */
 .bounce-cards {
