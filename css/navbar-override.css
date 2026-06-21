@@ -219,9 +219,9 @@
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 0.25rem 0.85rem !important;
+    padding: 0.4rem 1.1rem !important;
     border-radius: 100px !important;
-    font-size: 0.8125rem !important;
+    font-size: var(--fs-base) !important;
     font-weight: 400 !important;
     color: rgba(255, 255, 255, 0.6) !important;
     text-decoration: none !important;
