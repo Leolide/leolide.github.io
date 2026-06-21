@@ -357,3 +357,9 @@
 .dt-section-2 {
     background-color: transparent !important;
 }
+
+@media screen and (max-width: 991px) {
+    body.fun-canvas-mode .section {
+        margin-bottom: 0 !important;
+    }
+}
