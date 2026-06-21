@@ -436,6 +436,16 @@ body {
 /* home-left-content */
 .home-left-content {
     width: 90vw !important;
+    pointer-events: none !important;
+}
+
+/* Re-enable pointer events on interactive children */
+.home-left-content .home-header,
+.home-left-content .hero-buttons,
+.home-left-content .hero-social-dock,
+.home-left-content a,
+.home-left-content button {
+    pointer-events: auto !important;
 }
 
 /* Large screens: 120vh hero */
