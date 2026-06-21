@@ -5,7 +5,7 @@
 /* Disable canvas on mobile; show original page */
 @media screen and (max-width: 767px) {
     #fun-canvas-viewport,
-    #fun-toolbar,
+    #fun-dock,
     #fun-footer-strip {
         display: none !important;
     }
@@ -520,9 +520,9 @@ body.fun-canvas-mode.edit-mode .canvas-item.is-rotating .rot-handle {
 }
 
 /* ----------------------------------------
-   BOTTOM TOOLBAR
+   MACOS-STYLE DOCK
    ---------------------------------------- */
-#fun-toolbar {
+#fun-dock {
     position: fixed;
     bottom: 68px;
     left: 50%;
@@ -530,131 +530,108 @@ body.fun-canvas-mode.edit-mode .canvas-item.is-rotating .rot-handle {
     z-index: 200;
     display: flex;
     align-items: center;
-    gap: 8px;
-    background: rgba(28, 28, 32, 0.92);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    gap: 2px;
+    background: rgba(28, 28, 32, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 14px;
-    padding: 7px 12px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    padding: 5px 8px;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.05);
 }
 
-.toolbar-group {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.toolbar-divider {
-    width: 1px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.15);
-    flex-shrink: 0;
-}
-
-#fun-toolbar button {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+.dock-item {
+    position: relative;
+    width: 32px;
+    height: 32px;
     background: transparent;
     border: none;
-    border-radius: 10px;
-    color: rgba(255, 255, 255, 0.75);
-    font-family: inherit;
-    font-size: 0.75rem;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    padding: 6px 10px;
+    border-radius: 9px;
+    color: rgba(255, 255, 255, 0.82);
     cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease;
     user-select: none;
-    white-space: nowrap;
+    flex-shrink: 0;
+    overflow: visible;
 }
 
-#fun-toolbar button:hover {
+.dock-item:hover {
     background: rgba(255, 255, 255, 0.12);
     color: #ffffff;
-    transform: translateY(-1px);
 }
 
-#fun-toolbar button:active {
-    transform: translateY(0);
+.dock-item:active {
+    transform: scale(0.93);
+    transition: transform 0.1s ease;
 }
 
-#fun-toolbar button svg {
+.dock-item svg {
+    width: 15px;
+    height: 15px;
     flex-shrink: 0;
-    opacity: 0.7;
+    pointer-events: none;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Zoom buttons stay square */
-#fun-toolbar .zoom-btn {
-    width: 30px;
-    height: 30px;
-    padding: 0;
-    justify-content: center;
-    font-size: 1rem;
-    font-weight: 300;
-    border-radius: 8px;
+.dock-item:hover svg {
+    transform: scale(1.08);
 }
 
-/* Mode button slightly bolder */
-#fun-mode-btn {
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    padding: 6px 12px;
+/* Tooltip */
+.dock-item::before {
+    content: attr(data-label);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(24, 24, 28, 0.95);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.68rem;
+    font-family: inherit;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    padding: 4px 9px;
+    border-radius: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease;
+    z-index: 300;
 }
 
-body.fun-canvas-mode.edit-mode #fun-mode-btn {
-    background: rgba(239, 238, 236, 0.15);
-    color: #efeeec;
+.dock-item:hover::before {
+    opacity: 1;
 }
 
-/* Hide edit buttons in read mode */
-body.fun-canvas-mode.read-mode .toolbar-group--edit {
+/* Hidden mode label — kept so fun-canvas.js can update its text */
+.dock-mode-label {
     display: none;
 }
 
-/* Keep mode + zoom visible in both modes */
-body.fun-canvas-mode.read-mode .toolbar-group--mode,
-body.fun-canvas-mode.read-mode .toolbar-group--zoom {
-    display: flex;
+/* Dock divider */
+.dock-divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.15);
+    flex-shrink: 0;
+    align-self: center;
+    margin: 0 2px;
 }
 
-/* Always-visible groups (reset + mode + zoom) */
-body.fun-canvas-mode.read-mode .toolbar-group--reset,
-body.fun-canvas-mode.read-mode .toolbar-group--mode,
-body.fun-canvas-mode.read-mode .toolbar-group--zoom {
-    display: flex;
+/* Edit-mode highlight on mode button */
+body.fun-canvas-mode.edit-mode #fun-mode-btn {
+    background: rgba(239, 238, 236, 0.18);
+    color: #efeeec;
 }
 
-/* Responsive */
+/* Mobile: hide dock */
 @media screen and (max-width: 767px) {
-    #fun-toolbar {
+    #fun-dock {
         display: none !important;
-    }
-}
-
-@media screen and (max-width: 991px) {
-    #fun-toolbar {
-        bottom: 68px;
-        padding: 5px 8px;
-        gap: 6px;
-        border-radius: 12px;
-    }
-
-    #fun-toolbar button {
-        font-size: 0.7rem;
-        padding: 5px 8px;
-    }
-
-    #fun-toolbar button span {
-        display: none;
-    }
-
-    #fun-mode-btn span {
-        display: inline !important;
     }
 }
 
