@@ -436,6 +436,7 @@ body {
 .home-left-content {
     justify-content: space-between !important;
     padding-bottom: 2em !important;
+    width: 90vw !important;
 }
 
 /* Large screens: 120vh hero */
