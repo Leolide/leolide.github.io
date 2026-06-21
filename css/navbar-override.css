@@ -382,10 +382,16 @@ body {
 }
 
 /* ========================================
-   HERO HEADING - FORCE 2 ROWS
+   HERO HEADING WIDTH
    ======================================== */
 .hero-home-header .heading-3.text-weight-regular {
-    width: 100% !important;
+    width: 40vw !important;
+}
+
+@media screen and (max-width: 991px) {
+    .hero-home-header .heading-3.text-weight-regular {
+        width: 70vw !important;
+    }
 }
 
 /* ========================================
