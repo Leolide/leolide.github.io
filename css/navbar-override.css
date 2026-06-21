@@ -234,10 +234,17 @@
     color: rgba(255, 255, 255, 0.85) !important;
 }
 
-.nav-segment-item.w--current {
-    background: rgba(255, 255, 255, 0.2) !important;
-    color: rgba(255, 255, 255, 1) !important;
+.nav-segment-item.is-current {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: rgba(0, 0, 0, 0.9) !important;
     font-weight: 500 !important;
+}
+
+/* Non-selected state */
+.nav-segment-item:not(.is-current) {
+    background: transparent !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-weight: 400 !important;
 }
 
 /* ========================================
