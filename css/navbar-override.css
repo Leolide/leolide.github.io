@@ -485,13 +485,13 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 35vh;
+    height: 45vh;
     background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgba(0, 0, 0, 0.10) 60%,
-        rgba(0, 0, 0, 0.40) 85%,
-        #000 100%
+        to top,
+        #000 0%,
+        rgba(0, 0, 0, 0.75) 25%,
+        rgba(0, 0, 0, 0.35) 55%,
+        transparent 100%
     );
     pointer-events: none;
     z-index: 10;
