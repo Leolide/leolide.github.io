@@ -2,13 +2,6 @@
    FUN PAGE — FREE-FORM DRAGGABLE CANVAS
    ======================================== */
 
-@font-face {
-    font-family: 'New Spirit';
-    src: url('../fonts/new-spirit-semi-bold.otf') format('opentype');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
 
 /* Disable canvas on mobile; show original page */
 @media screen and (max-width: 767px) {
@@ -408,7 +401,7 @@ body.fun-canvas-mode.edit-mode .canvas-item.is-rotating .rot-handle {
     min-height: 30px;
     cursor: grab;
     user-select: none;
-    font-family: 'New Spirit', cursive;
+    font-family: 'Satoshi', sans-serif;
     font-size: 1.6rem;
     line-height: 1.3;
     color: rgba(239, 238, 236, 0.9);
