@@ -981,6 +981,9 @@
   } else {
     init();
   }
+
+  // Re-init after SPA content swap
+  document.addEventListener('pageswap', init);
 })();
 
 /* =========================================
