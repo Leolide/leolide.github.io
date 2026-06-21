@@ -19,10 +19,10 @@
 
     /* Mobile images fallback — complements CSS media query */
     if (window.innerWidth <= 991) {
-      var mobileImages = ['autopilot-mobile.webp', 'kit-mobile.webp', 'debrief-mobile.webp'];
+      var mobileImages = ['/images/autopilot-mobile.webp', '/images/kit-mobile.webp', '/images/debrief-mobile.webp'];
       cards.forEach(function(card, i) {
         var img = card.querySelector('.sw-card-image--screenshot');
-        if (img && mobileImages[i]) img.style.backgroundImage = 'url(images/' + mobileImages[i] + ')';
+        if (img && mobileImages[i]) img.style.backgroundImage = 'url(' + mobileImages[i] + ')';
       });
     }
 

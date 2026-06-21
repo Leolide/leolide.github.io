@@ -299,9 +299,9 @@ class IndexContentLoader {
 }
 
 function initIndexContentLoader() {
-    if (window.location.pathname.includes('index.html') || 
-        window.location.pathname === '/' ||
-        window.location.pathname.endsWith('/')) {
+    // Check if home page content is present (works after SPA swap too)
+    if (document.querySelector('#SelectedWorks') || 
+        document.querySelector('.sw-section')) {
         
         const indexLoader = new IndexContentLoader();
         indexLoader.initialize().then(() => {

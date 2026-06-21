@@ -250,12 +250,23 @@
   }
 
   /* ── init ── */
-  document.addEventListener('DOMContentLoaded', function () {
+  function tryMount() {
     if (isMobile()) mount();
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    tryMount();
     window.addEventListener('resize', onResize);
   });
 
   if (document.readyState !== 'loading') {
-    if (isMobile()) mount();
+    tryMount();
   }
+
+  // Re-mount after SPA page swap (content may have been replaced)
+  document.addEventListener('pageswap', function () {
+    unmount();
+    // Small delay to ensure new DOM is in place
+    setTimeout(tryMount, 50);
+  });
 }());
