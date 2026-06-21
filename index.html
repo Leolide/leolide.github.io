@@ -509,6 +509,31 @@
   <script src="js/bounce-cards.js"></script>
   <script src="js/hero-mobile-bg.js?v=13"></script>
   <script src="js/fun-canvas.js?v=10"></script>
+  <script>
+    (function hideSplineBadge() {
+      var viewer = document.querySelector('spline-viewer');
+      if (!viewer) return;
+      var attempts = 0;
+      var interval = setInterval(function () {
+        attempts++;
+        var shadow = viewer.shadowRoot;
+        if (shadow) {
+          var badge = shadow.querySelector('a[href*="spline.design"], #logo, .logo');
+          if (!badge) {
+            var all = shadow.querySelectorAll('a');
+            all.forEach(function(a) { a.style.display = 'none'; });
+          } else {
+            badge.style.display = 'none';
+          }
+          var style = document.createElement('style');
+          style.textContent = 'a, #logo, [class*="logo"], [class*="badge"], [class*="watermark"] { display: none !important; }';
+          shadow.appendChild(style);
+          clearInterval(interval);
+        }
+        if (attempts > 40) clearInterval(interval);
+      }, 250);
+    })();
+  </script>
   </div>
 </body>
 
