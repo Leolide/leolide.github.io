@@ -52,12 +52,6 @@
     var event = new Event('pageswap');
     document.dispatchEvent(event);
 
-    // Re-initialize Spline 3D scene on new DOM after SPA navigation
-    var splineModule = window.Webflow && window.Webflow.require && window.Webflow.require('spline');
-    if (splineModule && splineModule.init) {
-      try { splineModule.init(); } catch (e) {}
-    }
-
     // Clean up fun-canvas body class if not on fun page
     var hasViewport = newContent.querySelector('#fun-canvas-viewport');
     if (!hasViewport) {
