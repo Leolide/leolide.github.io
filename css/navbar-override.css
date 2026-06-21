@@ -231,13 +231,19 @@
 }
 
 .nav-segment-item:hover {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
 }
 
 .nav-segment-item.is-current {
     background: rgba(255, 255, 255, 0.9) !important;
     color: rgba(0, 0, 0, 0.9) !important;
     font-weight: 500 !important;
+}
+
+.nav-segment-item.is-current:hover {
+    background: rgba(255, 255, 255, 1) !important;
+    color: rgba(0, 0, 0, 1) !important;
 }
 
 /* Non-selected state */
