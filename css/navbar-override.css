@@ -392,6 +392,15 @@ body {
     .hero-home-header .heading-3.text-weight-regular {
         width: 70vw !important;
     }
+    .home-header {
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+    }
+    .mobile-header,
+    .mobile-header h1 {
+        text-align: left !important;
+    }
 }
 
 /* ========================================
