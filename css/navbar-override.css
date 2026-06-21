@@ -234,9 +234,10 @@
     z-index: 1 !important;
 }
 
-.nav-segment-item:hover {
-    color: rgba(255, 255, 255, 0.9) !important;
-    background: rgba(255, 255, 255, 0.1) !important;
+/* Hover state — non-current items only */
+.nav-segment-item:not(.is-current):hover {
+    color: rgba(255, 255, 255, 0.95) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
 }
 
 .nav-segment-item.is-current {
@@ -250,11 +251,20 @@
     color: rgba(0, 0, 0, 1) !important;
 }
 
-/* Non-selected state */
-.nav-segment-item:not(.is-current) {
-    background: transparent !important;
-    color: rgba(255, 255, 255, 0.6) !important;
-    font-weight: 400 !important;
+/* ========================================
+   PAGE TRANSITION OVERLAY
+   ======================================== */
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ========================================

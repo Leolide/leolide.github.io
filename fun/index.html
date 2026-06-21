@@ -26,7 +26,7 @@
   <link href="../css/normalize.css" rel="stylesheet" type="text/css">
   <link href="../css/webflow.css" rel="stylesheet" type="text/css">
   <link href="../css/lides-portfolio.webflow.css" rel="stylesheet" type="text/css">
-  <link href="../css/navbar-override.css?v=5" rel="stylesheet" type="text/css">
+  <link href="../css/navbar-override.css?v=7" rel="stylesheet" type="text/css">
   <link href="../css/fun-canvas.css?v=9" rel="stylesheet" type="text/css">
   <link href="../css/fun-pinboard.css?v=16" rel="stylesheet" type="text/css">
   <link href="../css/footer-cards-override.css?v=28" rel="stylesheet" type="text/css">
@@ -45,6 +45,7 @@
 </head>
 
 <body>
+  <div class="page-transition-overlay"></div>
   <!-- NAVBAR -->
   <div data-animation="default" class="dt-navbar w-nav" data-easing2="ease" data-easing="ease" data-collapse="medium"
     data-w-id="995f6dff-5dd3-e2c1-ad25-604ea77ebb4a" role="banner" data-no-scroll="1" data-duration="400">
@@ -60,8 +61,9 @@
           </svg>
         </a>
         <div class="nav-segment">
-          <a href="../index.html" class="nav-segment-item">Home</a>
-          <a href="./" aria-current="page" class="nav-segment-item is-current">Fun</a>
+          <a href="../index.html" class="nav-segment-item" id="home-nav-btn">Home</a>
+          <a href="./" aria-current="page" class="nav-segment-item is-current" id="fun-gooey-btn">Fun</a>
+          <canvas class="nav-gooey-canvas" id="nav-gooey-canvas"></canvas>
         </div>
       </div>
       <div class="menu-button-2 w-nav-button">
@@ -747,6 +749,7 @@
   <script src="../js/omnibar.js?v=2"></script>
   <script src="../js/debug-mode.js"></script>
   <script src="../js/fun-canvas.js?v=9"></script>
+  <script src="../js/gooey-nav.js?v=4"></script>
 
   <!-- Mobile-only: make dt-section cards tappable -->
   <script>
