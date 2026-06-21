@@ -88,13 +88,13 @@ function getCommands() {
         },
         {
             label: 'LinkedIn',
-            icon: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>',
+            icon: '<svg viewBox="0 0 90 90" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M 1.48 29.91 h 18.657 v 60.01 H 1.48 V 29.91 z M 10.809 0.08 c 5.963 0 10.809 4.846 10.809 10.819 c 0 5.967 -4.846 10.813 -10.809 10.813 C 4.832 21.712 0 16.866 0 10.899 C 0 4.926 4.832 0.08 10.809 0.08"/><path d="M 31.835 29.91 h 17.89 v 8.206 h 0.255 c 2.49 -4.72 8.576 -9.692 17.647 -9.692 C 86.514 28.424 90 40.849 90 57.007 V 89.92 H 71.357 V 60.737 c 0 -6.961 -0.121 -15.912 -9.692 -15.912 c -9.706 0 -11.187 7.587 -11.187 15.412 V 89.92 H 31.835 V 29.91 z"/></svg>',
             action: () => window.open('https://www.linkedin.com/in/lideli/', '_blank')
         },
         {
             label: 'X / Twitter',
             icon: '<path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768m2.46-2.46L20 4M4 4h4.267l11.733 16h-4.267" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
-            action: () => window.open('https://x.com/LiotheMaker', '_blank')
+            action: () => window.open('https://x.com/lidethemaker', '_blank')
         }
     ];
 }
@@ -109,14 +109,14 @@ const toast = document.getElementById('omnibar-toast');
 function renderList(filter = '') {
     const filtered = getCommands().filter(cmd => cmd.label.toLowerCase().includes(filter.toLowerCase()));
 
-    results.innerHTML = filtered.map((cmd, index) => `
+    results.innerHTML = filtered.map((cmd, index) => {
+        const iconHTML = cmd.icon.startsWith('<svg') ? cmd.icon : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${cmd.icon}</svg>`;
+        return `
         <button class="omnibar-item ${index === selectedIndex ? 'selected' : ''}" data-command="${cmd.label}">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                ${cmd.icon}
-            </svg>
+            ${iconHTML}
             ${cmd.label}
         </button>
-    `).join('');
+    `}).join('');
 }
 
 // Toggle
