@@ -30,11 +30,11 @@
     position: fixed !important;
     z-index: 100 !important;
     
-    /* Blurred background effect - very transparent */
+    /* Blurred background effect */
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
-    background: rgba(0, 0, 0, 0.15) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
     
     /* Full width positioning */
     padding: 1rem 2rem;
@@ -57,10 +57,11 @@
     isolation: isolate;
 }
 
-/* No hover effect for minimalism */
+/* Hover effect */
 .dt-navbar:hover,
 .navbar:hover {
-    background: rgba(0, 0, 0, 0.15) !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 /* ========================================
@@ -81,15 +82,41 @@
     flex-shrink: 0 !important;
 }
 
-/* ========================================
-   RIGHT SIDE NAV CONTAINER
-   ======================================== */
-.dt-right-nav-navbar-1 {
+/* Navbar right side CTA */
+.dt-nav-right {
     display: flex !important;
     align-items: center !important;
     gap: 0 !important;
-    margin-left: auto !important;
     flex-shrink: 0 !important;
+}
+
+.dt-nav-cta {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 6px !important;
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: var(--fs-base) !important;
+    font-weight: 400 !important;
+    text-decoration: none !important;
+    letter-spacing: 0 !important;
+    transition: all 0.2s ease !important;
+}
+
+.dt-nav-cta:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* ========================================
+   RIGHT SIDE NAV CONTAINER (LEGACY — now replaced by .dt-nav-right)
+   ======================================== */
+.dt-right-nav-navbar-1 {
+    display: none !important;
 }
 
 /* ========================================
