@@ -394,6 +394,7 @@ body {
     }
     .home-left-content {
         align-items: flex-start !important;
+        padding-left: 0 !important;
     }
     .home-header {
         max-width: none !important;
@@ -530,6 +531,9 @@ body {
 
 /* Mobile-only: shorter gradient */
 @media screen and (max-width: 767px) {
+    .home-left-content {
+        padding-left: 0 !important;
+    }
     .section:has(.home-hero) .bg-image.mobile::after {
         height: 18vh;
         background: linear-gradient(
