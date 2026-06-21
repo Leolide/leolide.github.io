@@ -11,10 +11,10 @@
 
   /* ── pixel blast configuration ── */
   var CONFIG = {
-    pixelSize: 12,
+    pixelSize: 8,
     color: [155, 155, 155],
     patternScale: 0.6,
-    patternDensity: 0.09,
+    patternDensity: 0.16,
     rippleSpeed: 0.4,
     rippleIntensity: 1.5,
     edgeFade: 0.05,
