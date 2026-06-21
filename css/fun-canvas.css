@@ -92,7 +92,7 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
     z-index: 1;
 }
 
-/* Mobile/tablet only: bottom gradient fade with animated shimmer */
+/* Mobile/tablet only: bottom gradient fade */
 @media screen and (max-width: 991px) {
     #fun-canvas-viewport::after {
         content: '';
@@ -109,16 +109,6 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
         );
         pointer-events: none;
         z-index: 2;
-        animation: gradientPulse 8s ease-in-out infinite;
-    }
-
-    @keyframes gradientPulse {
-        0%, 100% {
-            opacity: 1;
-        }
-        50% {
-            opacity: 0.6;
-        }
     }
 }
 
