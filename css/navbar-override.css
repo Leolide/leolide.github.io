@@ -318,14 +318,6 @@
     display: block !important;
 }
 
-.nav-search-label {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.5);
-    margin-left: 0.4rem;
-    margin-right: 0.4rem;
-    letter-spacing: 0.02em;
-}
-
 .nav-search-shortcut {
     font-size: 0.65rem;
     color: rgba(255, 255, 255, 0.35);
@@ -337,7 +329,6 @@
 }
 
 @media screen and (max-width: 767px) {
-    .nav-search-label,
     .nav-search-shortcut {
         display: none;
     }
