@@ -11,15 +11,15 @@
 
   /* ── pixel blast configuration ── */
   var CONFIG = {
-    pixelSize: 8,
-    color: [155, 155, 155],
+    pixelSize: 5,
+    color: [180, 180, 180],
     patternScale: 0.6,
-    patternDensity: 0.16,
+    patternDensity: 0.34,
     rippleSpeed: 0.4,
     rippleIntensity: 1.5,
     edgeFade: 0.05,
     speed: 0.6,
-    alpha: 0.35
+    alpha: 0.45
   };
 
   var MAX_CLICKS = 10;
@@ -164,6 +164,14 @@
         }
       }
     }
+
+    // Elegant gradient fade-out overlay (bottom 55% fades to bg)
+    var grad = ctx.createLinearGradient(0, H * 0.35, 0, H);
+    grad.addColorStop(0, 'rgba(8,9,11,0)');
+    grad.addColorStop(0.6, 'rgba(8,9,11,0.75)');
+    grad.addColorStop(1, 'rgba(8,9,11,1)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
 
     animFrame = requestAnimationFrame(draw);
   }
