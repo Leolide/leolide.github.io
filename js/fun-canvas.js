@@ -840,13 +840,18 @@
   }
 
   function init() {
+    viewport = document.getElementById('fun-canvas-viewport');
+    canvas   = document.getElementById('fun-canvas');
+
+    // Only activate when the fun-canvas DOM is present
+    if (!viewport || !canvas) {
+      document.body.classList.remove('fun-canvas-mode');
+      return;
+    }
+
     document.body.classList.add('fun-canvas-mode');
 
     if (isMobile()) return;
-
-    viewport = document.getElementById('fun-canvas-viewport');
-    canvas   = document.getElementById('fun-canvas');
-    if (!viewport || !canvas) return;
 
     var saved = loadPositions();
     if (saved && saved.__version !== STORAGE_VERSION) {
