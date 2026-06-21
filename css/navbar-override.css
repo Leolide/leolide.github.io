@@ -268,30 +268,6 @@
 }
 
 /* ========================================
-   GOOEY NAV EFFECT (Fun button click only)
-   ======================================== */
-
-/* Canvas for the gooey animation */
-.nav-gooey-canvas {
-    position: absolute;
-    top: -20px;
-    left: -30px;
-    width: calc(100% + 60px);
-    height: calc(100% + 40px);
-    pointer-events: none;
-    z-index: 0;
-    border-radius: 100px;
-    /* Debug: border: 1px solid red; */
-}
-
-/* Text color transition for the gooey effect */
-.nav-segment-item.gooey-target {
-    color: rgba(0, 0, 0, 0.9) !important;
-    font-weight: 500 !important;
-    transition: color 0.2s ease 0.25s, font-weight 0.2s ease 0.25s !important;
-}
-
-/* ========================================
    SEARCH ICON
    ======================================== */
 .nav-search-icon {
