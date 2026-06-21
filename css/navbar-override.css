@@ -722,6 +722,19 @@ spline-viewer {
     display: block !important;
 }
 
+/* Cover the "Built with Spline" watermark badge */
+.spline-badge-cover {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 180px;
+    height: 48px;
+    background: #08090b;
+    z-index: 10;
+    pointer-events: none;
+    border-radius: 8px 0 0 0;
+}
+
 /* ========================================
    BOUNCE CARDS
    ======================================== */
