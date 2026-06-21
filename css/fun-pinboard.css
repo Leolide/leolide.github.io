@@ -353,3 +353,7 @@
     opacity: 1;
     transform: translate(0, 0);
 }
+
+.dt-section-2 {
+    background-color: transparent !important;
+}
