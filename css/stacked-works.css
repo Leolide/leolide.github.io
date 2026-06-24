@@ -85,7 +85,7 @@
 .sw-card-stack {
   position: relative;
   width: calc(100% - 80px);
-  max-width: none;
+  max-width: 1280px;
   height: 100vh;
   pointer-events: none;
 }
@@ -178,7 +178,7 @@ a.sw-card * {
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  max-width: none;
+  max-width: 1280px;
   border-radius: 16px;
   background: linear-gradient(165deg, #1c1c1e 0%, #141414 100%);
   border: 1px solid rgba(255, 255, 255, 0.035);
