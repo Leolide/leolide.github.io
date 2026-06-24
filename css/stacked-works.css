@@ -14,8 +14,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.013) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.013) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.013) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.013) 1px, transparent 1px);
   background-size: 50px 50px;
   pointer-events: none;
   z-index: 0;
@@ -119,6 +119,7 @@
   .sw-sticky-zone::before {
     left: 2rem;
   }
+
   .sw-sticky-zone::after {
     right: 2rem;
   }
@@ -128,6 +129,7 @@
   .sw-sticky-zone::before {
     left: 4rem;
   }
+
   .sw-sticky-zone::after {
     right: 4rem;
   }
@@ -252,7 +254,7 @@ a.sw-card * {
   align-items: center;
   gap: 10px;
   padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .sw-ph-body {
@@ -265,7 +267,7 @@ a.sw-card * {
 .sw-ph-bar {
   height: 8px;
   border-radius: 4px;
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .sw-ph-chip {
@@ -506,7 +508,7 @@ a.sw-card * {
   position: absolute;
   inset: 0;
   border-radius: 16px;
-  background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.05), transparent 40%);
+  background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.05), transparent 40%);
   opacity: 0;
   transition: opacity 0.35s ease;
   pointer-events: none;
@@ -626,9 +628,9 @@ a.sw-card * {
   gap: 8px;
   padding: 11px 22px;
   border-radius: 100px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
   font-size: var(--fs-sm);
   font-weight: 400;
   font-family: 'Satoshi', 'Inter', sans-serif;
@@ -643,9 +645,9 @@ a.sw-card * {
 }
 
 .sw-cta:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.18);
-  color: rgba(255,255,255,0.92);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .sw-cta-arrow {
@@ -672,7 +674,7 @@ a.sw-card * {
 @media screen and (min-width: 2000px) {
   .sw-card {
     max-height: 60vh;
-    max-width: 2040px;
+    max-width: 1280px;
   }
 
   .sw-card-image {
@@ -716,10 +718,12 @@ a.sw-card * {
     background-image: url('../images/autopilot-mobile.webp') !important;
     background-position: center center;
   }
+
   .sw-card[data-index="1"] .sw-card-image--screenshot {
     background-image: url('../images/kit-mobile.webp') !important;
     background-position: center center;
   }
+
   .sw-card[data-index="2"] .sw-card-image--screenshot {
     background-image: url('../images/debrief-mobile.webp') !important;
     background-position: center center;
