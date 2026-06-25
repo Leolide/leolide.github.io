@@ -85,7 +85,7 @@
 .sw-card-stack {
   position: relative;
   width: calc(100% - 80px);
-  max-width: 1280px;
+  max-width: 1080px;
   height: 100vh;
   pointer-events: none;
 }
