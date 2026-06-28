@@ -1,0 +1,54 @@
+[
+  {
+    "slug": "a-clientelling-app",
+    "title": "Boosting Sales and Enabling Personalized Customer Experiences",
+    "biggerHeading": "A Clientelling App",
+    "date": "2024 Aug – Nov",
+    "year": "2024 Aug - Nov",
+    "description": "Professional 2024",
+    "mainImage": "https://cdn.prod.website-files.com/6761ab332b66a4214242de66/67800306d1729e839a5dd854_Clientelling%20App.png",
+    "coverImage": "https://cdn.prod.website-files.com/6761ab332b66a4214242de66/67812d5462454d17172e05f2_Clientelling%20App_Cover.png",
+    "tags": ["UI/UX Design", "Cross-Platform", "B2B SaaS", "User Research"],
+    "accent": "255,180,80",
+    "protected": true
+  },
+  {
+    "slug": "debrief-ai",
+    "title": "User-Centric Strategy Pivot for Debrief AI to Secure Investment",
+    "biggerHeading": "Debrief AI",
+    "date": "2023 Jan – Jul",
+    "year": "2023 Jan-Jul",
+    "description": "Professional 2023",
+    "mainImage": "https://cdn.prod.website-files.com/6761ab332b66a4214242de66/677f2134a54903a00a989e6d_Debrief%20AI.png",
+    "coverImage": "https://cdn.prod.website-files.com/6761ab332b66a4214242de66/6799adfc2e204c5cbfb7ee56_Frame%201261152857.png",
+    "tags": ["AI B2B SaaS", "Website", "User Research", "UI/UX Design", "LLM"],
+    "accent": "100,180,255",
+    "protected": true
+  },
+  {
+    "slug": "design-system",
+    "title": "Establishing a Design System to Drive Education and Efficiency",
+    "biggerHeading": "Design System",
+    "date": "2024 Feb – Oct",
+    "year": "2024 Feb-Oct",
+    "description": "Professional 2024",
+    "mainImage": "https://cdn.prod.website-files.com/6761ab332b66a4214242de66/677f213ba4320c057b52dbf9_Design%20System.png",
+    "coverImage": "https://cdn.prod.website-files.com/6761ab332b66a4214242de66/688fa5d3095ccc71f0197bb5_Design%20System.png",
+    "tags": ["Design System", "iOS", "B2B SaaS", "Retail"],
+    "accent": "160,130,255",
+    "protected": true
+  },
+  {
+    "slug": "technology-radar",
+    "title": "A Website for Evaluating Technology Portfolios",
+    "biggerHeading": "Technology Radar",
+    "date": "2023 Sep – Dec",
+    "year": "2023 Sep-Dec",
+    "description": "Professional 2023",
+    "mainImage": "https://cdn.prod.website-files.com/6761ab332b66a4214242de66/677f20c3a4320c057b52873f_0_TechRadar.png",
+    "coverImage": "https://cdn.prod.website-files.com/6761ab332b66a4214242de66/6799ac4345c81bc20f8fbc6f_0_TechRadar.png",
+    "tags": ["UI/UX Design", "Website", "Enterprise App", "Accessibility", "Workshop"],
+    "accent": "80,200,180",
+    "protected": true
+  }
+]

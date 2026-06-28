@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "autopilot",
+    "title": "Autopilot — Control Center for Agentic Workflows at Scale",
+    "date": "2025 MAY – Present",
+    "description": "Designed the monitoring and orchestration interface enabling teams to visualize, debug, and optimize complex automation systems in real time.",
+    "tags": ["0 → 1", "Agentic Workflow", "Observability"],
+    "accent": "70,185,130",
+    "image": "/images/autopilot-screenshot.webp",
+    "url": "https://www.palantir.com/docs/foundry/autopilot/overview",
+    "protected": false,
+    "external": true
+  },
+  {
+    "slug": "a-clientelling-app",
+    "title": "Boosting Sales and Enabling Personalized Customer Experiences",
+    "date": "2024 Aug – Nov",
+    "description": "Cross-platform clientelling solution enabling personalized lookbooks and recommendations.",
+    "tags": ["UI/UX Design", "Cross-Platform", "B2B SaaS", "User Research"],
+    "accent": "255,180,80",
+    "image": "/images/kit-screenshot.webp",
+    "url": "/work/a-clientelling-app",
+    "protected": true,
+    "external": false
+  },
+  {
+    "slug": "debrief-ai",
+    "title": "User-Centric Strategy Pivot for Debrief AI to Secure Investment",
+    "date": "2023 Jan – Jul",
+    "description": "Product design for AI-powered workflow automation, enabling researchers to automate complex scientific tasks.",
+    "tags": ["UI/UX Design", "AI B2B SaaS", "User Research", "LLM"],
+    "accent": "100,180,255",
+    "image": "/images/debrief-screenshot.webp",
+    "url": "/work/debrief-ai",
+    "protected": true,
+    "external": false
+  }
+]
