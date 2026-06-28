@@ -206,11 +206,46 @@
     width: 100%;
 }
 
-/* Remove slider background colors so they blend into card */
-.dt-right-feature-16 .dt-single-feature-16 .slider,
-.dt-right-feature-16 .dt-single-feature-16 .w-slider {
-    background: transparent !important;
-    background-color: transparent !important;
+/* ----------------------------------------
+   STICKER MARQUEE
+   Both sticker series scroll together in
+   one continuous horizontal strip.
+   ---------------------------------------- */
+.stickerwrapper {
+    display: block !important;
+    overflow: hidden;
+    width: 100%;
+}
+
+.sticker-marquee {
+    overflow: hidden;
+    width: 100%;
+    padding: 16px 0;
+}
+
+.sticker-track {
+    display: flex;
+    width: max-content;
+    animation: scroll-stickers 28s linear infinite;
+}
+
+.sticker-track:hover {
+    animation-play-state: paused;
+}
+
+.sticker-item {
+    width: 110px;
+    height: 110px;
+    flex-shrink: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 12px;
+}
+
+@keyframes scroll-stickers {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
 }
 
 /* ----------------------------------------
