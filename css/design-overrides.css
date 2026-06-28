@@ -21,20 +21,20 @@
   --accent:          #5e6ad2;
   --accent-hover:    #828fff;
 
-  /* Type scale */
-  --type-display:    clamp(44px, 5vw, 68px);
-  --type-section:    clamp(28px, 3vw, 40px);
-  --type-headline:   22px;
+  /* Type scale — hero pulled down to editorial 36–46px range */
+  --type-display:    clamp(32px, 3.2vw, 46px);
+  --type-section:    clamp(22px, 2.2vw, 32px);
+  --type-headline:   20px;
   --type-body-lg:    18px;
   --type-body:       16px;
   --type-body-sm:    14px;
   --type-caption:    12px;
   --type-eyebrow:    13px;
 
-  /* Tracking */
-  --track-display:  -0.04em;
-  --track-section:  -0.025em;
-  --track-headline: -0.015em;
+  /* Tracking — loosened: Satoshi reads better at -0.02 than -0.04 */
+  --track-display:  -0.02em;
+  --track-section:  -0.018em;
+  --track-headline: -0.01em;
   --track-body:     -0.005em;
   --track-eyebrow:   0.04em;
 
@@ -106,10 +106,10 @@
 .mobile-header h1.heading-3.text-weight-regular {
   font-size: var(--type-display) !important;
   font-weight: 600 !important;
-  line-height: 1.08 !important;
+  line-height: 1.18 !important;
   letter-spacing: var(--track-display) !important;
   width: auto !important;
-  max-width: 12ch !important;
+  max-width: 18ch !important;
 }
 
 /* Section headings — "Selected Works", "About me" */
@@ -169,21 +169,46 @@ p.text-size-medium {
 
 
 /* ============================================================
-   4. FOOTER — email is the sole primary CTA
+   4. FOOTER — two clear destinations: email + fun page
    ============================================================ */
 
-/* "Explore my experiments" button becomes ghost / secondary */
-.footer-section .button-primary {
-  border-color: rgba(255, 255, 255, 0.08) !important;
+/* "Let's chat" heading — matches section scale, not display */
+.footer-chat-text {
+  font-size: clamp(20px, 2vw, 28px) !important;
+  font-weight: 500 !important;
+  letter-spacing: var(--track-section) !important;
+  line-height: 1.2 !important;
   color: var(--ink-subtle) !important;
-  font-size: var(--type-caption) !important;
-  padding: 7px 14px !important;
-  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+}
+
+/* Email link — dominant, but not enormous */
+.footer-email-link {
+  font-size: clamp(18px, 2vw, 26px) !important;
+  font-weight: 500 !important;
+  color: var(--ink) !important;
+  transition: color 0.2s ease !important;
+  letter-spacing: var(--track-display) !important;
+}
+
+.footer-email-link-container:hover .footer-email-link {
+  color: var(--ink-muted) !important;
+}
+
+/* "Explore my experiments" — equal weight CTA, distinct style */
+.footer-section .button-primary {
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: var(--ink) !important;
+  font-size: var(--type-body-sm) !important;
+  padding: 10px 18px !important;
+  margin-top: 20px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
 }
 
 .footer-section .button-primary:hover {
-  border-color: rgba(255, 255, 255, 0.18) !important;
-  color: var(--ink-muted) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  color: var(--ink) !important;
 }
 
 .footer-section .button-primary .button-text-wrapper,
@@ -192,35 +217,14 @@ p.text-size-medium {
   font-size: inherit !important;
 }
 
-/* Let's chat heading — bigger, tracks negative */
-.footer-chat-text {
-  font-size: clamp(32px, 4vw, 52px) !important;
-  font-weight: 600 !important;
-  letter-spacing: var(--track-display) !important;
-  line-height: 1.1 !important;
-  color: var(--ink) !important;
-}
-
-/* Email link — dominant */
-.footer-email-link {
-  font-size: clamp(20px, 2.5vw, 32px) !important;
-  font-weight: 500 !important;
-  color: var(--ink-muted) !important;
-  transition: color 0.2s ease !important;
-}
-
-.footer-email-link-container:hover .footer-email-link {
-  color: var(--ink) !important;
-}
-
-/* Social icons — truly secondary, small */
+/* Social icons — subtle but present */
 .footer-social-wrap {
-  opacity: 0.45 !important;
+  opacity: 0.5 !important;
   transition: opacity 0.2s ease !important;
 }
 
 .footer-social-wrap:hover {
-  opacity: 0.8 !important;
+  opacity: 1 !important;
 }
 
 
