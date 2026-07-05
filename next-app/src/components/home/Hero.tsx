@@ -15,6 +15,29 @@ export function Hero() {
         <SplineViewer />
       </div>
 
+      {/* Lightweight still inspired by the Spline scene for phones and small tablets */}
+      <div className="absolute inset-0 md:hidden" aria-hidden="true">
+        <img
+          src="/mobile-hero-fallback.webp"
+          alt=""
+          className="h-full w-full object-cover object-center opacity-90"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(1,1,2,0.92) 0%, rgba(1,1,2,0.62) 46%, rgba(1,1,2,0.12) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(1,1,2,0.28) 0%, transparent 42%, #010102 100%)",
+          }}
+        />
+      </div>
+
       {/* Bottom fade — dissolves hero into canvas, no pointer capture */}
       <div
         className="absolute bottom-0 inset-x-0 h-40 pointer-events-none z-10 select-none"
@@ -43,21 +66,13 @@ export function Hero() {
             </a>
           </p>
 
-          {/* CTAs */}
+          {/* Primary CTA */}
           <div className="flex flex-wrap gap-3 items-center">
             <a
               href="#selected-works"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-surface-1 hover:bg-surface-2 text-ink text-sm font-medium border border-hairline transition-colors"
             >
               View my work
-            </a>
-            <a
-              href="https://www.linkedin.com/in/lideli/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-surface-1 hover:bg-surface-2 text-ink text-sm font-medium border border-hairline transition-colors"
-            >
-              Connect on LinkedIn
             </a>
           </div>
 
