@@ -43,21 +43,13 @@ export function Hero() {
             </a>
           </p>
 
-          {/* CTAs */}
+          {/* Primary CTA */}
           <div className="flex flex-wrap gap-3 items-center">
             <a
               href="#selected-works"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-surface-1 hover:bg-surface-2 text-ink text-sm font-medium border border-hairline transition-colors"
             >
               View my work
-            </a>
-            <a
-              href="https://www.linkedin.com/in/lideli/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-surface-1 hover:bg-surface-2 text-ink text-sm font-medium border border-hairline transition-colors"
-            >
-              Connect on LinkedIn
             </a>
           </div>
 
