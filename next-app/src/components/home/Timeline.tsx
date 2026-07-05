@@ -93,6 +93,14 @@ export function Timeline() {
                 className="profile-card-sm"
                 onContactClick={() => window.open("https://www.linkedin.com/in/lideli/", "_blank", "noopener")}
               />
+              <a
+                href="https://www.linkedin.com/in/lideli/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-md border border-hairline bg-surface-1 px-4 py-2 text-sm font-medium text-ink transition-colors hover:bg-surface-2"
+              >
+                Connect on LinkedIn
+              </a>
             </motion.div>
           </div>
 
