@@ -24,7 +24,7 @@ const ProfileCardComponent = ({
   innerGradient,
   behindGlowEnabled = true,
   behindGlowColor,
-  behindGlowSize,
+  behindGlowSize = '50%',
   className = '',
   enableTilt = true,
   enableMobileTilt = false,
