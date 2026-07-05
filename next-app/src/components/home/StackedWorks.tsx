@@ -58,9 +58,9 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
       >
         <h3 className="text-ink text-base font-semibold leading-snug tracking-tight">
           {work.title}
-          {work.external && (
-            <span className="ml-1.5 opacity-0 group-hover:opacity-50 transition-opacity text-sm">↗</span>
-          )}
+          <span className="ml-1.5 text-sm opacity-0 transition-opacity group-hover:opacity-50">
+            {work.external ? "↗" : "→"}
+          </span>
         </h3>
         <p className="text-ink-subtle text-xs mt-0.5 leading-relaxed">{work.description}</p>
       </div>
