@@ -36,7 +36,7 @@ export default function FunPage() {
               </div>
               <div className="dt-second-scroll-move-2">
                 <div className="dt-text-scroll-move-1 dt-normal-scroll-move">make</div>
-                <img src="/images/website-Recovered-14.png" alt="" loading="lazy" className="dt-pill-scroll-move-1" />
+                <img src="/images/website-Recovered-14.webp" alt="" loading="lazy" className="dt-pill-scroll-move-1" />
                 <div className="dt-text-scroll-move-1 dt-normal-scroll-move">fun</div>
               </div>
               <div className="dt-third-scroll-move-1">
@@ -47,21 +47,21 @@ export default function FunPage() {
 
           {/* CARD 0: Community Building */}
           <div className="canvas-item card-item" id="canvas-card-0" data-href="https://www.fouxysquad.com/">
-            <img src="/images/IMG_5937.jpg" alt="Community Building" loading="lazy" className="dt-image-feature-16" />
+            <img src="/images/IMG_5937.webp" alt="Community Building" loading="lazy" className="dt-image-feature-16" />
             <h3 className="dt-h3">Community Building</h3>
             <div className="dt-body-big">A 250+ member design community in London, with playful events, fresh ideas, and skill-sharing.</div>
           </div>
 
           {/* CARD 1: Architecture Design */}
           <div className="canvas-item card-item" id="canvas-card-1" data-href="https://chinaroom.polito.it/portfolio/solar-decathlon-long-plan/">
-            <img src="/images/Solar_8.jpg" alt="Architecture Design" loading="lazy" className="dt-image-feature-16" />
+            <img src="/images/Solar_8.webp" alt="Architecture Design" loading="lazy" className="dt-image-feature-16" />
             <h3 className="dt-h3">Architecture Design</h3>
             <div className="dt-body-big"><em>Long Plan</em>, built in Dezhou, China, won the <em>Solar Decathlon China 2018</em> championship.</div>
           </div>
 
           {/* CARD 2: Urban Planning */}
           <div className="canvas-item card-item" id="canvas-card-2" data-href="https://www.asla.org/2020studentawards/945.html">
-            <img src="/images/FOD.png" alt="Urban Planning" loading="lazy" className="dt-image-feature-16" />
+            <img src="/images/FOD.webp" alt="Urban Planning" loading="lazy" className="dt-image-feature-16" />
             <h3 className="dt-h3">Urban Planning</h3>
             <div className="dt-body-big">A data-driven revitalisation plan for West Oakland that won the <em>ASLA 2020 Award of Excellence</em>.</div>
           </div>
@@ -73,7 +73,7 @@ export default function FunPage() {
                 <div className="sticker-track">
                   {["7","13","8","12","2","4-睡觉","6-早","2-爱你","6","10","11","4","8_1","12_1","14","2_1","7_1",
                     "7","13","8","12","2","4-睡觉","6-早","2-爱你","6","10","11","4","8_1","12_1","14","2_1","7_1"].map((n, i) => (
-                    <div key={i} className="sticker-item" style={{ backgroundImage: `url('/images/${n}.png')` }} />
+                    <div key={i} className="sticker-item" style={{ backgroundImage: `url('/images/${n}.webp')` }} />
                   ))}
                 </div>
               </div>
@@ -84,49 +84,49 @@ export default function FunPage() {
 
           {/* CARD 4: Graphic Design */}
           <div className="canvas-item card-item" id="canvas-card-4" data-href="https://dribbble.com/shots/14918317-TedxSCUT-poster-and-art-installation">
-            <img src="/images/01_Hero.png" alt="Graphic Design" loading="lazy" className="dt-image-feature-16" />
+            <img src="/images/01_Hero.webp" alt="Graphic Design" loading="lazy" className="dt-image-feature-16" />
             <h3 className="dt-h3">Graphic Design</h3>
             <div className="dt-body-big">100+ posters and visual identities directed for <em>TEDxSCUT</em> and my architecture department.</div>
           </div>
 
           {/* CARD 5: Manga Drawing */}
           <div className="canvas-item card-item" id="canvas-card-5" data-href="https://drive.google.com/file/d/1LAa6T4Eoc7vRyeHXOLzW9sjDXyLWwTQq/view?usp=sharing">
-            <img src="/images/01_Hero_1.png" alt="Manga Drawing" loading="lazy" className="dt-image-feature-16" />
+            <img src="/images/01_Hero_1.webp" alt="Manga Drawing" loading="lazy" className="dt-image-feature-16" />
             <h3 className="dt-h3">Manga Drawing</h3>
             <div className="dt-body-big"><em>Folk in Long-Plan</em>, a manga series I created for the Long Plan architecture project.</div>
           </div>
 
           {/* CARD 6: AR/VR Design */}
           <div className="canvas-item card-item" id="canvas-card-6" data-href="https://drive.google.com/file/d/1G56hgrdgLb-pdCCcAGBw6kDNx-C971uB/view?usp=sharing">
-            <img src="/images/AR.png" alt="AR/VR Design" loading="lazy" className="dt-image-feature-16" />
+            <img src="/images/AR.webp" alt="AR/VR Design" loading="lazy" className="dt-image-feature-16" />
             <h3 className="dt-h3">AR/VR Design</h3>
             <div className="dt-body-big">An AR exhibition bringing Bruce Lee&apos;s ancestral home to life in YongQing Fang.</div>
           </div>
 
           {/* CARD 7: Innovation Research */}
           <div className="canvas-item card-item" id="canvas-card-7" data-href="https://issuu.com/lideli1931/docs/lide_li_maud_dissertation_singlepage">
-            <img src="/images/Cetizen.png" alt="Innovation Research" loading="lazy" className="dt-image-feature-16" />
+            <img src="/images/Cetizen.webp" alt="Innovation Research" loading="lazy" className="dt-image-feature-16" />
             <h3 className="dt-h3">Innovation Research</h3>
             <div className="dt-body-big">Living Labs research with <em>Cambridge Distinction</em>, exhibited at Seoul &amp; Shenzhen UABB.</div>
           </div>
 
           {/* CARD 8: Aspiring Chef */}
           <div className="canvas-item card-item" id="canvas-card-8" data-href="https://www.instagram.com/lide.food/">
-            <img src="/images/Coffee-Beans.png" alt="Aspiring Chef" loading="lazy" className="dt-image-feature-16" />
+            <img src="/images/Coffee-Beans.webp" alt="Aspiring Chef" loading="lazy" className="dt-image-feature-16" />
             <h3 className="dt-h3">Aspiring Chef</h3>
             <div className="dt-body-big">I cook every day and post it at <em>lide.food</em>. Japanese and Chinese cuisine.</div>
           </div>
 
           {/* PHOTOS */}
-          <div className="canvas-item photo-item" id="canvas-photo-0" style={{ width: 280, height: 360 }}><img src="/images/IMG_6574_VSCO.JPG" alt="" loading="lazy" /><div className="resize-handle" /></div>
-          <div className="canvas-item photo-item" id="canvas-photo-2" style={{ width: 340, height: 260 }}><img src="/images/IMG_9821.JPG" alt="" loading="lazy" /><div className="resize-handle" /></div>
-          <div className="canvas-item photo-item" id="canvas-photo-4" style={{ width: 310, height: 260 }}><img src="/images/b1b9349f-4834-46bc-8735-e48470e2e2ce.JPG" alt="" loading="lazy" /><div className="resize-handle" /></div>
-          <div className="canvas-item photo-item" id="canvas-photo-5" style={{ width: 260, height: 340 }}><img src="/images/WechatIMG3407.jpg" alt="" loading="lazy" /><div className="resize-handle" /></div>
-          <div className="canvas-item photo-item" id="canvas-photo-6" style={{ width: 340, height: 260 }}><img src="/images/WechatIMG3409.jpg" alt="" loading="lazy" /><div className="resize-handle" /></div>
-          <div className="canvas-item photo-item" id="canvas-photo-7" style={{ width: 260, height: 320 }}><img src="/images/WechatIMG3410.jpg" alt="" loading="lazy" /><div className="resize-handle" /></div>
-          <div className="canvas-item photo-item" id="canvas-photo-8" style={{ width: 280, height: 360 }}><img src="/images/34081735130221.jpg" alt="" loading="lazy" /><div className="resize-handle" /></div>
-          <div className="canvas-item photo-item" id="canvas-photo-9" style={{ width: 360, height: 240 }}><img src="/images/event-speaker.jpg" alt="Speaking at a community event" loading="lazy" /><div className="resize-handle" /></div>
-          <div className="canvas-item photo-item" id="canvas-photo-10" style={{ width: 250, height: 445 }}><img src="/images/patagonia.jpg" alt="Hiking in Torres del Paine, Patagonia" loading="lazy" /><div className="resize-handle" /></div>
+          <div className="canvas-item photo-item" id="canvas-photo-0" style={{ width: 280, height: 360 }}><img src="/images/IMG_6574_VSCO.webp" alt="" loading="lazy" /><div className="resize-handle" /></div>
+          <div className="canvas-item photo-item" id="canvas-photo-2" style={{ width: 340, height: 260 }}><img src="/images/IMG_9821.webp" alt="" loading="lazy" /><div className="resize-handle" /></div>
+          <div className="canvas-item photo-item" id="canvas-photo-4" style={{ width: 310, height: 260 }}><img src="/images/b1b9349f-4834-46bc-8735-e48470e2e2ce.webp" alt="" loading="lazy" /><div className="resize-handle" /></div>
+          <div className="canvas-item photo-item" id="canvas-photo-5" style={{ width: 260, height: 340 }}><img src="/images/WechatIMG3407.webp" alt="" loading="lazy" /><div className="resize-handle" /></div>
+          <div className="canvas-item photo-item" id="canvas-photo-6" style={{ width: 340, height: 260 }}><img src="/images/WechatIMG3409.webp" alt="" loading="lazy" /><div className="resize-handle" /></div>
+          <div className="canvas-item photo-item" id="canvas-photo-7" style={{ width: 260, height: 320 }}><img src="/images/WechatIMG3410.webp" alt="" loading="lazy" /><div className="resize-handle" /></div>
+          <div className="canvas-item photo-item" id="canvas-photo-8" style={{ width: 280, height: 360 }}><img src="/images/34081735130221.webp" alt="" loading="lazy" /><div className="resize-handle" /></div>
+          <div className="canvas-item photo-item" id="canvas-photo-9" style={{ width: 360, height: 240 }}><img src="/images/event-speaker.webp" alt="Speaking at a community event" loading="lazy" /><div className="resize-handle" /></div>
+          <div className="canvas-item photo-item" id="canvas-photo-10" style={{ width: 250, height: 445 }}><img src="/images/patagonia.webp" alt="Hiking in Torres del Paine, Patagonia" loading="lazy" /><div className="resize-handle" /></div>
 
         </div>
       </div>
@@ -173,15 +173,15 @@ export default function FunPage() {
 
           <div className="flex flex-col gap-4">
             {[
-              { title: "Community Building", img: "/images/IMG_5937.jpg", href: "https://www.fouxysquad.com/", desc: "A 250+ member design community in London with regular events and skill-sharing." },
-              { title: "Architecture Design", img: "/images/Solar_8.jpg", href: "https://chinaroom.polito.it/portfolio/solar-decathlon-long-plan/", desc: "Long Plan in Dezhou won the Solar Decathlon China 2018 championship." },
-              { title: "Urban Planning", img: "/images/FOD.png", href: "https://www.asla.org/2020studentawards/945.html", desc: "ASLA 2020 Award of Excellence for West Oakland urban revitalisation." },
-              { title: "Sticker Design", img: "/images/7.png", href: "https://store.line.me/stickershop/author/4727135/en", desc: "7,000+ downloads, 200,000+ stickers sent on Line & WeChat." },
-              { title: "Graphic Design", img: "/images/01_Hero.png", href: "https://dribbble.com/shots/14918317-TedxSCUT-poster-and-art-installation", desc: "100+ posters for TEDxSCUT and Architecture Department." },
-              { title: "Manga Drawing", img: "/images/01_Hero_1.png", href: "https://drive.google.com/file/d/1LAa6T4Eoc7vRyeHXOLzW9sjDXyLWwTQq/view", desc: "Folk in Long-Plan, a manga series for the architecture project." },
-              { title: "AR/VR Design", img: "/images/AR.png", href: "https://drive.google.com/file/d/1G56hgrdgLb-pdCCcAGBw6kDNx-C971uB/view", desc: "AR exhibition of Bruce Lee's ancestral home for YongQing Fang." },
-              { title: "Innovation Research", img: "/images/Cetizen.png", href: "https://issuu.com/lideli1931/docs/lide_li_maud_dissertation_singlepage", desc: "Cambridge Distinction research on Living Labs in China." },
-              { title: "Aspiring Chef", img: "/images/Coffee-Beans.png", href: "https://www.instagram.com/lide.food/", desc: "Daily cooking log of Japanese and Chinese cuisine." },
+              { title: "Community Building", img: "/images/IMG_5937.webp", href: "https://www.fouxysquad.com/", desc: "A 250+ member design community in London with regular events and skill-sharing." },
+              { title: "Architecture Design", img: "/images/Solar_8.webp", href: "https://chinaroom.polito.it/portfolio/solar-decathlon-long-plan/", desc: "Long Plan in Dezhou won the Solar Decathlon China 2018 championship." },
+              { title: "Urban Planning", img: "/images/FOD.webp", href: "https://www.asla.org/2020studentawards/945.html", desc: "ASLA 2020 Award of Excellence for West Oakland urban revitalisation." },
+              { title: "Sticker Design", img: "/images/7.webp", href: "https://store.line.me/stickershop/author/4727135/en", desc: "7,000+ downloads, 200,000+ stickers sent on Line & WeChat." },
+              { title: "Graphic Design", img: "/images/01_Hero.webp", href: "https://dribbble.com/shots/14918317-TedxSCUT-poster-and-art-installation", desc: "100+ posters for TEDxSCUT and Architecture Department." },
+              { title: "Manga Drawing", img: "/images/01_Hero_1.webp", href: "https://drive.google.com/file/d/1LAa6T4Eoc7vRyeHXOLzW9sjDXyLWwTQq/view", desc: "Folk in Long-Plan, a manga series for the architecture project." },
+              { title: "AR/VR Design", img: "/images/AR.webp", href: "https://drive.google.com/file/d/1G56hgrdgLb-pdCCcAGBw6kDNx-C971uB/view", desc: "AR exhibition of Bruce Lee's ancestral home for YongQing Fang." },
+              { title: "Innovation Research", img: "/images/Cetizen.webp", href: "https://issuu.com/lideli1931/docs/lide_li_maud_dissertation_singlepage", desc: "Cambridge Distinction research on Living Labs in China." },
+              { title: "Aspiring Chef", img: "/images/Coffee-Beans.webp", href: "https://www.instagram.com/lide.food/", desc: "Daily cooking log of Japanese and Chinese cuisine." },
             ].map((card) => (
               <a
                 key={card.title}

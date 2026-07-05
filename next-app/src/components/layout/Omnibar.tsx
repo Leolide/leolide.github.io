@@ -19,14 +19,12 @@ interface OmnibarProps {
 
 const PAGES = [
   { label: "Home", href: "/" },
-  { label: "Work", href: "/work" },
   { label: "Fun", href: "/fun" },
 ];
 
 const PROJECTS = [
   { label: "Autopilot · Palantir", href: "https://www.palantir.com/docs/foundry/autopilot/overview", external: true },
   { label: "Clientelling App · Deloitte", href: "/work/a-clientelling-app" },
-  { label: "Debrief AI", href: "/work/debrief-ai" },
 ];
 
 const SOCIAL = [
