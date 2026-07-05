@@ -1,0 +1,78 @@
+[
+  {
+    "slug": "a-clientelling-app",
+    "title": "Boosting sales and enabling personalized customer experiences for a luxury retail client.",
+    "biggerHeading": "A Clientelling App",
+    "date": "Aug – Nov 2024",
+    "year": "2024",
+    "description": "Professional 2024",
+    "mainImage": "https://cdn.prod.website-files.com/6761ab332b66a4214242de66/67800306d1729e839a5dd854_Clientelling%20App.png",
+    "coverImage": "/images/kit-cover.webp",
+    "tags": ["iOS", "Design System", "Web App"],
+    "accent": "255,180,80",
+    "protected": true,
+    "meta": [
+      { "label": "Client", "value": "Luxury Retail" },
+      { "label": "Platform", "value": "iOS · Web App" },
+      { "label": "Role", "value": "Lead Product Designer" },
+      { "label": "Duration", "value": "Aug – Nov 2024" }
+    ]
+  },
+  {
+    "slug": "debrief-ai",
+    "title": "User-centric strategy pivot for Debrief AI to secure investment.",
+    "biggerHeading": "Debrief AI",
+    "date": "2023 Jan – Jul",
+    "year": "2023",
+    "description": "Professional 2023",
+    "mainImage": "https://cdn.prod.website-files.com/6761ab332b66a4214242de66/677f2134a54903a00a989e6d_Debrief%20AI.png",
+    "coverImage": "https://cdn.prod.website-files.com/6761ab332b66a4214242de66/6799adfc2e204c5cbfb7ee56_Frame%201261152857.png",
+    "tags": ["AI SaaS", "0→1", "LLM", "User Research"],
+    "accent": "100,180,255",
+    "protected": true,
+    "meta": [
+      { "label": "Company", "value": "Debrief AI" },
+      { "label": "Platform", "value": "Web App" },
+      { "label": "Role", "value": "Product Designer" },
+      { "label": "Duration", "value": "Jan – Jul 2023" }
+    ]
+  },
+  {
+    "slug": "design-system",
+    "title": "Establishing a design system to drive education and efficiency across teams.",
+    "biggerHeading": "Design System",
+    "date": "2024 Feb – Oct",
+    "year": "2024",
+    "description": "Professional 2024",
+    "mainImage": "https://cdn.prod.website-files.com/6761ab332b66a4214242de66/677f213ba4320c057b52dbf9_Design%20System.png",
+    "coverImage": "https://cdn.prod.website-files.com/6761ab332b66a4214242de66/688fa5d3095ccc71f0197bb5_Design%20System.png",
+    "tags": ["Design System", "iOS", "B2B SaaS"],
+    "accent": "160,130,255",
+    "protected": true,
+    "meta": [
+      { "label": "Client", "value": "Luxury Retail" },
+      { "label": "Platform", "value": "iOS · Web App" },
+      { "label": "Role", "value": "Lead Product Designer" },
+      { "label": "Duration", "value": "Feb – Oct 2024" }
+    ]
+  },
+  {
+    "slug": "technology-radar",
+    "title": "A website for evaluating and communicating technology portfolios.",
+    "biggerHeading": "Technology Radar",
+    "date": "2023 Sep – Dec",
+    "year": "2023",
+    "description": "Professional 2023",
+    "mainImage": "https://cdn.prod.website-files.com/6761ab332b66a4214242de66/677f20c3a4320c057b52873f_0_TechRadar.png",
+    "coverImage": "https://cdn.prod.website-files.com/6761ab332b66a4214242de66/6799ac4345c81bc20f8fbc6f_0_TechRadar.png",
+    "tags": ["Website", "Enterprise", "Accessibility"],
+    "accent": "80,200,180",
+    "protected": true,
+    "meta": [
+      { "label": "Client", "value": "Deloitte" },
+      { "label": "Platform", "value": "Website" },
+      { "label": "Role", "value": "Product Designer" },
+      { "label": "Duration", "value": "Sep – Dec 2023" }
+    ]
+  }
+]

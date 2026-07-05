@@ -1,0 +1,93 @@
+[
+  {
+    "id": "palantir",
+    "org": "Palantir",
+    "role": "Product Designer",
+    "period": "May 2025 – present",
+    "location": "London, UK",
+    "url": "https://www.palantir.com/uk/",
+    "logo": "/images/PLTR.D-618f91d3.png",
+    "type": "work"
+  },
+  {
+    "id": "friends-of-figma",
+    "org": "Friends of Figma London",
+    "role": "Lead",
+    "period": "May 2026 – present",
+    "location": "London, UK",
+    "url": "https://friends.figma.com/london/",
+    "logo": null,
+    "logoIcon": "figma",
+    "type": "community"
+  },
+  {
+    "id": "fouxy-squad",
+    "org": "Fouxy Squad",
+    "role": "Founder",
+    "period": "Feb 2025 – present",
+    "location": "London, UK",
+    "url": "https://www.fouxysquad.com/",
+    "logo": "/images/fouxy-squad-logo.svg",
+    "type": "community"
+  },
+  {
+    "id": "deloitte",
+    "org": "Deloitte Business Innovation",
+    "role": "Product Designer II",
+    "period": "Sep 2023 – May 2025",
+    "location": "London, UK",
+    "url": "https://www.deloitte.com/uk/en/what-we-do/capabilities/content/innovation/home.html",
+    "logo": "/images/BrandLogo.org-Deloitte-Logo-White-2016.svg",
+    "type": "work"
+  },
+  {
+    "id": "debrief-ai",
+    "org": "Debrief AI",
+    "role": "Product Designer",
+    "period": "Jun 2022 – Aug 2023",
+    "location": "Santa Clara, USA",
+    "url": null,
+    "logo": "/images/Layer_1.svg",
+    "type": "work"
+  },
+  {
+    "id": "cambridge",
+    "org": "University of Cambridge",
+    "role": "M.Phil. in Architecture and Urban Design · Cross-reg HCI",
+    "period": "Oct 2020 – Sep 2022",
+    "location": null,
+    "url": "https://www.cam.ac.uk/",
+    "logo": "/images/ucm_logo_white_on_black.png",
+    "type": "education"
+  },
+  {
+    "id": "scut",
+    "org": "South China University of Technology",
+    "role": "B.E. in Urban Planning — GPA 3.9/4 · Dean's List",
+    "period": "Sep 2015 – Jun 2020",
+    "location": null,
+    "url": "https://www.scut.edu.cn/en/",
+    "logo": "/images/logo_1.png",
+    "type": "education"
+  },
+  {
+    "id": "berkeley",
+    "org": "University of California, Berkeley",
+    "role": "Exchange — Design & Technology — GPA 3.91/4",
+    "period": "Jan 2019 – Jun 2019",
+    "location": null,
+    "url": "https://www.berkeley.edu/",
+    "logo": "/images/pngaaa.com-3143395.png",
+    "type": "education"
+  },
+  {
+    "id": "ux-awards",
+    "org": "UX Design Awards — Nominated",
+    "role": "HAEN: AI Agent for City-Scale Disaster Management",
+    "period": "2025",
+    "location": null,
+    "url": "https://ux-design-awards.com/winners/2025-2-haen-ai-agent-for-city-scale-disaster-management",
+    "logo": "/images/3143395-middle.svg",
+    "type": "award"
+  }
+]

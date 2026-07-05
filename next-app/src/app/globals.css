@@ -1,0 +1,155 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── Satoshi variable font ─────────────────────────────── */
+@font-face {
+  font-family: "Satoshi";
+  src: url("../fonts/Satoshi-Variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("../fonts/Satoshi-VariableItalic.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ── Design tokens → Tailwind theme ───────────────────── */
+@theme inline {
+  /* Font */
+  --font-sans: "Satoshi", system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Canvas & Surfaces */
+  --color-canvas:     #010102;
+  --color-surface-1:  #0f1011;
+  --color-surface-2:  #141516;
+  --color-surface-3:  #18191a;
+  --color-surface-4:  #191a1b;
+
+  /* Hairlines */
+  --color-hairline:          #23252a;
+  --color-hairline-strong:   #34343a;
+  --color-hairline-tertiary: #3e3e44;
+
+  /* Ink (text) */
+  --color-ink:         #f7f8f8;
+  --color-ink-muted:   #d0d6e0;
+  --color-ink-subtle:  #8a8f98;
+  --color-ink-tertiary:#62666d;
+
+  /* Brand gradient */
+  --gradient-brand: linear-gradient(112deg, #d40606, #e04a14 12%, #fcf236);
+
+  /* Accent — start colour used for solid fallbacks, focus rings, borders */
+  --color-accent:       #e04a14;
+  --color-accent-hover: #d40606;
+  --color-accent-focus: #d40606;
+
+  /* Inverse */
+  --color-inverse-canvas:   #ffffff;
+  --color-inverse-surface-1:#f5f6f6;
+  --color-inverse-ink:      #000000;
+
+  /* Semantic */
+  --color-success: #27a644;
+
+  /* shadcn mapping — everything runs dark */
+  --color-background:          var(--color-canvas);
+  --color-foreground:          var(--color-ink);
+  --color-card:                var(--color-surface-1);
+  --color-card-foreground:     var(--color-ink);
+  --color-popover:             var(--color-surface-2);
+  --color-popover-foreground:  var(--color-ink);
+  --color-primary:             var(--color-accent);
+  --color-primary-foreground:  #ffffff;
+  --color-secondary:           var(--color-surface-1);
+  --color-secondary-foreground:var(--color-ink);
+  --color-muted:               var(--color-surface-2);
+  --color-muted-foreground:    var(--color-ink-subtle);
+  --color-accent-foreground:   #ffffff;
+  --color-destructive:         oklch(0.577 0.245 27.325);
+  --color-border:              var(--color-hairline);
+  --color-input:               var(--color-surface-1);
+  --color-ring:                var(--color-accent-focus);
+
+  /* Radius scale */
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-pill: 9999px;
+  --radius:      var(--radius-lg);
+
+  /* Typography scale */
+  --text-display-xl: 68px;
+  --text-display-lg: 48px;
+  --text-display-md: 32px;
+  --text-headline:   22px;
+  --text-body-lg:    18px;
+  --text-body:       16px;
+  --text-body-sm:    14px;
+  --text-caption:    12px;
+  --text-eyebrow:    13px;
+}
+
+/* ── Base layer ───────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    @apply border-border;
+  }
+  html {
+    @apply font-sans antialiased;
+    background-color: #010102;
+    color: #f7f8f8;
+  }
+  body {
+    @apply min-h-screen bg-canvas text-ink;
+  }
+}
+
+/* ── Spline badge kill — light DOM + any leaking children ── */
+spline-viewer > a,
+spline-viewer > div,
+spline-viewer a[href*="spline"],
+spline-viewer a[href*="splinetool"] {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ── Utility helpers ──────────────────────────────────── */
+@layer utilities {
+  .bg-gradient-brand {
+    background: var(--gradient-brand);
+  }
+  .text-gradient-brand {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .tracking-display {
+    letter-spacing: -0.04em;
+  }
+  .tracking-heading {
+    letter-spacing: -0.025em;
+  }
+  .tracking-body {
+    letter-spacing: -0.005em;
+  }
+  .tracking-eyebrow {
+    letter-spacing: 0.04em;
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
