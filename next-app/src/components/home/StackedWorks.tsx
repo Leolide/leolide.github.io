@@ -26,26 +26,26 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
 
       {/* Top glass bar — tags */}
       <div
-        className="absolute top-0 left-0 right-0 flex flex-col items-start gap-3 px-5 py-4"
+        className="absolute top-0 left-0 right-0 px-5 py-4 flex items-center justify-between"
         style={{
           background: "linear-gradient(to bottom, rgba(10,10,12,0.85) 0%, transparent 100%)",
         }}
       >
-        <div className="flex flex-wrap items-center gap-1.5">
+        <div className="flex items-center gap-1.5">
           {work.tags.map((tag) => (
             <span
               key={tag}
-              className="shrink-0 rounded-sm border border-white/10 px-2 py-0.5 text-[10px] font-medium text-white/50"
+              className="px-2 py-0.5 rounded-sm text-[10px] border border-white/10 text-white/50 font-medium"
             >
               {tag}
             </span>
           ))}
         </div>
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+        <div className="flex items-center gap-2">
           {work.company && (
-            <span className="text-xs font-medium text-white/60">{work.company}</span>
+            <span className="text-white/60 text-xs font-medium">{work.company}</span>
           )}
-          <span className="text-xs text-white/30">{work.date}</span>
+          <span className="text-white/30 text-xs">{work.date}</span>
         </div>
       </div>
 
