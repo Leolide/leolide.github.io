@@ -19,6 +19,7 @@ interface OmnibarProps {
 
 const PAGES = [
   { label: "Home", href: "/" },
+  { label: "Portfolio", href: "/#selected-works" },
   { label: "Fun", href: "/fun" },
 ];
 

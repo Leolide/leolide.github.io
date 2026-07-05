@@ -74,6 +74,12 @@ export function Hero() {
             >
               View my work
             </a>
+            <a
+              href="#about"
+              className="inline-flex items-center gap-2 rounded-md border border-hairline bg-surface-1 px-4 py-2 text-sm font-medium text-ink transition-colors hover:bg-surface-2"
+            >
+              About me
+            </a>
           </div>
 
           {/* Social dock */}
