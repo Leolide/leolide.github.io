@@ -25,8 +25,8 @@ const PAGES = [
 ];
 
 const PROJECTS = [
-  { label: "Autopilot · Palantir", href: "https://www.palantir.com/docs/foundry/autopilot/overview", external: true },
-  { label: "Clientelling App · Deloitte", href: "/work/a-clientelling-app" },
+  { label: "Autopilot", company: "Palantir", href: "https://www.palantir.com/docs/foundry/autopilot/overview", external: true },
+  { label: "Clientelling app", company: "Deloitte", href: "/work/a-clientelling-app" },
 ];
 
 const SOCIAL = [
@@ -67,7 +67,8 @@ export function Omnibar({ open, onOpenChange }: OmnibarProps) {
           <CommandGroup heading="Projects">
             {PROJECTS.map((p) => (
               <CommandItem key={p.label} onSelect={() => go(p.href, p.external)}>
-                {p.label}
+                <span>{p.label}</span>
+                <span className="text-ink-subtle">· {p.company}</span>
               </CommandItem>
             ))}
           </CommandGroup>
