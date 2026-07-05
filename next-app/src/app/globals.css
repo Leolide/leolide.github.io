@@ -44,10 +44,13 @@
   --color-ink-subtle:  #8a8f98;
   --color-ink-tertiary:#62666d;
 
-  /* Accent */
-  --color-accent:       #5e6ad2;
-  --color-accent-hover: #828fff;
-  --color-accent-focus: #5e69d1;
+  /* Brand gradient */
+  --gradient-brand: linear-gradient(112deg, #d40606, #e04a14 12%, #fcf236);
+
+  /* Accent — start colour used for solid fallbacks, focus rings, borders */
+  --color-accent:       #e04a14;
+  --color-accent-hover: #d40606;
+  --color-accent-focus: #d40606;
 
   /* Inverse */
   --color-inverse-canvas:   #ffffff;
@@ -70,8 +73,7 @@
   --color-secondary-foreground:var(--color-ink);
   --color-muted:               var(--color-surface-2);
   --color-muted-foreground:    var(--color-ink-subtle);
-  --color-accent:              var(--color-surface-2);
-  --color-accent-foreground:   var(--color-ink);
+  --color-accent-foreground:   #ffffff;
   --color-destructive:         oklch(0.577 0.245 27.325);
   --color-border:              var(--color-hairline);
   --color-input:               var(--color-surface-1);
@@ -114,8 +116,28 @@
   }
 }
 
+/* ── Spline badge kill — light DOM + any leaking children ── */
+spline-viewer > a,
+spline-viewer > div,
+spline-viewer a[href*="spline"],
+spline-viewer a[href*="splinetool"] {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 /* ── Utility helpers ──────────────────────────────────── */
 @layer utilities {
+  .bg-gradient-brand {
+    background: var(--gradient-brand);
+  }
+  .text-gradient-brand {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
   .tracking-display {
     letter-spacing: -0.04em;
   }
@@ -128,4 +150,6 @@
   .tracking-eyebrow {
     letter-spacing: 0.04em;
   }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }

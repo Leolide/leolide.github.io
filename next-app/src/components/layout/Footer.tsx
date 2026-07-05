@@ -3,12 +3,11 @@ import Link from "next/link";
 const SOCIAL = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/lideli/" },
   { label: "X", href: "https://x.com/lidethemaker" },
-  { label: "Fouxy Squad", href: "https://www.fouxysquad.com/" },
 ];
 
 export function Footer() {
   return (
-    <footer className="border-t border-hairline bg-canvas pt-16 pb-10 px-6">
+    <footer className="bg-canvas pt-16 pb-10 px-6">
       <div className="max-w-[1280px] mx-auto">
         {/* CTA */}
         <p className="text-ink-subtle text-sm mb-3">Let&rsquo;s chat:</p>

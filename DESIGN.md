@@ -4,10 +4,13 @@ name: Linear-design-analysis
 description: "A near-black product-focused marketing canvas built around #010102 (the deepest dark surface of any tool in this collection), light gray text (#f7f8f8), and the signature Linear lavender-blue (#5e6ad2) used as the single chromatic accent. The system reads as software-craft documentation: dense, technical, and quietly luxurious. Display type is set in the Linear custom sans (SF Pro Display fallback) at 500–700 with measured negative tracking. Cards live as charcoal panels (#0f1011) with hairline borders. The accent lavender appears on the brand mark, focus rings, and a few intentional CTAs — never decoratively. Page rhythm leans on product UI screenshots framed in dark panels rather than atmospheric color."
 
 colors:
-  primary: "#5e6ad2"
+  primary: "linear-gradient(112deg, #d40606, #e04a14 12%, #fcf236)"
+  primary-start: "#d40606"
+  primary-mid: "#e04a14"
+  primary-end: "#fcf236"
   on-primary: "#ffffff"
-  primary-hover: "#828fff"
-  primary-focus: "#5e69d1"
+  primary-hover: "#e04a14"
+  primary-focus: "#d40606"
   ink: "#f7f8f8"
   ink-muted: "#d0d6e0"
   ink-subtle: "#8a8f98"

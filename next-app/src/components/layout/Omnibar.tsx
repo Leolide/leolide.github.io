@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import {
+  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
@@ -23,11 +24,9 @@ const PAGES = [
 ];
 
 const PROJECTS = [
-  { label: "Autopilot — Palantir", href: "https://www.palantir.com/docs/foundry/autopilot/overview", external: true },
-  { label: "Clientelling App — Deloitte", href: "/work/a-clientelling-app" },
+  { label: "Autopilot · Palantir", href: "https://www.palantir.com/docs/foundry/autopilot/overview", external: true },
+  { label: "Clientelling App · Deloitte", href: "/work/a-clientelling-app" },
   { label: "Debrief AI", href: "/work/debrief-ai" },
-  { label: "Design System — Deloitte", href: "/work/design-system" },
-  { label: "Technology Radar", href: "/work/technology-radar" },
 ];
 
 const SOCIAL = [
@@ -50,38 +49,40 @@ export function Omnibar({ open, onOpenChange }: OmnibarProps) {
 
   return (
     <CommandDialog open={open} onOpenChange={onOpenChange}>
-      <CommandInput placeholder="Search pages, projects…" />
-      <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
+      <Command>
+        <CommandInput placeholder="Search pages, projects…" />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
 
-        <CommandGroup heading="Pages">
-          {PAGES.map((p) => (
-            <CommandItem key={p.href} onSelect={() => go(p.href)}>
-              {p.label}
-            </CommandItem>
-          ))}
-        </CommandGroup>
+          <CommandGroup heading="Pages">
+            {PAGES.map((p) => (
+              <CommandItem key={p.href} onSelect={() => go(p.href)}>
+                {p.label}
+              </CommandItem>
+            ))}
+          </CommandGroup>
 
-        <CommandSeparator />
+          <CommandSeparator />
 
-        <CommandGroup heading="Projects">
-          {PROJECTS.map((p) => (
-            <CommandItem key={p.label} onSelect={() => go(p.href, p.external)}>
-              {p.label}
-            </CommandItem>
-          ))}
-        </CommandGroup>
+          <CommandGroup heading="Projects">
+            {PROJECTS.map((p) => (
+              <CommandItem key={p.label} onSelect={() => go(p.href, p.external)}>
+                {p.label}
+              </CommandItem>
+            ))}
+          </CommandGroup>
 
-        <CommandSeparator />
+          <CommandSeparator />
 
-        <CommandGroup heading="Connect">
-          {SOCIAL.map((s) => (
-            <CommandItem key={s.label} onSelect={() => go(s.href, s.external)}>
-              {s.label}
-            </CommandItem>
-          ))}
-        </CommandGroup>
-      </CommandList>
+          <CommandGroup heading="Connect">
+            {SOCIAL.map((s) => (
+              <CommandItem key={s.label} onSelect={() => go(s.href, s.external)}>
+                {s.label}
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        </CommandList>
+      </Command>
     </CommandDialog>
   );
 }

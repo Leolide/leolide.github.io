@@ -7,8 +7,7 @@ import { Search } from "lucide-react";
 import { Omnibar } from "@/components/layout/Omnibar";
 
 const NAV_LINKS = [
-  { label: "Work", href: "/work" },
-  { label: "About", href: "/#about" },
+  { label: "Home", href: "/" },
   { label: "Fun", href: "/fun" },
 ];
 
@@ -40,7 +39,7 @@ export function Navbar() {
         className={[
           "fixed top-0 inset-x-0 z-50 h-14 flex items-center transition-colors duration-300",
           scrolled
-            ? "bg-canvas/90 border-b border-hairline backdrop-blur-md"
+            ? "bg-canvas/90 backdrop-blur-md"
             : "bg-transparent",
         ].join(" ")}
       >
@@ -54,7 +53,7 @@ export function Navbar() {
           </Link>
 
           {/* Nav links */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="flex items-center gap-1">
             {NAV_LINKS.map(({ label, href }) => {
               const active =
                 href.startsWith("/#")
