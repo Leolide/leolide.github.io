@@ -71,6 +71,7 @@ export function Timeline() {
           {/* Left — sticky profile card */}
           <div className="md:sticky md:top-24">
             <motion.div
+              className="mx-auto w-fit max-w-full"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
