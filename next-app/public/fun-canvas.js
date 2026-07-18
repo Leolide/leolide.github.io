@@ -45,7 +45,7 @@
     'canvas-photo-10': { left: 1637.65, top: -124.707, rot: 1.8,  width: 278.235, height: 372.059 },
     'canvas-photo-7': { left: 1948.15,  top: -5.02287, rot: 1,    width: 260, height: 320 },
     'canvas-photo-2': { left: 1264.7,   top: 236.47,   rot: -0.6, width: 340, height: 260 },
-    'canvas-card-8':  { left: 2064.46,  top: 199.03,   rot: -1.4 },
+    'canvas-card-8':  { left: 2064.46,  top: 199.03,   rot: -1.4, z: 11 },
 
     /* — handwritten notes: hidden until the visitor pans near them — */
     'canvas-note-1':  { left: 559.788,  top: -379.363, rot: 0.8,  text: 'I like studying cities' },
@@ -207,14 +207,15 @@
         if (pos.height) item.style.height = pos.height + 'px';
       }
       item.style.setProperty('--canvas-rot', rot + 'deg');
-      item.style.zIndex = '10';
+      item.style.zIndex = String((def && def.z) || 10);
     });
   }
 
   function bringToFront(item) {
     document.querySelectorAll('.canvas-item').forEach(function (el) {
       /* Cluster labels live behind everything else */
-      el.style.zIndex = el.classList.contains('cluster-label') ? '1' : '10';
+      var def = DEFAULT_POSITIONS[el.id];
+      el.style.zIndex = el.classList.contains('cluster-label') ? '1' : String((def && def.z) || 10);
     });
     item.style.zIndex = '100';
   }
