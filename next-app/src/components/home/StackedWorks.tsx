@@ -10,7 +10,7 @@ type Work = (typeof worksData)[number];
 function WorkCard({ work, index }: { work: Work; index: number }) {
   const inner = (
     <div
-      className="group relative w-full h-full rounded-2xl overflow-hidden"
+      className="group relative isolate w-full h-full rounded-2xl overflow-hidden"
       style={{
         background: `radial-gradient(ellipse at 50% -10%, rgba(${work.accent},0.12) 0%, transparent 60%), linear-gradient(180deg, #101012 0%, #060607 100%)`,
       }}
