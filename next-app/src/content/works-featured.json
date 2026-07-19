@@ -24,5 +24,18 @@
     "url": "/work/a-clientelling-app",
     "protected": true,
     "external": false
+  },
+  {
+    "slug": "osdk-component-library",
+    "title": "OSDK Component Library",
+    "company": "Palantir",
+    "date": "2025 Nov – Present",
+    "description": "Composable data-rich React components for building on the Ontology SDK",
+    "tags": ["Design System", "React", "OSDK"],
+    "accent": "140,140,160",
+    "image": "/images/osdk-cover.webp",
+    "url": "https://youtu.be/O7aeOmnbCuo",
+    "protected": false,
+    "external": true
   }
 ]
