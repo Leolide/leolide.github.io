@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import worksData from "@/content/works-featured.json";
@@ -9,7 +10,7 @@ type Work = (typeof worksData)[number];
 function WorkCard({ work, index }: { work: Work; index: number }) {
   const inner = (
     <div
-      className="group relative w-full h-full rounded-2xl overflow-hidden"
+      className="group relative isolate w-full h-full rounded-2xl overflow-hidden"
       style={{
         background: `radial-gradient(ellipse at 50% -10%, rgba(${work.accent},0.12) 0%, transparent 60%), linear-gradient(180deg, #101012 0%, #060607 100%)`,
       }}
@@ -88,19 +89,166 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
   );
 }
 
+function WorkRow({ work, index }: { work: Work; index: number }) {
+  const inner = (
+    <div className="group flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex min-w-0 items-center gap-4">
+        {/* Mock preview — miniature of the card treatment */}
+        <div className="h-16 w-28 shrink-0 sm:h-20 sm:w-32">
+          <img
+            src={work.image}
+            alt={work.title}
+            className="h-full w-full object-contain opacity-70 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.04]"
+            style={{ mixBlendMode: "screen" }}
+          />
+        </div>
+        <div className="min-w-0">
+          <h3 className="text-ink text-base font-semibold leading-snug tracking-tight">
+            {work.title}
+            <span className="ml-1.5 text-sm opacity-0 transition-opacity group-hover:opacity-50">
+              {work.external ? "↗" : "→"}
+            </span>
+          </h3>
+          <p className="text-ink-subtle text-xs mt-0.5 leading-relaxed">{work.description}</p>
+        </div>
+      </div>
+      <div className="flex flex-col gap-2 whitespace-nowrap sm:items-end sm:pl-6">
+        <span className="flex items-center gap-2">
+          {work.company && (
+            <span className="text-white/60 text-xs font-medium">{work.company}</span>
+          )}
+          <span className="text-white/30 text-xs">{work.date}</span>
+        </span>
+        <span className="flex items-center gap-1.5">
+          {work.tags.map((tag) => (
+            <span
+              key={tag}
+              className="px-2 py-0.5 rounded-sm text-[10px] border border-white/[0.06] text-white/30 font-medium"
+            >
+              {tag}
+            </span>
+          ))}
+        </span>
+      </div>
+    </div>
+  );
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, delay: index * 0.06, ease: [0.25, 0, 0, 1] }}
+    >
+      {work.external ? (
+        <a href={work.url} target="_blank" rel="noopener noreferrer" className="block">
+          {inner}
+        </a>
+      ) : (
+        <Link href={`/work/${work.slug}`} className="block">
+          {inner}
+        </Link>
+      )}
+    </motion.div>
+  );
+}
+
+const PER_VIEW = 2;
+const VIEWS = ["cards", "list"] as const;
+type View = (typeof VIEWS)[number];
+
 export function StackedWorks() {
+  const [view, setView] = useState<View>("cards");
+  const [start, setStart] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const maxStart = worksData.length - PER_VIEW;
+
+  const page = (dir: number) => {
+    setDirection(dir);
+    setStart((s) => Math.min(maxStart, Math.max(0, s + dir)));
+  };
+
   return (
     <section id="selected-works" className="py-20 px-6">
       <div className="max-w-[1280px] mx-auto">
-        <p className="text-ink-subtle text-xs font-medium tracking-eyebrow mb-6">
-          Featured projects
-        </p>
+        <div className="mb-6 flex items-center justify-between">
+          <p className="text-ink-subtle text-xs font-medium tracking-eyebrow">
+            Featured projects
+          </p>
 
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:h-[480px] lg:h-[520px]">
+          {/* Segmented control: card view / list view */}
+          <div className="flex rounded-full border border-white/10 p-0.5">
+            {VIEWS.map((v) => (
+              <button
+                key={v}
+                type="button"
+                onClick={() => setView(v)}
+                aria-pressed={view === v}
+                className={`px-3 py-1 rounded-full text-[11px] font-medium capitalize transition ${
+                  view === v
+                    ? "bg-white/10 text-white"
+                    : "text-white/40 hover:text-white/70"
+                }`}
+              >
+                {v}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {view === "list" && (
+          <div className="divide-y divide-white/[0.08] border-y border-white/[0.08]">
+            {worksData.map((work, i) => (
+              <WorkRow key={work.slug} work={work} index={i} />
+            ))}
+          </div>
+        )}
+
+        {view === "cards" && (
+          <>
+        {/* Mobile: all cards stacked */}
+        <div className="grid grid-cols-1 gap-3 sm:hidden">
           {worksData.map((work, i) => (
             <WorkCard key={work.slug} work={work} index={i} />
           ))}
         </div>
+
+        {/* Desktop: two cards at a time, arrows to page through the rest */}
+        <div className="hidden sm:block">
+          <motion.div
+            key={start}
+            initial={{ opacity: 0, x: 32 * direction }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.45, ease: [0.25, 0, 0, 1] }}
+            className="grid grid-cols-2 gap-3 h-[480px] lg:h-[520px]"
+          >
+            {worksData.slice(start, start + PER_VIEW).map((work, i) => (
+              <WorkCard key={work.slug} work={work} index={i} />
+            ))}
+          </motion.div>
+
+          <div className="mt-4 flex items-center justify-end gap-2">
+            <button
+              type="button"
+              onClick={() => page(-1)}
+              disabled={start === 0}
+              aria-label="Previous projects"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/60 transition hover:border-white/25 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+            >
+              ←
+            </button>
+            <button
+              type="button"
+              onClick={() => page(1)}
+              disabled={start === maxStart}
+              aria-label="Next projects"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/60 transition hover:border-white/25 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+            >
+              →
+            </button>
+          </div>
+        </div>
+          </>
+        )}
       </div>
     </section>
   );

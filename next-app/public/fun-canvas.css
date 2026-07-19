@@ -87,12 +87,18 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
     position: fixed;
     top: var(--fc-navbar-h);
     left: 0;
-    right: 0;
+    right: var(--ask-panel-offset-right, 0px);
     bottom: var(--fc-footer-h);
     overflow: hidden;
     cursor: grab;
     background: #0a0a0a;
     z-index: 1;
+}
+
+#fun-mobile-content {
+    position: relative;
+    right: var(--ask-panel-offset-right, 0px);
+    width: calc(100% - var(--ask-panel-offset-right, 0px));
 }
 
 /* Mobile/tablet only: bottom gradient fade */
@@ -536,7 +542,7 @@ body.fun-canvas-mode.edit-mode .canvas-item.is-rotating .rot-handle {
 #fun-dock {
     position: fixed;
     bottom: 68px;
-    left: 50%;
+    left: calc(50% - var(--ask-panel-offset-right, 0px) / 2);
     transform: translateX(-50%);
     z-index: 200;
     display: flex;

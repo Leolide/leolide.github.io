@@ -152,4 +152,8 @@ spline-viewer a[href*="splinetool"] {
   }
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .ask-panel-input textarea::selection {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: inherit;
+  }
 }

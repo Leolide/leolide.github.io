@@ -1,0 +1,12 @@
+name = "lide-ask"
+main = "src/index.js"
+compatibility_date = "2026-07-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Model is overridable without redeploying code changes:
+#   claude-opus-4-8  — best answers (default)
+#   claude-haiku-4-5 — cheapest/fastest, if cost ever becomes a concern
+[vars]
+ASK_MODEL = "claude-opus-4-8"
+
+# Secret (never in this file): npx wrangler secret put ANTHROPIC_API_KEY
