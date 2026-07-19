@@ -20,7 +20,7 @@ export function Hero() {
         <img
           src="/mobile-hero-fallback.webp"
           alt=""
-          className="h-full w-full object-cover object-center opacity-90"
+          className="h-full w-full object-cover object-center opacity-50"
         />
         <div
           className="absolute inset-0"
