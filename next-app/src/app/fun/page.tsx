@@ -158,8 +158,6 @@ export default function FunPage() {
         </button>
       </div>
 
-      <div id="fun-footer-strip"><div className="footer-links" /></div>
-
       {/* Canvas engine — loaded after DOM is ready (versioned to bust stale caches) */}
       <Script src="/fun-canvas.js?v=18" strategy="afterInteractive" />
       {/* Re-inits the canvas after client-side navigation */}

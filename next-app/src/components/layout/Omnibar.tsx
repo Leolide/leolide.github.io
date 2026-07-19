@@ -31,7 +31,6 @@ const PROJECTS = [
 
 const SOCIAL = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/lideli/", external: true },
-  { label: "X / Twitter", href: "https://x.com/lidethemaker", external: true },
   { label: "Email", href: "mailto:lideli.leo@gmail.com", external: true },
 ];
 

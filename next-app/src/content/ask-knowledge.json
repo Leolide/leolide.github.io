@@ -1,0 +1,142 @@
+{
+  "suggested": ["who-is-lide", "background", "expertise"],
+  "entries": [
+    {
+      "id": "who-is-lide",
+      "question": "Who is Lide?",
+      "keywords": ["who", "about", "introduction", "intro", "designer", "summary", "overview", "tell"],
+      "answer": "Lide is a full-stack product designer based in London — someone who designs the product and then ships it in production code. The route here was unusual: urban design in China, an exchange at UC Berkeley, an M.Phil. at Cambridge, co-founding an AI startup in Santa Clara, Deloitte's innovation team, and now Foundry's agent tooling and observability at Palantir.",
+      "sources": [
+        { "label": "Timeline", "href": "/#about", "external": false },
+        { "label": "LinkedIn", "href": "https://www.linkedin.com/in/lideli/", "external": true }
+      ],
+      "followUps": ["palantir", "expertise", "background"]
+    },
+    {
+      "id": "palantir",
+      "question": "What does Lide do at Palantir?",
+      "keywords": ["palantir", "autopilot", "foundry", "observability", "agent", "agentic", "current", "now", "job", "work", "working"],
+      "answer": "Lide designed and launched Foundry's agent observability product from zero — it lets developers understand and recover failing agent workflows in seconds instead of minutes, cutting debugging time by roughly 95%. Lide also led a cross-application design system spanning multiple healthcare products. All of it shipped hands-on: 100+ merged PRs in one year.",
+      "sources": [
+        { "label": "Autopilot docs", "href": "https://www.palantir.com/docs/foundry/autopilot/overview", "external": true },
+        { "label": "OSDK Component Library", "href": "https://palantir.github.io/osdk-ts/storybook/?path=%2Fdocs%2Fdocs-welcome--docs", "external": true }
+      ],
+      "followUps": ["osdk", "expertise", "deloitte"]
+    },
+    {
+      "id": "osdk",
+      "question": "What is the OSDK Component Library?",
+      "keywords": ["osdk", "component", "library", "react", "open", "source", "ontology", "sdk"],
+      "answer": "An open-source React component system for building on Palantir's Ontology SDK — composable, data-rich components that Lide grew from zero to Beta, now at 10k+ downloads across hundreds of implementation teams. Designed and built end-to-end, not handed off.",
+      "sources": [
+        { "label": "Storybook", "href": "https://palantir.github.io/osdk-ts/storybook/?path=%2Fdocs%2Fdocs-welcome--docs", "external": true },
+        { "label": "Watch the walkthrough", "href": "https://youtu.be/O7aeOmnbCuo", "external": true },
+        { "label": "GitHub", "href": "https://github.com/Leolide", "external": true }
+      ],
+      "followUps": ["palantir", "expertise"]
+    },
+    {
+      "id": "deloitte",
+      "question": "What did Lide do at Deloitte?",
+      "keywords": ["deloitte", "clienteling", "clientelling", "retail", "luxury", "consulting", "radar", "previous"],
+      "answer": "Product Designer II in Deloitte's Business Innovation practice, 2023–2025. Lide led end-to-end design of a B2B clienteling platform for retail and luxury clients — adoption grew 110% to 5,500+ users — and built a multi-brand design system from scratch for a SaaS app spanning 64 countries and 12 languages, cutting feature time-to-market by 57%. The full case studies are password-protected; Lide shares access on request.",
+      "sources": [
+        { "label": "Clientelling App", "href": "/work/a-clientelling-app", "external": false },
+        { "label": "Request access", "href": "mailto:lideli.leo@gmail.com", "external": true }
+      ],
+      "followUps": ["palantir", "debrief"]
+    },
+    {
+      "id": "debrief",
+      "question": "What was Debrief AI?",
+      "keywords": ["debrief", "startup", "founder", "cofounder", "co-founder", "founding", "venture", "biology"],
+      "answer": "A venture-backed AI startup Lide co-founded in Santa Clara, building workflow automation and AI code-generation tools for biology researchers. As founding product designer, Lide led product strategy and helped secure $200,000+ in early-stage investment.",
+      "sources": [
+        { "label": "Timeline", "href": "/#about", "external": false }
+      ],
+      "followUps": ["who-is-lide", "palantir"]
+    },
+    {
+      "id": "expertise",
+      "question": "What is Lide best at?",
+      "keywords": ["best", "skills", "expertise", "strengths", "good", "specialty", "focus", "stack", "tools", "technical"],
+      "answer": "Four things: 0→1 product design as a founding or only designer; design engineering — React, TypeScript, and production code rather than just specs; AI and agentic workflow design, especially monitoring and observability for multi-agent systems; and community building. Daily tools: Figma, Claude Code, and Codex.",
+      "sources": [
+        { "label": "About", "href": "/#about", "external": false },
+        { "label": "GitHub", "href": "https://github.com/Leolide", "external": true }
+      ],
+      "followUps": ["palantir", "community", "open-to-work"]
+    },
+    {
+      "id": "background",
+      "question": "What's Lide's journey like?",
+      "keywords": ["background", "education", "study", "studied", "school", "university", "cambridge", "berkeley", "degree", "architecture", "urban"],
+      "answer": "City-scale thinking, applied to software. Lide studied urban design at South China University of Technology, took an exchange in UX design at UC Berkeley, then completed an M.Phil. in Architecture at Cambridge. Designing systems for cities turns out to be good preparation for designing systems for agents.",
+      "sources": [
+        { "label": "Timeline", "href": "/#about", "external": false }
+      ],
+      "followUps": ["who-is-lide", "awards"]
+    },
+    {
+      "id": "community",
+      "question": "What is Fouxy Squad?",
+      "keywords": ["fouxy", "squad", "community", "figma", "friends", "events", "london", "meetup"],
+      "answer": "A London design and AI community Lide founded in 2025 — now 400+ members across product design, creative technology, and design engineering, with 14+ events run alongside partners like Replit and Fotor AI. Lide also leads the Friends of Figma London chapter, curating speaker sessions and meetups.",
+      "sources": [
+        { "label": "Fouxy Squad", "href": "https://www.fouxysquad.com/", "external": true },
+        { "label": "Friends of Figma London", "href": "https://friends.figma.com/london/", "external": true }
+      ],
+      "followUps": ["expertise", "contact"]
+    },
+    {
+      "id": "awards",
+      "question": "Has Lide won any awards?",
+      "keywords": ["award", "awards", "recognition", "prize", "nominated", "nomination", "won", "haen"],
+      "answer": "HAEN, an AI agent for city-scale disaster management, was nominated for the 2025 UX Design Awards. Earlier, a data analytics project on West Oakland took first prize from the American Society of Landscape Architects.",
+      "sources": [
+        { "label": "UX Design Awards", "href": "https://ux-design-awards.com/winners/2025-2-haen-ai-agent-for-city-scale-disaster-management", "external": true }
+      ],
+      "followUps": ["background", "who-is-lide"]
+    },
+    {
+      "id": "open-to-work",
+      "question": "Is Lide open to new opportunities?",
+      "keywords": ["open", "opportunities", "hire", "hiring", "available", "role", "roles", "job", "freelance", "recruit", "join"],
+      "answer": "The honest answer: that's a conversation for Lide directly. Email travels fastest.",
+      "sources": [
+        { "label": "Email", "href": "mailto:lideli.leo@gmail.com", "external": true },
+        { "label": "LinkedIn", "href": "https://www.linkedin.com/in/lideli/", "external": true }
+      ],
+      "followUps": ["expertise", "contact"]
+    },
+    {
+      "id": "contact",
+      "question": "How do I contact Lide?",
+      "keywords": ["contact", "email", "reach", "linkedin", "github", "twitter", "connect", "message", "talk"],
+      "answer": "Email is best: lideli.leo@gmail.com. Lide is also on LinkedIn, GitHub, and X.",
+      "sources": [
+        { "label": "Email", "href": "mailto:lideli.leo@gmail.com", "external": true },
+        { "label": "LinkedIn", "href": "https://www.linkedin.com/in/lideli/", "external": true },
+        { "label": "GitHub", "href": "https://github.com/Leolide", "external": true },
+        { "label": "X / Twitter", "href": "https://x.com/lidethemaker", "external": true }
+      ],
+      "followUps": ["open-to-work"]
+    },
+    {
+      "id": "fun",
+      "question": "Something fun about Lide?",
+      "keywords": ["fun", "hobby", "hobbies", "chef", "cooking", "outside", "personal", "interesting"],
+      "answer": "Aspiring chef, according to the Fun page — which is worth a wander in its own right: a spatial canvas of photos, side projects, and community moments.",
+      "sources": [
+        { "label": "Fun page", "href": "/fun", "external": false }
+      ],
+      "followUps": ["community", "who-is-lide"]
+    }
+  ],
+  "miss": {
+    "answer": "That's outside what I know about Lide — but a human would know. Email lideli.leo@gmail.com, or try one of these.",
+    "sources": [
+      { "label": "Email", "href": "mailto:lideli.leo@gmail.com", "external": true }
+    ]
+  }
+}
