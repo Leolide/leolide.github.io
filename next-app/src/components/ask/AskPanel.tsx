@@ -171,6 +171,32 @@ export function AskPanel({ open, onClose, skipInitialAnimation = false }: AskPan
     };
   }, [fullscreen, open]);
 
+  // Fullscreen (mobile): the on-screen keyboard shrinks the visual viewport
+  // without resizing the layout viewport, so h-dvh alone doesn't move with
+  // it — pin the panel to the visual viewport directly. Since the input row
+  // is mt-auto inside this flex column, shrinking the panel to vv.height
+  // lands the input right above the keyboard instead of under it.
+  useEffect(() => {
+    if (!(fullscreen && open)) return;
+    const vv = window.visualViewport;
+    const panel = panelRef.current;
+    if (!vv || !panel) return;
+
+    const sync = () => {
+      panel.style.height = `${vv.height}px`;
+      panel.style.top = `${vv.offsetTop}px`;
+    };
+    sync();
+    vv.addEventListener("resize", sync);
+    vv.addEventListener("scroll", sync);
+    return () => {
+      vv.removeEventListener("resize", sync);
+      vv.removeEventListener("scroll", sync);
+      panel.style.height = "";
+      panel.style.top = "";
+    };
+  }, [fullscreen, open]);
+
   // Wheel anywhere over the panel scrolls the chat area, never the page behind.
   useEffect(() => {
     if (!open) return;
