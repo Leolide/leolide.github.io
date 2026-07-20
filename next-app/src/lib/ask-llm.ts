@@ -1,4 +1,8 @@
-export const ASK_ENDPOINT = process.env.NEXT_PUBLIC_ASK_ENDPOINT;
+// Public worker URL (not a secret — it ships in the client bundle either way).
+// Baked in as the default so production builds don't depend on env config;
+// NEXT_PUBLIC_ASK_ENDPOINT still overrides it, e.g. for a local worker.
+export const ASK_ENDPOINT =
+  process.env.NEXT_PUBLIC_ASK_ENDPOINT ?? "https://lide-ask.lide-studio.workers.dev";
 
 /**
  * Stream an answer from the ask-worker as text chunks.
