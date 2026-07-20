@@ -421,7 +421,7 @@ export function AskPanel({ open, onClose, skipInitialAnimation = false }: AskPan
                 <div className="pb-2">
                   <p className="mb-3 text-sm leading-relaxed text-ink-subtle">
                     Anything about Lide&apos;s work, background, or how to get in
-                    touch — pick a question or type your own.
+                    touch. Pick a question or type your own.
                   </p>
                 </div>
               ) : (
