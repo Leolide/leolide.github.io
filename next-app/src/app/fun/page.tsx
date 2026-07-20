@@ -11,7 +11,7 @@ export default function FunPage() {
   return (
     <>
       {/* Canvas CSS — loaded before paint (versioned to bust stale caches) */}
-      <link rel="stylesheet" href="/fun-canvas.css?v=18" />
+      <link rel="stylesheet" href="/fun-canvas.css?v=20" />
       <link rel="stylesheet" href="/fun-pinboard.css?v=18" />
       {/* Force navbar background since the canvas page never scrolls */}
       <style>{`header { background: rgba(1,1,2,0.92) !important; border-bottom: 1px solid #23252a !important; backdrop-filter: blur(16px) !important; }`}</style>
@@ -127,6 +127,7 @@ export default function FunPage() {
           <div className="canvas-item photo-item" id="canvas-photo-8" style={{ width: 280, height: 360 }}><img src="/images/34081735130221.webp" alt="" loading="lazy" /><div className="resize-handle" /></div>
           <div className="canvas-item photo-item" id="canvas-photo-9" style={{ width: 360, height: 240 }}><img src="/images/event-speaker.webp" alt="Speaking at a community event" loading="lazy" /><div className="resize-handle" /></div>
           <div className="canvas-item photo-item" id="canvas-photo-10" style={{ width: 250, height: 445 }}><img src="/images/patagonia.webp" alt="Hiking in Torres del Paine, Patagonia" loading="lazy" /><div className="resize-handle" /></div>
+          <div className="canvas-item photo-item" id="canvas-photo-11" style={{ width: 250, height: 436 }}><img src="/images/config-watchparty-2026.webp?v=3" alt="Speaking at the Config WatchParty 2026" loading="lazy" /><div className="resize-handle" /></div>
 
         </div>
       </div>
@@ -153,13 +154,16 @@ export default function FunPage() {
         <button id="fun-add-text-btn" className="dock-item" data-label="Add Note" title="Add a handwritten note">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v14M3 10h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>
         </button>
+        <button id="fun-restore-btn" className="dock-item" data-label="Restore" title="Bring back deleted items">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4.5 8.5A6.5 6.5 0 1 1 3.5 13M3.5 4v4.5H8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        </button>
         <button id="fun-export-btn" className="dock-item" data-label="Export" title="Copy current layout as code">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </button>
       </div>
 
       {/* Canvas engine — loaded after DOM is ready (versioned to bust stale caches) */}
-      <Script src="/fun-canvas.js?v=18" strategy="afterInteractive" />
+      <Script src="/fun-canvas.js?v=20" strategy="afterInteractive" />
       {/* Re-inits the canvas after client-side navigation */}
       <FunCanvasBoot />
 

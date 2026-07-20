@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var STORAGE_VERSION = 'v7-next';
+  var STORAGE_VERSION = 'v8-next';
   var STORAGE_KEY = 'fun-canvas-' + STORAGE_VERSION;
   var PAN_STORAGE_KEY = 'fun-canvas-pan-' + STORAGE_VERSION;
   var DRAG_THRESHOLD = 5;
@@ -16,45 +16,45 @@
   var REDUCE_MOTION = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
   /* The world is organised as four themed clusters around the hero:
-     things I've built (N) · people & play (W) · doodles & manga (S) · food & the outdoors (E) */
+     things I've built (N) · community (W) · doodles & manga (S) · food & the outdoors (E) */
   /* Curated layout — exported from the canvas by Lide (?edit=1 → Export). */
   var DEFAULT_POSITIONS = {
-    'canvas-hero':    { left: 303.732,  top: -187.852, rot: -0.5 },
+    'canvas-hero':    { left: 328.538,  top: -173.868, rot: -0.5 },
 
     /* — things I've built (north) — */
     'canvas-card-1':  { left: 5.49023,  top: -673.007, rot: 1.8  },
     'canvas-card-2':  { left: 231.307,  top: -571.307, rot: -1.1 },
     'canvas-card-7':  { left: 463.66,   top: -725.817, rot: 0.9  },
     'canvas-card-6':  { left: 740.445,  top: -614.773, rot: -2   },
-    'canvas-photo-8': { left: 977.145,  top: -795.555, rot: -3,   width: 214.118, height: 321.176 },
+    'canvas-photo-8': { left: 977.145,  top: -795.555, rot: -3,   width: 234.884, height: 338.671, caption: 'Model that is bigger than me\nBerkeley, 2019' },
 
-    /* — people & play (west) — */
-    'canvas-card-0':  { left: -482.81,  top: -251.567, rot: -2.2 },
-    'canvas-photo-4': { left: -286.857, top: -86.0123, rot: -2,   width: 265.111, height: 279.111 },
-    'canvas-photo-9': { left: -795.3,   top: -31.7647, rot: 0,    width: 360, height: 240 },
+    /* — community (west) — */
+    'canvas-card-0':  { left: -713.4,   top: -184.508, rot: -0.8370028327311587 },
+    'canvas-photo-4': { left: -451.563, top: -122.483, rot: 2.3858358053842936, width: 265.111, height: 279.111, caption: 'Clase de Español, London, 2025' },
+    'canvas-photo-9': { left: -1057.66, top: -31.7646, rot: 0,    width: 360, height: 240, caption: 'Fouxy Squad, London, 2026' },
+    'canvas-photo-11': { left: -1314.84, top: -190.393, rot: -0.16055764563408936, width: 221.412, height: 340.882, caption: 'Config WatchParty, London, 2026' },
 
     /* — doodles & manga (south) — */
     'canvas-card-3':  { left: -55.294,  top: 528.693,  rot: -0.8 },
     'canvas-card-4':  { left: 180.065,  top: 592.548,  rot: -0.7 },
     'canvas-card-5':  { left: 440.458,  top: 456.928,  rot: 1.5  },
-    'canvas-photo-5': { left: 681.896,  top: 549.412,  rot: 2.5,  width: 260, height: 340 },
+    'canvas-photo-5': { left: 681.896,  top: 549.412,  rot: 2.5,  width: 260, height: 340, caption: 'Kendo Boy, Japan, 2020' },
 
     /* — food & the outdoors (east) — */
-    'canvas-photo-6': { left: 1128.48,  top: -76.8231, rot: -1.5, width: 340, height: 260 },
-    'canvas-photo-0': { left: 1435.64,  top: -234.824, rot: -1.8, width: 280, height: 360 },
-    'canvas-photo-10': { left: 1637.65, top: -124.707, rot: 1.8,  width: 278.235, height: 372.059 },
-    'canvas-photo-7': { left: 1948.15,  top: -5.02287, rot: 1,    width: 260, height: 320 },
-    'canvas-photo-2': { left: 1264.7,   top: 236.47,   rot: -0.6, width: 340, height: 260 },
+    'canvas-photo-6': { left: 1128.48,  top: -76.8231, rot: -1.5, width: 340, height: 260, caption: 'Hawaii, US, 2023' },
+    'canvas-photo-0': { left: 1435.64,  top: -234.824, rot: -1.8, width: 280, height: 360, caption: 'Tignes, France, 2024' },
+    'canvas-photo-10': { left: 1637.65, top: -124.707, rot: 1.8,  width: 278.235, height: 372.059, caption: 'Patagonia, Chile, 2026' },
+    'canvas-photo-7': { left: 1948.15,  top: -5.02287, rot: 1,    width: 260, height: 320, caption: 'Gyudon, 2020' },
+    'canvas-photo-2': { left: 1264.7,   top: 236.47,   rot: -0.6, width: 340, height: 260, caption: 'Boat Club, Cambridge, 2022' },
     'canvas-card-8':  { left: 2064.46,  top: 199.03,   rot: -1.4, z: 11 },
 
     /* — handwritten notes: hidden until the visitor pans near them — */
-    'canvas-note-1':  { left: 559.788,  top: -379.363, rot: 0.8,  text: 'I like studying cities' },
-    'canvas-note-10': { left: 565.883,  top: -345.294, rot: 0,    text: '& complex systems' },
-    'canvas-note-2':  { left: 14.3253,  top: -723.366, rot: 0.6323042531673693, text: 'I have built architecture in the real world!' },
-    'canvas-note-3':  { left: 352.222,  top: 123.333,  rot: 1.2,  text: 'drag things and pan around, I left notes everywhere' },
-    'canvas-note-4':  { left: -272.973, top: 214.616,  rot: 0.6595561523455555, text: 'Fun fact: Hablo un poco Español!' },
-    'canvas-note-5':  { left: -787.649, top: 238.234,  rot: -1.68333805873253,  text: 'I happened to start a designer community in London' },
-    'canvas-note-6':  { left: 1954.71,  top: -84.1175, rot: -1.2, text: 'Cooking is meditating for me' },
+    'canvas-note-1':  { left: 540.206,  top: -390.882, rot: 0.8,  text: 'I like studying cities\n& complex systems' },
+    'canvas-note-2':  { left: 14.3253,  top: -723.366, rot: 1.0912047486640095, text: 'I have built architecture in the real world!' },
+    'canvas-note-3':  { left: 353.333,  top: 178.889,  rot: 1.2,  text: 'drag things and pan around, I left notes everywhere' },
+    'canvas-note-4':  { left: -446.081, top: 173.848,  rot: 1.7830832955024705, text: 'Fun fact: Hablo un poco Español!' },
+    'canvas-note-5':  { left: -1056.89, top: 233.349,  rot: -0.36751063430080766, text: 'I happened to start a designer\ncommunity in London' },
+    'canvas-note-6':  { left: 1955.96,  top: -62.8675, rot: 1.5064718886182635, text: 'Cooking is meditating for me' },
     'canvas-note-7':  { left: 1628.2,   top: 463.99,   rot: 0.6,  text: 'I used to row!' },
     'canvas-note-8':  { left: 761.079,  top: 494.738,  rot: 0.5,  text: 'I still have a manga dream' },
     'canvas-note-9':  { left: -48.1699, top: 480.197,  rot: 0,    text: 'I do stickers... WHAT' }
@@ -63,7 +63,7 @@
   /* Faint handwritten labels rendered behind each cluster */
   var CLUSTER_LABELS = [
     { id: 'cluster-label-build',  text: "Things I've Built",   left: 16.6815,  top: -813.795, rot: -1.6 },
-    { id: 'cluster-label-people', text: 'People & Play',       left: -780.237, top: -112.057, rot: 1.2  },
+    { id: 'cluster-label-people', text: 'Community',           left: -1048.47, top: -114.41,  rot: 1.2  },
     { id: 'cluster-label-draw',   text: 'Doodles & Manga',     left: -52.1577, top: 413.529,  rot: -1   },
     { id: 'cluster-label-live',   text: 'Food & The Outdoors', left: 1025.88,  top: -165.296, rot: 0.8  }
   ];
@@ -73,7 +73,7 @@
   var TOUR = [
     { cx: 580,  cy: -30,  scale: 0.9  },   /* hero */
     { cx: 600,  cy: -510, scale: 0.85 },   /* things I've built */
-    { cx: -410, cy: 40,   scale: 0.85 },   /* people & play */
+    { cx: -750, cy: 40,   scale: 0.85 },   /* community */
     { cx: 440,  cy: 660,  scale: 0.85 },   /* doodles & manga */
     { cx: 1690, cy: 130,  scale: 0.8  }    /* food & the outdoors */
   ];
@@ -172,6 +172,15 @@
         if (textEl) pos[id].text = textEl.innerText || '';
       }
     });
+    document.querySelectorAll('.canvas-item.photo-item').forEach(function (item) {
+      var id = item.id;
+      if (pos[id]) {
+        var capEl = item.querySelector('.photo-caption');
+        pos[id].caption = capEl ? (capEl.innerText || '').trim() : '';
+        pos[id].captionAlign = item.classList.contains('caption-center') ? 'center' : 'left';
+        syncCaptionHeight(item); /* photo may have been resized — rewrap */
+      }
+    });
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(pos));
     } catch (e) {}
@@ -205,6 +214,16 @@
         item.style.top  = pos.top  + 'px';
         if (pos.width)  item.style.width  = pos.width  + 'px';
         if (pos.height) item.style.height = pos.height + 'px';
+      }
+      if (item.classList.contains('photo-item')) {
+        var caption = pos && pos.caption !== undefined
+          ? pos.caption
+          : (def && def.caption);
+        setPhotoCaption(item, caption || '');
+        var align = pos && pos.captionAlign !== undefined
+          ? pos.captionAlign
+          : (def && def.captionAlign);
+        item.classList.toggle('caption-center', align === 'center');
       }
       item.style.setProperty('--canvas-rot', rot + 'deg');
       item.style.zIndex = String((def && def.z) || 10);
@@ -300,6 +319,7 @@
           '<path d="M8 2L12 6M8 2L2 8V12H6L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
         '</svg>' +
       '</button>' +
+      '<button class="fab-btn fab-align" title="Caption alignment"></button>' +
       '<button class="fab-btn fab-delete" title="Delete note">' +
         '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">' +
           '<path d="M2 3.5h10M5.5 3.5V2h3v1.5M3.5 3.5l.7 8.5h5.6l.7-8.5M5.8 6v3.8M8.2 6v3.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>' +
@@ -322,9 +342,20 @@
 
     floatingMenu.querySelector('.fab-edit').addEventListener('click', function (e) {
       e.stopPropagation();
-      if (selectedCard && selectedCard.classList.contains('text-item')) {
+      if (!selectedCard) return;
+      if (selectedCard.classList.contains('text-item')) {
         startNoteEdit(selectedCard, false);
+      } else if (selectedCard.classList.contains('photo-item')) {
+        startCaptionEdit(selectedCard);
       }
+    });
+
+    floatingMenu.querySelector('.fab-align').addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (!selectedCard || !selectedCard.classList.contains('photo-item')) return;
+      selectedCard.classList.toggle('caption-center');
+      updateAlignButton();
+      savePositions();
     });
 
     floatingMenu.querySelector('.fab-delete').addEventListener('click', function (e) {
@@ -341,12 +372,35 @@
     floatingMenu.addEventListener('touchstart', function (e) { e.stopPropagation(); }, { passive: true });
   }
 
+  function updateAlignButton() {
+    if (!floatingMenu || !selectedCard) return;
+    var btn = floatingMenu.querySelector('.fab-align');
+    if (!btn) return;
+    var centered = selectedCard.classList.contains('caption-center');
+    btn.innerHTML = centered
+      ? '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+          '<path d="M2 3h10M3.5 7h7M3 11h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+        '</svg>'
+      : '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+          '<path d="M2 3h10M2 7h7M2 11h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+        '</svg>';
+    btn.title = centered ? 'Caption centered — click for left' : 'Caption left — click to center';
+  }
+
   function showFloatingMenu() {
     if (!floatingMenu) createFloatingMenu();
     var editBtn = floatingMenu.querySelector('.fab-edit');
     if (editBtn) {
-      var showEdit = selectedCard && selectedCard.classList.contains('text-item');
+      var showEdit = selectedCard &&
+        (selectedCard.classList.contains('text-item') ||
+         selectedCard.classList.contains('photo-item'));
       editBtn.style.display = showEdit ? '' : 'none';
+    }
+    var alignBtn = floatingMenu.querySelector('.fab-align');
+    if (alignBtn) {
+      var showAlign = isEditMode && selectedCard && selectedCard.classList.contains('photo-item');
+      alignBtn.style.display = showAlign ? '' : 'none';
+      if (showAlign) updateAlignButton();
     }
     var deleteBtn = floatingMenu.querySelector('.fab-delete');
     if (deleteBtn) {
@@ -391,7 +445,7 @@
     document.body.classList.toggle('edit-mode', edit);
 
     /* Author-only dock controls */
-    var editEls = ['fun-add-text-btn', 'fun-export-btn', 'fun-edit-divider'];
+    var editEls = ['fun-add-text-btn', 'fun-restore-btn', 'fun-export-btn', 'fun-edit-divider'];
     editEls.forEach(function (id) {
       var el = document.getElementById(id);
       if (el) el.style.display = edit ? '' : 'none';
@@ -525,6 +579,18 @@
             item.classList.contains('photo-item')) {
           selectCard(item);
         }
+      } else if (item.classList.contains('photo-item')) {
+        /* Visitor: tap previews the photo in a lightbox */
+        var photoImg = item.querySelector('img');
+        var capEl = item.querySelector('.photo-caption');
+        if (photoImg) {
+          openLightbox(
+            photoImg.currentSrc || photoImg.src,
+            photoImg.alt,
+            capEl ? capEl.innerText : '',
+            item.classList.contains('caption-center')
+          );
+        }
       } else {
         /* Visitor: tap simply opens the project */
         var href = item.getAttribute('data-href');
@@ -534,6 +600,133 @@
 
     dragMoved = false;
     dragStartedOnAnchor = false;
+  }
+
+  /* ---------- PHOTO LIGHTBOX ---------- */
+  var lightboxEl = null;
+
+  function onLightboxKey(e) {
+    if (e.key === 'Escape') closeLightbox();
+  }
+
+  function closeLightbox() {
+    if (!lightboxEl) return;
+    var el = lightboxEl;
+    lightboxEl = null;
+    el.classList.remove('is-open');
+    document.removeEventListener('keydown', onLightboxKey);
+    setTimeout(function () {
+      if (el.parentNode) el.parentNode.removeChild(el);
+    }, 240);
+  }
+
+  function openLightbox(src, alt, caption, captionCentered) {
+    if (!src) return;
+    closeLightbox();
+    var overlay = document.createElement('div');
+    overlay.id = 'fun-lightbox';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-label', 'Photo preview');
+    var fig = document.createElement('figure');
+    var img = document.createElement('img');
+    img.src = src;
+    img.alt = alt || '';
+    fig.appendChild(img);
+    if (caption && caption.trim()) {
+      var figCap = document.createElement('figcaption');
+      figCap.textContent = caption.trim();
+      fig.appendChild(figCap);
+      fig.classList.add('has-caption');
+      if (captionCentered) fig.classList.add('caption-center');
+    }
+    overlay.appendChild(fig);
+    overlay.addEventListener('click', closeLightbox);
+    document.body.appendChild(overlay);
+    var figCapEl = fig.querySelector('figcaption');
+    if (figCapEl && figCapEl.scrollHeight > 32) fig.classList.add('caption-two-lines');
+    lightboxEl = overlay;
+    document.addEventListener('keydown', onLightboxKey);
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        overlay.classList.add('is-open');
+      });
+    });
+  }
+
+  /* ---------- PHOTO CAPTIONS (polaroid chin) ---------- */
+  function wireCaptionEvents(item, el) {
+    /* While actively editing, the caption keeps the pointer for the caret;
+       otherwise events bubble up and the photo drags/selects as usual. */
+    el.addEventListener('mousedown', function (e) {
+      if (item.classList.contains('is-editing-caption')) e.stopPropagation();
+    });
+    el.addEventListener('touchstart', function (e) {
+      if (item.classList.contains('is-editing-caption')) e.stopPropagation();
+    }, { passive: true });
+    el.addEventListener('blur', function () {
+      item.classList.remove('is-editing-caption');
+      el.setAttribute('contenteditable', 'false');
+      if (!(el.innerText || '').trim()) setPhotoCaption(item, '');
+      savePositions();
+    });
+    el.addEventListener('keydown', function (e) {
+      /* Enter commits; Shift+Enter starts the second row */
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        el.blur();
+      }
+    });
+    el.addEventListener('input', function () {
+      syncCaptionHeight(item);
+    });
+  }
+
+  function ensureCaptionEl(item) {
+    var el = item.querySelector('.photo-caption');
+    if (!el) {
+      el = document.createElement('div');
+      el.className = 'photo-caption';
+      el.setAttribute('contenteditable', 'false');
+      item.appendChild(el);
+      wireCaptionEvents(item, el);
+    }
+    return el;
+  }
+
+  /* Grow the chin only when the caption wraps to a second row */
+  function syncCaptionHeight(item) {
+    var el = item.querySelector('.photo-caption');
+    item.classList.toggle('caption-two-lines', !!el && el.scrollHeight > 30);
+  }
+
+  function setPhotoCaption(item, text) {
+    var t = (text || '').trim();
+    var el = item.querySelector('.photo-caption');
+    if (!t) {
+      item.classList.remove('has-caption');
+      item.classList.remove('caption-two-lines');
+      if (el) el.parentNode.removeChild(el);
+      return;
+    }
+    item.classList.add('has-caption');
+    ensureCaptionEl(item).innerText = t;
+    syncCaptionHeight(item);
+  }
+
+  function startCaptionEdit(item) {
+    if (!isEditMode || !item || !item.classList.contains('photo-item')) return;
+    var el = ensureCaptionEl(item);
+    item.classList.add('has-caption'); /* make room in the chin while typing */
+    deselectCard();
+    el.setAttribute('contenteditable', 'true');
+    item.classList.add('is-editing-caption');
+    el.focus();
+    var range = document.createRange();
+    range.selectNodeContents(el);
+    range.collapse(false);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
   }
 
   /* ---------- HANDWRITTEN TEXT NOTES ---------- */
@@ -597,7 +790,8 @@
       savePositions();
     });
     noteText.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') {
+      /* Enter commits; Shift+Enter starts a new row */
+      if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
         noteText.blur();
       }
@@ -616,7 +810,10 @@
     rh.addEventListener('mousedown',  onRotPointerDown);
     rh.addEventListener('touchstart', onRotPointerDown, { passive: false });
 
-    savePositions();
+    /* No savePositions() here: during restoreNotes the note still has its
+       temporary counter id (renamed to the saved id just after this call),
+       and saving that snapshot minted duplicate phantom notes on every load.
+       New author notes are saved on blur instead. */
     return item;
   }
 
@@ -986,7 +1183,11 @@
       if (p.width)  parts.push('width:'  + p.width);
       if (p.height) parts.push('height:' + p.height);
       if (p.text && typeof p.text === 'string' && p.text.trim()) {
-        parts.push("text:'" + p.text.replace(/'/g, "\\'") + "'");
+        parts.push("text:'" + p.text.replace(/'/g, "\\'").replace(/\n/g, '\\n') + "'");
+      }
+      if (p.caption && typeof p.caption === 'string' && p.caption.trim()) {
+        parts.push("caption:'" + p.caption.replace(/'/g, "\\'").replace(/\n/g, '\\n') + "'");
+        if (p.captionAlign === 'center') parts.push("captionAlign:'center'");
       }
       lines.push("    '" + id + "': { " + parts.join(', ') + ' },');
     });
@@ -1086,6 +1287,14 @@
     document.querySelectorAll('.canvas-item').forEach(function (item) {
       item.addEventListener('mousedown',  onItemPointerDown.bind(item));
       item.addEventListener('touchstart', onItemPointerDown.bind(item), { passive: true });
+      /* Authors: double-click a photo to write its polaroid caption */
+      if (item.classList.contains('photo-item')) {
+        item.addEventListener('dblclick', function (e) {
+          if (!isEditMode) return;
+          e.stopPropagation();
+          startCaptionEdit(item);
+        });
+      }
     });
 
     viewport.addEventListener('mousedown',  onViewportPointerDown);
@@ -1144,6 +1353,21 @@
     var exportBtn = document.getElementById('fun-export-btn');
     if (exportBtn) exportBtn.addEventListener('click', function () {
       if (isEditMode) exportLayout();
+    });
+
+    /* Restore everything the author deleted (positions are kept) */
+    var restoreBtn = document.getElementById('fun-restore-btn');
+    if (restoreBtn) restoreBtn.addEventListener('click', function () {
+      if (!isEditMode) return;
+      if (!deletedItems.length) {
+        alert('Nothing to restore — no deleted items.');
+        return;
+      }
+      var names = deletedItems.join(', ');
+      deletedItems = [];
+      savePositions();
+      alert('Restored: ' + names);
+      location.reload();
     });
 
     var zoomInBtn = document.getElementById('fun-zoom-in');
