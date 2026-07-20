@@ -909,7 +909,7 @@ body.fun-canvas-mode.read-mode .canvas-item.is-selected {
   font-family: 'Caveat', cursive;
   font-size: 46px;
   line-height: 1;
-  color: rgba(247, 248, 248, 0.22);
+  color: rgba(247, 248, 248, 0.55);
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
@@ -924,7 +924,7 @@ body.fun-canvas-mode.edit-mode .cluster-label {
 }
 
 body.fun-canvas-mode.edit-mode .cluster-label:hover {
-  color: rgba(247, 248, 248, 0.45);
+  color: rgba(247, 248, 248, 0.75);
 }
 
 /* ----------------------------------------

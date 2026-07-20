@@ -62,10 +62,10 @@
 
   /* Faint handwritten labels rendered behind each cluster */
   var CLUSTER_LABELS = [
-    { id: 'cluster-label-build',  text: "things I've built",   left: 16.6815,  top: -813.795, rot: -1.6 },
-    { id: 'cluster-label-people', text: 'people & play',       left: -780.237, top: -112.057, rot: 1.2  },
-    { id: 'cluster-label-draw',   text: 'doodles & manga',     left: -52.1577, top: 413.529,  rot: -1   },
-    { id: 'cluster-label-live',   text: 'food & the outdoors', left: 1025.88,  top: -165.296, rot: 0.8  }
+    { id: 'cluster-label-build',  text: "Things I've Built",   left: 16.6815,  top: -813.795, rot: -1.6 },
+    { id: 'cluster-label-people', text: 'People & Play',       left: -780.237, top: -112.057, rot: 1.2  },
+    { id: 'cluster-label-draw',   text: 'Doodles & Manga',     left: -52.1577, top: 413.529,  rot: -1   },
+    { id: 'cluster-label-live',   text: 'Food & The Outdoors', left: 1025.88,  top: -165.296, rot: 0.8  }
   ];
 
   /* Camera tour — the Wander button / arrow keys cycle through these framings.
