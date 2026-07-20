@@ -98,6 +98,7 @@ export function AskPanel({ open, onClose, skipInitialAnimation = false }: AskPan
     return () => mq.removeEventListener("change", update);
   }, []);
   const docked = pinned && !isMobile;
+  const fullscreen = isMobile;
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -158,6 +159,17 @@ export function AskPanel({ open, onClose, skipInitialAnimation = false }: AskPan
       window.scrollTo(0, restoreY);
     };
   }, [docked, open, pinnedWidth]);
+
+  // Fullscreen (mobile): lock page scrolling behind the panel.
+  useEffect(() => {
+    if (!(fullscreen && open)) return;
+    const docEl = document.documentElement;
+    const prev = docEl.style.overflow;
+    docEl.style.overflow = "hidden";
+    return () => {
+      docEl.style.overflow = prev;
+    };
+  }, [fullscreen, open]);
 
   // Wheel anywhere over the panel scrolls the chat area, never the page behind.
   useEffect(() => {
@@ -334,7 +346,7 @@ export function AskPanel({ open, onClose, skipInitialAnimation = false }: AskPan
       {open && (
         <>
           {/* click-away catcher — floating mode only; while docked the page stays interactive */}
-          {!docked && (
+          {!docked && !fullscreen && (
             <div className="fixed inset-0 z-40" onClick={onClose} aria-hidden />
           )}
 
@@ -344,7 +356,13 @@ export function AskPanel({ open, onClose, skipInitialAnimation = false }: AskPan
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
             transition={{ duration: 0.18, ease: [0.25, 0, 0, 1] }}
-            className={`fixed z-50 origin-top-right bg-surface-2/90 backdrop-blur-xl shadow-2xl shadow-black/40 flex flex-col gap-3 ${docked ? "top-0 right-0 bottom-0 h-screen rounded-none" : "top-16 right-4 sm:right-6 w-[calc(100vw-2rem)] max-w-[400px] rounded-xl"}`}
+            className={`fixed z-50 origin-top-right bg-surface-2/90 backdrop-blur-xl shadow-2xl shadow-black/40 flex flex-col gap-3 ${
+              fullscreen
+                ? "inset-x-0 top-0 h-dvh rounded-none pb-[env(safe-area-inset-bottom)]"
+                : docked
+                  ? "top-0 right-0 bottom-0 h-screen rounded-none"
+                  : "top-16 right-4 sm:right-6 w-[calc(100vw-2rem)] max-w-[400px] rounded-xl"
+            }`}
             style={docked ? { width: `${pinnedWidth}px` } : undefined}
             role="dialog"
             aria-label="Ask about Lide"
@@ -397,13 +415,13 @@ export function AskPanel({ open, onClose, skipInitialAnimation = false }: AskPan
             )}
             <div
               ref={scrollRef}
-              className={`overflow-y-auto overscroll-contain px-5 pb-4 ${docked ? "flex-1 min-h-0" : "max-h-[55vh]"}`}
+              className={`overflow-y-auto overscroll-contain px-5 pb-4 ${docked || fullscreen ? "flex-1 min-h-0" : "max-h-[55vh]"}`}
             >
               {messages.length === 0 ? (
                 <div className="pb-2">
                   <p className="mb-3 text-sm leading-relaxed text-ink-subtle">
                     Anything about Lide&apos;s work, background, or how to get in
-                    touch — pick a question or type your own.
+                    touch. Pick a question or type your own.
                   </p>
                 </div>
               ) : (
@@ -505,7 +523,7 @@ export function AskPanel({ open, onClose, skipInitialAnimation = false }: AskPan
             )}
 
             {/* input */}
-            <div className={`ask-panel-input mx-4 mb-4 flex items-end gap-2 rounded-2xl border border-hairline bg-surface-1/50 p-2 pl-4 transition-colors focus-within:border-hairline-strong ${docked ? "mt-auto" : ""}`}>
+            <div className={`ask-panel-input mx-4 mb-4 flex items-end gap-2 rounded-2xl border border-hairline bg-surface-1/50 p-2 pl-4 transition-colors focus-within:border-hairline-strong ${docked || fullscreen ? "mt-auto" : ""}`}>
               <Textarea
                 ref={inputRef}
                 aria-label="Message"
