@@ -210,10 +210,12 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
    DISCIPLINE CARDS
    ---------------------------------------- */
 .canvas-item.card-item {
+    /* Dark polaroid frame, matching the photo tiles */
     width: 280px;
-    background: #1a1a1a;
-    border-radius: 14px;
-    border: 1px solid #2a2a2a;
+    background: #17181a;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 10px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     display: flex;
@@ -229,7 +231,7 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
 }
 
 .canvas-item.card-item:not(.is-dragging):hover {
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7), 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7), 0 4px 16px rgba(0, 0, 0, 0.4);
     transform: translateY(-4px) scale(1.01) rotate(var(--canvas-rot, 0deg)) !important;
 }
 
@@ -240,13 +242,13 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
     display: block;
     flex-shrink: 0;
     pointer-events: none;
-    border-radius: 0;
+    border-radius: 2px;
 }
 
 .canvas-item.card-item .dt-h3 {
     margin: 0;
-    padding: 12px 16px 6px;
-    color: #efeeec;
+    padding: 12px 6px 4px;
+    color: #f7f8f8;
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 0.01em;
@@ -275,8 +277,8 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
 }
 
 .canvas-item.card-item .dt-body-big {
-    padding: 0 16px 14px;
-    color: rgba(239, 238, 236, 0.7);
+    padding: 0 6px 8px;
+    color: rgba(247, 248, 248, 0.6);
     font-size: 0.8rem;
     line-height: 1.55;
     flex-grow: 1;
@@ -312,12 +314,19 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
    PHOTO TILES
    ---------------------------------------- */
 .canvas-item.photo-item {
-    border-radius: 8px;
+    /* Polaroid frame in dark: thick border, extra weight at the bottom */
+    border-radius: 4px;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
-    background: #1a1a1a;
-    border: 1px solid rgba(255,255,255,0.06);
+    background: #17181a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 10px 10px 36px;
     line-height: 0;
+    cursor: zoom-in;
+}
+
+body.fun-canvas-mode.edit-mode .canvas-item.photo-item {
+    cursor: grab;
 }
 
 .canvas-item.photo-item img {
@@ -325,7 +334,60 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 2px;
     pointer-events: none;
+}
+
+/* Handwritten caption in the polaroid chin — up to two rows.
+   The chin grows only when the caption actually wraps. */
+.canvas-item.photo-item.has-caption {
+    padding-bottom: 38px;
+}
+
+.canvas-item.photo-item.caption-two-lines {
+    padding-bottom: 58px;
+}
+
+.canvas-item.photo-item .photo-caption {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 6px;
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    line-height: 23px;
+    color: rgba(247, 248, 248, 0.78);
+    text-align: left;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    pointer-events: none;
+    outline: none;
+}
+
+.canvas-item.photo-item.caption-center .photo-caption {
+    text-align: center;
+}
+
+body.fun-canvas-mode.edit-mode .canvas-item.photo-item .photo-caption {
+    pointer-events: auto;
+    cursor: text;
+}
+
+/* While typing: allow the caret and selection (canvas items disable both) */
+.canvas-item.photo-item.is-editing-caption,
+.canvas-item.photo-item.is-editing-caption .photo-caption {
+    cursor: text;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.canvas-item.photo-item.is-editing-caption .photo-caption {
+    color: #f7f8f8;
+    -webkit-line-clamp: unset;
+    overflow: visible;
 }
 
 .canvas-item.photo-item:not(.is-dragging):hover {
@@ -422,7 +484,8 @@ body.fun-canvas-mode.edit-mode .canvas-item.is-rotating .rot-handle {
     line-height: 1.3;
     color: rgba(239, 238, 236, 0.9);
     z-index: 10;
-    white-space: nowrap;
+    /* pre: manual Shift+Enter breaks render as rows, no auto-wrap */
+    white-space: pre;
     text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
@@ -795,17 +858,17 @@ body.fun-canvas-mode.read-mode .canvas-item.is-selected {
   background-size: 26px 26px;
 }
 
-/* Cards */
+/* Cards — dark polaroid frame */
 .canvas-item.card-item {
-  background: #0f1011;
-  border-color: #23252a;
+  background: #17181a;
+  border: 1px solid #23252a;
   box-shadow: 0 4px 24px rgba(0,0,0,0.6);
-  border-radius: 16px;
+  border-radius: 4px;
   font-family: "Satoshi", system-ui, -apple-system, sans-serif;
 }
 .canvas-item.card-item:not(.is-dragging):hover {
   border-color: #34343a;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.04);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.7);
 }
 .canvas-item.card-item.is-dragging {
   box-shadow: 0 24px 64px rgba(0,0,0,0.9);
@@ -823,11 +886,11 @@ body.fun-canvas-mode.read-mode .canvas-item.is-selected {
   font-size: 0.775rem;
 }
 
-/* Photo tiles */
+/* Photo tiles — dark polaroid frame */
 .canvas-item.photo-item {
-  background: #0f1011;
+  background: #17181a;
   border: 1px solid #23252a;
-  border-radius: 12px;
+  border-radius: 4px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.7);
 }
 .canvas-item.photo-item:not(.is-dragging):hover {
@@ -898,6 +961,84 @@ body.fun-canvas-mode.read-mode .canvas-item.is-selected {
 
 @media (prefers-reduced-motion: reduce) {
   #fun-canvas-loader .loader-dot { animation: none; opacity: 0.6; }
+}
+
+/* ----------------------------------------
+   PHOTO LIGHTBOX — tap a photo to preview
+   it big, as one large polaroid
+   ---------------------------------------- */
+#fun-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4vh 4vw;
+  background: rgba(1, 1, 2, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.22s ease;
+  cursor: zoom-out;
+}
+
+#fun-lightbox.is-open { opacity: 1; }
+
+#fun-lightbox figure {
+  position: relative;
+  margin: 0;
+  background: #17181a;
+  border: 1px solid #23252a;
+  padding: 14px 14px 48px;
+  border-radius: 4px;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8);
+  transform: scale(0.94);
+  transition: transform 0.22s ease;
+  line-height: 0;
+}
+
+#fun-lightbox figure.has-caption {
+  padding-bottom: 56px;
+}
+
+#fun-lightbox figure.caption-two-lines {
+  padding-bottom: 78px;
+}
+
+#fun-lightbox figure.caption-center figcaption {
+  text-align: center;
+}
+
+#fun-lightbox figcaption {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 10px;
+  font-family: 'Caveat', cursive;
+  font-size: 24px;
+  line-height: 28px;
+  color: rgba(247, 248, 248, 0.8);
+  text-align: left;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+#fun-lightbox.is-open figure { transform: scale(1); }
+
+#fun-lightbox img {
+  display: block;
+  max-width: min(88vw, 960px);
+  max-height: calc(88vh - 62px);
+  object-fit: contain;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #fun-lightbox, #fun-lightbox figure { transition: none; }
 }
 
 /* ----------------------------------------
