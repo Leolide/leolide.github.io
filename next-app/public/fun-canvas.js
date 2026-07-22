@@ -1227,13 +1227,61 @@
 
     // Only activate when the fun-canvas DOM is present
     if (!viewport || !canvas) {
-      document.body.classList.remove('fun-canvas-mode');
+      document.body.classList.remove('fun-canvas-mode', 'fun-loaded');
       return;
     }
 
     document.body.classList.add('fun-canvas-mode');
 
-    if (isMobile()) return;
+    if (isMobile()) {
+      /* Mobile shows the static fallback list. Its thumbnails are CSS
+         background-images, so text paints instantly while each photo pops
+         in separately underneath — hold the curtain until they've actually
+         loaded (or a timeout elapses) so everything appears together in one
+         clean fade instead of assembling piecemeal in front of the user. */
+      var reveal = (function () {
+        var done = false;
+        return function () {
+          if (done) return;
+          done = true;
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              document.body.classList.add('fun-loaded');
+            });
+          });
+        };
+      })();
+
+      var mobileRoot = document.getElementById('fun-mobile-content');
+      var urls = mobileRoot
+        ? Array.prototype.slice.call(mobileRoot.querySelectorAll('[style*="background-image"]'))
+            .map(function (el) {
+              var match = /url\(["']?(.*?)["']?\)/.exec(el.style.backgroundImage);
+              return match && match[1];
+            })
+            .filter(Boolean)
+        : [];
+
+      if (!urls.length) {
+        reveal();
+        return;
+      }
+
+      var pending = urls.length;
+      var onOneLoaded = function () {
+        pending -= 1;
+        if (pending <= 0) reveal();
+      };
+      urls.forEach(function (src) {
+        var img = new Image();
+        img.onload = onOneLoaded;
+        img.onerror = onOneLoaded;
+        img.src = src;
+      });
+      /* Safety net so a slow/broken image can't hold the page hostage. */
+      setTimeout(reveal, 1800);
+      return;
+    }
 
     // Guard against double-init on the same DOM (script load + boot component)
     if (viewport.dataset.fcInit) return;
@@ -1280,7 +1328,7 @@
        Double rAF so the transform paints before the fade starts. */
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
-        viewport.classList.add('is-ready');
+        document.body.classList.add('fun-loaded');
       });
     });
 
@@ -1432,7 +1480,7 @@
      to copy the layout as code. */
   window.__funCanvasExport = exportLayout;
   window.__funCanvasCleanup = function () {
-    document.body.classList.remove('fun-canvas-mode', 'read-mode', 'edit-mode');
+    document.body.classList.remove('fun-canvas-mode', 'read-mode', 'edit-mode', 'fun-loaded');
     deselectCard();
   };
 
