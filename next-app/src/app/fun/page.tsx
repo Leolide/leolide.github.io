@@ -11,21 +11,24 @@ export default function FunPage() {
   return (
     <>
       {/* Canvas CSS — loaded before paint (versioned to bust stale caches) */}
-      <link rel="stylesheet" href="/fun-canvas.css?v=20" />
+      <link rel="stylesheet" href="/fun-canvas.css?v=22" />
       <link rel="stylesheet" href="/fun-pinboard.css?v=18" />
       {/* Force navbar background since the canvas page never scrolls */}
       <style>{`header { background: rgba(1,1,2,0.92) !important; border-bottom: 1px solid #23252a !important; backdrop-filter: blur(16px) !important; }`}</style>
 
       <Navbar />
 
+      {/* Loading curtain — a page-level sibling (not nested in #fun-canvas-viewport,
+          which is display:none on mobile) so it covers both the desktop canvas while
+          items are unpositioned and the mobile fallback while it settles in. */}
+      <div id="fun-page-loader" aria-hidden="true">
+        <span className="loader-dot" />
+        <span className="loader-dot" />
+        <span className="loader-dot" />
+      </div>
+
       {/* ── CANVAS VIEWPORT ── */}
       <div id="fun-canvas-viewport">
-        {/* Loading curtain — covers the unpositioned items until the engine lays them out */}
-        <div id="fun-canvas-loader" aria-hidden="true">
-          <span className="loader-dot" />
-          <span className="loader-dot" />
-          <span className="loader-dot" />
-        </div>
         <div id="fun-canvas">
 
           {/* HERO TEXT */}
@@ -163,7 +166,7 @@ export default function FunPage() {
       </div>
 
       {/* Canvas engine — loaded after DOM is ready (versioned to bust stale caches) */}
-      <Script src="/fun-canvas.js?v=20" strategy="afterInteractive" />
+      <Script src="/fun-canvas.js?v=22" strategy="afterInteractive" />
       {/* Re-inits the canvas after client-side navigation */}
       <FunCanvasBoot />
 

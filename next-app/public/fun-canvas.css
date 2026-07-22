@@ -918,15 +918,20 @@ body.fun-canvas-mode.read-mode .canvas-item.is-selected {
 
 /* ----------------------------------------
    LOADING CURTAIN
-   Canvas items sit unpositioned at the
-   origin until fun-canvas.js lays them out,
-   so an opaque curtain covers the viewport
-   until init adds .is-ready.
+   Desktop: canvas items sit unpositioned at
+   the origin until fun-canvas.js lays them
+   out. Mobile: the fallback list still needs
+   a beat to settle in on client-side nav.
+   Either way, an opaque curtain covers the
+   page until init adds body.fun-loaded.
    ---------------------------------------- */
-#fun-canvas-loader {
-  position: absolute;
-  inset: 0;
-  z-index: 50;
+#fun-page-loader {
+  position: fixed;
+  top: var(--fc-navbar-h);
+  left: 0;
+  right: var(--ask-panel-offset-right, 0px);
+  bottom: 0;
+  z-index: 40;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -938,12 +943,12 @@ body.fun-canvas-mode.read-mode .canvas-item.is-selected {
   transition: opacity 0.45s ease, visibility 0s linear 0.45s;
 }
 
-#fun-canvas-viewport.is-ready #fun-canvas-loader {
+body.fun-loaded #fun-page-loader {
   opacity: 0;
   visibility: hidden;
 }
 
-#fun-canvas-loader .loader-dot {
+#fun-page-loader .loader-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -951,8 +956,8 @@ body.fun-canvas-mode.read-mode .canvas-item.is-selected {
   animation: fc-loader-pulse 1.1s ease-in-out infinite;
 }
 
-#fun-canvas-loader .loader-dot:nth-child(2) { animation-delay: 0.15s; }
-#fun-canvas-loader .loader-dot:nth-child(3) { animation-delay: 0.3s; }
+#fun-page-loader .loader-dot:nth-child(2) { animation-delay: 0.15s; }
+#fun-page-loader .loader-dot:nth-child(3) { animation-delay: 0.3s; }
 
 @keyframes fc-loader-pulse {
   0%, 100% { opacity: 0.25; transform: scale(0.85); }
@@ -960,7 +965,7 @@ body.fun-canvas-mode.read-mode .canvas-item.is-selected {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #fun-canvas-loader .loader-dot { animation: none; opacity: 0.6; }
+  #fun-page-loader .loader-dot { animation: none; opacity: 0.6; }
 }
 
 /* ----------------------------------------
