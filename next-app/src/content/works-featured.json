@@ -13,19 +13,6 @@
     "external": true
   },
   {
-    "slug": "a-clientelling-app",
-    "title": "Clientelling App",
-    "company": "Deloitte",
-    "date": "2024 Aug – Nov",
-    "description": "Boosting sales and enabling personalized customer experiences",
-    "tags": ["iOS", "Design System", "Web App"],
-    "accent": "130,130,150",
-    "image": "/images/kit-cover.webp",
-    "url": "/work/a-clientelling-app",
-    "protected": true,
-    "external": false
-  },
-  {
     "slug": "osdk-component-library",
     "title": "OSDK Component Library",
     "company": "Palantir",
@@ -37,5 +24,18 @@
     "url": "https://youtu.be/O7aeOmnbCuo",
     "protected": false,
     "external": true
+  },
+  {
+    "slug": "a-clientelling-app",
+    "title": "Clientelling App",
+    "company": "Deloitte",
+    "date": "2024 Aug – Nov",
+    "description": "Boosting sales and enabling personalized customer experiences",
+    "tags": ["iOS", "Design System", "Web App"],
+    "accent": "130,130,150",
+    "image": "/images/kit-cover.webp",
+    "url": "/work/a-clientelling-app",
+    "protected": true,
+    "external": false
   }
 ]
