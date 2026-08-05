@@ -26,6 +26,7 @@ const PAGES = [
 
 const PROJECTS = [
   { label: "Autopilot", company: "Palantir", href: "https://www.palantir.com/docs/foundry/autopilot/overview", external: true },
+  { label: "OSDK Component Library", company: "Palantir", href: "https://youtu.be/O7aeOmnbCuo", external: true },
   { label: "Clientelling app", company: "Deloitte", href: "/work/a-clientelling-app" },
 ];
 
