@@ -1,6 +1,8 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PasswordGate } from "@/components/work/PasswordGate";
+import { CaseStudySlides } from "@/components/work/CaseStudySlides";
+import { caseStudySlides } from "@/content/case-studies";
 import worksPro from "@/content/works-pro.json";
 import { notFound } from "next/navigation";
 
@@ -90,8 +92,12 @@ export default async function WorkDetailPage({
             </div>
           </div>
 
-          {/* Password gate */}
-          {work.protected && <PasswordGate slug={work.slug} />}
+          {/* Case study content */}
+          {work.protected ? (
+            <PasswordGate slug={work.slug} />
+          ) : (
+            caseStudySlides[work.slug] && <CaseStudySlides slug={work.slug} />
+          )}
 
         </div>
       </main>
