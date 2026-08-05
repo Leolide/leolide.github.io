@@ -10,7 +10,7 @@
     "coverImage": "/images/kit-cover.webp",
     "tags": ["iOS", "Design System", "Web App"],
     "accent": "255,180,80",
-    "protected": true,
+    "protected": false,
     "meta": [
       { "label": "Client", "value": "Luxury Retail" },
       { "label": "Platform", "value": "iOS · Web App" },
