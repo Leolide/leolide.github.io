@@ -22,6 +22,8 @@ export function CaseStudySlides({ slug }: { slug: string }) {
             key={slide.src}
             src={slide.src}
             alt={slide.alt}
+            width={slide.width}
+            height={slide.height}
             className="w-full h-auto block"
             style={{ filter: "brightness(0.94) contrast(0.96) saturate(0.96)" }}
           />
