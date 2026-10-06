@@ -36,7 +36,7 @@ export default async function WorkDetailPage({
   return (
     <>
       <Navbar />
-      <main className="pt-28 pb-24 px-6 min-h-screen">
+      <main className="shrink-0 pt-28 pb-24 px-6 min-h-screen">
         <div className="max-w-[900px] mx-auto">
 
           {/* Title */}
