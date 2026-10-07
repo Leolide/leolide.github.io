@@ -1,5 +1,6 @@
 const SOCIAL = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/lideli/" },
+  { label: "GitHub", href: "https://github.com/Leolide" },
   { label: "X", href: "https://x.com/lidethemaker" },
 ];
 
