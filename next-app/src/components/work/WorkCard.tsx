@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { EASE_OUT } from "@/lib/motion";
 
 interface WorkCardProps {
   slug: string;
@@ -34,7 +35,7 @@ export function WorkCard({
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.4, delay: index * 0.07, ease: [0.25, 0, 0, 1] }}
+      transition={{ duration: 0.4, delay: index * 0.07, ease: EASE_OUT }}
     >
       <Link href={`/work/${slug}`} className="group block rounded-xl border border-hairline bg-surface-1 overflow-hidden hover:border-hairline-strong transition-colors duration-200">
         {/* Image — compact fixed height */}
@@ -47,7 +48,7 @@ export function WorkCard({
           }}
         >
           <div
-            className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-500"
+            className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-200"
             style={{
               background: `radial-gradient(ellipse at center, ${accentCss} 0%, transparent 70%)`,
             }}
