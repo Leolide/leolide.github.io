@@ -14,7 +14,14 @@ function TimelineItem({ entry, index }: { entry: Entry; index: number }) {
     <div className="group flex gap-4 py-4 px-3 -mx-3 rounded-lg hover:bg-surface-1 transition-colors duration-150">
       <div className="shrink-0 w-9 h-9 rounded-lg bg-surface-2 border border-hairline flex items-center justify-center overflow-hidden">
         {entry.logo ? (
-          <img src={entry.logo} alt={entry.org} className="w-6 h-6 object-contain" />
+          <img
+            src={entry.logo}
+            alt={entry.org}
+            className="object-contain"
+            /* logoSize = optically balanced size: each file is trimmed to its visible mark and sized
+               so every logo carries similar visual weight (see images/logos/) */
+            style={"logoSize" in entry && entry.logoSize ? { width: entry.logoSize[0], height: entry.logoSize[1] } : { width: 24, height: 24 }}
+          />
         ) : (
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" fill="currentColor" className="text-white">
             <path d="M336,176a80,80,0,0,0,0-160H176a80,80,0,0,0,0,160,80,80,0,0,0,0,160,80,80,0,1,0,80,80V176Z" />
