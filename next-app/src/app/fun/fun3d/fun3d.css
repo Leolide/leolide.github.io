@@ -1748,3 +1748,28 @@ html:has(.fun3d-root) {
     padding-left: 0;
   }
 }
+
+/* ---------- 时间线只从圆点往下画 ----------
+   原来是整个 .timeline 上的一根竖线：第一个故事钉住时，时间轴容器继续往上滚，
+   竖线就会从圆点上方穿出来、划过 "Outside of Work"。改为每个 .tl-pin 从自己的圆点往下画一段（渐隐），
+   跟着卡片一起钉住、一起离开，圆点上方永远没有线。 */
+.fun3d-root .timeline::before {
+  display: none;
+}
+
+.fun3d-root .tl-pin::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 12px;
+  width: 1px;
+  height: 100vh;
+  background: linear-gradient(rgba(244, 241, 234, 0.28), rgba(244, 241, 234, 0));
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .fun3d-root .tl-pin::before {
+    display: none;
+  }
+}

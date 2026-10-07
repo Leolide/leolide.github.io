@@ -146,6 +146,9 @@ function Man2({
     parallax: 0,
     parallaxEase: 0.1,
     mobilePullback: 1.1,
+    // 桌面：以焦点为中心放大画面（1 = 原样，1.15 = 放大 15%）。只裁切/放大投影窗口，
+    // 相机位置不变，所以不会像"拉近相机"那样穿进头发里
+    desktopZoom: 1.2,
     // 手机上故事卡片是满宽的，横向错开只会把贴纸推到卡片底下 → 关掉，改用下面的纵向取景
     mobileTimelineShift: 0,
     // 手机「时间轴阶段」：把焦点（贴纸）放到屏幕上方这个位置（0.5 = 正中，0.26 = 偏上），卡片在下半屏滚动
@@ -494,6 +497,17 @@ function Man2({
       }
       // 手机「时间轴阶段」：平移投影窗口（不改透视、不动相机），让焦点出现在屏幕偏上位置，
       // 贴纸就不会被下方的满宽卡片挡住。权重同上：从首屏渐入，进入收尾区渐出 → 无跳变。
+      if (!isMobile.current && cam.desktopZoom !== 1) {
+        // 以焦点在屏幕上的位置为中心缩放：取一个 1/zoom 大小的子窗口，让焦点在子窗口里的相对位置不变
+        const { width: w, height: h } = get().size
+        if (camera.view) camera.clearViewOffset()
+        camera.updateMatrixWorld()
+        tmpVec.current.copy(focusRef.current).project(camera)
+        const px = THREE.MathUtils.clamp(((tmpVec.current.x + 1) / 2) * w, 0, w)
+        const py = THREE.MathUtils.clamp(((1 - tmpVec.current.y) / 2) * h, 0, h)
+        const k = 1 / cam.desktopZoom
+        camera.setViewOffset(w, h, px * (1 - k), py * (1 - k), w * k, h * k)
+      }
       if (isMobile.current) {
         // glb 的镜头是按桌面横屏构图的（焦点不一定在画面中心），竖屏手机上贴纸会跑到画面边缘、被卡片挡住。
         // 所以先把焦点（当前停靠的贴纸锚点）投影到屏幕，再平移投影窗口，把它精确放到
