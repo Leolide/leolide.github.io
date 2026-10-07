@@ -1,0 +1,610 @@
+import { Suspense, useMemo, useRef, useEffect, type MutableRefObject } from 'react'
+import { useThree, useFrame } from '@react-three/fiber'
+import { useGLTF } from '@react-three/drei'
+import { EffectComposer, Bloom, DepthOfField, SMAA } from '@react-three/postprocessing'
+import * as THREE from 'three'
+import Env from './Env'
+import { pageScrollY } from './pageScroll'
+import { FOCUS_POINTS, FRAMES_PER_NODE } from './data/focusPoints'
+
+useGLTF.preload(`/models/me.glb`)
+
+// 聚焦锚点（glb 内 focus-* 空对象），顺序对应履历节点；名单是唯一真源，见 data/focusPoints.ts
+const POINTS = FOCUS_POINTS as readonly string[]
+const M = POINTS.length // 时间轴节点数（= 履历条数），从名单推导，不写死
+const RESUME_FRAMES = M * FRAMES_PER_NODE // 履历区帧数：每节点 FRAMES_PER_NODE 帧（节点 k → 第 k·50 帧）
+const WORKS_ENTRANCE = 50 // 作品区"入场"（画廊屏幕从底部滑入覆盖）占的帧数
+const FPS = 24 // 所有 clip @24fps 共享时间轴；相机动画总帧数运行时从 CameraAction clip 读（见 totalFrames）
+const NODE_LINE = 0.3 // 节点"终点"参考线：条目顶部到达视口该高度(从上 30%)时锁定为该节点
+
+// 上下渐变背景球（包裹相机），两端颜色可调；另外叠加一层左右方向的暖高光，
+// 呼应人物主光源在右上角——让背景也右边更亮，和人物打光方向一致
+function GradientBackground() {
+  // glb 相机视角很窄(~23°)，只看到渐变中间一条；陡度把可见窄带拉伸出完整过渡
+  // 美艳夕阳：更亮更红，并夹一点黄——上方浓郁的红，地平线处是明亮的金黄橙光
+  const top = '#9c2213'
+  const bottom = '#ffb23c'
+  const steep = 1.4
+  // 右侧暖高光：颜色 + 混合强度（0~1，越大右侧越亮/越偏暖黄）
+  const highlight = '#ffe29b'
+  const sideStrength = 0.4
+
+  const uniforms = useMemo(
+    () => ({
+      uTop: { value: new THREE.Color() },
+      uBottom: { value: new THREE.Color() },
+      uSteep: { value: 1 },
+      uHighlight: { value: new THREE.Color() },
+      uSideStrength: { value: 0 },
+    }),
+    []
+  )
+  uniforms.uTop.value.set(top)
+  uniforms.uBottom.value.set(bottom)
+  uniforms.uSteep.value = steep
+  uniforms.uHighlight.value.set(highlight)
+  uniforms.uSideStrength.value = sideStrength
+
+  return (
+    <mesh scale={100}>
+      <sphereGeometry args={[1, 32, 32]} />
+      <shaderMaterial
+        side={THREE.BackSide}
+        depthWrite={false}
+        uniforms={uniforms}
+        vertexShader={/* glsl */ `
+          varying vec3 vDir;
+          void main() {
+            vDir = normalize(position);
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `}
+        fragmentShader={/* glsl */ `
+          uniform vec3 uTop;
+          uniform vec3 uBottom;
+          uniform float uSteep;
+          uniform vec3 uHighlight;
+          uniform float uSideStrength;
+          varying vec3 vDir;
+          void main() {
+            // 以地平线(y=0)为中心按陡度拉伸，narrow-fov 下也能看到完整过渡
+            float t = clamp(vDir.y * uSteep * 0.5 + 0.5, 0.0, 1.0);
+            vec3 base = mix(uBottom, uTop, t);
+            // 水平方向：右侧（vDir.x > 0）混入暖高光，呼应人物右上角主光源
+            float side = clamp(vDir.x, 0.0, 1.0);
+            vec3 col = mix(base, uHighlight, side * uSideStrength);
+            gl_FragColor = vec4(col, 1.0);
+          }
+        `}
+      />
+    </mesh>
+  )
+}
+
+// 所有光源（HDRI 环境 + 半球 + 主/补方向光）
+function Lights() {
+  const c = {
+    envIntensity: 0.85,
+    hemiIntensity: 1.15,
+    hemiSky: '#ffffff',
+    hemiGround: '#404040',
+    keyIntensity: 2.35,
+    keyColor: '#ffd9c6',
+    keyPos: [5, 8, 5] as [number, number, number],
+    fillIntensity: 2.25,
+    fillColor: '#9fc6ff',
+    fillPos: [-5, 4, -4] as [number, number, number],
+  }
+
+  return (
+    <>
+      <Env
+        intensity={c.envIntensity}
+        rotationX={0}
+        rotationY={0}
+        rotationZ={0}
+        asBackground={false}
+        bgIntensity={0.4}
+        bgBlur={0}
+      />
+      <hemisphereLight args={[c.hemiSky, c.hemiGround, c.hemiIntensity]} />
+      <directionalLight
+        position={c.keyPos}
+        intensity={c.keyIntensity}
+        color={c.keyColor}
+        castShadow
+        shadow-mapSize={[2048, 2048]}
+      />
+      <directionalLight position={c.fillPos} intensity={c.fillIntensity} color={c.fillColor} />
+    </>
+  )
+}
+
+// me.glb：模型 + glb 自带相机动画（滚动分 5 段擦除）+ 自动对焦 + 眼睛跟随
+function Man2({
+  focusRef,
+  frameRef,
+  dofBokehRef,
+  dofRangeRef,
+}: {
+  focusRef: MutableRefObject<THREE.Vector3>
+  frameRef: MutableRefObject<number>
+  dofBokehRef: MutableRefObject<number>
+  dofRangeRef: MutableRefObject<number>
+}) {
+  const posX = 0
+  const posY = 0.4
+  const posZ = -0.7
+  const scale = 2.25
+  const rotationY = 0
+
+  // mobilePullback：移动端相机沿「焦点→相机」方向拉远的倍率（1 = 不变，1.2 = 远 20%）
+  // mobileTimelineShift：移动端「时间轴阶段」相机水平位移，单位=视距占比（正=左移，负=右移，0=关）
+  const cam = {
+    damping: 0.1,
+    dwell: 0.43,
+    parallax: 0,
+    parallaxEase: 0.1,
+    mobilePullback: 1.2,
+    mobileTimelineShift: 0.12,
+  }
+
+  const eye = {
+    enabled: true,
+    gain: 3,
+    maxYaw: 15,
+    maxPitch: 8,
+    invertX: false,
+    invertY: false,
+    smooth: 0.44,
+    crossEye: 45,
+    crossRadius: 0.25,
+  }
+
+  const get = useThree((s) => s.get)
+  const { scene, animations } = useGLTF(`/models/me.glb`)
+
+  // 克隆模型；收集眼睛对象、聚焦锚点对象、glb 自带相机、各锚点景深开关
+  const { model, eyes, points, startPoint, glbCam, focusNode, dof } = useMemo(() => {
+    const clone = scene.clone(true)
+    const eyes: any[] = []
+    const pmap: Record<string, any> = {}
+    let startPoint: any = null
+    let glbCam: any = null
+    let focusNode: any = null
+    clone.traverse((o: any) => {
+      if (o.isMesh) {
+        o.castShadow = true
+        o.receiveShadow = true
+      }
+      if (o.isCamera) glbCam = o
+      // 首页锚点：兼容旧名 focus-start 与 intro3d 统一命名 focus-0
+      if (o.name === 'focus-start' || o.name === 'focus-0') startPoint = o
+      if (o.name === 'focus-works') focusNode = o
+      if (POINTS.includes(o.name)) pmap[o.name] = o
+      if (/eye/i.test(o.name)) {
+        // 平滑着色：重算平滑顶点法线 + 关闭 flatShading
+        if (o.isMesh) {
+          o.geometry.computeVertexNormals()
+          const mats = Array.isArray(o.material) ? o.material : [o.material]
+          mats.forEach((m: any) => {
+            m.flatShading = false
+            m.needsUpdate = true
+          })
+        }
+        eyes.push({ obj: o, base: o.quaternion.clone(), x: o.position.x })
+      }
+    })
+    // 按本地 x 定左右：最左眼 sx=-1、最右眼 sx=+1，用于斗鸡眼内转方向
+    if (eyes.length > 1) {
+      const xs = eyes.map((e) => e.x)
+      const min = Math.min(...xs)
+      const max = Math.max(...xs)
+      const mid = (min + max) / 2
+      eyes.forEach((e) => {
+        e.sx = e.x < mid ? -1 : 1
+      })
+    } else {
+      eyes.forEach((e) => (e.sx = 0))
+    }
+    const pts = POINTS.map((n) => pmap[n] || null)
+    // 作品区锚点：优先 focus-works（旧 glb）；缺省（intro3d 统一命名不导）则复用末时间轴节点 focus-M。
+    const works = focusNode || pts[pts.length - 1] || null
+    // 首页锚点：focus-start / focus-0；都没有则回退首个时间轴节点。
+    const start = startPoint || pts[0] || null
+    // 逐锚点景深参数（intro3d 导出写入 userData/extras）：dofBokeh 虚化强度、dofFocusRange 清晰范围、
+    // dofEnabled 开关（关→有效 bokeh 记 0）。has=false（老 glb 无这些字段）→ Post2 走原全局帧混合，行为不变。
+    const ud = (o: any): any => o?.userData ?? {}
+    const hasDofParams = [...pts, start, works].some((o) => ud(o).dofBokeh !== undefined)
+    const effBokeh = (o: any): number => (ud(o).dofEnabled === false ? 0 : (ud(o).dofBokeh ?? 0))
+    const effRange = (o: any): number => ud(o).dofFocusRange ?? 0
+    return {
+      model: clone,
+      eyes,
+      points: pts,
+      startPoint: start,
+      glbCam,
+      focusNode: works,
+      dof: {
+        has: hasDofParams,
+        bokeh: pts.map(effBokeh),
+        range: pts.map(effRange),
+        startBokeh: effBokeh(start),
+        startRange: effRange(start),
+        worksBokeh: effBokeh(works),
+        worksRange: effRange(works),
+      },
+    }
+  }, [scene])
+
+  // 相机动画总帧数：从 CameraAction clip 读（回退到最长 clip / 默认履历+入场+横移），不写死。
+  // 作品区帧段 = [RESUME_FRAMES, totalFrames]，长度随 glb 而定（当前 me.glb 为 100 帧）。
+  const totalFrames = useMemo(() => {
+    const clips: any[] = animations || []
+    const cam = clips.find((c: any) => c.name === 'CameraAction')
+    const clip = cam || (clips.length ? clips.reduce((a, b) => (b.duration > a.duration ? b : a)) : null)
+    return clip ? Math.round(clip.duration * FPS) : RESUME_FRAMES + 2 * WORKS_ENTRANCE
+  }, [animations])
+
+  // 动画混合器：把全部 clip（manAction + CameraAction）都挂上，逐帧设 time + update(0) 擦除
+  const mixer = useMemo(() => new THREE.AnimationMixer(model), [model])
+  const actions = useRef<any[]>([])
+  useEffect(() => {
+    if (!animations || animations.length === 0) return
+    mixer.stopAllAction()
+    actions.current = animations.map((clip) => {
+      const a = mixer.clipAction(clip)
+      a.play()
+      a.paused = true
+      return { action: a, duration: clip.duration }
+    })
+    return () => {
+      mixer.stopAllAction()
+      actions.current = []
+    }
+  }, [mixer, animations])
+
+  // 不切换激活相机（避免后处理 CoC 缓存旧相机 near/far 导致整体糊）。
+  // 改为每帧把 glb 相机的世界变换 + fov 拷到默认相机上。
+
+  // window 级鼠标输入（smouse 为缓动后的值）
+  const mouse = useRef({ x: 0, y: 0 })
+  const smouse = useRef({ x: 0, y: 0 })
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1
+      mouse.current.y = -((e.clientY / window.innerHeight) * 2 - 1)
+    }
+    window.addEventListener('mousemove', onMove)
+    return () => window.removeEventListener('mousemove', onMove)
+  }, [])
+
+  // 移动端 / 触屏（无鼠标可跟随）：关闭眼睛跟随，眼睛保持默认朝向。
+  // 判定 = 触屏指针 或 窄视口（≤640px，与移动端样式断点一致）。
+  const isMobile = useRef(
+    typeof window !== 'undefined' &&
+      (window.matchMedia?.('(pointer: coarse)').matches === true ||
+        window.innerWidth <= 640)
+  )
+
+  // 履历锚点 DOM 元素（决定当前播放到第几段）
+  const anchorEls = useRef<any>(null)
+  // 作品区画廊 DOM 元素（决定作品入场 / 横移阶段的帧）
+  const galleryEl = useRef<any>(null)
+
+  // 复用对象，避免每帧分配
+  const frameSmooth = useRef(0)
+  const posA = useRef(new THREE.Vector3())
+  const posB = useRef(new THREE.Vector3())
+
+  const tmpEuler = useRef(new THREE.Euler(0, 0, 0, 'YXZ'))
+  const tmpQuat = useRef(new THREE.Quaternion())
+  const desiredQuat = useRef(new THREE.Quaternion())
+  const tmpVec = useRef(new THREE.Vector3())
+
+  // 拷贝 glb 相机世界变换用
+  const camPos = useRef(new THREE.Vector3())
+  const camQuat = useRef(new THREE.Quaternion())
+  const camScl = useRef(new THREE.Vector3())
+  const paraEuler = useRef(new THREE.Euler(0, 0, 0, 'YXZ'))
+  const paraQuat = useRef(new THREE.Quaternion())
+
+  useFrame((_, dt) => {
+    const a = 1 - Math.pow(cam.damping, dt)
+
+    // 1) 由履历锚点（文档坐标）算连续索引 s：
+    //    顶部 s≈-1，sysu 居中 s=0，hotsar=1 … zooop=4
+    if (!anchorEls.current) {
+      anchorEls.current = POINTS.map((n) => document.querySelector(`[data-point="${n}"]`))
+    }
+    const els = anchorEls.current
+    // 节点停顿：对每段滚动做停顿重映射——靠近某节点的一段滚动里 s 保持不变（停顿），
+    // 段中部快速过渡到下一节点。只改"滚动→s"的节奏，glb 动画仍是 s 的线性函数。
+    const d = THREE.MathUtils.clamp(cam.dwell, 0, 0.49)
+    const dwell = (t: number) => {
+      if (d <= 0) return t
+      if (t < d) return 0
+      if (t > 1 - d) return 1
+      return THREE.MathUtils.smoothstep((t - d) / (1 - 2 * d), 0, 1)
+    }
+    let sTarget = THREE.MathUtils.clamp(frameSmooth.current / FRAMES_PER_NODE - 1, -1, M - 1)
+    if (els && els.length === M && els.every(Boolean)) {
+      // 参考线在视口 NODE_LINE 高度；锚点用条目顶部（文字位置，不含底部大 padding）
+      const sy = pageScrollY()
+      const refLine = sy + window.innerHeight * NODE_LINE
+      const tops = els.map((el: any) => el.getBoundingClientRect().top + sy)
+      if (refLine <= tops[0]) {
+        // 顶部 → sysu 的渐入段：scrollY=0 时 s=-1（第 0 帧），sysu 到达参考线时 s=0
+        const heroScroll = Math.max(1, tops[0] - window.innerHeight * NODE_LINE)
+        sTarget = -1 + dwell(THREE.MathUtils.clamp(sy / heroScroll, 0, 1))
+      } else if (refLine >= tops[M - 1]) {
+        sTarget = M - 1
+      } else {
+        for (let i = 0; i < M - 1; i++) {
+          if (refLine <= tops[i + 1]) {
+            const t = (refLine - tops[i]) / Math.max(1, tops[i + 1] - tops[i])
+            sTarget = i + dwell(t)
+            break
+          }
+        }
+      }
+    }
+    // 2) 帧驱动：先算"目标帧"（履历/作品统一，交界处两侧都是 RESUME_FRAMES → 连续），
+    //    再对最终帧做一次缓动——避免之前"平滑 s + 直读 rectTop"两路径不一致导致的瞬跳。
+    //    履历区 0–RESUME_FRAMES（节点 i→(i+1)·50）；作品区 = 入场（屏幕滑入）+ 首板块横移，直到末帧
+    let frameTarget = THREE.MathUtils.clamp((sTarget + 1) * FRAMES_PER_NODE, 0, RESUME_FRAMES)
+    let inWorks = false
+    if (!galleryEl.current) galleryEl.current = document.querySelector('.wk-gallery')
+    if (galleryEl.current) {
+      const ih = window.innerHeight
+      const rectTop = galleryEl.current.getBoundingClientRect().top
+      const range = Math.max(0, galleryEl.current.offsetHeight - ih)
+      if (rectTop < ih) {
+        inWorks = true
+        // 入场段结束帧（作品屏幕完全覆盖时）：履历末尾 + 入场帧数，钳到总帧
+        const entranceEnd = Math.min(RESUME_FRAMES + WORKS_ENTRANCE, totalFrames)
+        if (rectTop > 0) {
+          // 作品屏幕从底部(rectTop=ih)滑到完全覆盖(rectTop=0)：入场帧段
+          const pA = THREE.MathUtils.clamp(1 - rectTop / ih, 0, 1)
+          frameTarget = RESUME_FRAMES + (entranceEnd - RESUME_FRAMES) * pA
+        } else {
+          // 已钉住，首板块水平移入（前一整屏 100vw 横移）：入场结束 → 末帧，之后定格末帧
+          // 竖滚与横移 1:1（px）；横移 100vw = innerWidth px
+          const scrolled = THREE.MathUtils.clamp(-rectTop, 0, range)
+          const pB = THREE.MathUtils.clamp(scrolled / window.innerWidth, 0, 1)
+          frameTarget = entranceEnd + (totalFrames - entranceEnd) * pB
+        }
+      }
+    }
+    // 缓动程度随目标帧过渡：≤RESUME_FRAMES 正常平滑；入场段渐关；入场后 a=1（直接跟手、无 smooth）
+    const smoothOff = THREE.MathUtils.smoothstep(frameTarget, RESUME_FRAMES, RESUME_FRAMES + WORKS_ENTRANCE)
+    const aEff = THREE.MathUtils.lerp(a, 1, smoothOff)
+    frameSmooth.current += (frameTarget - frameSmooth.current) * aEff
+    const frame = frameSmooth.current
+    // 所有 clip 共享时间轴：time = frame/FPS，各自钳到自身时长
+    // （较短的 clip 播完后保持末帧，相机 clip CameraAction 走满 totalFrames）
+    if (actions.current.length) {
+      const t = frame / FPS
+      for (const { action: act, duration } of actions.current) {
+        act.time = Math.min(t, duration)
+      }
+      mixer.update(0)
+    }
+    if (frameRef) frameRef.current = frame
+
+    // 履历段用于对焦的连续索引：由平滑后的帧反推，确保对焦与镜头同步
+    const s = THREE.MathUtils.clamp(frame / FRAMES_PER_NODE - 1, -1, M - 1)
+
+    // 3) 自动对焦：作品区跟随 glb focus-works 空对象；履历区按 focus 锚点插值
+    //    （在 mixer.update 之后取世界坐标，保证与当前帧一致）
+    if (focusRef) {
+      if (inWorks && focusNode) {
+        focusNode.getWorldPosition(focusRef.current)
+      } else if (s < 0 && startPoint && points[0]) {
+        startPoint.getWorldPosition(posA.current)
+        points[0].getWorldPosition(posB.current)
+        focusRef.current.lerpVectors(posA.current, posB.current, THREE.MathUtils.clamp(s + 1, 0, 1))
+      } else {
+        const sc = THREE.MathUtils.clamp(s, 0, M - 1)
+        const iA = Math.floor(sc)
+        const iB = Math.min(iA + 1, M - 1)
+        const f = sc - iA
+        if (points[iA] && points[iB]) {
+          points[iA].getWorldPosition(posA.current)
+          points[iB].getWorldPosition(posB.current)
+          focusRef.current.lerpVectors(posA.current, posB.current, f)
+        }
+      }
+    }
+
+    // 3b) 景深：glb 带逐锚点参数（intro3d 导出）时，沿当前连续索引在相邻锚点间插值 bokeh/focusRange，
+    //     写入 refs 供 Post2 直接采用（忠实还原 intro3d）；无参数（老 glb）则写哨兵 -1 → Post2 走原全局帧混合。
+    if (dofBokehRef && dofRangeRef) {
+      if (!dof.has) {
+        dofBokehRef.current = -1
+      } else {
+        const sample = (arr: number[], sv: number, wv: number): number => {
+          if (inWorks) return wv
+          if (s < 0) return THREE.MathUtils.lerp(sv, arr[0] ?? sv, THREE.MathUtils.clamp(s + 1, 0, 1))
+          const sc = THREE.MathUtils.clamp(s, 0, M - 1)
+          const iA = Math.floor(sc)
+          const iB = Math.min(iA + 1, M - 1)
+          return THREE.MathUtils.lerp(arr[iA] ?? 0, arr[iB] ?? 0, sc - iA)
+        }
+        dofBokehRef.current = sample(dof.bokeh, dof.startBokeh, dof.worksBokeh)
+        // focusRange 按模型 group 缩放折算到世界单位（scene 被放大 scale 倍，清晰范围需同比放大才与 intro3d 观感一致）。
+        dofRangeRef.current = sample(dof.range, dof.startRange, dof.worksRange) * scale
+      }
+    }
+
+    // 2b) 拷贝 glb 相机世界变换到默认相机，并绕焦点做轨道式鼠标视差（焦点屏幕位置不变）
+    const camera: any = get().camera
+    if (glbCam && camera.isPerspectiveCamera) {
+      glbCam.updateWorldMatrix(true, false)
+      glbCam.matrixWorld.decompose(camPos.current, camQuat.current, camScl.current)
+      // 鼠标缓动：无限趋近目标值
+      const me = 1 - Math.pow(cam.parallaxEase, dt)
+      smouse.current.x += (mouse.current.x - smouse.current.x) * me
+      smouse.current.y += (mouse.current.y - smouse.current.y) * me
+      const ax = THREE.MathUtils.degToRad(cam.parallax)
+      paraEuler.current.set(-smouse.current.y * ax, -smouse.current.x * ax, 0)
+      paraQuat.current.setFromEuler(paraEuler.current)
+      // 绕焦点旋转相机位置 + 同步旋转朝向 → 焦点不动，仅四周产生视差
+      tmpVec.current
+        .copy(camPos.current)
+        .sub(focusRef.current)
+        .applyQuaternion(paraQuat.current)
+      // 移动端沿「焦点→相机」方向整体拉远：焦点屏幕位置不变，主体更小、留白更多
+      if (isMobile.current) tmpVec.current.multiplyScalar(cam.mobilePullback)
+      tmpVec.current.add(focusRef.current)
+      camera.position.copy(tmpVec.current)
+      camera.quaternion.multiplyQuaternions(paraQuat.current, camQuat.current)
+      // 移动端「时间轴阶段」把镜头整体左移，让主体从满宽文字后错开。
+      // 权重：从 Hero 渐入(s: -0.8→0.3)、进入作品区随 smoothOff 渐出 → 无跳变。
+      if (isMobile.current && cam.mobileTimelineShift !== 0) {
+        const tlWeight = THREE.MathUtils.smoothstep(s, -0.8, 0.3) * (1 - smoothOff)
+        if (tlWeight > 0) {
+          // translateX 沿局部 +X（屏幕右）；取负 → 相机左移
+          const dist = camera.position.distanceTo(focusRef.current)
+          camera.translateX(-dist * cam.mobileTimelineShift * tlWeight)
+        }
+      }
+      if (camera.fov !== glbCam.fov) {
+        camera.fov = glbCam.fov
+        camera.updateProjectionMatrix()
+      }
+    }
+
+    // 4) 眼睛跟随（用当前激活相机做屏幕投影）；移动端 / 触屏则跳过
+    if (!eye.enabled || eyes.length === 0 || isMobile.current) return
+    const sx = eye.invertX ? -1 : 1
+    const sy = eye.invertY ? -1 : 1
+
+    let ax = 0
+    let ay = 0
+    for (const e of eyes) {
+      e.obj.getWorldPosition(tmpVec.current).project(camera)
+      ax += tmpVec.current.x
+      ay += tmpVec.current.y
+    }
+    ax /= eyes.length
+    ay /= eyes.length
+
+    const mx = mouse.current.x - ax
+    const my = mouse.current.y - ay
+    const yawBase = sx * mx * THREE.MathUtils.degToRad(eye.maxYaw) * eye.gain
+    const pitch = sy * -my * THREE.MathUtils.degToRad(eye.maxPitch) * eye.gain
+
+    const dist = Math.hypot(mx, my)
+    const convWeight = THREE.MathUtils.clamp(1 - dist / eye.crossRadius, 0, 1)
+    const convRad = THREE.MathUtils.degToRad(eye.crossEye) * convWeight
+
+    for (const e of eyes) {
+      const yaw = yawBase - e.sx * convRad
+      tmpEuler.current.set(pitch, yaw, 0)
+      tmpQuat.current.setFromEuler(tmpEuler.current)
+      desiredQuat.current.copy(tmpQuat.current).multiply(e.base)
+      e.obj.quaternion.slerp(desiredQuat.current, eye.smooth)
+    }
+  })
+
+  return (
+    <group
+      position={[posX, posY, posZ]}
+      rotation={[0, (rotationY * Math.PI) / 180, 0]}
+      scale={scale}
+    >
+      <primitive object={model} />
+    </group>
+  )
+}
+
+// 后处理：DepthOfField → Bloom → SMAA。
+// DoF 焦点逐帧跟随 focusRef（自动对焦）；30–220 帧间收紧清晰范围、加大虚化。
+function Post2({
+  focusRef,
+  frameRef,
+  dofBokehRef,
+  dofRangeRef,
+}: {
+  focusRef: MutableRefObject<THREE.Vector3>
+  frameRef: MutableRefObject<number>
+  dofBokehRef: MutableRefObject<number>
+  dofRangeRef: MutableRefObject<number>
+}) {
+  const post = {
+    bloomIntensity: 0.6,
+    bloomThreshold: 0.82,
+    dof: true,
+    startBokeh: 7.4,
+    startRange: 2.0,
+    focusBokeh: 11.0,
+    focusRange: 0.15,
+    startBlendFrame: 48,
+    endBlendFrame: RESUME_FRAMES - 50, // 末节点附近回到"起始帧"景深档（原 250−50=200）
+  }
+
+  const dofRef = useRef<any>(null)
+  useFrame(() => {
+    const e = dofRef.current
+    if (!e) return
+    if (e.target && focusRef) e.target.copy(focusRef.current)
+    // 权重 w=1 用"开始帧档"，w=0 用"聚焦点档"。
+    // 开头(f→0)和末节点(f→RESUME_FRAMES)都取开始帧档；中间各节点取聚焦点档。
+    const f = frameRef ? frameRef.current : 0
+    const wStart = 1 - THREE.MathUtils.smoothstep(f, 0, post.startBlendFrame)
+    const wEnd = THREE.MathUtils.smoothstep(f, post.endBlendFrame, RESUME_FRAMES)
+    const w = Math.max(wStart, wEnd)
+    if (dofBokehRef && dofBokehRef.current >= 0) {
+      // glb 自带逐锚点景深参数（intro3d 导出）：直接采用，忠实还原 intro3d 的虚化强度/清晰范围（bokeh=0 即该点关景深）。
+      e.bokehScale = dofBokehRef.current
+      if (e.cocMaterial) e.cocMaterial.focusRange = Math.max(1e-4, dofRangeRef ? dofRangeRef.current : post.focusRange)
+    } else {
+      // 老 glb（无逐锚点参数）：沿用原全局帧混合档位。
+      e.bokehScale = THREE.MathUtils.lerp(post.focusBokeh, post.startBokeh, w)
+      if (e.cocMaterial) e.cocMaterial.focusRange = THREE.MathUtils.lerp(post.focusRange, post.startRange, w)
+    }
+  })
+
+  return (
+    <EffectComposer multisampling={0} stencilBuffer={false} depthBuffer>
+      {(post.dof ? (
+        <DepthOfField
+          ref={dofRef}
+          target={[0, 1.3, 0]}
+          worldFocusRange={post.focusRange}
+          bokehScale={post.focusBokeh}
+          height={480}
+        />
+      ) : null) as any}
+      <Bloom
+        mipmapBlur
+        intensity={post.bloomIntensity}
+        luminanceThreshold={post.bloomThreshold}
+        luminanceSmoothing={0.3}
+      />
+      <SMAA />
+    </EffectComposer>
+  )
+}
+
+// 场景根组件：展示 me.glb（相机由 glb 动画 + 滚动驱动）
+export default function Scene() {
+  const focusRef = useRef(new THREE.Vector3(0, 1.3, 0))
+  const frameRef = useRef(0)
+  // 逐锚点景深（intro3d 导出的 glb 携带）：Man2 每帧写、Post2 读。dofBokeh=-1 表示无参数 → Post2 走旧全局混合。
+  const dofBokehRef = useRef(-1)
+  const dofRangeRef = useRef(0.15)
+  return (
+    <>
+      <GradientBackground />
+
+      <Suspense fallback={null}>
+        <Lights />
+        <Man2 focusRef={focusRef} frameRef={frameRef} dofBokehRef={dofBokehRef} dofRangeRef={dofRangeRef} />
+      </Suspense>
+
+      <Post2 focusRef={focusRef} frameRef={frameRef} dofBokehRef={dofBokehRef} dofRangeRef={dofRangeRef} />
+    </>
+  )
+}

@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { Omnibar } from "@/components/layout/Omnibar";
 import { AskPanel } from "@/components/ask/AskPanel";
+import { usePageExit } from "@/lib/page-transition";
 
 const ASK_PANEL_OPEN_KEY = "ask-panel-open";
 
@@ -14,8 +15,20 @@ const NAV_LINKS = [
   { label: "Fun", href: "/fun" },
 ];
 
-export function Navbar() {
+// variant="overlay": for pages that sit on a bright/full-bleed background (e.g. the /fun 3D story).
+// Always-on dark glass bar + light text and a soft translucent active pill instead of the black one.
+export function Navbar({
+  extra,
+  variant = "default",
+}: { extra?: React.ReactNode; variant?: "default" | "overlay" } = {}) {
+  const overlay = variant === "overlay";
+  const focusRing = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80";
+  const itemIdle = overlay
+    ? "text-white/80 hover:text-white hover:bg-white/10"
+    : "text-ink-subtle hover:text-ink hover:bg-surface-1";
+  const itemActive = overlay ? "text-white bg-white/20" : "text-ink bg-surface-2";
   const pathname = usePathname();
+  const exitTo = usePageExit();
   const [scrolled, setScrolled] = useState(false);
   const [omniOpen, setOmniOpen] = useState(false);
   // Start closed on server and client alike (SSR can't read localStorage);
@@ -59,9 +72,11 @@ export function Navbar() {
       <header
         className={[
           "fixed top-0 inset-x-0 z-50 h-14 flex items-center transition-colors duration-300",
-          scrolled
-            ? "bg-canvas/90 backdrop-blur-md"
-            : "bg-transparent",
+          overlay
+            ? "bg-black/40 backdrop-blur-md border-b border-white/10"
+            : scrolled
+              ? "bg-canvas/90 backdrop-blur-md"
+              : "bg-transparent",
         ].join(" ")}
         style={{ right: "var(--ask-panel-offset-right, 0px)" }}
       >
@@ -69,7 +84,11 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="text-ink text-sm font-medium tracking-tight hover:text-ink-muted transition-colors"
+            className={[
+              "text-sm font-medium tracking-tight transition-colors rounded-sm",
+              overlay ? "text-white hover:text-white/80" : "text-ink hover:text-ink-muted",
+              focusRing,
+            ].join(" ")}
           >
             Lide Li
           </Link>
@@ -85,11 +104,17 @@ export function Navbar() {
                 <Link
                   key={href}
                   href={href}
+                  onClick={(e) => {
+                    // plain left-click on another page → soft fade-out first; modifier clicks open normally
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0 || pathname === href) return;
+                    e.preventDefault();
+                    exitTo(href);
+                  }}
+                  aria-current={active ? "page" : undefined}
                   className={[
                     "px-3 py-1.5 rounded-md text-sm transition-colors",
-                    active
-                      ? "text-ink bg-surface-2"
-                      : "text-ink-subtle hover:text-ink hover:bg-surface-1",
+                    active ? itemActive : itemIdle,
+                    focusRing,
                   ].join(" ")}
                 >
                   {label}
@@ -98,16 +123,20 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Search + Ask triggers */}
+          {/* Search + Ask triggers (+ optional page-specific controls) */}
           <div className="flex items-center gap-1">
+            {extra}
             <button
               onClick={() => setOmniOpen(true)}
               aria-label="Open search (⌘K)"
-              className="flex items-center gap-2 px-3 py-1.5 rounded-md text-ink-subtle hover:text-ink hover:bg-surface-1 transition-colors text-sm"
+              className={["flex items-center gap-2 px-3 py-1.5 rounded-md transition-colors text-sm", itemIdle, focusRing].join(" ")}
             >
               <Search size={14} />
               <span className="hidden sm:inline">Search</span>
-              <kbd className="hidden sm:inline ml-1 text-xs text-ink-tertiary font-mono bg-surface-2 border border-hairline rounded px-1.5 py-0.5">
+              <kbd className={[
+                "hidden sm:inline ml-1 text-xs font-mono rounded px-1.5 py-0.5 border",
+                overlay ? "text-white/80 bg-white/10 border-white/20" : "text-ink-tertiary bg-surface-2 border-hairline",
+              ].join(" ")}>
                 ⌘K
               </kbd>
             </button>
@@ -120,9 +149,8 @@ export function Navbar() {
               aria-expanded={askOpen}
               className={[
                 "flex items-center gap-2 px-3 py-1.5 rounded-md transition-colors text-sm",
-                askOpen
-                  ? "text-ink bg-surface-2"
-                  : "text-ink-subtle hover:text-ink hover:bg-surface-1",
+                askOpen ? itemActive : itemIdle,
+                focusRing,
               ].join(" ")}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent" aria-hidden="true">
