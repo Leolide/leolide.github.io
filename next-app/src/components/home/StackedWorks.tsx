@@ -152,20 +152,13 @@ function WorkRow({ work, index }: { work: Work; index: number }) {
   );
 }
 
-const PER_VIEW = 2;
 const VIEWS = ["cards", "list"] as const;
 type View = (typeof VIEWS)[number];
 
 export function StackedWorks() {
   const [view, setView] = useState<View>("cards");
-  const [start, setStart] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const maxStart = worksData.length - PER_VIEW;
-
-  const page = (dir: number) => {
-    setDirection(dir);
-    setStart((s) => Math.min(maxStart, Math.max(0, s + dir)));
-  };
+  const topRow = worksData.slice(0, 2);
+  const rest = worksData.slice(2);
 
   return (
     <section id="selected-works" className="py-20 px-6">
@@ -212,40 +205,23 @@ export function StackedWorks() {
           ))}
         </div>
 
-        {/* Desktop: two cards at a time, arrows to page through the rest */}
-        <div className="hidden sm:block">
-          <motion.div
-            key={start}
-            initial={{ opacity: 0, x: 32 * direction }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.45, ease: [0.25, 0, 0, 1] }}
-            className="grid grid-cols-2 gap-3 h-[480px] lg:h-[520px]"
-          >
-            {worksData.slice(start, start + PER_VIEW).map((work, i) => (
+        {/* Desktop: first two cards side by side, remaining cards stacked below at the same card width */}
+        <div className="hidden sm:block space-y-3">
+          <div className="grid grid-cols-2 gap-3 h-[480px] lg:h-[520px]">
+            {topRow.map((work, i) => (
               <WorkCard key={work.slug} work={work} index={i} />
             ))}
-          </motion.div>
-
-          <div className="mt-4 flex items-center justify-end gap-2">
-            <button
-              type="button"
-              onClick={() => page(-1)}
-              disabled={start === 0}
-              aria-label="Previous projects"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/60 transition hover:border-white/25 hover:text-white disabled:pointer-events-none disabled:opacity-30"
-            >
-              ←
-            </button>
-            <button
-              type="button"
-              onClick={() => page(1)}
-              disabled={start === maxStart}
-              aria-label="Next projects"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/60 transition hover:border-white/25 hover:text-white disabled:pointer-events-none disabled:opacity-30"
-            >
-              →
-            </button>
           </div>
+
+          {rest.length > 0 && (
+            <div className="grid grid-cols-2 gap-3">
+              {rest.map((work, i) => (
+                <div key={work.slug} className="h-[480px] lg:h-[520px]">
+                  <WorkCard work={work} index={i + topRow.length} />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
           </>
         )}
