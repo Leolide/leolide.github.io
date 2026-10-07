@@ -194,9 +194,23 @@ function goToNext(from: HTMLElement) {
     }
     return
   }
+  const y = pageScrollY()
   const stickyTop = parseFloat(getComputedStyle(pin).top) || 0
-  const entryTop = next.getBoundingClientRect().top + pageScrollY()
-  scrollPageTo(entryTop - stickyTop + (hold?.offsetHeight ?? 0) * 0.25)
+  const entryTop = next.getBoundingClientRect().top + y
+  // 下一张卡片刚钉住的位置，再往停留区里走一点（镜头已经停在那张贴纸上）
+  let target = entryTop - stickyTop + (hold?.offsetHeight ?? 0) * 0.25
+  // 但上一张卡片此时可能还没离开，露在导航栏下面 → 至少滚到它整张移出导航栏为止。
+  // sticky 卡片最低只能停在所属 tl-entry 的内容底边（entry 底边 - padding-bottom），据此算出它完全离场的滚动量。
+  const prev = entry as HTMLElement | null
+  if (prev) {
+    const nav = document.querySelector('header')?.getBoundingClientRect().bottom ?? 56
+    const contentBottom = prev.getBoundingClientRect().bottom + y - (parseFloat(getComputedStyle(prev).paddingBottom) || 0)
+    target = Math.max(target, contentBottom - nav + 8)
+  }
+  // 也别滚过头：下一张卡片开始往上走之前停下
+  const nextContentBottom = next.getBoundingClientRect().bottom + y - (parseFloat(getComputedStyle(next).paddingBottom) || 0)
+  const nextUnpin = nextContentBottom - stickyTop - pin.offsetHeight
+  scrollPageTo(Math.min(target, nextUnpin - 4))
 }
 
 function Entry({ entry, index, pinnedTitle, isLast }: { entry: ResumeEntry; index: number; pinnedTitle?: string; isLast?: boolean }) {
