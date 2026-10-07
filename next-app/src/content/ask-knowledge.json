@@ -5,7 +5,7 @@
       "id": "who-is-lide",
       "question": "Who is Lide?",
       "keywords": ["who", "about", "introduction", "intro", "designer", "summary", "overview", "tell"],
-      "answer": "Lide is a full-stack product designer based in London — someone who designs the product and then ships it in production code. The route here was unusual: urban design in China, an exchange at UC Berkeley, an M.Phil. at Cambridge, co-founding an AI startup in Santa Clara, Deloitte's innovation team, and now Foundry's agent tooling and observability at Palantir.",
+      "answer": "Lide is a technical product designer based in London — someone who designs the product and then ships it in production code. The route here was unusual: urban design in China, an exchange at UC Berkeley, an M.Phil. at Cambridge, co-founding an AI startup in Santa Clara, Deloitte's innovation team, and now Foundry's agent tooling and observability at Palantir.",
       "sources": [
         { "label": "Timeline", "href": "/#about", "external": false },
         { "label": "LinkedIn", "href": "https://www.linkedin.com/in/lideli/", "external": true }

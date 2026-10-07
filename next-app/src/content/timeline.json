@@ -6,8 +6,12 @@
     "period": "May 2025 – present",
     "location": "London, UK",
     "url": "https://www.palantir.com/uk/",
-    "logo": "/images/PLTR.D-618f91d3.png",
-    "type": "work"
+    "logo": "/images/logos/PLTR.D-618f91d3.png",
+    "type": "work",
+    "logoSize": [
+      17.7,
+      22.6
+    ]
   },
   {
     "id": "friends-of-figma",
@@ -16,9 +20,13 @@
     "period": "May 2026 – present",
     "location": "London, UK",
     "url": "https://friends.figma.com/london/",
-    "logo": null,
+    "logo": "/images/logos/figma-mark-white.svg",
     "logoIcon": "figma",
-    "type": "community"
+    "type": "community",
+    "logoSize": [
+      14.5,
+      21.7
+    ]
   },
   {
     "id": "fouxy-squad",
@@ -27,8 +35,12 @@
     "period": "Feb 2025 – present",
     "location": "London, UK",
     "url": "https://www.fouxysquad.com/",
-    "logo": "/images/fouxy-squad-logo.svg",
-    "type": "community"
+    "logo": "/images/logos/fouxy-squad-logo.svg",
+    "type": "community",
+    "logoSize": [
+      18.5,
+      21.5
+    ]
   },
   {
     "id": "deloitte",
@@ -37,8 +49,12 @@
     "period": "Sep 2023 – May 2025",
     "location": "London, UK",
     "url": "https://www.deloitte.com/uk/en/what-we-do/capabilities/content/innovation/home.html",
-    "logo": "/images/BrandLogo.org-Deloitte-Logo-White-2016.svg",
-    "type": "work"
+    "logo": "/images/logos/BrandLogo.org-Deloitte-Logo-White-2016.svg",
+    "type": "work",
+    "logoSize": [
+      19.6,
+      17.3
+    ]
   },
   {
     "id": "debrief-ai",
@@ -47,8 +63,12 @@
     "period": "Sep 2022 – Aug 2023",
     "location": "Santa Clara, USA",
     "url": null,
-    "logo": "/images/stealth-startup-logo.svg",
-    "type": "work"
+    "logo": "/images/logos/stealth-startup-logo.svg",
+    "type": "work",
+    "logoSize": [
+      22.2,
+      18.0
+    ]
   },
   {
     "id": "cambridge",
@@ -57,8 +77,12 @@
     "period": "Oct 2020 – Sep 2022",
     "location": null,
     "url": "https://www.cam.ac.uk/",
-    "logo": "/images/ucm_logo_white_on_black.png",
-    "type": "education"
+    "logo": "/images/logos/ucm_logo_white_on_black.png",
+    "type": "education",
+    "logoSize": [
+      18.6,
+      21.5
+    ]
   },
   {
     "id": "scut",
@@ -67,8 +91,12 @@
     "period": "Sep 2015 – Jun 2020",
     "location": null,
     "url": "https://www.scut.edu.cn/en/",
-    "logo": "/images/logo_1.png",
-    "type": "education"
+    "logo": "/images/logos/logo_1.png",
+    "type": "education",
+    "logoSize": [
+      21.2,
+      21.2
+    ]
   },
   {
     "id": "berkeley",
@@ -77,8 +105,12 @@
     "period": "Jan 2019 – Jun 2019",
     "location": null,
     "url": "https://www.berkeley.edu/",
-    "logo": "/images/pngaaa.com-3143395.png",
-    "type": "education"
+    "logo": "/images/logos/pngaaa.com-3143395.png",
+    "type": "education",
+    "logoSize": [
+      22.5,
+      17.8
+    ]
   },
   {
     "id": "ux-awards",
@@ -87,7 +119,11 @@
     "period": "2025",
     "location": null,
     "url": "https://ux-design-awards.com/winners/2025-2-haen-ai-agent-for-city-scale-disaster-management",
-    "logo": "/images/3143395-middle.svg",
-    "type": "award"
+    "logo": "/images/logos/3143395-middle.svg",
+    "type": "award",
+    "logoSize": [
+      21.0,
+      21.4
+    ]
   }
 ]
