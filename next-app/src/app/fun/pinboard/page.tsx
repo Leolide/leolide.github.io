@@ -201,10 +201,10 @@ export default function FunPage() {
                 href={card.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex gap-4 p-4 rounded-2xl border border-hairline bg-surface-1 hover:bg-surface-2 transition-colors"
+                className="flex gap-4 p-4 rounded-xl border border-hairline bg-surface-1 hover:bg-surface-2 transition-colors"
               >
                 <div
-                  className="shrink-0 w-16 h-16 rounded-xl overflow-hidden bg-surface-2"
+                  className="shrink-0 w-16 h-16 rounded-md overflow-hidden bg-surface-2"
                   style={{ backgroundImage: `url('${card.img}')`, backgroundSize: "cover", backgroundPosition: "center" }}
                 />
                 <div className="min-w-0">

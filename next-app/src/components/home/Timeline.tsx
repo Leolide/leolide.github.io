@@ -22,7 +22,7 @@ const listItem: Variants = {
 /* ── Timeline row ───────────────────────────────────────── */
 function TimelineItem({ entry }: { entry: Entry }) {
   const inner = (
-    <div className="group flex gap-4 py-4 px-3 -mx-3 rounded-lg hover:bg-surface-1 transition-colors duration-150">
+    <div className="group flex gap-4 py-4 px-3 -mx-3 rounded-xl hover:bg-surface-1 transition-colors duration-150">
       <div className="shrink-0 w-9 h-9 rounded-lg bg-surface-2 border border-hairline flex items-center justify-center overflow-hidden">
         {entry.logo ? (
           <img

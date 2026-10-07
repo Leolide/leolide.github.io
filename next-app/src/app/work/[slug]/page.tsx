@@ -74,7 +74,7 @@ export default async function WorkDetailPage({
 
           {/* Hero mock card */}
           <div
-            className="relative w-full rounded-2xl overflow-hidden mb-10"
+            className="relative w-full rounded-xl overflow-hidden mb-10"
             style={{
               height: "clamp(280px, 40vw, 500px)",
               background: `radial-gradient(ellipse at 50% -10%, rgba(${work.accent},0.10) 0%, transparent 60%), linear-gradient(180deg, #101012 0%, #060607 100%)`,
