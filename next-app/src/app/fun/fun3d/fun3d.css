@@ -457,10 +457,10 @@ html:has(.fun3d-root) {
   justify-content: center;
   width: 36px;
   height: 36px;
-  background: rgba(255, 255, 255, 0.12);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  /* 不再单独加 backdrop-filter：卡片本身已经模糊过背景。嵌套的模糊在入场淡入时只能"看到"空白
+     （显得偏亮），动画结束后才改成模糊卡片（突然变暗）——手机上那下闪就是它。纯半透明底色就够了。 */
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   overflow: hidden;
 }
