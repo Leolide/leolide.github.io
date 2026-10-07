@@ -8,7 +8,7 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main data-page-content>
         <Hero />
         <StackedWorks />
         <Timeline />

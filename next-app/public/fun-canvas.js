@@ -19,7 +19,7 @@
      things I've built (N) · community (W) · doodles & manga (S) · food & the outdoors (E) */
   /* Curated layout — exported from the canvas by Lide (?edit=1 → Export). */
   var DEFAULT_POSITIONS = {
-    'canvas-hero':    { left: 328.538,  top: -173.868, rot: -0.5 },
+    'canvas-hero':    { left: 328.538,  top: -220, rot: -0.5 },
 
     /* — things I've built (north) — */
     'canvas-card-1':  { left: 5.49023,  top: -673.007, rot: 1.8  },
@@ -51,7 +51,7 @@
     /* — handwritten notes: hidden until the visitor pans near them — */
     'canvas-note-1':  { left: 540.206,  top: -390.882, rot: 0.8,  text: 'I like studying cities\n& complex systems' },
     'canvas-note-2':  { left: 14.3253,  top: -723.366, rot: 1.0912047486640095, text: 'I have built architecture in the real world!' },
-    'canvas-note-3':  { left: 353.333,  top: 178.889,  rot: 1.2,  text: 'drag things and pan around, I left notes everywhere' },
+    'canvas-note-3':  { left: 353.333,  top: 80,  rot: 1.2,  text: 'drag things and pan around, I left notes everywhere' },
     'canvas-note-4':  { left: -446.081, top: 173.848,  rot: 1.7830832955024705, text: 'Fun fact: Hablo un poco Español!' },
     'canvas-note-5':  { left: -1056.89, top: 233.349,  rot: -0.36751063430080766, text: 'I happened to start a designer\ncommunity in London' },
     'canvas-note-6':  { left: 1955.96,  top: -62.8675, rot: 1.5064718886182635, text: 'Cooking is meditating for me' },
@@ -68,15 +68,21 @@
     { id: 'cluster-label-live',   text: 'Food & The Outdoors', left: 1025.88,  top: -165.296, rot: 0.8  }
   ];
 
-  /* Camera tour — the Wander button / arrow keys cycle through these framings.
-     Index 0 is home (the hero). */
+  /* Camera tour — the "Next stop" button / arrow keys cycle through these framings.
+     Index 0 is home (the hero). `name` is shown in the dock as "Name · n/5". */
   var TOUR = [
-    { cx: 580,  cy: -30,  scale: 0.9  },   /* hero */
-    { cx: 600,  cy: -510, scale: 0.85 },   /* things I've built */
-    { cx: -750, cy: 40,   scale: 0.85 },   /* community */
-    { cx: 440,  cy: 660,  scale: 0.85 },   /* doodles & manga */
-    { cx: 1690, cy: 130,  scale: 0.8  }    /* food & the outdoors */
+    { cx: 580,  cy: -10,  scale: 0.9,  name: 'Start' },
+    { cx: 600,  cy: -510, scale: 0.85, name: "Things I've built" },
+    { cx: -750, cy: 40,   scale: 0.85, name: 'Community' },
+    { cx: 440,  cy: 660,  scale: 0.85, name: 'Doodles & manga' },
+    { cx: 1690, cy: 130,  scale: 0.8,  name: 'Food & outdoors' }
   ];
+
+  /* Dock progress readout + button label for the tour */
+  function updateTourStatus() {
+    var status = document.getElementById('fun-tour-status');
+    if (status) status.textContent = TOUR[tourIndex].name + ' \u00b7 ' + (tourIndex + 1) + '/' + TOUR.length;
+  }
   var tourIndex = 0;
 
   var viewport, canvas;
@@ -1088,11 +1094,13 @@
 
   function focusOnHero() {
     tourIndex = 0;
+    updateTourStatus();
     flyTo(TOUR[0], 700);
   }
 
   function wander(direction) {
     tourIndex = (tourIndex + (direction || 1) + TOUR.length) % TOUR.length;
+    updateTourStatus();
     flyTo(TOUR[tourIndex], 950);
   }
 
@@ -1162,6 +1170,7 @@
     applyCanvasTransform(false);
     setTimeout(function () {
       tourIndex = 0;
+      updateTourStatus();
       flyTo(TOUR[0], 1300);
     }, 650);
   }
