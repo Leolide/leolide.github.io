@@ -1712,8 +1712,15 @@ html:has(.fun3d-root) {
    第一个故事的 .tl-pin 里带一份标题（绝对定位在卡片上方 8vh，= 原来标题与时间轴的间距），
    所以停留期间标题和卡片一起不动，离开时一起离开。原 h2 在桌面上 visibility:hidden 只占位
    （布局、屏幕阅读器都不变）。手机上卡片贴底，标题紧贴卡片上方，同样一起钉住。 */
+/* 页面上已经有首屏的 "Hey, come see Lide outside of work"，这里不再重复显示标题；
+   h2 只留给屏幕阅读器（视觉隐藏、不占位置） */
 .fun3d-root .resume-title {
-  visibility: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 .fun3d-root .tl-pin-title {
   position: absolute;

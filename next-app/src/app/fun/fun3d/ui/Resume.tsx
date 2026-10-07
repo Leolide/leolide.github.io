@@ -274,7 +274,7 @@ export default function Resume() {
       </motion.h2>
       <div className="timeline">
         {data.entries.map((e, i) => (
-          <Entry key={i} entry={e} index={i} pinnedTitle={i === 0 ? data.title : undefined} />
+          <Entry key={i} entry={e} index={i} />
         ))}
       </div>
     </section>
