@@ -103,6 +103,12 @@
   background-image: var(--inner-gradient);
   background-color: rgba(0, 0, 0, 0.9);
   transform: none;
+  /* iOS Safari ignores overflow:hidden + border-radius when children sit on their own GPU layers
+     (translateZ / will-change on the avatar), so the photo's square corners leaked out.
+     clip-path and the mask force a real rounded clip there. Clipped here, not on .pc-card, so the card keeps its drop shadow. */
+  clip-path: inset(0 round var(--card-radius));
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  isolation: isolate;
 }
 
 .pc-shine {
