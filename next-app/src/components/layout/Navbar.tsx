@@ -35,6 +35,7 @@ export function Navbar({
   // the saved open state is restored after mount to avoid hydration mismatch.
   const [askOpen, setAskOpen] = useState(false);
   const [restoredOpen, setRestoredOpen] = useState(false);
+  const [pendingQuestion, setPendingQuestion] = useState<string | null>(null);
 
   useEffect(() => {
     if (window.localStorage.getItem(ASK_PANEL_OPEN_KEY) === "true") {
@@ -163,7 +164,16 @@ export function Navbar({
         </div>
       </header>
 
-      <Omnibar open={omniOpen} onOpenChange={setOmniOpen} />
+      <Omnibar
+        open={omniOpen}
+        onOpenChange={setOmniOpen}
+        onAsk={(q) => {
+          setOmniOpen(false);
+          setRestoredOpen(false);
+          setPendingQuestion(q);
+          setAskOpen(true);
+        }}
+      />
       <AskPanel
         open={askOpen}
         onClose={() => {
@@ -171,6 +181,8 @@ export function Navbar({
           setAskOpen(false);
         }}
         skipInitialAnimation={restoredOpen}
+        pendingQuestion={pendingQuestion}
+        onPendingHandled={() => setPendingQuestion(null)}
       />
     </>
   );

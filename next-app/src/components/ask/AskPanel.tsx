@@ -18,6 +18,9 @@ interface AskPanelProps {
   open: boolean;
   onClose: () => void;
   skipInitialAnimation?: boolean;
+  /** A question typed into ⌘K search; asked as soon as the panel is open, then cleared */
+  pendingQuestion?: string | null;
+  onPendingHandled?: () => void;
 }
 
 interface Answer {
@@ -43,7 +46,7 @@ const CONTACT_SOURCES: AskSource[] = [
   { label: "Email", href: "mailto:lideli.leo@gmail.com", external: true },
 ];
 
-export function AskPanel({ open, onClose, skipInitialAnimation = false }: AskPanelProps) {
+export function AskPanel({ open, onClose, skipInitialAnimation = false, pendingQuestion = null, onPendingHandled }: AskPanelProps) {
   const reduceMotion = useReducedMotion();
   const [draft, setDraft] = useState("");
   const [messages, setMessages] = useState<Answer[]>(() => {
@@ -367,6 +370,14 @@ export function AskPanel({ open, onClose, skipInitialAnimation = false }: AskPan
     }
   };
 
+  // Hand-off from ⌘K search: ask the typed question once the panel is open
+  useEffect(() => {
+    if (!open || !pendingQuestion) return;
+    ask(pendingQuestion, null);
+    onPendingHandled?.();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, pendingQuestion]);
+
   return (
     <AnimatePresence>
       {open && (
@@ -383,12 +394,12 @@ export function AskPanel({ open, onClose, skipInitialAnimation = false }: AskPan
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
             transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
             // Glass panel — same treatment as the navbar and the ⌘K palette
-            className={`fixed z-50 origin-top-right bg-[rgba(18,18,20,0.55)] backdrop-blur-2xl backdrop-saturate-150 shadow-[0_24px_80px_rgba(0,0,0,0.55)] flex flex-col gap-3 ${
+            className={`fixed z-50 origin-top-right bg-[rgba(16,16,18,0.72)] backdrop-blur-2xl backdrop-saturate-150 shadow-[0_24px_80px_rgba(0,0,0,0.55)] flex flex-col gap-3 ${
               fullscreen
                 ? "inset-x-0 top-0 h-dvh rounded-none pb-[env(safe-area-inset-bottom)]"
                 : docked
                   ? "top-0 right-0 bottom-0 h-screen rounded-none border-l border-white/10"
-                  : "top-16 right-4 sm:right-6 w-[calc(100vw-2rem)] max-w-[400px] rounded-xl ring-1 ring-white/15"
+                  : "top-16 right-4 sm:right-6 w-[calc(100vw-2rem)] max-w-[440px] rounded-2xl ring-1 ring-white/15"
             }`}
             style={docked ? { width: `${pinnedWidth}px` } : undefined}
             role="dialog"
@@ -442,7 +453,7 @@ export function AskPanel({ open, onClose, skipInitialAnimation = false }: AskPan
             )}
             <div
               ref={scrollRef}
-              className={`overflow-y-auto overscroll-contain px-5 pb-4 ${docked || fullscreen ? "flex-1 min-h-0" : "max-h-[55vh]"}`}
+              className={`overflow-y-auto overscroll-contain px-5 pb-4 ${docked || fullscreen ? "flex-1 min-h-0" : "max-h-[55vh]"} ${messages.length === 0 && !docked && !fullscreen ? "hidden" : ""}`}
             >
               {messages.length === 0 ? null : (
                 <div className="space-y-5 pb-4">
@@ -511,12 +522,12 @@ export function AskPanel({ open, onClose, skipInitialAnimation = false }: AskPan
                 transition={{ duration: 0.25, delay: 0.1 }}
                 className="px-4"
               >
-                <div className="flex gap-1.5 overflow-x-auto pb-0.5">
+                <div className="flex flex-wrap gap-2 pb-0.5">
                   {lastMessage.followUps.map((f) => (
                     <button
                       key={f.id}
                       onClick={() => ask(f.question, f.id)}
-                      className="whitespace-nowrap rounded-full border border-hairline px-3 py-1 text-xs text-ink-subtle transition-colors hover:border-hairline-strong hover:text-ink"
+                      className="whitespace-nowrap rounded-full border border-white/10 bg-white/[0.06] px-3.5 py-1.5 text-[13px] text-white/75 transition-[color,background-color,border-color,transform] duration-150 ease-out hover:border-white/25 hover:bg-white/10 hover:text-ink active:scale-[0.97]"
                     >
                       {f.question}
                     </button>
@@ -528,12 +539,12 @@ export function AskPanel({ open, onClose, skipInitialAnimation = false }: AskPan
             {/* suggested chips */}
             {messages.length === 0 && (
               <div className="px-4">
-                <div className="flex gap-1.5 overflow-x-auto pb-0.5">
+                <div className="flex flex-wrap gap-2 pb-0.5">
                   {SUGGESTED.map((s) => (
                     <button
                       key={s.id}
                       onClick={() => ask(s.question, s.id)}
-                      className="whitespace-nowrap rounded-full border border-hairline px-3 py-1 text-xs text-ink-subtle transition-colors hover:border-hairline-strong hover:text-ink"
+                      className="whitespace-nowrap rounded-full border border-white/10 bg-white/[0.06] px-3.5 py-1.5 text-[13px] text-white/75 transition-[color,background-color,border-color,transform] duration-150 ease-out hover:border-white/25 hover:bg-white/10 hover:text-ink active:scale-[0.97]"
                     >
                       {s.question}
                     </button>
