@@ -255,7 +255,7 @@ function Entry({ entry, index, pinnedTitle, isLast }: { entry: ResumeEntry; inde
         <motion.div className="tl-head" variants={itemV}>
           {entry.logo && (
             <span className="tl-logo-chip">
-              <img src={entry.logo.src} alt={entry.logo.alt} loading="lazy" />
+              <img src={entry.logo.src} alt={entry.logo.alt} decoding="async" />
             </span>
           )}
           <h3 className="tl-place">{entry.place}</h3>
