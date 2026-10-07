@@ -158,7 +158,7 @@ export default function FunPage() {
         <span id="fun-tour-status" className="dock-status" aria-live="polite">Start · 1/5</span>
         <button id="fun-wander-btn" className="dock-item dock-item-primary" title="Fly to the next area (→ key, ← to go back)">
           <span className="dock-primary-label">Next stop</span>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11M10.5 5l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </button>
         {/* Author-only tools — visible with ?edit=1 */}
         <div className="dock-divider" id="fun-edit-divider" />
