@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { EASE_OUT } from "@/lib/motion";
 import timelineData from "@/content/timeline.json";
 import { Expertises } from "@/components/home/Expertises";
@@ -8,8 +8,19 @@ import ProfileCard from "@/components/home/ProfileCard";
 
 type Entry = (typeof timelineData)[number];
 
+/* One shared stagger for Experience + Education + Awards: the parent reveals once, and every
+   heading and row follows in a single sequence instead of each list restarting its own count. */
+const listParent: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.05 } },
+};
+const listItem: Variants = {
+  hidden: { opacity: 0, x: -12 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.4, ease: EASE_OUT } },
+};
+
 /* ── Timeline row ───────────────────────────────────────── */
-function TimelineItem({ entry, index }: { entry: Entry; index: number }) {
+function TimelineItem({ entry }: { entry: Entry }) {
   const inner = (
     <div className="group flex gap-4 py-4 px-3 -mx-3 rounded-lg hover:bg-surface-1 transition-colors duration-150">
       <div className="shrink-0 w-9 h-9 rounded-lg bg-surface-2 border border-hairline flex items-center justify-center overflow-hidden">
@@ -52,12 +63,7 @@ function TimelineItem({ entry, index }: { entry: Entry; index: number }) {
   );
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -12 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.4, delay: index * 0.06, ease: EASE_OUT }}
-    >
+    <motion.div variants={listItem}>
       {entry.url ? (
         <a href={entry.url} target="_blank" rel="noopener noreferrer" className="block cursor-pointer">
           {inner}
@@ -151,35 +157,30 @@ export function Timeline() {
 
             <Expertises />
 
-            {/* Experience */}
-            <p className="text-ink-subtle text-xs font-medium tracking-eyebrow uppercase mb-4">
-              Experience
-            </p>
-            <div className="mb-10">
-              {timelineData.filter(e => e.type === "work" || e.type === "community").map((entry, i) => (
-                <TimelineItem key={entry.id} entry={entry} index={i} />
+            <motion.div
+              variants={listParent}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-40px" }}
+            >
+              {([
+                ["Experience", (e: Entry) => e.type === "work" || e.type === "community"],
+                ["Education", (e: Entry) => e.type === "education"],
+                ["Awards", (e: Entry) => e.type === "award"],
+              ] as const).map(([label, match], i, all) => (
+                <div key={label} className={i < all.length - 1 ? "mb-10" : undefined}>
+                  <motion.p
+                    variants={listItem}
+                    className="text-ink-subtle text-xs font-medium tracking-eyebrow uppercase mb-4"
+                  >
+                    {label}
+                  </motion.p>
+                  {timelineData.filter(match).map((entry) => (
+                    <TimelineItem key={entry.id} entry={entry} />
+                  ))}
+                </div>
               ))}
-            </div>
-
-            {/* Education */}
-            <p className="text-ink-subtle text-xs font-medium tracking-eyebrow uppercase mb-4">
-              Education
-            </p>
-            <div className="mb-10">
-              {timelineData.filter(e => e.type === "education").map((entry, i) => (
-                <TimelineItem key={entry.id} entry={entry} index={i} />
-              ))}
-            </div>
-
-            {/* Awards */}
-            <p className="text-ink-subtle text-xs font-medium tracking-eyebrow uppercase mb-4">
-              Awards
-            </p>
-            <div>
-              {timelineData.filter(e => e.type === "award").map((entry, i) => (
-                <TimelineItem key={entry.id} entry={entry} index={i} />
-              ))}
-            </div>
+            </motion.div>
           </div>
 
         </div>
