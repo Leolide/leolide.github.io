@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { EASE_OUT } from "@/lib/motion";
 
 const EXPERTISES = [
   {
@@ -33,13 +31,9 @@ export function Expertises() {
         Expertises
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {EXPERTISES.map((item, i) => (
-          <motion.div
+        {EXPERTISES.map((item) => (
+          <div
             key={item.num}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.4, delay: i * 0.06, ease: EASE_OUT }}
             className="rounded-xl border border-hairline bg-surface-1 p-4 flex flex-col gap-2"
           >
             <span className="text-ink-tertiary text-xs font-mono">{item.num}</span>
@@ -49,7 +43,7 @@ export function Expertises() {
               </h3>
               <p className="text-ink-subtle text-xs leading-relaxed">{item.desc}</p>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>

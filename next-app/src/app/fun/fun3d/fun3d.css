@@ -1780,3 +1780,48 @@ html:has(.fun3d-root) {
     display: none;
   }
 }
+
+/* ---------- 手机："Next" 按钮，点一下跳到下一个故事 ----------
+   极简：右下角一个只有箭头的小圆圈，细白边、无底色；视觉 28px，触控区用 ::after 扩到 44px。
+   桌面不显示（滚轮已经够精确）。 */
+.fun3d-root .tl-next-row {
+  display: none;
+}
+@media (max-width: 640px) {
+  .fun3d-root .tl-next-row {
+    display: flex;
+    justify-content: flex-end;
+    margin: 4px -8px -8px 0;
+  }
+  .fun3d-root .tl-next {
+    position: relative;
+    pointer-events: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: transparent;
+    color: rgba(244, 241, 234, 0.7);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), color 160ms ease, border-color 160ms ease;
+  }
+  .fun3d-root .tl-next::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+  }
+  .fun3d-root .tl-next:active {
+    transform: scale(0.92);
+    color: rgba(244, 241, 234, 1);
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+  .fun3d-root .tl-next:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: 2px;
+  }
+}

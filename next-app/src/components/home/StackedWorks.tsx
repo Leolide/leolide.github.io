@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { EASE_OUT } from "@/lib/motion";
 import Link from "next/link";
 import worksData from "@/content/works-featured.json";
 
@@ -70,13 +68,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
   );
 
   return (
-    <motion.div
-      className="w-full h-[580px] sm:h-full"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: EASE_OUT }}
-    >
+    <div className="w-full h-[580px] sm:h-full">
       {work.external ? (
         <a href={work.url} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
           {inner}
@@ -86,7 +78,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
           {inner}
         </Link>
       )}
-    </motion.div>
+    </div>
   );
 }
 
@@ -135,11 +127,7 @@ function WorkRow({ work, index }: { work: Work; index: number }) {
   );
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, delay: index * 0.06, ease: EASE_OUT }}
-    >
+    <div>
       {work.external ? (
         <a href={work.url} target="_blank" rel="noopener noreferrer" className="block">
           {inner}
@@ -149,7 +137,7 @@ function WorkRow({ work, index }: { work: Work; index: number }) {
           {inner}
         </Link>
       )}
-    </motion.div>
+    </div>
   );
 }
 

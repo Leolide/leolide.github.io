@@ -14,3 +14,15 @@ export function setPageScrollY(y: number) {
     window.scrollTo({ top: y, behavior: 'instant' as ScrollBehavior })
   }
 }
+
+/** 平滑滚到某个位置（给"下一个"按钮用），同样自动选对滚动元素。 */
+export function scrollPageTo(y: number) {
+  const body = document.body
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const behavior: ScrollBehavior = reduce ? ('instant' as ScrollBehavior) : 'smooth'
+  if (body.scrollHeight > body.clientHeight && getComputedStyle(body).overflowY !== 'visible') {
+    body.scrollTo({ top: y, behavior })
+  } else {
+    window.scrollTo({ top: y, behavior })
+  }
+}

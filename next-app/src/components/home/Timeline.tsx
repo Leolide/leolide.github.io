@@ -1,23 +1,11 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
-import { EASE_OUT } from "@/lib/motion";
 import timelineData from "@/content/timeline.json";
 import { Expertises } from "@/components/home/Expertises";
 import ProfileCard from "@/components/home/ProfileCard";
 
 type Entry = (typeof timelineData)[number];
 
-/* One shared stagger for Experience + Education + Awards: the parent reveals once, and every
-   heading and row follows in a single sequence instead of each list restarting its own count. */
-const listParent: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.05 } },
-};
-const listItem: Variants = {
-  hidden: { opacity: 0, x: -12 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.4, ease: EASE_OUT } },
-};
 
 /* ── Timeline row ───────────────────────────────────────── */
 function TimelineItem({ entry }: { entry: Entry }) {
@@ -63,7 +51,7 @@ function TimelineItem({ entry }: { entry: Entry }) {
   );
 
   return (
-    <motion.div variants={listItem}>
+    <div>
       {entry.url ? (
         <a href={entry.url} target="_blank" rel="noopener noreferrer" className="block cursor-pointer">
           {inner}
@@ -71,7 +59,7 @@ function TimelineItem({ entry }: { entry: Entry }) {
       ) : (
         <div className="cursor-default">{inner}</div>
       )}
-    </motion.div>
+    </div>
   );
 }
 
@@ -84,12 +72,8 @@ export function Timeline() {
 
           {/* Left — sticky profile card */}
           <div className="md:sticky md:top-24">
-            <motion.div
+            <div
               className="mx-auto w-fit max-w-full"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: EASE_OUT }}
             >
               <ProfileCard
                 avatarUrl="/images/Facetune_12-03-2025-15-19-43.png"
@@ -116,7 +100,7 @@ export function Timeline() {
               >
                 Connect on LinkedIn
               </a>
-            </motion.div>
+            </div>
           </div>
 
           {/* Right — heading + expertises + timeline */}
@@ -157,30 +141,24 @@ export function Timeline() {
 
             <Expertises />
 
-            <motion.div
-              variants={listParent}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-40px" }}
-            >
+            <div>
               {([
                 ["Experience", (e: Entry) => e.type === "work" || e.type === "community"],
                 ["Education", (e: Entry) => e.type === "education"],
                 ["Awards", (e: Entry) => e.type === "award"],
               ] as const).map(([label, match], i, all) => (
                 <div key={label} className={i < all.length - 1 ? "mb-10" : undefined}>
-                  <motion.p
-                    variants={listItem}
+                  <p
                     className="text-ink-subtle text-xs font-medium tracking-eyebrow uppercase mb-4"
                   >
                     {label}
-                  </motion.p>
+                  </p>
                   {timelineData.filter(match).map((entry) => (
                     <TimelineItem key={entry.id} entry={entry} />
                   ))}
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
 
         </div>

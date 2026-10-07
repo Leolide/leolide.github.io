@@ -263,7 +263,9 @@ const ProfileCardComponent = ({
                 className="avatar"
                 src={avatarUrl}
                 alt={`${name} avatar`}
-                loading="lazy"
+                /* eager, not lazy: the card's rounded clip-path (iOS corner fix) hides the 0-height
+                   placeholder at the bottom edge, so Chrome's lazy loader never saw it and never loaded it */
+                loading="eager"
                 onError={e => { e.target.style.display = 'none'; }}
               />
               {showUserInfo && (
