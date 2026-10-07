@@ -19,7 +19,7 @@ export async function generateMetadata({
   const work = worksPro.find((w) => w.slug === slug);
   if (!work) return {};
   return {
-    title: `${work.biggerHeading} — Lide Li`,
+    title: `${work.biggerHeading} | Lide Li`,
     description: work.title,
   };
 }

@@ -448,21 +448,26 @@ html:has(.fun3d-root) {
 }
 
 /* HOTSAR / 坏打印机 logo：黑色线稿放在米色卡片上，保证可见且保留品牌原色 */
+/* 每个故事标题前的小 logo 方块：尺寸/圆角跟首页 Experience 列表一致，
+   但这里压在暖色 3D 场景上，实心黑块太重 → 用跟导航栏、卡片同一套的浅色玻璃 */
 .fun3d-root .tl-logo-chip {
   flex: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-  background: var(--ink);
-  border-radius: 9px;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .fun3d-root .tl-logo-chip img {
-  width: 100%;
-  height: 100%;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
 }
 
@@ -482,17 +487,10 @@ html:has(.fun3d-root) {
 
 .fun3d-root .tl-points li {
   position: relative;
-  padding-left: 1.1em;
+  /* no em-dash bullet: each story has a single line of body text, so it reads as plain prose */
   font-size: 14px;
   line-height: 1.6;
   color: rgba(244, 241, 234, 0.95);
-}
-
-.fun3d-root .tl-points li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--muted);
 }
 
 .fun3d-root .tl-link-row {
@@ -1498,8 +1496,13 @@ html:has(.fun3d-root) {
   /* 3) 时间轴文案可读性：每条履历文字落在一块圆角深色半透卡片（tl-body）上，
         与明亮杂乱的 3D 背景清晰分离；标题不在卡片内，单独加紧贴字缘的 1px 暗描边。 */
   .fun3d-root .tl-body {
-    background: rgba(10, 13, 20, 0.4);
-    border-radius: 16px;
+    /* 跟导航栏同一套玻璃质感：半透明黑 + 背景模糊 + 细白边。
+       模糊把后面的耳朵/头发纹理糊成色块，文字更清楚，同时还能透出场景的颜色 */
+    background: rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px; /* match the navbar pills and buttons (rounded-md-ish), not a bubble */
     padding: 20px 22px;
   }
   .fun3d-root .resume-title {
@@ -1576,7 +1579,7 @@ html:has(.fun3d-root) {
   }
 }
 
-/* ---------- Board CTA（故事收尾：跳转到 /fun/canvas 画布的按钮） ---------- */
+/* ---------- Board CTA（故事收尾：跳转到 /fun/pinboard 的按钮） ---------- */
 .fun3d-root .board-cta {
   min-height: 70vh;
   display: flex;
@@ -1673,4 +1676,75 @@ html:has(.fun3d-root) {
 
 .fun3d-root .hero-tagline {
   text-wrap: balance;
+}
+
+/* ---------- 滚动"阻尼"：每个故事停住一段 ----------
+   不用吸附（scroll-snap 会把页面拽来拽去）。做法是"拉长停留距离"：
+   圆点 + 卡片（.tl-pin）sticky 钉在镜头锁定线上，后面跟一段 .tl-hold 空白；
+   滚过这段空白期间，卡片不动、镜头也停在这张贴纸上（Scene 的 dwell 正好覆盖这段），
+   所以每个故事都要多滚一段才离开。锁定线：桌面 30vh，手机 40vh（= Scene 里的 NODE_LINE / mobileNodeLine）。 */
+.fun3d-root .tl-entry {
+  padding-left: 0; /* 左侧缩进挪到 .tl-pin 上，圆点跟着卡片一起钉住 */
+}
+
+.fun3d-root .tl-pin {
+  position: sticky;
+  top: 30vh;
+  padding-left: 34px;
+}
+
+.fun3d-root .tl-hold {
+  height: 55vh;
+}
+
+@media (max-width: 640px) {
+  .fun3d-root .tl-pin {
+    /* 手机：卡片钉在屏幕底部附近（底边留 24px），上面大半屏留给贴纸。
+       --pin-h 是这张卡片的实际高度（Resume.tsx 里量出来的）；max(34vh, …) 防止特别长的卡片顶到贴纸。 */
+    top: max(34vh, calc(100svh - var(--pin-h, 320px) - 24px));
+  }
+  .fun3d-root .tl-hold {
+    height: 45vh;
+  }
+}
+
+/* ---------- "Outside of Work" 标题：跟第一个故事一起停住 ----------
+   第一个故事的 .tl-pin 里带一份标题（绝对定位在卡片上方 8vh，= 原来标题与时间轴的间距），
+   所以停留期间标题和卡片一起不动，离开时一起离开。原 h2 在桌面上 visibility:hidden 只占位
+   （布局、屏幕阅读器都不变）。手机上卡片贴底，标题紧贴卡片上方，同样一起钉住。 */
+.fun3d-root .resume-title {
+  visibility: hidden;
+}
+.fun3d-root .tl-pin-title {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 8vh);
+  width: min(480px, 90cqi);
+  white-space: nowrap;
+  font-family: 'Mansalva', cursive;
+  font-weight: 400;
+  font-size: clamp(30px, 5.4cqi, 58px);
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  pointer-events: none;
+}
+
+/* 手机：卡片现在贴着屏幕底部，标题紧贴在卡片上方（16px），贴纸在更上面的 24% 处，不会被挡住 */
+@media (max-width: 640px) {
+  .fun3d-root .tl-pin-title {
+    bottom: calc(100% + 16px);
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.9), 0 1px 2px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* 手机：卡片压在明亮的皮肤上，左侧细线和圆点几乎看不见，只剩一截没意义的左缩进 →
+   手机上去掉时间线和圆点，卡片吃满宽度（每个故事本身就是一张独立卡片，不需要线串起来） */
+@media (max-width: 640px) {
+  .fun3d-root .timeline::before,
+  .fun3d-root .tl-dot {
+    display: none;
+  }
+  .fun3d-root .tl-pin {
+    padding-left: 0;
+  }
 }

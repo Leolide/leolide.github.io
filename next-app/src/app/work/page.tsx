@@ -4,7 +4,7 @@ import { WorkCard } from "@/components/work/WorkCard";
 import worksPro from "@/content/works-pro.json";
 
 export const metadata = {
-  title: "Work — Lide Li",
+  title: "Work | Lide Li",
   description: "Product design case studies across AI, SaaS, and enterprise tools.",
 };
 

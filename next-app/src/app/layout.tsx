@@ -4,12 +4,12 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { PageTransitionReset } from "@/lib/page-transition";
 
 export const metadata: Metadata = {
-  title: "Lide Li — Product Designer",
+  title: "Lide Li | Product Designer",
   description:
     "Lide is a Product Designer crafting experiences that blend Design, Data, and AI.",
   openGraph: {
     title: "Lide Li",
-    description: "Product Designer — 0→1 AI, SaaS, and developer tools.",
+    description: "Product Designer for 0→1 AI, SaaS, and developer tools.",
     url: "https://www.lide.studio",
     siteName: "Lide Li",
   },
