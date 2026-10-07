@@ -443,14 +443,7 @@ export function AskPanel({ open, onClose, skipInitialAnimation = false }: AskPan
               ref={scrollRef}
               className={`overflow-y-auto overscroll-contain px-5 pb-4 ${docked || fullscreen ? "flex-1 min-h-0" : "max-h-[55vh]"}`}
             >
-              {messages.length === 0 ? (
-                <div className="pb-2">
-                  <p className="mb-3 text-sm leading-relaxed text-ink-subtle">
-                    Anything about Lide&apos;s work, background, or how to get in
-                    touch. Pick a question or type your own.
-                  </p>
-                </div>
-              ) : (
+              {messages.length === 0 ? null : (
                 <div className="space-y-5 pb-4">
                   {messages.map((message) => (
                     <div key={message.id} className="space-y-3">
