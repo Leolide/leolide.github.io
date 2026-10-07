@@ -1,16 +1,6 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
-import { EASE_OUT } from "@/lib/motion";
-
-// One-time entrance on first load: headline → sub → buttons → socials fade up in turn.
-// Full transform strings (hardware-accelerated); reduced-motion users get just the fade (MotionProvider).
-const heroGroup = { hidden: {}, show: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } } };
-const heroItem = {
-  hidden: { opacity: 0, transform: "translateY(10px)" },
-  show: { opacity: 1, transform: "translateY(0px)", transition: { duration: 0.5, ease: EASE_OUT } },
-};
 
 const SplineViewer = dynamic(() => import("@/components/home/SplineViewer"), {
   ssr: false,
@@ -56,15 +46,15 @@ export function Hero() {
 
       {/* Content — outer wrapper passes through so Spline on the right stays interactive */}
       <div className="relative z-20 max-w-[1280px] mx-auto px-6 w-full py-24 pointer-events-none">
-        <motion.div className="max-w-[560px] pointer-events-auto" variants={heroGroup} initial="hidden" animate="show">
+        <div className="max-w-[560px] pointer-events-auto">
           {/* Headline — no redundant eyebrow or "Lide is a Product Designer" prefix */}
-          <motion.h1 variants={heroItem} className="text-[clamp(22px,2.3vw,32px)] font-semibold leading-[1.2] tracking-tight text-ink mb-5">
+          <h1 className="text-[clamp(22px,2.3vw,32px)] font-semibold leading-[1.2] tracking-tight text-ink mb-5">
             Crafting experiences that blend{" "}
             <span className="text-gradient-brand">Design, Data, and AI</span>
-          </motion.h1>
+          </h1>
 
           {/* Sub */}
-          <motion.p variants={heroItem} className="text-ink-muted text-base leading-relaxed mb-8">
+          <p className="text-ink-muted text-base leading-relaxed mb-8">
             Lide currently works for{" "}
             <a
               href="https://www.palantir.com/uk/"
@@ -74,10 +64,10 @@ export function Hero() {
             >
               Palantir
             </a>
-          </motion.p>
+          </p>
 
           {/* Primary CTA */}
-          <motion.div variants={heroItem} className="flex flex-wrap gap-3 items-center">
+          <div className="flex flex-wrap gap-3 items-center">
             <a
               href="#selected-works"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-surface-1 hover:bg-surface-2 text-ink text-sm font-medium border border-hairline transition-[color,background-color,border-color,transform] duration-150 ease-out active:scale-[0.97]"
@@ -90,10 +80,10 @@ export function Hero() {
             >
               About me
             </a>
-          </motion.div>
+          </div>
 
           {/* Social dock */}
-          <motion.div variants={heroItem} className="flex gap-3 mt-10">
+          <div className="flex gap-3 mt-10">
             <a
               href="https://www.linkedin.com/in/lideli/"
               target="_blank"
@@ -128,8 +118,8 @@ export function Hero() {
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
               </svg>
             </a>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
