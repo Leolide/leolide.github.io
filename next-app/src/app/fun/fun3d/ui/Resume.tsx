@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { ZooopLogo } from './ZooopLogo'
 import { SOCIAL_ICONS } from './SocialIcons'
 import { FOCUS_POINTS } from '../data/focusPoints'
+import { pageScrollY, scrollPageTo } from '../pageScroll'
 
 const SOCIAL_LINKS = [
   {
@@ -177,7 +178,28 @@ function Group({ group }: { group: ResumeGroup }) {
   )
 }
 
-function Entry({ entry, index, pinnedTitle }: { entry: ResumeEntry; index: number; pinnedTitle?: string }) {
+/* 手机上的"Next"：滚动不好控制，点一下直接跳到下一个故事。
+   落点 = 下一条的卡片刚好钉住（entry 顶部到达 sticky top）之后再往里一点，让镜头已经停在那张贴纸上。 */
+function goToNext(from: HTMLElement) {
+  const entry = from.closest('.tl-entry')
+  const next = entry?.nextElementSibling as HTMLElement | null
+  const pin = next?.querySelector<HTMLElement>('.tl-pin')
+  const hold = next?.querySelector<HTMLElement>('.tl-hold')
+  if (!next || !pin) {
+    // 最后一个故事：滑到底部的 "See my pinboard"，让它整块出现在屏幕里
+    const cta = document.querySelector<HTMLElement>('.board-cta')
+    if (cta) {
+      const r = cta.getBoundingClientRect()
+      scrollPageTo(r.bottom + pageScrollY() - window.innerHeight)
+    }
+    return
+  }
+  const stickyTop = parseFloat(getComputedStyle(pin).top) || 0
+  const entryTop = next.getBoundingClientRect().top + pageScrollY()
+  scrollPageTo(entryTop - stickyTop + (hold?.offsetHeight ?? 0) * 0.25)
+}
+
+function Entry({ entry, index, pinnedTitle, isLast }: { entry: ResumeEntry; index: number; pinnedTitle?: string; isLast?: boolean }) {
   // 记下这张卡片（含圆点）的高度 → CSS 变量 --pin-h，手机上用它把卡片钉在屏幕底部附近
   const pinRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -252,6 +274,13 @@ function Entry({ entry, index, pinnedTitle }: { entry: ResumeEntry; index: numbe
           </motion.div>
         )}
         {entry.groups && entry.groups.map((g, i) => <Group key={i} group={g} />)}
+        <motion.div className="tl-next-row" variants={itemV}>
+          <button type="button" className="tl-next" aria-label={isLast ? 'Go to the pinboard link' : 'Next story'} onClick={(e) => goToNext(e.currentTarget)}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+        </motion.div>
       </div>
       </div>
       <div className="tl-hold" aria-hidden="true" />
@@ -274,7 +303,7 @@ export default function Resume() {
       </motion.h2>
       <div className="timeline">
         {data.entries.map((e, i) => (
-          <Entry key={i} entry={e} index={i} />
+          <Entry key={i} entry={e} index={i} isLast={i === data.entries.length - 1} />
         ))}
       </div>
     </section>
