@@ -145,8 +145,13 @@ function Man2({
     dwell: 0.43,
     parallax: 0,
     parallaxEase: 0.1,
-    mobilePullback: 1.2,
-    mobileTimelineShift: 0.12,
+    mobilePullback: 1.1,
+    // 手机上故事卡片是满宽的，横向错开只会把贴纸推到卡片底下 → 关掉，改用下面的纵向取景
+    mobileTimelineShift: 0,
+    // 手机「时间轴阶段」：把焦点（贴纸）放到屏幕上方这个位置（0.5 = 正中，0.26 = 偏上），卡片在下半屏滚动
+    mobileFocusY: 0.24,
+    // 手机上节点锁定线更低：卡片顶部到达屏幕 55% 高度时才算到达该节点，给上面的贴纸留出空间
+    mobileNodeLine: 0.5,
   }
 
   const eye = {
@@ -176,6 +181,19 @@ function Man2({
       if (o.isMesh) {
         o.castShadow = true
         o.receiveShadow = true
+        if (/decal/i.test(o.name)) {
+          // 贴纸紧贴皮肤：用 polygonOffset 让它在深度测试里永远"浮"在皮肤前面，
+          // 手机深度精度低 / 模型压缩量化后也不会被皮肤吃掉或闪烁
+          o.castShadow = false
+          o.renderOrder = 2
+          const mats = Array.isArray(o.material) ? o.material : [o.material]
+          mats.forEach((m: any) => {
+            m.polygonOffset = true
+            m.polygonOffsetFactor = -4
+            m.polygonOffsetUnits = -4
+            m.depthWrite = false
+          })
+        }
       }
       if (o.isCamera) glbCam = o
       // 首页锚点：兼容旧名 focus-start 与 intro3d 统一命名 focus-0
@@ -331,11 +349,12 @@ function Man2({
     if (els && els.length === M && els.every(Boolean)) {
       // 参考线在视口 NODE_LINE 高度；锚点用条目顶部（文字位置，不含底部大 padding）
       const sy = pageScrollY()
-      const refLine = sy + window.innerHeight * NODE_LINE
+      const nodeLine = isMobile.current ? cam.mobileNodeLine : NODE_LINE
+      const refLine = sy + window.innerHeight * nodeLine
       const tops = els.map((el: any) => el.getBoundingClientRect().top + sy)
       if (refLine <= tops[0]) {
         // 顶部 → sysu 的渐入段：scrollY=0 时 s=-1（第 0 帧），sysu 到达参考线时 s=0
-        const heroScroll = Math.max(1, tops[0] - window.innerHeight * NODE_LINE)
+        const heroScroll = Math.max(1, tops[0] - window.innerHeight * nodeLine)
         sTarget = -1 + dwell(THREE.MathUtils.clamp(sy / heroScroll, 0, 1))
       } else if (refLine >= tops[M - 1]) {
         sTarget = M - 1
@@ -472,6 +491,25 @@ function Man2({
       if (camera.fov !== glbCam.fov) {
         camera.fov = glbCam.fov
         camera.updateProjectionMatrix()
+      }
+      // 手机「时间轴阶段」：平移投影窗口（不改透视、不动相机），让焦点出现在屏幕偏上位置，
+      // 贴纸就不会被下方的满宽卡片挡住。权重同上：从首屏渐入，进入收尾区渐出 → 无跳变。
+      if (isMobile.current) {
+        // glb 的镜头是按桌面横屏构图的（焦点不一定在画面中心），竖屏手机上贴纸会跑到画面边缘、被卡片挡住。
+        // 所以先把焦点（当前停靠的贴纸锚点）投影到屏幕，再平移投影窗口，把它精确放到
+        // 水平居中、垂直 mobileFocusY 的位置。只平移视窗，不改透视。
+        const tlWeight = THREE.MathUtils.smoothstep(s, -0.8, 0.3) * (1 - smoothOff)
+        const { width: w, height: h } = get().size
+        if (camera.view) camera.clearViewOffset()
+        if (tlWeight > 0.001) {
+          camera.updateMatrixWorld()
+          tmpVec.current.copy(focusRef.current).project(camera)
+          const px = ((tmpVec.current.x + 1) / 2) * w
+          const py = ((1 - tmpVec.current.y) / 2) * h
+          const offX = (px - w / 2) * tlWeight
+          const offY = (py - h * cam.mobileFocusY) * tlWeight
+          camera.setViewOffset(w, h, offX, offY, w, h)
+        }
       }
     }
 

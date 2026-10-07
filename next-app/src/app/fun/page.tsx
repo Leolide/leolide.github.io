@@ -2,7 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import Fun3DClient from "./fun3d/Fun3DClient";
 
 export const metadata = {
-  title: "Fun — Lide Li",
+  title: "Fun | Lide Li",
   description:
     "Lide's story outside of work: architecture, stickers, community, and more.",
 };

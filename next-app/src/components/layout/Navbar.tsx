@@ -80,12 +80,13 @@ export function Navbar({
         ].join(" ")}
         style={{ right: "var(--ask-panel-offset-right, 0px)" }}
       >
-        <div className="w-full max-w-[1280px] mx-auto px-6 flex items-center justify-between">
+        {/* 3-column grid (1fr | auto | 1fr) so Home/Fun sit in the true centre, however wide the two sides are */}
+        <div className="w-full max-w-[1280px] mx-auto px-6 grid grid-cols-[1fr_auto_1fr] items-center">
           {/* Logo */}
           <Link
             href="/"
             className={[
-              "text-sm font-medium tracking-tight transition-colors rounded-sm",
+              "justify-self-start text-sm font-medium tracking-tight transition-colors rounded-sm",
               overlay ? "text-white hover:text-white/80" : "text-ink hover:text-ink-muted",
               focusRing,
             ].join(" ")}
@@ -124,7 +125,7 @@ export function Navbar({
           </nav>
 
           {/* Search + Ask triggers (+ optional page-specific controls) */}
-          <div className="flex items-center gap-1">
+          <div className="justify-self-end flex items-center gap-1">
             {extra}
             <button
               onClick={() => setOmniOpen(true)}

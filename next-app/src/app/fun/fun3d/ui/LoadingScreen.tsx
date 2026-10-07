@@ -1,11 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useProgress } from '@react-three/drei'
+import FunLoaderView from './FunLoaderView'
 
-// 加载遮罩：一块深色底（和网站背景同色），模型加载完后慢慢淡出，露出夕阳场景。
-// 垫在导航栏下面（z 44 < navbar 50），所以导航栏一直都在。
-// 这里是"等待→揭晓"的一次性画面，不是高频 UI，所以淡出可以比 300ms 长一些。
+// 模型加载阶段：显示真实进度（three 的 LoadingManager），加载完后整体柔和淡出露出场景。
+// 模型有缓存时几乎瞬间就绪，加载画面会"闪一下"——所以至少停留 MIN_VISIBLE_MS，
+// 让进度条走满、文字呼吸一拍，再慢慢淡出，回访也一样柔和。
+// 垫在导航栏下面（z 44 < navbar 50），导航栏一直都在。
+const MIN_VISIBLE_MS = 1100
+
 export default function LoadingScreen() {
+  const mountedAt = useRef(Date.now())
   const { progress } = useProgress()
+  const peak = useRef(0)
+  peak.current = Math.max(peak.current, Math.min(Math.max(progress, 0), 100))
   const [reached, setReached] = useState(false)
   const [hiding, setHiding] = useState(false)
   const [removed, setRemoved] = useState(false)
@@ -16,8 +23,9 @@ export default function LoadingScreen() {
 
   useEffect(() => {
     if (!reached) return
-    const t1 = setTimeout(() => setHiding(true), 150)
-    const t2 = setTimeout(() => setRemoved(true), 1000)
+    const wait = Math.max(250, MIN_VISIBLE_MS - (Date.now() - mountedAt.current))
+    const t1 = setTimeout(() => setHiding(true), wait)
+    const t2 = setTimeout(() => setRemoved(true), wait + 900)
     return () => {
       clearTimeout(t1)
       clearTimeout(t2)
@@ -25,20 +33,5 @@ export default function LoadingScreen() {
   }, [reached])
 
   if (removed) return null
-
-  return (
-    <div
-      aria-hidden="true"
-      style={{
-        position: 'fixed',
-        inset: 0,
-        right: 'var(--ask-panel-offset-right, 0px)',
-        zIndex: 44,
-        background: '#010102',
-        opacity: hiding ? 0 : 1,
-        transition: 'opacity 700ms cubic-bezier(0.23, 1, 0.32, 1)',
-        pointerEvents: hiding ? 'none' : 'auto',
-      }}
-    />
-  )
+  return <FunLoaderView progress={peak.current} hiding={hiding} />
 }
