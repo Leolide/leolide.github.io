@@ -16,7 +16,7 @@ export function CaseStudySlides({ slug }: { slug: string }) {
     // set plus a slight brightness/contrast trim keeps them from glaring
     // against the page instead of sitting edge-to-edge at full brightness.
     <div className="rounded-xl border border-hairline bg-surface-1 p-3 sm:p-5">
-      <div className="rounded-lg overflow-hidden">
+      <div className="rounded-md overflow-hidden">
         {slides.map((slide) => (
           <img
             key={slide.src}

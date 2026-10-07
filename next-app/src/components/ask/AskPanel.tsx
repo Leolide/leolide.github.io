@@ -399,7 +399,7 @@ export function AskPanel({ open, onClose, skipInitialAnimation = false, pendingQ
                 ? "inset-x-0 top-0 h-dvh rounded-none pb-[env(safe-area-inset-bottom)]"
                 : docked
                   ? "top-0 right-0 bottom-0 h-screen rounded-none border-l border-white/10"
-                  : "top-16 right-4 sm:right-6 w-[calc(100vw-2rem)] max-w-[440px] rounded-2xl ring-1 ring-white/15"
+                  : "top-16 right-4 sm:right-6 w-[calc(100vw-2rem)] max-w-[440px] rounded-xl ring-1 ring-white/15"
             }`}
             style={docked ? { width: `${pinnedWidth}px` } : undefined}
             role="dialog"
@@ -554,7 +554,7 @@ export function AskPanel({ open, onClose, skipInitialAnimation = false, pendingQ
             )}
 
             {/* input */}
-            <div className={`ask-panel-input mx-4 mb-4 flex items-end gap-2 rounded-2xl border border-white/10 bg-white/[0.06] p-2 pl-4 transition-colors focus-within:border-white/25 ${docked || fullscreen ? "mt-auto" : ""}`}>
+            <div className={`ask-panel-input mx-4 mb-4 flex items-end gap-2 rounded-xl border border-white/10 bg-white/[0.06] p-2 pl-4 transition-colors focus-within:border-white/25 ${docked || fullscreen ? "mt-auto" : ""}`}>
               <Textarea
                 ref={inputRef}
                 aria-label="Message"

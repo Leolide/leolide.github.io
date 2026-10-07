@@ -54,7 +54,7 @@ export function PasswordGate({ slug }: { slug: string }) {
           onChange={(e) => { setValue(e.target.value); setError(false); }}
           placeholder="Password"
           className={[
-            "flex-1 h-9 px-3 rounded-lg text-sm bg-surface-2 border text-ink placeholder:text-ink-tertiary outline-none transition-colors",
+            "flex-1 h-9 px-3 rounded-md text-sm bg-surface-2 border text-ink placeholder:text-ink-tertiary outline-none transition-colors",
             error
               ? "border-red-500/60 focus:border-red-500"
               : "border-hairline focus:border-hairline-strong",
@@ -63,7 +63,7 @@ export function PasswordGate({ slug }: { slug: string }) {
         />
         <button
           type="submit"
-          className="h-9 px-4 rounded-lg text-xs font-medium bg-surface-3 border border-hairline text-ink hover:border-hairline-strong transition-colors"
+          className="h-9 px-4 rounded-md text-xs font-medium bg-surface-3 border border-hairline text-ink hover:border-hairline-strong transition-colors"
         >
           Unlock
         </button>
