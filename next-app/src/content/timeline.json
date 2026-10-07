@@ -87,7 +87,7 @@
   {
     "id": "scut",
     "org": "South China University of Technology",
-    "role": "B.E. in Urban Planning — GPA 3.9/4 · Dean's List",
+    "role": "B.E. in Urban Planning · GPA 3.9/4 · Dean's List",
     "period": "Sep 2015 – Jun 2020",
     "location": null,
     "url": "https://www.scut.edu.cn/en/",
@@ -101,7 +101,7 @@
   {
     "id": "berkeley",
     "org": "University of California, Berkeley",
-    "role": "Exchange — Design & Technology — GPA 3.91/4",
+    "role": "Exchange · Design & Technology · GPA 3.91/4",
     "period": "Jan 2019 – Jun 2019",
     "location": null,
     "url": "https://www.berkeley.edu/",
@@ -114,7 +114,7 @@
   },
   {
     "id": "ux-awards",
-    "org": "UX Design Awards — Nominated",
+    "org": "UX Design Awards · Nominated",
     "role": "HAEN: AI Agent for City-Scale Disaster Management",
     "period": "2025",
     "location": null,

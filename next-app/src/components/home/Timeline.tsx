@@ -127,7 +127,7 @@ export function Timeline() {
 
             <div className="space-y-4 mb-12 max-w-prose">
               <p className="text-ink-muted text-sm leading-relaxed">
-                Trained as an architect at Cambridge, now shipping product and code every day. Lide brings systems-first thinking rooted in architecture, urban planning, HCI, and AI to 0→1 product design.
+                Trained as an architect at Cambridge, now shipping product and code every day. Lide brings systems-first thinking to big, messy problems, turning complex workflows into clear 0→1 products.
               </p>
               <p className="text-ink-muted text-sm leading-relaxed">
                 He's most excited by human-agent collaboration and spends most of his time designing agentic UX and observability interfaces. He's just as happy opening a PR as he is in Figma, and cares deeply about the full journey from rough idea to shipped product.
