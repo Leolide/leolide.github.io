@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { EASE_OUT } from "@/lib/motion";
 import timelineData from "@/content/timeline.json";
 import { Expertises } from "@/components/home/Expertises";
 import ProfileCard from "@/components/home/ProfileCard";
@@ -48,7 +49,7 @@ function TimelineItem({ entry, index }: { entry: Entry; index: number }) {
       initial={{ opacity: 0, x: -12 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.4, delay: index * 0.06, ease: [0.25, 0, 0, 1] }}
+      transition={{ duration: 0.4, delay: index * 0.06, ease: EASE_OUT }}
     >
       {entry.url ? (
         <a href={entry.url} target="_blank" rel="noopener noreferrer" className="block cursor-pointer">
@@ -75,7 +76,7 @@ export function Timeline() {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.25, 0, 0, 1] }}
+              transition={{ duration: 0.6, ease: EASE_OUT }}
             >
               <ProfileCard
                 avatarUrl="/images/Facetune_12-03-2025-15-19-43.png"
@@ -98,7 +99,7 @@ export function Timeline() {
                 href="https://www.linkedin.com/in/lideli/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 flex w-full items-center justify-center rounded-md border border-hairline bg-surface-1 px-4 py-2 text-sm font-medium text-ink transition-colors hover:bg-surface-2"
+                className="mt-4 flex w-full items-center justify-center rounded-md border border-hairline bg-surface-1 px-4 py-2 text-sm font-medium text-ink transition-[color,background-color,border-color,transform] duration-150 ease-out active:scale-[0.97] hover:bg-surface-2"
               >
                 Connect on LinkedIn
               </a>

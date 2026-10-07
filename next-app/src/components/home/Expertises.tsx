@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { EASE_OUT } from "@/lib/motion";
 
 const EXPERTISES = [
   {
@@ -38,7 +39,7 @@ export function Expertises() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.4, delay: i * 0.06, ease: [0.25, 0, 0, 1] }}
+            transition={{ duration: 0.4, delay: i * 0.06, ease: EASE_OUT }}
             className="rounded-xl border border-hairline bg-surface-1 p-4 flex flex-col gap-2"
           >
             <span className="text-ink-tertiary text-xs font-mono">{item.num}</span>

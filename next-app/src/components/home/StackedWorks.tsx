@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { EASE_OUT } from "@/lib/motion";
 import Link from "next/link";
 import worksData from "@/content/works-featured.json";
 
@@ -20,7 +21,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
         <img
           src={work.image}
           alt={work.title}
-          className="w-full object-contain opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-[1.03] h-[220px] sm:h-[300px] lg:h-[340px]"
+          className="w-full object-contain opacity-70 group-hover:opacity-100 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.03] h-[220px] sm:h-[300px] lg:h-[340px]"
           style={{ filter: "drop-shadow(0 8px 40px rgba(0,0,0,0.6))", mixBlendMode: "screen" }}
         />
       </div>
@@ -74,7 +75,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: [0.25, 0, 0, 1] }}
+      transition={{ duration: 0.5, delay: index * 0.1, ease: EASE_OUT }}
     >
       {work.external ? (
         <a href={work.url} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
@@ -98,7 +99,7 @@ function WorkRow({ work, index }: { work: Work; index: number }) {
           <img
             src={work.image}
             alt={work.title}
-            className="h-full w-full object-contain opacity-70 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.04]"
+            className="h-full w-full object-contain opacity-70 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:opacity-100 group-hover:scale-[1.04]"
             style={{ mixBlendMode: "screen" }}
           />
         </div>
@@ -137,7 +138,7 @@ function WorkRow({ work, index }: { work: Work; index: number }) {
     <motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, delay: index * 0.06, ease: [0.25, 0, 0, 1] }}
+      transition={{ duration: 0.35, delay: index * 0.06, ease: EASE_OUT }}
     >
       {work.external ? (
         <a href={work.url} target="_blank" rel="noopener noreferrer" className="block">

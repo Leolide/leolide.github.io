@@ -1,5 +1,6 @@
 const SOCIAL = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/lideli/" },
+  { label: "GitHub", href: "https://github.com/Leolide" },
   { label: "X", href: "https://x.com/lidethemaker" },
 ];
 
@@ -16,7 +17,7 @@ export function Footer() {
           <span className="text-2xl font-medium tracking-tight">
             lideli.leo@gmail.com
           </span>
-          <span className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
+          <span className="opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-[opacity,transform] duration-200 ease-out">
             ↗
           </span>
         </a>
