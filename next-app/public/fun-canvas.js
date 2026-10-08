@@ -72,11 +72,25 @@
      Index 0 is home (the hero). `name` is shown in the dock as "Name · n/5". */
   var TOUR = [
     { cx: 646,  cy: -63,  scale: 0.66, name: 'Start' },
-    { cx: 600,  cy: -510, scale: 0.85, name: "Things I've built" },
-    { cx: -420, cy: 40,   scale: 0.85, name: 'Community' },
-    { cx: 440,  cy: 476,  scale: 0.85, name: 'Doodles & manga' },
-    { cx: 1690, cy: 130,  scale: 0.8,  name: 'Food & outdoors' }
+    { cx: 600,  cy: -510, scale: 0.85, name: "Things I've built", cluster: 'build' },
+    { cx: -420, cy: 40,   scale: 0.85, name: 'Community',         cluster: 'people' },
+    { cx: 440,  cy: 476,  scale: 0.85, name: 'Doodles & manga',   cluster: 'draw' },
+    { cx: 1690, cy: 130,  scale: 0.8,  name: 'Food & outdoors',   cluster: 'live' }
   ];
+
+  /* Everything that belongs to each tour stop. A stop frames exactly these
+     (fitted to their real bounds, so it adapts to any window size) and fades
+     every other item back, so each stop shows only its own section. */
+  var CLUSTER_IDS = {
+    build:  ['canvas-card-1', 'canvas-card-2', 'canvas-card-7', 'canvas-card-6', 'canvas-photo-8',
+             'canvas-note-1', 'canvas-note-2', 'cluster-label-build'],
+    people: ['canvas-card-0', 'canvas-photo-4', 'canvas-photo-9', 'canvas-photo-11',
+             'canvas-note-4', 'canvas-note-5', 'cluster-label-people'],
+    draw:   ['canvas-card-3', 'canvas-card-4', 'canvas-card-5', 'canvas-photo-5',
+             'canvas-note-8', 'canvas-note-9', 'cluster-label-draw'],
+    live:   ['canvas-photo-6', 'canvas-photo-0', 'canvas-photo-10', 'canvas-photo-7', 'canvas-photo-2',
+             'canvas-card-8', 'canvas-note-6', 'canvas-note-7', 'cluster-label-live']
+  };
 
   /* Dock progress readout + button label for the tour */
   function updateTourStatus() {
@@ -1083,8 +1097,9 @@
     canvas.style.transition = dur
       ? 'transform ' + dur + 'ms cubic-bezier(0.22, 1, 0.36, 1)'
       : 'none';
+    var insetTop = frame.insetTop || 0, insetBottom = frame.insetBottom || 0;
     panX = rect.width / 2 - frame.cx * s;
-    panY = rect.height / 2 - frame.cy * s;
+    panY = insetTop + (rect.height - insetTop - insetBottom) / 2 - frame.cy * s;
     scale = s;
     canvas.style.transform = 'translate(' + panX + 'px, ' + panY + 'px) scale(' + scale + ')';
     updateFloatingMenu();
@@ -1092,16 +1107,62 @@
     setTimeout(checkNoteReveals, dur + 60);
   }
 
+  /* Fit the camera to one cluster's real bounds (leaving room for the dock). */
+  function clusterFrame(key) {
+    var ids = CLUSTER_IDS[key];
+    if (!ids || !viewport) return null;
+    var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var left = parseFloat(el.style.left) || 0;
+      var top = parseFloat(el.style.top) || 0;
+      minX = Math.min(minX, left);
+      minY = Math.min(minY, top);
+      maxX = Math.max(maxX, left + (el.offsetWidth || 200));
+      maxY = Math.max(maxY, top + (el.offsetHeight || 100));
+    });
+    if (!isFinite(minX)) return null;
+    var rect = viewport.getBoundingClientRect();
+    var insetTop = 24, insetBottom = 96;
+    var fit = Math.min(
+      (rect.width * 0.9) / (maxX - minX),
+      (rect.height - insetTop - insetBottom) / (maxY - minY)
+    );
+    return {
+      cx: (minX + maxX) / 2,
+      cy: (minY + maxY) / 2,
+      scale: Math.max(0.35, Math.min(1, fit)),
+      insetTop: insetTop,
+      insetBottom: insetBottom
+    };
+  }
+
+  /* Fade everything outside the current stop's cluster (null = show all). */
+  var focusKey = null;
+  function setFocus(key) {
+    focusKey = key || null;
+    var members = focusKey ? CLUSTER_IDS[focusKey] : null;
+    document.querySelectorAll('.canvas-item, .cluster-label').forEach(function (el) {
+      el.classList.toggle('is-dimmed', !!members && members.indexOf(el.id) === -1);
+    });
+  }
+  /* Panning, zooming or grabbing anything ends the focus so visitors can roam freely. */
+  function clearFocus() { if (focusKey) setFocus(null); }
+
   function focusOnHero() {
     tourIndex = 0;
     updateTourStatus();
+    setFocus(null);
     flyTo(TOUR[0], 700);
   }
 
   function wander(direction) {
     tourIndex = (tourIndex + (direction || 1) + TOUR.length) % TOUR.length;
     updateTourStatus();
-    flyTo(TOUR[tourIndex], 950);
+    var stop = TOUR[tourIndex];
+    setFocus(stop.cluster);
+    flyTo((stop.cluster && clusterFrame(stop.cluster)) || stop, 950);
   }
 
   /* ---------- CLUSTER LABELS ---------- */
@@ -1357,6 +1418,8 @@
     viewport.addEventListener('mousedown',  onViewportPointerDown);
     viewport.addEventListener('touchstart', onViewportPointerDown, { passive: true });
     viewport.addEventListener('wheel',      onWheel,                { passive: false });
+    viewport.addEventListener('pointerdown', clearFocus,            { passive: true, capture: true });
+    viewport.addEventListener('wheel',       clearFocus,            { passive: true });
 
     document.querySelectorAll('.resize-handle').forEach(function (handle) {
       handle.addEventListener('mousedown',  onResizePointerDown);
