@@ -1092,76 +1092,39 @@ body.fun-canvas-mode.read-mode .canvas-item.text-item:not(.is-revealed) {
 }
 
 /* ----------------------------------------
-   HERO: "Welcome to my pin board" + subtitle
+   HERO: handwritten "Welcome to my pinboard"
+   Same Caveat handwriting as the notes, captions and cluster labels.
+   Deliberately not using .dt-text-scroll-move-1 (pinned to 76px !important).
    ---------------------------------------- */
-.canvas-item.hero-item { width: 640px; }
+.canvas-item.hero-item { width: 720px; }
 
-.canvas-item.hero-item .hero-subtitle {
-  margin: 14px 0 0 4px;
-  color: #8a8f98;
-  font-family: "Satoshi", system-ui, -apple-system, sans-serif;
-  font-size: 1.15rem;
-  font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: -0.005em;
-  white-space: nowrap;
-}
-
-/* ----------------------------------------
-   FIRST-VISIT HINT
-   A small UI pill above the dock (not handwriting), so it reads as
-   "something to do". Fades in after the opening shot; removed on the
-   first pan / zoom / Next stop via dismissHint() in fun-canvas.js.
-   ---------------------------------------- */
-#fun-hint {
-  position: fixed;
-  bottom: 84px;
-  left: calc(50% - var(--ask-panel-offset-right, 0px) / 2);
-  transform: translateX(-50%);
-  z-index: 199;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 14px 7px 12px;
-  background: rgba(15, 16, 17, 0.92);
-  border: 1px solid #23252a;
-  border-radius: 999px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  color: #8a8f98;
-  font-family: "Satoshi", system-ui, -apple-system, sans-serif;
-  font-size: 0.8rem;
-  line-height: 1;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  animation: fun-hint-in 600ms cubic-bezier(0.23, 1, 0.32, 1) 2.4s forwards;
-  transition: opacity 300ms ease;
-}
-#fun-hint strong { color: #f7f8f8; font-weight: 600; }
-#fun-hint .fun-hint-icon {
-  flex-shrink: 0;
+.canvas-item.hero-item .hero-title {
+  margin: 0;
+  font-family: 'Caveat', cursive;
+  font-size: 112px;
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
   color: #f7f8f8;
-  animation: fun-hint-nudge 2.4s ease-in-out 3s 3;
-}
-#fun-hint.is-dismissed { opacity: 0 !important; animation: none; }
-
-@keyframes fun-hint-in {
-  from { opacity: 0; transform: translate(-50%, 8px); }
-  to   { opacity: 1; transform: translate(-50%, 0); }
-}
-@keyframes fun-hint-nudge {
-  0%, 100% { transform: translateX(0); }
-  30%      { transform: translateX(-3px); }
-  70%      { transform: translateX(3px); }
+  white-space: nowrap;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  #fun-hint { animation: none; opacity: 1; }
-  #fun-hint .fun-hint-icon { animation: none; }
+.canvas-item.hero-item .hero-hint {
+  margin: 22px 0 0 6px;
+  font-family: 'Caveat', cursive;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: rgba(247, 248, 248, 0.62);
+  white-space: nowrap;
+}
+.canvas-item.hero-item .hero-hint strong {
+  font-weight: 600;
+  color: rgba(247, 248, 248, 0.92);
 }
 
-@media screen and (max-width: 767px) {
-  #fun-hint { display: none !important; }
+@media screen and (max-width: 1024px) {
+  .canvas-item.hero-item { width: 480px; }
+  .canvas-item.hero-item .hero-title { font-size: 76px; }
+  .canvas-item.hero-item .hero-hint { font-size: 26px; }
 }
