@@ -5,6 +5,7 @@ import { CaseStudySlides } from "@/components/work/CaseStudySlides";
 import { caseStudySlides } from "@/content/case-studies";
 import { CaseStudyNarrative } from "@/components/work/CaseStudyNarrative";
 import { caseStudyNarrative } from "@/content/case-study-narrative";
+import { ProtectedImage } from "@/components/ui/protected-image";
 import worksPro from "@/content/works-pro.json";
 import { notFound } from "next/navigation";
 
@@ -83,9 +84,10 @@ export default async function WorkDetailPage({
             }}
           >
             <div className="absolute inset-0 flex items-center justify-center px-8 py-12">
-              <img
+              <ProtectedImage
                 src={work.coverImage}
                 alt={work.biggerHeading}
+                wrapperClassName="relative w-full h-full"
                 className="w-full h-full object-contain"
                 style={{
                   filter: "drop-shadow(0 10px 40px rgba(0,0,0,0.5))",
