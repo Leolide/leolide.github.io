@@ -51,7 +51,7 @@
     /* — handwritten notes: hidden until the visitor pans near them — */
     'canvas-note-1':  { left: 540.206,  top: -390.882, rot: 0.8,  text: 'I like studying cities\n& complex systems' },
     'canvas-note-2':  { left: 14.3253,  top: -723.366, rot: 1.0912047486640095, text: 'I have built architecture in the real world!' },
-    'canvas-note-3':  { left: 353.333,  top: 80,  rot: 1.2,  text: 'drag things and pan around, I left notes everywhere' },
+    'canvas-note-3':  { left: 353.333,  top: 80,  rot: 1.2,  text: 'I left little notes everywhere, go find them!' },
     'canvas-note-4':  { left: -446.081, top: 173.848,  rot: 1.7830832955024705, text: 'Fun fact: Hablo un poco Español!' },
     'canvas-note-5':  { left: -1056.89, top: 233.349,  rot: -0.36751063430080766, text: 'I happened to start a designer\ncommunity in London' },
     'canvas-note-6':  { left: 1955.96,  top: -62.8675, rot: 1.5064718886182635, text: 'Cooking is meditating for me' },
@@ -1074,6 +1074,14 @@
     zoomToPoint(delta, cx + rect.left, cy + rect.top);
   }
 
+  /* ---------- FIRST-VISIT HINT ---------- */
+  /* The "Drag to pan, or hit Next stop" pill goes away for good on the first
+     real interaction (pan, zoom, drag an item, Next stop, arrow keys). */
+  function dismissHint() {
+    var hint = document.getElementById('fun-hint');
+    if (hint) hint.classList.add('is-dismissed');
+  }
+
   /* ---------- CAMERA: FLY-TO & TOUR ---------- */
   function flyTo(frame, duration) {
     deselectCard();
@@ -1099,6 +1107,7 @@
   }
 
   function wander(direction) {
+    dismissHint();
     tourIndex = (tourIndex + (direction || 1) + TOUR.length) % TOUR.length;
     updateTourStatus();
     flyTo(TOUR[tourIndex], 950);
@@ -1357,6 +1366,9 @@
     viewport.addEventListener('mousedown',  onViewportPointerDown);
     viewport.addEventListener('touchstart', onViewportPointerDown, { passive: true });
     viewport.addEventListener('wheel',      onWheel,                { passive: false });
+    viewport.addEventListener('pointerdown', dismissHint,          { passive: true, capture: true });
+    viewport.addEventListener('wheel',       dismissHint,          { passive: true });
+    if (IS_AUTHOR) dismissHint();
 
     document.querySelectorAll('.resize-handle').forEach(function (handle) {
       handle.addEventListener('mousedown',  onResizePointerDown);

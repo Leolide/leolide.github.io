@@ -13,7 +13,7 @@ export default function FunPage() {
   return (
     <>
       {/* Canvas CSS — loaded before paint (versioned to bust stale caches) */}
-      <link rel="stylesheet" href="/fun-canvas.css?v=22" />
+      <link rel="stylesheet" href="/fun-canvas.css?v=23" />
       <link rel="stylesheet" href="/fun-pinboard.css?v=18" />
       {/* Force navbar background since the canvas page never scrolls */}
       <style>{`header { background: rgba(1,1,2,0.92) !important; border-bottom: 1px solid #23252a !important; backdrop-filter: blur(16px) !important; }
@@ -51,15 +51,14 @@ export default function FunPage() {
           <div className="canvas-item hero-item" id="canvas-hero">
             <div className="dt-master-scroll-move-1">
               <div className="dt-first-scroll-move-1">
-                <div className="dt-text-scroll-move-1 dt-italic-scroll-move-1">I <strong>craft</strong> and</div>
+                <div className="dt-text-scroll-move-1 dt-italic-scroll-move-1">Welcome to my</div>
               </div>
               <div className="dt-second-scroll-move-2">
-                <div className="dt-text-scroll-move-1 dt-normal-scroll-move">make</div>
                 <img src="/images/website-Recovered-14.webp" alt="" loading="lazy" className="dt-pill-scroll-move-1" />
-                <div className="dt-text-scroll-move-1 dt-normal-scroll-move">fun</div>
+                <div className="dt-text-scroll-move-1 dt-normal-scroll-move fun"><strong>pin board</strong></div>
               </div>
               <div className="dt-third-scroll-move-1">
-                <div className="dt-text-scroll-move-1 dt-normal-scroll-move fun"><strong>artifacts</strong></div>
+                <p className="hero-subtitle">I craft and make fun artifacts.</p>
               </div>
             </div>
           </div>
@@ -173,8 +172,15 @@ export default function FunPage() {
         </button>
       </div>
 
+      {/* First-visit hint — says what to do, fades in after the opening shot,
+          and goes away on the first pan / zoom / Next stop (see dismissHint). */}
+      <div id="fun-hint" data-page-content aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" className="fun-hint-icon"><path d="M3 10h14M6.5 6.5L3 10l3.5 3.5M13.5 6.5L17 10l-3.5 3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        <span>Drag to pan, or hit <strong>Next stop</strong> to start the tour</span>
+      </div>
+
       {/* Canvas engine — loaded after DOM is ready (versioned to bust stale caches) */}
-      <Script src="/fun-canvas.js?v=28" strategy="afterInteractive" />
+      <Script src="/fun-canvas.js?v=29" strategy="afterInteractive" />
       {/* Re-inits the canvas after client-side navigation */}
       <FunCanvasBoot />
 
