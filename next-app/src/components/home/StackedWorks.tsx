@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import worksData from "@/content/works-featured.json";
+import { imageGuardProps } from "@/components/ui/protected-image";
 
 type Work = (typeof worksData)[number];
 
@@ -21,6 +22,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
           alt={work.title}
           className="w-full object-contain opacity-70 group-hover:opacity-100 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.03] h-[220px] sm:h-[300px] lg:h-[340px]"
           style={{ filter: "drop-shadow(0 8px 40px rgba(0,0,0,0.6))", mixBlendMode: "screen" }}
+          {...imageGuardProps()}
         />
       </div>
 
@@ -93,6 +95,7 @@ function WorkRow({ work, index }: { work: Work; index: number }) {
             alt={work.title}
             className="h-full w-full object-contain opacity-70 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:opacity-100 group-hover:scale-[1.04]"
             style={{ mixBlendMode: "screen" }}
+            {...imageGuardProps()}
           />
         </div>
         <div className="min-w-0">

@@ -1,4 +1,5 @@
 import { caseStudySlides } from "@/content/case-studies";
+import { ProtectedImage } from "@/components/ui/protected-image";
 
 export function CaseStudySlides({ slug }: { slug: string }) {
   const slides = caseStudySlides[slug];
@@ -18,12 +19,13 @@ export function CaseStudySlides({ slug }: { slug: string }) {
     <div className="rounded-xl border border-hairline bg-surface-1 p-3 sm:p-5">
       <div className="rounded-md overflow-hidden">
         {slides.map((slide) => (
-          <img
+          <ProtectedImage
             key={slide.src}
             src={slide.src}
             alt={slide.alt}
             width={slide.width}
             height={slide.height}
+            wrapperClassName="relative block"
             className="w-full h-auto block"
             style={{ filter: "brightness(0.94) contrast(0.96) saturate(0.96)" }}
           />

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { caseStudyNarrative, type NarrativeMedia } from "@/content/case-study-narrative";
+import { ProtectedImage } from "@/components/ui/protected-image";
 
 function Media({
   media,
@@ -19,9 +20,10 @@ function Media({
           className="group relative block w-full rounded-md overflow-hidden cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           aria-label={`Zoom in on: ${media.alt}`}
         >
-          <img
+          <ProtectedImage
             src={media.src}
             alt={media.alt}
+            wrapperClassName="contents"
             className="w-full h-auto block transition duration-200 ease-out filter brightness-[0.94] contrast-[0.96] saturate-[0.96] group-hover:brightness-[0.55] group-hover:scale-[1.015]"
           />
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-out">
@@ -200,7 +202,8 @@ export function CaseStudyNarrative({ slug }: { slug: string }) {
       {/* Lightbox — click anywhere (image included), Escape, or the close button all dismiss it */}
       {lightbox && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 sm:p-8 cursor-zoom-out overflow-hidden"
+          className="fixed inset-0 z-50 h-dvh w-dvw flex items-center justify-center bg-black/90 p-4 sm:p-8 cursor-zoom-out overflow-hidden"
+          style={{ height: "100dvh", width: "100dvw" }}
           onClick={() => setLightbox(null)}
           role="dialog"
           aria-modal="true"
@@ -228,9 +231,10 @@ export function CaseStudyNarrative({ slug }: { slug: string }) {
             </svg>
           </button>
           <div className="flex min-h-0 min-w-0 max-h-full max-w-full flex-col items-center gap-4">
-            <img
+            <ProtectedImage
               src={lightbox.src}
               alt={lightbox.alt}
+              wrapperClassName="relative block"
               className="max-h-[82vh] max-w-[90vw] w-auto h-auto object-contain rounded-md"
             />
             {lightbox.caption && (
