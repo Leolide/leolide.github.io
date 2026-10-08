@@ -157,7 +157,7 @@ body.fun-canvas-mode .dt-text-scroll-move-1 {
     cursor: grab;
     user-select: none;
     touch-action: none;
-    transition: box-shadow 0.2s ease, transform 0.15s ease;
+    transition: box-shadow 0.2s ease, transform 0.15s ease, opacity 0.5s ease;
     will-change: left, top;
 }
 
@@ -1127,4 +1127,21 @@ body.fun-canvas-mode.read-mode .canvas-item.text-item:not(.is-revealed) {
   .canvas-item.hero-item { width: 480px; }
   .canvas-item.hero-item .hero-title { font-size: 76px; }
   .canvas-item.hero-item .hero-hint { font-size: 26px; }
+}
+
+/* ----------------------------------------
+   TOUR FOCUS
+   While a tour stop is active, everything outside that stop's cluster
+   (other sections, the hero) fades back. Not-yet-revealed notes stay hidden.
+   ---------------------------------------- */
+.cluster-label { transition: opacity 0.5s ease; }
+
+body.fun-canvas-mode .canvas-item.is-dimmed:not(.text-item),
+body.fun-canvas-mode .canvas-item.text-item.is-revealed.is-dimmed,
+body.fun-canvas-mode .cluster-label.is-dimmed {
+  opacity: 0.08 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas-item, .cluster-label { transition: none !important; }
 }
