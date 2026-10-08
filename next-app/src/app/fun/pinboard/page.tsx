@@ -163,7 +163,7 @@ export default function FunPage() {
       </div>
 
       {/* Canvas engine — loaded after DOM is ready (versioned to bust stale caches) */}
-      <Script src="/fun-canvas.js?v=31" strategy="afterInteractive" />
+      <Script src="/fun-canvas.js?v=32" strategy="afterInteractive" />
       {/* Re-inits the canvas after client-side navigation */}
       <FunCanvasBoot />
 

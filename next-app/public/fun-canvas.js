@@ -29,16 +29,16 @@
     'canvas-photo-8': { left: 977.145,  top: -795.555, rot: -3,   width: 234.884, height: 338.671, caption: 'Model that is bigger than me\nBerkeley, 2019' },
 
     /* — community (west) — */
-    'canvas-card-0':  { left: -713.4,   top: -184.508, rot: -0.8370028327311587 },
-    'canvas-photo-4': { left: -451.563, top: -122.483, rot: 2.3858358053842936, width: 265.111, height: 279.111, caption: 'Clase de Español, London, 2025' },
-    'canvas-photo-9': { left: -1057.66, top: -31.7646, rot: 0,    width: 360, height: 240, caption: 'Fouxy Squad, London, 2026' },
-    'canvas-photo-11': { left: -1314.84, top: -190.393, rot: -0.16055764563408936, width: 221.412, height: 340.882, caption: 'Config WatchParty, London, 2026' },
+    'canvas-card-0':  { left: -333.4,   top: -184.508, rot: -0.8370028327311587 },
+    'canvas-photo-4': { left: -71.563, top: -122.483, rot: 2.3858358053842936, width: 265.111, height: 279.111, caption: 'Clase de Español, London, 2025' },
+    'canvas-photo-9': { left: -677.66, top: -31.7646, rot: 0,    width: 360, height: 240, caption: 'Fouxy Squad, London, 2026' },
+    'canvas-photo-11': { left: -934.84, top: -190.393, rot: -0.16055764563408936, width: 221.412, height: 340.882, caption: 'Config WatchParty, London, 2026' },
 
     /* — doodles & manga (south) — */
-    'canvas-card-3':  { left: -55.294,  top: 528.693,  rot: -0.8 },
-    'canvas-card-4':  { left: 180.065,  top: 592.548,  rot: -0.7 },
-    'canvas-card-5':  { left: 440.458,  top: 456.928,  rot: 1.5  },
-    'canvas-photo-5': { left: 681.896,  top: 549.412,  rot: 2.5,  width: 260, height: 340, caption: 'Kendo Boy, Japan, 2020' },
+    'canvas-card-3':  { left: -55.294,  top: 304.693,  rot: -0.8 },
+    'canvas-card-4':  { left: 180.065,  top: 368.548,  rot: -0.7 },
+    'canvas-card-5':  { left: 440.458,  top: 232.928,  rot: 1.5  },
+    'canvas-photo-5': { left: 681.896,  top: 325.412,  rot: 2.5,  width: 260, height: 340, caption: 'Kendo Boy, Japan, 2020' },
 
     /* — food & the outdoors (east) — */
     'canvas-photo-6': { left: 1128.48,  top: -76.8231, rot: -1.5, width: 340, height: 260, caption: 'Hawaii, US, 2023' },
@@ -52,29 +52,29 @@
     'canvas-note-1':  { left: 540.206,  top: -390.882, rot: 0.8,  text: 'I like studying cities\n& complex systems' },
     'canvas-note-2':  { left: 14.3253,  top: -723.366, rot: 1.0912047486640095, text: 'I have built architecture in the real world!' },
     'canvas-note-3':  { left: 353.333,  top: 150, rot: 1.2,  text: 'I left little notes everywhere, go find them!' },
-    'canvas-note-4':  { left: -446.081, top: 173.848,  rot: 1.7830832955024705, text: 'Fun fact: Hablo un poco Español!' },
-    'canvas-note-5':  { left: -1056.89, top: 233.349,  rot: -0.36751063430080766, text: 'I happened to start a designer\ncommunity in London' },
+    'canvas-note-4':  { left: -300, top: 226,  rot: 1.7830832955024705, text: 'Fun fact:\nHablo un poco Español!' },
+    'canvas-note-5':  { left: -676.89, top: 233.349,  rot: -0.36751063430080766, text: 'I happened to start a designer\ncommunity in London' },
     'canvas-note-6':  { left: 1955.96,  top: -62.8675, rot: 1.5064718886182635, text: 'Cooking is meditating for me' },
     'canvas-note-7':  { left: 1628.2,   top: 463.99,   rot: 0.6,  text: 'I used to row!' },
-    'canvas-note-8':  { left: 761.079,  top: 494.738,  rot: 0.5,  text: 'I still have a manga dream' },
-    'canvas-note-9':  { left: -48.1699, top: 480.197,  rot: 0,    text: 'I do stickers... WHAT' }
+    'canvas-note-8':  { left: 761.079,  top: 270.738,  rot: 0.5,  text: 'I still have a manga dream' },
+    'canvas-note-9':  { left: -48.1699, top: 256.197,  rot: 0,    text: 'I do stickers... WHAT' }
   };
 
   /* Faint handwritten labels rendered behind each cluster */
   var CLUSTER_LABELS = [
     { id: 'cluster-label-build',  text: "Things I've Built",   left: 16.6815,  top: -813.795, rot: -1.6 },
-    { id: 'cluster-label-people', text: 'Community',           left: -1048.47, top: -114.41,  rot: 1.2  },
-    { id: 'cluster-label-draw',   text: 'Doodles & Manga',     left: -52.1577, top: 413.529,  rot: -1   },
+    { id: 'cluster-label-people', text: 'Community',           left: -668.47, top: -114.41,  rot: 1.2  },
+    { id: 'cluster-label-draw',   text: 'Doodles & Manga',     left: -52.1577, top: 189.529,  rot: -1   },
     { id: 'cluster-label-live',   text: 'Food & The Outdoors', left: 1025.88,  top: -165.296, rot: 0.8  }
   ];
 
   /* Camera tour — the "Next stop" button / arrow keys cycle through these framings.
      Index 0 is home (the hero). `name` is shown in the dock as "Name · n/5". */
   var TOUR = [
-    { cx: 646,  cy: -63,  scale: 0.9,  name: 'Start' },
+    { cx: 646,  cy: -63,  scale: 0.72, name: 'Start' },
     { cx: 600,  cy: -510, scale: 0.85, name: "Things I've built" },
-    { cx: -750, cy: 40,   scale: 0.85, name: 'Community' },
-    { cx: 440,  cy: 660,  scale: 0.85, name: 'Doodles & manga' },
+    { cx: -370, cy: 40,   scale: 0.85, name: 'Community' },
+    { cx: 440,  cy: 436,  scale: 0.85, name: 'Doodles & manga' },
     { cx: 1690, cy: 130,  scale: 0.8,  name: 'Food & outdoors' }
   ];
 
