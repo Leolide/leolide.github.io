@@ -71,7 +71,7 @@
   /* Camera tour — the "Next stop" button / arrow keys cycle through these framings.
      Index 0 is home (the hero). `name` is shown in the dock as "Name · n/5". */
   var TOUR = [
-    { cx: 580,  cy: -10,  scale: 0.9,  name: 'Start' },
+    { cx: 646,  cy: -63,  scale: 0.9,  name: 'Start' },
     { cx: 600,  cy: -510, scale: 0.85, name: "Things I've built" },
     { cx: -750, cy: 40,   scale: 0.85, name: 'Community' },
     { cx: 440,  cy: 660,  scale: 0.85, name: 'Doodles & manga' },
