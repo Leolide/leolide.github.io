@@ -3,6 +3,8 @@ import { Footer } from "@/components/layout/Footer";
 import { PasswordGate } from "@/components/work/PasswordGate";
 import { CaseStudySlides } from "@/components/work/CaseStudySlides";
 import { caseStudySlides } from "@/content/case-studies";
+import { CaseStudyNarrative } from "@/components/work/CaseStudyNarrative";
+import { caseStudyNarrative } from "@/content/case-study-narrative";
 import worksPro from "@/content/works-pro.json";
 import { notFound } from "next/navigation";
 
@@ -96,7 +98,13 @@ export default async function WorkDetailPage({
           {work.protected ? (
             <PasswordGate slug={work.slug} />
           ) : (
-            caseStudySlides[work.slug] && <CaseStudySlides slug={work.slug} />
+            <>
+              <CaseStudyNarrative slug={work.slug} />
+              {/* Narrated case studies carry their own inline imagery;
+                  fall back to the plain slide gallery only when there's no narrative yet. */}
+              {!caseStudyNarrative[work.slug] &&
+                caseStudySlides[work.slug] && <CaseStudySlides slug={work.slug} />}
+            </>
           )}
 
         </div>
