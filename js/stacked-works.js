@@ -40,13 +40,23 @@
         glow.style.setProperty('--my', ((e.clientY - rect.top)  / rect.height * 100) + '%');
       });
 
+      var hoverOutTimer = null;
+
       card.addEventListener('mouseenter', function () {
+        if (hoverOutTimer) { clearTimeout(hoverOutTimer); hoverOutTimer = null; }
         hoveredIndex = i;
+        card.classList.add('is-hovering');
         frame();
       });
       card.addEventListener('mouseleave', function () {
         hoveredIndex = null;
         frame();
+        // Keep the eased transition alive just long enough to glide back to
+        // rest, then drop it so the next scroll-driven tick is instant again.
+        hoverOutTimer = setTimeout(function () {
+          card.classList.remove('is-hovering');
+          hoverOutTimer = null;
+        }, 420);
       });
     });
 
@@ -146,6 +156,7 @@
 
     var rafId;
     window.addEventListener('scroll', function () {
+      cards.forEach(function (c) { c.classList.remove('is-hovering'); });
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(frame);
     }, { passive: true });
