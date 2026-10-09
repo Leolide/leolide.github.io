@@ -18,10 +18,10 @@ export function imageGuardProps() {
 
 function watermarkDataUri(text: string) {
   const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="240" height="170">
-      <text x="-20" y="95" font-family="-apple-system,Helvetica,Arial,sans-serif"
-        font-size="13" letter-spacing="2" fill="#ffffff" fill-opacity="0.5"
-        transform="rotate(-28 110 85)">${text}</text>
+    <svg xmlns="http://www.w3.org/2000/svg" width="340" height="240">
+      <text x="-20" y="130" font-family="-apple-system,Helvetica,Arial,sans-serif"
+        font-size="12" letter-spacing="2" fill="#ffffff" fill-opacity="0.22"
+        transform="rotate(-28 170 120)">${text}</text>
     </svg>`
     .replace(/\s+/g, " ")
     .trim();
@@ -78,6 +78,7 @@ export function ProtectedImage({
             backgroundImage: watermarkDataUri(watermarkText),
             backgroundRepeat: "repeat",
             mixBlendMode: "overlay",
+            opacity: 0.65,
           }}
         />
       )}
