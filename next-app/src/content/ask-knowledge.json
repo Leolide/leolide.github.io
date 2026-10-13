@@ -27,7 +27,7 @@
       "id": "osdk",
       "question": "What is the OSDK Component Library?",
       "keywords": ["osdk", "component", "library", "react", "open", "source", "ontology", "sdk"],
-      "answer": "An open-source React component system for building on Palantir's Ontology SDK — composable, data-rich components that Lide grew from zero to Beta, now at 10k+ downloads across hundreds of implementation teams. Designed and built end-to-end, not handed off.",
+      "answer": "An open-source React component system for building on Palantir's Ontology SDK — composable, data-rich components that Lide grew from zero to Beta, now at 87,000+ npm downloads across hundreds of implementation teams. Designed and built end-to-end, not handed off.",
       "sources": [
         { "label": "Storybook", "href": "https://palantir.github.io/osdk-ts/storybook/?path=%2Fdocs%2Fdocs-welcome--docs", "external": true },
         { "label": "Watch the walkthrough", "href": "https://youtu.be/O7aeOmnbCuo", "external": true },
