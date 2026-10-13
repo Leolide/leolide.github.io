@@ -89,7 +89,7 @@
     "protected": true,
     "meta": [
       { "label": "Company", "value": "Palantir" },
-      { "label": "Role", "value": "Design Engineer, product direction, interaction design, partial frontend" },
+      { "label": "Role", "value": "Design Engineer · product design and front-end" },
       { "label": "Stack", "value": "React, OSDK, internal agent runtime" },
       { "label": "Duration", "value": "Multi-quarter, ongoing" }
     ]
@@ -117,7 +117,7 @@
     },
     "meta": [
       { "label": "Company", "value": "Palantir" },
-      { "label": "Role", "value": "IC, feasibility investigation and prototyping" },
+      { "label": "Role", "value": "Design Engineer · component design and code" },
       { "label": "Stack", "value": "react-components, json-render, internal OSDK" },
       { "label": "Duration", "value": "Nov 2025 – Present" }
     ]
