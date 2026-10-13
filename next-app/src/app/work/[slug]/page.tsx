@@ -4,8 +4,10 @@ import { PasswordGate } from "@/components/work/PasswordGate";
 import { CaseStudySlides } from "@/components/work/CaseStudySlides";
 import { caseStudySlides } from "@/content/case-studies";
 import { CaseStudyNarrative } from "@/components/work/CaseStudyNarrative";
+import { StatGrid } from "@/components/work/Stats";
 import { caseStudyNarrative } from "@/content/case-study-narrative";
 import { ProtectedImage } from "@/components/ui/protected-image";
+import { BackLink } from "@/components/work/CaseStudyEntrance";
 import worksPro from "@/content/works-pro.json";
 import { notFound } from "next/navigation";
 
@@ -38,8 +40,8 @@ export default async function WorkDetailPage({
 
   return (
     <>
-      <Navbar />
-      <main className="shrink-0 pt-28 pb-24 px-6 min-h-screen">
+      <Navbar back={<BackLink />} />
+      <main data-page-content data-page-content-zoom className="shrink-0 pt-28 pb-24 px-6 min-h-screen">
         <div className="max-w-[900px] mx-auto">
 
           {/* Title */}
@@ -75,12 +77,13 @@ export default async function WorkDetailPage({
             ))}
           </div>
 
-          {/* Hero mock card */}
+          {/* Hero mock card — a soft, accent-tinted surface (not flat black) behind
+              the cover image, since some covers don't fill the frame edge-to-edge. */}
           <div
             className="relative w-full rounded-xl overflow-hidden mb-10"
             style={{
               height: "clamp(280px, 40vw, 500px)",
-              background: `radial-gradient(ellipse at 50% -10%, rgba(${work.accent},0.10) 0%, transparent 60%), linear-gradient(180deg, #101012 0%, #060607 100%)`,
+              background: `radial-gradient(ellipse at 50% -10%, rgba(${work.accent},0.22) 0%, transparent 65%), linear-gradient(180deg, var(--color-surface-2) 0%, var(--color-surface-1) 100%)`,
             }}
           >
             <div className="absolute inset-0 flex items-center justify-center px-8 py-12">
@@ -95,6 +98,26 @@ export default async function WorkDetailPage({
               />
             </div>
           </div>
+
+          {/* Public headline numbers — same UI as a case study's Outcome, shown even when the write-up is locked */}
+          {work.highlights && (
+            <div className="mb-12">
+              <p className="text-ink-tertiary text-xs font-medium tracking-eyebrow uppercase mb-5">
+                {work.highlights.label ?? "At a glance"}
+              </p>
+              <StatGrid stats={work.highlights.stats} />
+              {work.highlights.source && (
+                <a
+                  href={work.highlights.source.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-1 inline-flex items-center gap-1 text-xs text-ink-tertiary hover:text-ink transition-colors"
+                >
+                  Source: {work.highlights.source.label} ↗
+                </a>
+              )}
+            </div>
+          )}
 
           {/* Case study content */}
           {work.protected ? (

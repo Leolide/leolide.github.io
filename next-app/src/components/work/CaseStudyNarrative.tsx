@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import { caseStudyNarrative, type NarrativeMedia } from "@/content/case-study-narrative";
 import { ProtectedImage } from "@/components/ui/protected-image";
+import { StatGrid } from "@/components/work/Stats";
+import { AnimatePresence, motion } from "framer-motion";
+import { EASE_OUT } from "@/lib/motion";
 
 function Media({
   media,
@@ -96,6 +99,14 @@ function MediaGroup({
   );
 }
 
+/** Each block fades up once as it scrolls into view. Small distance, no stagger — quiet on purpose. */
+const reveal = {
+  initial: { opacity: 0, y: 16 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-80px" },
+  transition: { duration: 0.5, ease: EASE_OUT },
+} as const;
+
 export function CaseStudyNarrative({ slug }: { slug: string }) {
   const data = caseStudyNarrative[slug];
   const [lightbox, setLightbox] = useState<
@@ -128,7 +139,7 @@ export function CaseStudyNarrative({ slug }: { slug: string }) {
       {/* Sections */}
       <div className="space-y-14">
         {data.sections.map((section) => (
-          <section key={section.heading} className="max-w-[640px]">
+          <motion.section key={section.heading} className="max-w-[640px]" {...reveal}>
             <p className="text-accent text-[11px] font-medium tracking-eyebrow uppercase mb-2">
               {section.sub}
             </p>
@@ -143,15 +154,16 @@ export function CaseStudyNarrative({ slug }: { slug: string }) {
               ))}
             </div>
             <MediaGroup media={section.media} onOpen={setLightbox} />
-          </section>
+          </motion.section>
         ))}
       </div>
 
       {/* Challenges and Compromises */}
       {data.compromise && (
-        <div
+        <motion.div
           className="mt-14 max-w-[640px] border-l-2 pl-5 py-1"
           style={{ borderColor: "var(--color-accent)" }}
+          {...reveal}
         >
           <h3 className="text-accent text-base font-semibold mb-3">
             {data.compromise.heading ?? "Challenges and Compromises"}
@@ -164,7 +176,7 @@ export function CaseStudyNarrative({ slug }: { slug: string }) {
             ))}
           </div>
           <MediaGroup media={data.compromise.media} onOpen={setLightbox} />
-        </div>
+        </motion.div>
       )}
 
       {/* Outcome */}
@@ -173,21 +185,7 @@ export function CaseStudyNarrative({ slug }: { slug: string }) {
           <p className="text-ink-tertiary text-xs font-medium tracking-eyebrow uppercase mb-5">
             Outcome
           </p>
-          <div className="grid grid-cols-3 gap-x-6 sm:gap-x-10 border-t border-hairline mb-6">
-            {data.outcome.stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="py-5 pr-4 border-r border-hairline last:border-r-0 last:pr-0"
-              >
-                <div className="text-ink text-2xl sm:text-3xl font-semibold tracking-tight">
-                  {stat.value}
-                </div>
-                <div className="text-ink-tertiary text-xs mt-1 leading-snug">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
+          <StatGrid stats={data.outcome.stats} className="mb-6" />
           <div className="space-y-3 max-w-[640px]">
             {data.outcome.body.map((para, i) => (
               <p key={i} className="text-ink-subtle text-sm leading-relaxed">
@@ -200,8 +198,13 @@ export function CaseStudyNarrative({ slug }: { slug: string }) {
       )}
 
       {/* Lightbox — click anywhere (image included), Escape, or the close button all dismiss it */}
+      <AnimatePresence>
       {lightbox && (
-        <div
+        <motion.div
+          key="lightbox"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { duration: 0.2, ease: EASE_OUT } }}
+          exit={{ opacity: 0, transition: { duration: 0.15, ease: EASE_OUT } }}
           className="fixed inset-0 z-50 h-dvh w-dvw flex items-center justify-center bg-black/90 p-4 sm:p-8 cursor-zoom-out overflow-hidden"
           style={{ height: "100dvh", width: "100dvw" }}
           onClick={() => setLightbox(null)}
@@ -230,7 +233,12 @@ export function CaseStudyNarrative({ slug }: { slug: string }) {
               <path d="M6 6l12 12" />
             </svg>
           </button>
-          <div className="flex min-h-0 min-w-0 max-h-full max-w-full flex-col items-center gap-4">
+          <motion.div
+            initial={{ scale: 0.96 }}
+            animate={{ scale: 1, transition: { duration: 0.25, ease: EASE_OUT } }}
+            exit={{ scale: 0.98, transition: { duration: 0.15, ease: EASE_OUT } }}
+            className="flex min-h-0 min-w-0 max-h-full max-w-full flex-col items-center gap-4"
+          >
             <ProtectedImage
               src={lightbox.src}
               alt={lightbox.alt}
@@ -242,9 +250,10 @@ export function CaseStudyNarrative({ slug }: { slug: string }) {
                 {lightbox.caption}
               </p>
             )}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </div>
   );
 }

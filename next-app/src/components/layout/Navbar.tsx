@@ -19,8 +19,9 @@ const NAV_LINKS = [
 // Always-on dark glass bar + light text and a soft translucent active pill instead of the black one.
 export function Navbar({
   extra,
+  back,
   variant = "default",
-}: { extra?: React.ReactNode; variant?: "default" | "overlay" } = {}) {
+}: { extra?: React.ReactNode; back?: React.ReactNode; variant?: "default" | "overlay" } = {}) {
   const overlay = variant === "overlay";
   const focusRing = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80";
   const itemIdle = overlay
@@ -83,17 +84,21 @@ export function Navbar({
       >
         {/* 3-column grid (1fr | auto | 1fr) so Home/Fun sit in the true centre, however wide the two sides are */}
         <div className="w-full max-w-[1280px] mx-auto px-6 grid grid-cols-[1fr_auto_1fr] items-center">
-          {/* Logo */}
-          <Link
-            href="/"
-            className={[
-              "justify-self-start text-sm font-medium tracking-tight transition-colors rounded-sm",
-              overlay ? "text-white hover:text-white/80" : "text-ink hover:text-ink-muted",
-              focusRing,
-            ].join(" ")}
-          >
-            Lide Li
-          </Link>
+          {/* Logo (+ optional breadcrumb-style back link, e.g. on case-study pages) */}
+          <div className="justify-self-start flex min-w-0 items-center gap-2">
+            <Link
+              href="/"
+              className={[
+                "text-sm font-medium tracking-tight transition-colors rounded-sm",
+                back ? "hidden sm:inline" : "",
+                overlay ? "text-white hover:text-white/80" : "text-ink hover:text-ink-muted",
+                focusRing,
+              ].join(" ")}
+            >
+              Lide Li
+            </Link>
+            {back}
+          </div>
 
           {/* Nav links */}
           <nav className="flex items-center gap-1">

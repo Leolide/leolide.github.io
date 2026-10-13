@@ -181,6 +181,27 @@ html[data-leaving] [data-page-content] {
   }
 }
 
+/* "Zoom" page transition — fade + a soft scale(0.97 → 1), opted into by the
+   home ↔ work case-study flow only via the extra data-page-content-zoom
+   marker. Scoped deliberately: transform on [data-page-content] would break
+   position:fixed descendants elsewhere on the site (see the note above), so
+   this never touches pages that don't explicitly carry the marker. */
+[data-page-content][data-page-content-zoom] {
+  transition: opacity 220ms cubic-bezier(0.23, 1, 0.32, 1), transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+  animation-name: page-enter-zoom;
+}
+
+html[data-leaving] [data-page-content][data-page-content-zoom] {
+  transform: scale(0.97);
+}
+
+@keyframes page-enter-zoom {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
 /* ---------- /fun loading screen (src/app/fun/fun3d/ui/FunLoaderView.tsx) ---------- */
 .fun-loader {
   position: fixed;

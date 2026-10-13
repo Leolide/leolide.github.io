@@ -16,18 +16,6 @@ export function imageGuardProps() {
   };
 }
 
-function watermarkDataUri(text: string) {
-  const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="340" height="240">
-      <text x="-20" y="130" font-family="-apple-system,Helvetica,Arial,sans-serif"
-        font-size="12" letter-spacing="2" fill="#ffffff" fill-opacity="0.22"
-        transform="rotate(-28 170 120)">${text}</text>
-    </svg>`
-    .replace(/\s+/g, " ")
-    .trim();
-  return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
-}
-
 type ProtectedImageProps = {
   src: string;
   alt: string;
@@ -36,14 +24,11 @@ type ProtectedImageProps = {
   style?: CSSProperties;
   width?: number;
   height?: number;
-  watermark?: boolean;
-  watermarkText?: string;
 };
 
 /**
  * Drop-in replacement for <img> used on real project screenshots: adds
- * the right-click/drag guard above plus a faint tiled watermark so a
- * screenshot still carries attribution. `wrapperClassName` controls the
+ * the right-click/drag guard above. `wrapperClassName` controls the
  * positioning wrapper so it can match whatever layout the <img> it's
  * replacing already lived in (w-full h-auto, object-contain, etc).
  */
@@ -55,8 +40,6 @@ export function ProtectedImage({
   style,
   width,
   height,
-  watermark = true,
-  watermarkText = "LIDE LI · PORTFOLIO",
 }: ProtectedImageProps) {
   const guard = imageGuardProps();
   return (
@@ -70,18 +53,6 @@ export function ProtectedImage({
         style={{ WebkitUserDrag: "none", userSelect: "none", ...style } as CSSProperties}
         {...guard}
       />
-      {watermark && (
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage: watermarkDataUri(watermarkText),
-            backgroundRepeat: "repeat",
-            mixBlendMode: "overlay",
-            opacity: 0.65,
-          }}
-        />
-      )}
     </span>
   );
 }
