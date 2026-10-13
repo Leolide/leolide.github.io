@@ -13,7 +13,7 @@ export default function FunPage() {
   return (
     <>
       {/* Canvas CSS — loaded before paint (versioned to bust stale caches) */}
-      <link rel="stylesheet" href="/fun-canvas.css?v=24" />
+      <link rel="stylesheet" href="/fun-canvas.css?v=25" />
       <link rel="stylesheet" href="/fun-pinboard.css?v=18" />
       {/* Force navbar background since the canvas page never scrolls */}
       <style>{`header { background: rgba(1,1,2,0.92) !important; border-bottom: 1px solid #23252a !important; backdrop-filter: blur(16px) !important; }
@@ -163,7 +163,7 @@ export default function FunPage() {
       </div>
 
       {/* Canvas engine — loaded after DOM is ready (versioned to bust stale caches) */}
-      <Script src="/fun-canvas.js?v=33" strategy="afterInteractive" />
+      <Script src="/fun-canvas.js?v=34" strategy="afterInteractive" />
       {/* Re-inits the canvas after client-side navigation */}
       <FunCanvasBoot />
 
