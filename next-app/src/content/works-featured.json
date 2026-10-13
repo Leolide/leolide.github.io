@@ -8,9 +8,9 @@
     "tags": ["0 → 1", "Agentic UX", "Observability"],
     "accent": "140,140,160",
     "image": "/images/autopilot-cover.webp",
-    "url": "https://www.palantir.com/docs/foundry/autopilot/overview",
-    "protected": false,
-    "external": true
+    "url": "/work/autopilot",
+    "protected": true,
+    "external": false
   },
   {
     "slug": "osdk-component-library",
@@ -21,9 +21,9 @@
     "tags": ["Design System", "React", "OSDK"],
     "accent": "140,140,160",
     "image": "/images/osdk-cover.webp",
-    "url": "https://youtu.be/O7aeOmnbCuo",
-    "protected": false,
-    "external": true
+    "url": "/work/osdk-component-library",
+    "protected": true,
+    "external": false
   },
   {
     "slug": "a-clientelling-app",

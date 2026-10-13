@@ -1,13 +1,13 @@
 [
   {
     "slug": "a-clientelling-app",
-    "title": "Boosting sales and enabling personalized customer experiences for a luxury retail client.",
-    "biggerHeading": "A Clientelling App",
+    "title": "The first product this team built from research instead of a client request, and the token-based design system that cut build time by 57%.",
+    "biggerHeading": "Clientelling App",
     "date": "Aug – Nov 2024",
     "year": "2024",
     "description": "Professional 2024",
     "mainImage": "https://cdn.prod.website-files.com/6761ab332b66a4214242de66/67800306d1729e839a5dd854_Clientelling%20App.png",
-    "coverImage": "/images/kit-cover.webp",
+    "coverImage": "/images/kit-cover-cutout.webp",
     "tags": ["iOS", "Design System", "Web App"],
     "accent": "255,180,80",
     "protected": false,
@@ -73,6 +73,53 @@
       { "label": "Platform", "value": "Website" },
       { "label": "Role", "value": "Product Designer" },
       { "label": "Duration", "value": "Sep – Dec 2023" }
+    ]
+  },
+  {
+    "slug": "autopilot",
+    "title": "A BD workflow taken from internal demo to general availability by repeatedly cutting features, not adding them.",
+    "biggerHeading": "AIP Autopilot",
+    "date": "2025 – Present",
+    "year": "2025",
+    "description": "Professional 2025",
+    "mainImage": "/images/autopilot-cover.webp",
+    "coverImage": "/images/autopilot-cover.webp",
+    "tags": ["Agentic UI", "0 → GA", "Design Engineer"],
+    "accent": "140,140,160",
+    "protected": true,
+    "meta": [
+      { "label": "Company", "value": "Palantir" },
+      { "label": "Role", "value": "Design Engineer, product direction, interaction design, partial frontend" },
+      { "label": "Stack", "value": "React, OSDK, internal agent runtime" },
+      { "label": "Duration", "value": "Multi-quarter, ongoing" }
+    ]
+  },
+  {
+    "slug": "osdk-component-library",
+    "title": "A feasibility investigation into driving Palantir's react-components library declaratively, without a rewrite.",
+    "biggerHeading": "OSDK Component Library",
+    "date": "2025 Nov – Present",
+    "year": "2025",
+    "description": "Professional 2025",
+    "mainImage": "/images/osdk-cover.webp",
+    "coverImage": "/images/osdk-cover-cutout.webp",
+    "tags": ["Design System", "React", "OSDK"],
+    "accent": "140,140,160",
+    "protected": true,
+    "highlights": {
+      "label": "Adoption",
+      "stats": [
+        { "value": "87,000+", "label": "all-time npm downloads", "live": { "package": "@osdk/react-components", "period": "total" } },
+        { "value": "7,600+", "label": "downloads in the last 30 days", "live": { "package": "@osdk/react-components", "period": "last-month" } },
+        { "value": "3,200+", "label": "downloads in the last 7 days", "live": { "package": "@osdk/react-components", "period": "last-week" } }
+      ],
+      "source": { "label": "@osdk/react-components on npm", "href": "https://www.npmjs.com/package/@osdk/react-components" }
+    },
+    "meta": [
+      { "label": "Company", "value": "Palantir" },
+      { "label": "Role", "value": "IC, feasibility investigation and prototyping" },
+      { "label": "Stack", "value": "react-components, json-render, internal OSDK" },
+      { "label": "Duration", "value": "Nov 2025 – Present" }
     ]
   }
 ]

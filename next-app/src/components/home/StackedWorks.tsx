@@ -1,26 +1,50 @@
 "use client";
 
 import { useState } from "react";
+import type { MouseEvent } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { EASE_OUT } from "@/lib/motion";
 import Link from "next/link";
 import worksData from "@/content/works-featured.json";
 import { imageGuardProps } from "@/components/ui/protected-image";
+import { usePageExit } from "@/lib/page-transition";
 
 type Work = (typeof worksData)[number];
 
+/** Writes the cursor position onto the card as CSS vars, so the spotlight follows it
+ *  without a React re-render on every mousemove. */
+function trackSpotlight(e: MouseEvent<HTMLElement>) {
+  const el = e.currentTarget;
+  const r = el.getBoundingClientRect();
+  el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+  el.style.setProperty("--my", `${e.clientY - r.top}px`);
+}
+
 function WorkCard({ work, index }: { work: Work; index: number }) {
+  const exitTo = usePageExit();
   const inner = (
     <div
-      className="group relative isolate w-full h-full rounded-xl overflow-hidden border border-white/[0.045]"
+      className="group relative isolate w-full h-full cursor-pointer rounded-xl overflow-hidden border border-white/[0.045] transition-[border-color] duration-300 hover:border-white/[0.1]"
       style={{
         background: `radial-gradient(ellipse at 50% -10%, rgba(${work.accent},0.12) 0%, transparent 60%), linear-gradient(180deg, #121214 0%, #08080a 100%)`,
       }}
+      onMouseMove={trackSpotlight}
     >
+      {/* Spotlight: an accent-tinted light that follows the cursor */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(380px circle at var(--mx,50%) var(--my,50%), rgba(${work.accent},0.22), transparent 65%)`,
+        }}
+      />
+
       {/* Floating mock image — centered, contained */}
       <div className="absolute inset-0 flex items-center justify-center px-8 pointer-events-none">
         <img
           src={work.image}
           alt={work.title}
-          className="w-full object-contain opacity-70 group-hover:opacity-100 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.03] h-[220px] sm:h-[300px] lg:h-[340px]"
+          className="w-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] h-[220px] sm:h-[300px] lg:h-[340px]"
           style={{ filter: "drop-shadow(0 8px 40px rgba(0,0,0,0.6))", mixBlendMode: "screen" }}
           {...imageGuardProps()}
         />
@@ -65,6 +89,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
           </span>
         </h3>
         <p className="text-ink-subtle text-xs mt-0.5 leading-relaxed">{work.description}</p>
+
       </div>
     </div>
   );
@@ -76,7 +101,15 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
           {inner}
         </a>
       ) : (
-        <Link href={`/work/${work.slug}`} className="block w-full h-full">
+        <Link
+          href={`/work/${work.slug}`}
+          className="block w-full h-full"
+          onClick={(e) => {
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+            e.preventDefault();
+            exitTo(`/work/${work.slug}`);
+          }}
+        >
           {inner}
         </Link>
       )}
@@ -85,6 +118,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
 }
 
 function WorkRow({ work, index }: { work: Work; index: number }) {
+  const exitTo = usePageExit();
   const inner = (
     <div className="group flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex min-w-0 items-center gap-4">
@@ -136,7 +170,15 @@ function WorkRow({ work, index }: { work: Work; index: number }) {
           {inner}
         </a>
       ) : (
-        <Link href={`/work/${work.slug}`} className="block">
+        <Link
+          href={`/work/${work.slug}`}
+          className="block"
+          onClick={(e) => {
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+            e.preventDefault();
+            exitTo(`/work/${work.slug}`);
+          }}
+        >
           {inner}
         </Link>
       )}
@@ -168,18 +210,32 @@ export function StackedWorks() {
                 type="button"
                 onClick={() => setView(v)}
                 aria-pressed={view === v}
-                className={`px-3 py-1 rounded-full text-[11px] font-medium capitalize transition ${
-                  view === v
-                    ? "bg-white/10 text-white"
-                    : "text-white/40 hover:text-white/70"
+                className={`relative px-3 py-1 rounded-full text-[11px] font-medium capitalize transition-colors ${
+                  view === v ? "text-white" : "text-white/40 hover:text-white/70"
                 }`}
               >
-                {v}
+                {/* The active pill slides between options instead of jumping */}
+                {view === v && (
+                  <motion.span
+                    layoutId="works-view-pill"
+                    className="absolute inset-0 rounded-full bg-white/10"
+                    transition={{ duration: 0.25, ease: EASE_OUT }}
+                  />
+                )}
+                <span className="relative">{v}</span>
               </button>
             ))}
           </div>
         </div>
 
+        {/* Cross-fade between card and list views */}
+        <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={view}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0, transition: { duration: 0.22, ease: EASE_OUT } }}
+          exit={{ opacity: 0, transition: { duration: 0.12, ease: EASE_OUT } }}
+        >
         {view === "list" && (
           <div className="divide-y divide-white/[0.08] border-y border-white/[0.08]">
             {worksData.map((work, i) => (
@@ -217,6 +273,8 @@ export function StackedWorks() {
         </div>
           </>
         )}
+        </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
